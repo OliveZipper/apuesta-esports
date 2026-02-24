@@ -611,7 +611,10 @@
                 // First get competitions for this sport
                 const compUrl = `${CONFIG.CORS_PROXY}${encodeURIComponent(CONFIG.CLOUDBET_API_BASE + '/odds/sports/' + sportKey)}`;
                 const compRes = await fetch(compUrl, { headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY } });
-                if (!compRes.ok) return [];
+                if (!compRes.ok) {
+                    console.warn(`${gameKey}: Failed to fetch sports/${sportKey} - ${compRes.status}`);
+                    return [];
+                }
 
                 const compData = await compRes.json();
                 const competitions = [];
@@ -623,6 +626,7 @@
                     });
                 }
 
+                console.log(`${gameKey}: Found ${competitions.length} competitions`);
                 if (competitions.length === 0) return [];
 
                 // Fetch events from ALL competitions
@@ -632,12 +636,16 @@
                         const res = await fetch(url, { headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY } });
                         if (!res.ok) return [];
                         const data = await res.json();
-                        return parseEvents(data.events || [], gameKey, compKey);
+                        const events = parseEvents(data.events || [], gameKey, compKey);
+                        if (events.length > 0) console.log(`  ${compKey}: ${events.length} events`);
+                        return events;
                     } catch { return []; }
                 });
 
                 const results = await Promise.all(eventPromises);
-                return results.flat();
+                const allEvents = results.flat();
+                console.log(`${gameKey}: Total ${allEvents.length} events`);
+                return allEvents;
             } catch (e) {
                 console.warn(`Error fetching ${gameKey}:`, e.message);
                 return [];
