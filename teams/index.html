@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Esports Teams by Earnings - Team Rankings | Apuesta Esports</title>
+    <meta name="description" content="Complete rankings of the top 20 highest-earning esports teams in history. Team Liquid, OG, Team Spirit, and more. Prize money, tournament wins, and statistics.">
+    <meta name="keywords" content="esports teams, team rankings, Team Liquid, OG, Team Spirit, Natus Vincere, FaZe Clan, prize money, tournament earnings">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Top Esports Teams by Earnings | Apuesta Esports">
+    <meta property="og:description" content="Complete rankings of the top 20 highest-earning esports teams. Prize money, tournaments, and statistics.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.apuestaesports.com/teams/">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Top Esports Teams by Earnings | Apuesta Esports">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.apuestaesports.com/teams/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #15151f;
+            --orange: #FF6B2F;
+            --purple: #8D52DA;
+            --yellow: #DFFD51;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        a { color: inherit; text-decoration: none; }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 24px;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
+        
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 120px 24px 60px;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(141, 82, 218, 0.15) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+        
+        .page-header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .page-header h1 .gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--orange);
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+        }
+        
+        /* Stats Summary */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Leaderboard Table */
+        .leaderboard {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .leaderboard-header {
+            display: grid;
+            grid-template-columns: 60px 1fr 150px 120px;
+            padding: 16px 24px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        
+        .team-row {
+            display: grid;
+            grid-template-columns: 60px 1fr 150px 120px;
+            padding: 16px 24px;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+        
+        .team-row:last-child {
+            border-bottom: none;
+        }
+        
+        .team-row:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        .rank {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+        .rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
+        .rank.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
+        
+        .team-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .team-logo {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .team-details h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        
+        .team-details a {
+            color: var(--text-primary);
+            transition: color 0.2s;
+        }
+        
+        .team-details a:hover {
+            color: var(--orange);
+        }
+        
+        .team-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .earnings {
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--yellow);
+            font-size: 1rem;
+        }
+        
+        .tournaments {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        /* Featured Teams */
+        .featured-section {
+            margin-top: 60px;
+        }
+        
+        .featured-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .featured-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--purple);
+        }
+        
+        .featured-card .team-logo {
+            width: 60px;
+            height: 60px;
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+        
+        .featured-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+        
+        .featured-card .meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        
+        .featured-card .earnings {
+            font-size: 1.25rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 40px 24px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            
+            .leaderboard-header {
+                grid-template-columns: 50px 1fr 100px;
+            }
+            
+            .leaderboard-header .hide-mobile,
+            .team-row .hide-mobile {
+                display: none;
+            }
+            
+            .team-row {
+                grid-template-columns: 50px 1fr 100px;
+            }
+            
+            .rank {
+                width: 32px;
+                height: 32px;
+                font-size: 0.85rem;
+            }
+            
+            .team-logo {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+            }
+            
+            .stats-bar {
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <ul class="nav-links">
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/teams/" class="active">Teams</a></li>
+                <li><a href="/players/">Players</a></li>
+                <li><a href="/countries/">Countries</a></li>
+                <li><a href="/tournaments/">Tournaments</a></li>
+                <li><a href="/betting/">Betting</a></li>
+            </ul>
+            <a href="/live/" class="nav-cta">Live Odds →</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="breadcrumb">
+            <a href="/">Home</a> / <span>Teams</span>
+        </div>
+        <h1>Top <span class="gradient">Esports Teams</span></h1>
+        <p>The highest-earning professional esports organizations in competitive gaming history</p>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Stats Summary -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">$400M+</div>
+                <div class="stat-label">Total Earnings (Top 20)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">13,000+</div>
+                <div class="stat-label">Tournaments Played</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">20</div>
+                <div class="stat-label">Elite Organizations</div>
+            </div>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="leaderboard">
+            <div class="leaderboard-header">
+                <span>Rank</span>
+                <span>Team</span>
+                <span>Earnings</span>
+                <span class="hide-mobile">Tournaments</span>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank gold">1</div>
+                <div class="team-info">
+                    <div class="team-logo">💧</div>
+                    <div class="team-details">
+                        <h3><a href="/teams/team-liquid.html">Team Liquid</a></h3>
+                        <div class="team-meta">🇳🇱 Netherlands • Multi-game</div>
+                    </div>
+                </div>
+                <div class="earnings">$56,396,588</div>
+                <div class="tournaments hide-mobile">2,982</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank silver">2</div>
+                <div class="team-info">
+                    <div class="team-logo">🔴</div>
+                    <div class="team-details">
+                        <h3><a href="/teams/og.html">OG</a></h3>
+                        <div class="team-meta">🇪🇺 Europe • Dota 2</div>
+                    </div>
+                </div>
+                <div class="earnings">$38,773,813</div>
+                <div class="tournaments hide-mobile">208</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank bronze">3</div>
+                <div class="team-info">
+                    <div class="team-logo">👻</div>
+                    <div class="team-details">
+                        <h3><a href="/teams/team-spirit.html">Team Spirit</a></h3>
+                        <div class="team-meta">🇷🇺 Russia • Dota 2 / CS2</div>
+                    </div>
+                </div>
+                <div class="earnings">$35,582,603</div>
+                <div class="tournaments hide-mobile">308</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">4</div>
+                <div class="team-info">
+                    <div class="team-logo">👹</div>
+                    <div class="team-details">
+                        <h3>Evil Geniuses</h3>
+                        <div class="team-meta">🇺🇸 United States • Multi-game</div>
+                    </div>
+                </div>
+                <div class="earnings">$28,567,423</div>
+                <div class="tournaments hide-mobile">1,019</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">5</div>
+                <div class="team-info">
+                    <div class="team-logo">🦾</div>
+                    <div class="team-details">
+                        <h3><a href="/teams/navi.html">Natus Vincere</a></h3>
+                        <div class="team-meta">🇺🇦 Ukraine • CS2</div>
+                    </div>
+                </div>
+                <div class="earnings">$24,425,714</div>
+                <div class="tournaments hide-mobile">870</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">6</div>
+                <div class="team-info">
+                    <div class="team-logo">🟠</div>
+                    <div class="team-details">
+                        <h3>Fnatic</h3>
+                        <div class="team-meta">🇬🇧 United Kingdom • Multi-game</div>
+                    </div>
+                </div>
+                <div class="earnings">$22,315,366</div>
+                <div class="tournaments hide-mobile">1,194</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">7</div>
+                <div class="team-info">
+                    <div class="team-logo">🎯</div>
+                    <div class="team-details">
+                        <h3><a href="/teams/faze.html">FaZe Clan</a></h3>
+                        <div class="team-meta">🇺🇸 United States • CS2 / Fortnite</div>
+                    </div>
+                </div>
+                <div class="earnings">$21,451,431</div>
+                <div class="tournaments hide-mobile">808</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">8</div>
+                <div class="team-info">
+                    <div class="team-logo">🐻</div>
+                    <div class="team-details">
+                        <h3>Virtus.pro</h3>
+                        <div class="team-meta">🇷🇺 Russia • CS2 / Dota 2</div>
+                    </div>
+                </div>
+                <div class="earnings">$21,193,087</div>
+                <div class="tournaments hide-mobile">736</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">9</div>
+                <div class="team-info">
+                    <div class="team-logo">🔮</div>
+                    <div class="team-details">
+                        <h3>Team Secret</h3>
+                        <div class="team-meta">🇪🇺 Europe • Dota 2</div>
+                    </div>
+                </div>
+                <div class="earnings">$21,051,901</div>
+                <div class="tournaments hide-mobile">451</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">10</div>
+                <div class="team-info">
+                    <div class="team-logo">⚽</div>
+                    <div class="team-details">
+                        <h3>PSG Esports</h3>
+                        <div class="team-meta">🇫🇷 France • Dota 2 / RL</div>
+                    </div>
+                </div>
+                <div class="earnings">$19,810,565</div>
+                <div class="tournaments hide-mobile">181</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">11</div>
+                <div class="team-info">
+                    <div class="team-logo">🔵</div>
+                    <div class="team-details">
+                        <h3>G2 Esports</h3>
+                        <div class="team-meta">🇪🇺 Europe • LoL / CS2</div>
+                    </div>
+                </div>
+                <div class="earnings">$18,976,347</div>
+                <div class="tournaments hide-mobile">783</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">12</div>
+                <div class="team-info">
+                    <div class="team-logo">🎮</div>
+                    <div class="team-details">
+                        <h3>All Gamers</h3>
+                        <div class="team-meta">🇸🇦 Saudi Arabia • Multi-game</div>
+                    </div>
+                </div>
+                <div class="earnings">$18,525,987</div>
+                <div class="tournaments hide-mobile">197</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">13</div>
+                <div class="team-info">
+                    <div class="team-logo">🐉</div>
+                    <div class="team-details">
+                        <h3>LGD Gaming</h3>
+                        <div class="team-meta">🇨🇳 China • Dota 2</div>
+                    </div>
+                </div>
+                <div class="earnings">$17,393,358</div>
+                <div class="tournaments hide-mobile">243</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">14</div>
+                <div class="team-info">
+                    <div class="team-logo">🔴</div>
+                    <div class="team-details">
+                        <h3>T1</h3>
+                        <div class="team-meta">🇰🇷 South Korea • LoL</div>
+                    </div>
+                </div>
+                <div class="earnings">$15,992,415</div>
+                <div class="tournaments hide-mobile">518</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">15</div>
+                <div class="team-info">
+                    <div class="team-logo">🎭</div>
+                    <div class="team-details">
+                        <h3>Vici Gaming</h3>
+                        <div class="team-meta">🇨🇳 China • Dota 2</div>
+                    </div>
+                </div>
+                <div class="earnings">$15,756,478</div>
+                <div class="tournaments hide-mobile">318</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">16</div>
+                <div class="team-info">
+                    <div class="team-logo">⬛</div>
+                    <div class="team-details">
+                        <h3>Invictus Gaming</h3>
+                        <div class="team-meta">🇨🇳 China • Dota 2 / LoL</div>
+                    </div>
+                </div>
+                <div class="earnings">$15,251,360</div>
+                <div class="tournaments hide-mobile">635</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">17</div>
+                <div class="team-info">
+                    <div class="team-logo">💚</div>
+                    <div class="team-details">
+                        <h3>OpTic Gaming</h3>
+                        <div class="team-meta">🇺🇸 United States • CoD / Halo</div>
+                    </div>
+                </div>
+                <div class="earnings">$14,592,124</div>
+                <div class="tournaments hide-mobile">428</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">18</div>
+                <div class="team-info">
+                    <div class="team-logo">☁️</div>
+                    <div class="team-details">
+                        <h3>Cloud9</h3>
+                        <div class="team-meta">🇺🇸 United States • Multi-game</div>
+                    </div>
+                </div>
+                <div class="earnings">$14,497,101</div>
+                <div class="tournaments hide-mobile">1,104</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">19</div>
+                <div class="team-info">
+                    <div class="team-logo">🦅</div>
+                    <div class="team-details">
+                        <h3>Team Falcons</h3>
+                        <div class="team-meta">🇸🇦 Saudi Arabia • Multi-game</div>
+                    </div>
+                </div>
+                <div class="earnings">$14,461,976</div>
+                <div class="tournaments hide-mobile">412</div>
+            </div>
+            
+            <div class="team-row">
+                <div class="rank">20</div>
+                <div class="team-info">
+                    <div class="team-logo">🐝</div>
+                    <div class="team-details">
+                        <h3>Newbee</h3>
+                        <div class="team-meta">🇨🇳 China • Dota 2</div>
+                    </div>
+                </div>
+                <div class="earnings">$14,230,154</div>
+                <div class="tournaments hide-mobile">236</div>
+            </div>
+        </div>
+
+        <!-- Featured Teams -->
+        <section class="featured-section">
+            <h2>🏆 Featured Team Profiles</h2>
+            <div class="featured-grid">
+                <a href="/teams/team-liquid.html" class="featured-card">
+                    <div class="team-logo">💧</div>
+                    <h3>Team Liquid</h3>
+                    <div class="meta">🇳🇱 Founded 2000 • 23+ Games</div>
+                    <div class="earnings">$56.4M</div>
+                </a>
+                <a href="/teams/og.html" class="featured-card">
+                    <div class="team-logo">🔴</div>
+                    <h3>OG</h3>
+                    <div class="meta">🇪🇺 Founded 2015 • 2x TI Champions</div>
+                    <div class="earnings">$38.8M</div>
+                </a>
+                <a href="/teams/team-spirit.html" class="featured-card">
+                    <div class="team-logo">👻</div>
+                    <h3>Team Spirit</h3>
+                    <div class="meta">🇷🇺 Founded 2015 • TI10 Champions</div>
+                    <div class="earnings">$35.6M</div>
+                </a>
+                <a href="/teams/navi.html" class="featured-card">
+                    <div class="team-logo">🦾</div>
+                    <h3>Natus Vincere</h3>
+                    <div class="meta">🇺🇦 Founded 2009 • CS Legends</div>
+                    <div class="earnings">$24.4M</div>
+                </a>
+                <a href="/teams/faze.html" class="featured-card">
+                    <div class="team-logo">🎯</div>
+                    <h3>FaZe Clan</h3>
+                    <div class="meta">🇺🇸 Founded 2010 • Content Empire</div>
+                    <div class="earnings">$21.5M</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/games/">Games</a>
+            <a href="/teams/">Teams</a>
+            <a href="/players/">Players</a>
+            <a href="/countries/">Countries</a>
+            <a href="/betting/">Betting</a>
+        </div>
+        <div class="footer-copyright">
+            © 2026 Apuesta Esports. Data from Esports Earnings.
+        </div>
+    </footer>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Top Esports Teams by Earnings",
+        "description": "Rankings of the highest-earning professional esports teams",
+        "numberOfItems": 20,
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Team Liquid", "url": "https://www.apuestaesports.com/teams/team-liquid.html"},
+            {"@type": "ListItem", "position": 2, "name": "OG", "url": "https://www.apuestaesports.com/teams/og.html"},
+            {"@type": "ListItem", "position": 3, "name": "Team Spirit", "url": "https://www.apuestaesports.com/teams/team-spirit.html"},
+            {"@type": "ListItem", "position": 4, "name": "Evil Geniuses"},
+            {"@type": "ListItem", "position": 5, "name": "Natus Vincere", "url": "https://www.apuestaesports.com/teams/navi.html"}
+        ]
+    }
+    </script>
+</body>
+</html>

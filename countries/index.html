@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esports by Country - Top 20 Countries Ranked by Earnings | Apuesta Esports</title>
+    <meta name="description" content="Complete ranking of countries by esports earnings. China leads with $331M, followed by USA ($299M) and South Korea ($157M). Player counts, top games, and detailed statistics.">
+    <meta name="keywords" content="esports countries, esports by nation, China esports, USA esports, Korea esports, esports earnings by country">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Esports by Country - Global Rankings | Apuesta Esports">
+    <meta property="og:description" content="Top 20 countries ranked by esports prize money earnings. Explore player counts and dominant games by nation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.apuestaesports.com/countries/">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Esports by Country - Global Rankings">
+    <meta name="twitter:description" content="Top 20 countries ranked by esports prize money earnings.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #15151f;
+            --orange: #FF6B2F;
+            --purple: #8D52DA;
+            --yellow: #DFFD51;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 24px;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+        
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
+        }
+        
+        /* Hero */
+        .page-hero {
+            padding: 120px 24px 60px;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(141, 82, 218, 0.15) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+        
+        .page-hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .page-hero h1 .gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            padding: 24px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--yellow);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px 100px;
+        }
+        
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-bar input {
+            flex: 1;
+            min-width: 200px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+        
+        .filter-bar input:focus {
+            outline: none;
+            border-color: var(--purple);
+        }
+        
+        .filter-bar input::placeholder {
+            color: var(--text-muted);
+        }
+        
+        .filter-bar select {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+        
+        .filter-bar select:focus {
+            outline: none;
+            border-color: var(--purple);
+        }
+        
+        /* Leaderboard Table */
+        .leaderboard {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .leaderboard-header {
+            display: grid;
+            grid-template-columns: 80px 1fr 150px 120px 150px;
+            padding: 16px 24px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .leaderboard-header span {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+        
+        .leaderboard-header span:hover {
+            color: var(--text-primary);
+        }
+        
+        .leaderboard-header span.active {
+            color: var(--orange);
+        }
+        
+        .leaderboard-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 150px 120px 150px;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+            transition: background 0.2s;
+        }
+        
+        .leaderboard-row:last-child {
+            border-bottom: none;
+        }
+        
+        .leaderboard-row:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        .rank {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+        .rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
+        .rank.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
+        
+        .country-cell {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .country-flag {
+            font-size: 2rem;
+        }
+        
+        .country-name {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        
+        .country-name a {
+            transition: color 0.2s;
+        }
+        
+        .country-name a:hover {
+            color: var(--orange);
+        }
+        
+        .earnings {
+            font-weight: 700;
+            color: var(--yellow);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .players {
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .top-game {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .game-badge {
+            background: var(--bg-tertiary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Featured Countries */
+        .featured-section {
+            margin-top: 80px;
+        }
+        
+        .featured-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 24px;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+        }
+        
+        .featured-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--purple);
+        }
+        
+        .featured-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .featured-flag {
+            font-size: 3rem;
+        }
+        
+        .featured-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+        
+        .featured-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .featured-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .featured-stat {
+            text-align: center;
+            padding: 12px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+        }
+        
+        .featured-stat-value {
+            font-weight: 700;
+            color: var(--yellow);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+        }
+        
+        .featured-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        
+        .featured-link {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: var(--gradient);
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .featured-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 47, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 40px 24px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .footer-content p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        /* Mobile */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .leaderboard-header,
+            .leaderboard-row {
+                grid-template-columns: 60px 1fr 100px;
+            }
+            
+            .leaderboard-header span:nth-child(4),
+            .leaderboard-header span:nth-child(5),
+            .leaderboard-row .players,
+            .leaderboard-row .top-game {
+                display: none;
+            }
+            
+            .stats-bar {
+                gap: 24px;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <ul class="nav-links">
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/teams/">Teams</a></li>
+                <li><a href="/players/">Players</a></li>
+                <li><a href="/countries/" class="active">Countries</a></li>
+                <li><a href="/tournaments/">Tournaments</a></li>
+                <li><a href="/betting/">Betting</a></li>
+            </ul>
+            <a href="/live/" class="nav-cta">Live Odds →</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="page-hero">
+        <h1>Esports by <span class="gradient">Country</span></h1>
+        <p>Global rankings of countries by total esports earnings, player counts, and dominant games</p>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-value">$1.6B+</div>
+            <div class="stat-label">Total Earnings</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">120K+</div>
+            <div class="stat-label">Pro Players</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">100+</div>
+            <div class="stat-label">Countries</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">50K+</div>
+            <div class="stat-label">Tournaments</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <input type="text" id="searchInput" placeholder="🔍 Search countries...">
+            <select id="gameFilter">
+                <option value="">All Games</option>
+                <option value="Dota 2">Dota 2</option>
+                <option value="Fortnite">Fortnite</option>
+                <option value="League of Legends">League of Legends</option>
+                <option value="CS:GO">CS:GO</option>
+                <option value="Rainbow Six Siege">Rainbow Six Siege</option>
+            </select>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="leaderboard">
+            <div class="leaderboard-header">
+                <span class="active">Rank ↓</span>
+                <span>Country</span>
+                <span>Earnings</span>
+                <span>Players</span>
+                <span>Top Game</span>
+            </div>
+            
+            <div class="leaderboard-row" data-country="China" data-game="Dota 2">
+                <div class="rank gold">1</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇨🇳</span>
+                    <span class="country-name"><a href="/countries/china.html">China</a></span>
+                </div>
+                <div class="earnings">$331.6M</div>
+                <div class="players">9,350</div>
+                <div class="top-game"><span class="game-badge">Dota 2</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="United States" data-game="Fortnite">
+                <div class="rank silver">2</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇺🇸</span>
+                    <span class="country-name"><a href="/countries/usa.html">United States</a></span>
+                </div>
+                <div class="earnings">$300.0M</div>
+                <div class="players">29,331</div>
+                <div class="top-game"><span class="game-badge">Fortnite</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="South Korea" data-game="League of Legends">
+                <div class="rank bronze">3</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇰🇷</span>
+                    <span class="country-name"><a href="/countries/korea.html">South Korea</a></span>
+                </div>
+                <div class="earnings">$156.9M</div>
+                <div class="players">5,964</div>
+                <div class="top-game"><span class="game-badge">League of Legends</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Russia" data-game="Dota 2">
+                <div class="rank">4</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇷🇺</span>
+                    <span class="country-name"><a href="/countries/russia.html">Russia</a></span>
+                </div>
+                <div class="earnings">$96.1M</div>
+                <div class="players">5,864</div>
+                <div class="top-game"><span class="game-badge">Dota 2</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Brazil" data-game="Rainbow Six Siege">
+                <div class="rank">5</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇧🇷</span>
+                    <span class="country-name"><a href="/countries/brazil.html">Brazil</a></span>
+                </div>
+                <div class="earnings">$72.8M</div>
+                <div class="players">5,966</div>
+                <div class="top-game"><span class="game-badge">Rainbow Six Siege</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Denmark" data-game="CS:GO">
+                <div class="rank">6</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇩🇰</span>
+                    <span class="country-name"><a href="/countries/denmark.html">Denmark</a></span>
+                </div>
+                <div class="earnings">$64.1M</div>
+                <div class="players">2,202</div>
+                <div class="top-game"><span class="game-badge">CS:GO</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="France" data-game="CS:GO">
+                <div class="rank">7</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇫🇷</span>
+                    <span class="country-name">France</span>
+                </div>
+                <div class="earnings">$61.7M</div>
+                <div class="players">6,650</div>
+                <div class="top-game"><span class="game-badge">CS:GO</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Sweden" data-game="Dota 2">
+                <div class="rank">8</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇸🇪</span>
+                    <span class="country-name">Sweden</span>
+                </div>
+                <div class="earnings">$58.6M</div>
+                <div class="players">3,358</div>
+                <div class="top-game"><span class="game-badge">Dota 2</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Germany" data-game="Dota 2">
+                <div class="rank">9</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇩🇪</span>
+                    <span class="country-name">Germany</span>
+                </div>
+                <div class="earnings">$53.0M</div>
+                <div class="players">6,933</div>
+                <div class="top-game"><span class="game-badge">Dota 2</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Canada" data-game="Fortnite">
+                <div class="rank">10</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇨🇦</span>
+                    <span class="country-name">Canada</span>
+                </div>
+                <div class="earnings">$50.6M</div>
+                <div class="players">4,380</div>
+                <div class="top-game"><span class="game-badge">Fortnite</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="United Kingdom" data-game="Fortnite">
+                <div class="rank">11</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇬🇧</span>
+                    <span class="country-name">United Kingdom</span>
+                </div>
+                <div class="earnings">$49.9M</div>
+                <div class="players">5,715</div>
+                <div class="top-game"><span class="game-badge">Fortnite</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Japan" data-game="PUBG Mobile">
+                <div class="rank">12</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇯🇵</span>
+                    <span class="country-name">Japan</span>
+                </div>
+                <div class="earnings">$41.3M</div>
+                <div class="players">3,984</div>
+                <div class="top-game"><span class="game-badge">PUBG Mobile</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Ukraine" data-game="Dota 2">
+                <div class="rank">13</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇺🇦</span>
+                    <span class="country-name">Ukraine</span>
+                </div>
+                <div class="earnings">$40.5M</div>
+                <div class="players">1,719</div>
+                <div class="top-game"><span class="game-badge">Dota 2</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Australia" data-game="Dota 2">
+                <div class="rank">14</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇦🇺</span>
+                    <span class="country-name">Australia</span>
+                </div>
+                <div class="earnings">$34.5M</div>
+                <div class="players">4,595</div>
+                <div class="top-game"><span class="game-badge">Dota 2</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Finland" data-game="Dota 2">
+                <div class="rank">15</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇫🇮</span>
+                    <span class="country-name">Finland</span>
+                </div>
+                <div class="earnings">$34.1M</div>
+                <div class="players">2,215</div>
+                <div class="top-game"><span class="game-badge">Dota 2</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Poland" data-game="CS:GO">
+                <div class="rank">16</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇵🇱</span>
+                    <span class="country-name">Poland</span>
+                </div>
+                <div class="earnings">$31.8M</div>
+                <div class="players">3,133</div>
+                <div class="top-game"><span class="game-badge">CS:GO</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Thailand" data-game="Arena of Valor">
+                <div class="rank">17</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇹🇭</span>
+                    <span class="country-name">Thailand</span>
+                </div>
+                <div class="earnings">$31.1M</div>
+                <div class="players">2,309</div>
+                <div class="top-game"><span class="game-badge">Arena of Valor</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Philippines" data-game="Dota 2">
+                <div class="rank">18</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇵🇭</span>
+                    <span class="country-name">Philippines</span>
+                </div>
+                <div class="earnings">$27.3M</div>
+                <div class="players">1,916</div>
+                <div class="top-game"><span class="game-badge">Dota 2</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Malaysia" data-game="Dota 2">
+                <div class="rank">19</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇲🇾</span>
+                    <span class="country-name">Malaysia</span>
+                </div>
+                <div class="earnings">$23.2M</div>
+                <div class="players">1,715</div>
+                <div class="top-game"><span class="game-badge">Dota 2</span></div>
+            </div>
+            
+            <div class="leaderboard-row" data-country="Taiwan" data-game="League of Legends">
+                <div class="rank">20</div>
+                <div class="country-cell">
+                    <span class="country-flag">🇹🇼</span>
+                    <span class="country-name">Taiwan</span>
+                </div>
+                <div class="earnings">$23.0M</div>
+                <div class="players">1,725</div>
+                <div class="top-game"><span class="game-badge">League of Legends</span></div>
+            </div>
+        </div>
+
+        <!-- Featured Countries -->
+        <section class="featured-section">
+            <h2>🏆 Featured Country Profiles</h2>
+            <div class="featured-grid">
+                <a href="/countries/china.html" class="featured-card">
+                    <div class="featured-header">
+                        <span class="featured-flag">🇨🇳</span>
+                        <div class="featured-info">
+                            <h3>China</h3>
+                            <p>World #1 in Esports Earnings</p>
+                        </div>
+                    </div>
+                    <div class="featured-stats">
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">$331M</div>
+                            <div class="featured-stat-label">Earnings</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">9,350</div>
+                            <div class="featured-stat-label">Players</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">Dota 2</div>
+                            <div class="featured-stat-label">Top Game</div>
+                        </div>
+                    </div>
+                    <span class="featured-link">View Full Profile →</span>
+                </a>
+                
+                <a href="/countries/usa.html" class="featured-card">
+                    <div class="featured-header">
+                        <span class="featured-flag">🇺🇸</span>
+                        <div class="featured-info">
+                            <h3>United States</h3>
+                            <p>Most Pro Players Worldwide</p>
+                        </div>
+                    </div>
+                    <div class="featured-stats">
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">$300M</div>
+                            <div class="featured-stat-label">Earnings</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">29,331</div>
+                            <div class="featured-stat-label">Players</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">Fortnite</div>
+                            <div class="featured-stat-label">Top Game</div>
+                        </div>
+                    </div>
+                    <span class="featured-link">View Full Profile →</span>
+                </a>
+                
+                <a href="/countries/korea.html" class="featured-card">
+                    <div class="featured-header">
+                        <span class="featured-flag">🇰🇷</span>
+                        <div class="featured-info">
+                            <h3>South Korea</h3>
+                            <p>Birthplace of Modern Esports</p>
+                        </div>
+                    </div>
+                    <div class="featured-stats">
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">$157M</div>
+                            <div class="featured-stat-label">Earnings</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">5,964</div>
+                            <div class="featured-stat-label">Players</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">LoL</div>
+                            <div class="featured-stat-label">Top Game</div>
+                        </div>
+                    </div>
+                    <span class="featured-link">View Full Profile →</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Apuesta Esports. Data sourced from Esports Earnings.</p>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/games/">Games</a>
+                <a href="/teams/">Teams</a>
+                <a href="/players/">Players</a>
+                <a href="/betting/">Betting</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Search/Filter Script -->
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const gameFilter = document.getElementById('gameFilter');
+        const rows = document.querySelectorAll('.leaderboard-row');
+        
+        function filterRows() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const gameValue = gameFilter.value;
+            
+            rows.forEach(row => {
+                const country = row.getAttribute('data-country').toLowerCase();
+                const game = row.getAttribute('data-game');
+                
+                const matchesSearch = country.includes(searchTerm);
+                const matchesGame = !gameValue || game === gameValue;
+                
+                row.style.display = (matchesSearch && matchesGame) ? '' : 'none';
+            });
+        }
+        
+        searchInput.addEventListener('input', filterRows);
+        gameFilter.addEventListener('change', filterRows);
+    </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Top Countries by Esports Earnings",
+        "description": "Ranking of countries by total esports prize money earnings",
+        "numberOfItems": 20,
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "China", "description": "$331.6M earnings, 9,350 players"},
+            {"@type": "ListItem", "position": 2, "name": "United States", "description": "$300M earnings, 29,331 players"},
+            {"@type": "ListItem", "position": 3, "name": "South Korea", "description": "$156.9M earnings, 5,964 players"},
+            {"@type": "ListItem", "position": 4, "name": "Russia", "description": "$96.1M earnings, 5,864 players"},
+            {"@type": "ListItem", "position": 5, "name": "Brazil", "description": "$72.8M earnings, 5,966 players"}
+        ]
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Esports Players by Earnings | Apuesta Esports</title>
+    <meta name="description" content="Complete rankings of the highest-earning esports players. N0tail, JerAx, Miposhka, and more. Dota 2, CS:GO, League of Legends player statistics and profiles.">
+    <meta name="keywords" content="esports players, highest earning gamers, N0tail, JerAx, Dota 2 players, CS:GO players, esports prize money">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Top Esports Players by Earnings | Apuesta Esports">
+    <meta property="og:description" content="Complete rankings of the highest-earning esports players worldwide.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.apuestaesports.com/players/">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Top Esports Players by Earnings">
+    <meta name="twitter:description" content="Complete rankings of the highest-earning esports players worldwide.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #15151f;
+            --orange: #FF6B2F;
+            --purple: #8D52DA;
+            --yellow: #DFFD51;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 24px;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+        
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 120px 24px 60px;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(141, 82, 218, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(255, 107, 47, 0.1) 0%, transparent 40%),
+                var(--bg-primary);
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .page-header h1 .gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .header-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .header-stat {
+            text-align: center;
+        }
+        
+        .header-stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--yellow);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .header-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        
+        /* Leaderboard */
+        .leaderboard {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .leaderboard-header {
+            display: grid;
+            grid-template-columns: 60px 1fr 140px 120px 100px;
+            padding: 16px 24px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .player-row {
+            display: grid;
+            grid-template-columns: 60px 1fr 140px 120px 100px;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+            transition: background 0.2s;
+        }
+        
+        .player-row:last-child {
+            border-bottom: none;
+        }
+        
+        .player-row:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        .player-row.featured {
+            background: linear-gradient(135deg, rgba(255, 107, 47, 0.05) 0%, rgba(141, 82, 218, 0.05) 100%);
+        }
+        
+        .player-row.featured:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 47, 0.1) 0%, rgba(141, 82, 218, 0.1) 100%);
+        }
+        
+        .player-rank {
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+        
+        .player-rank.gold { color: #FFD700; }
+        .player-rank.silver { color: #C0C0C0; }
+        .player-rank.bronze { color: #CD7F32; }
+        
+        .player-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .player-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .player-details h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        
+        .player-details h3 a {
+            transition: color 0.2s;
+        }
+        
+        .player-details h3 a:hover {
+            color: var(--orange);
+        }
+        
+        .player-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .player-country {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .player-country .flag {
+            font-size: 1.25rem;
+        }
+        
+        .player-country .name {
+            color: var(--text-secondary);
+        }
+        
+        .player-game {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .player-earnings {
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--yellow);
+            font-size: 1rem;
+        }
+        
+        .view-profile {
+            color: var(--orange);
+            font-weight: 500;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .player-row:hover .view-profile {
+            opacity: 1;
+        }
+        
+        /* Games Filter */
+        .filter-section {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--bg-tertiary);
+            border-color: var(--purple);
+            color: var(--text-primary);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 60px 24px 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand {
+            max-width: 300px;
+        }
+        
+        .footer-brand .logo {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+        
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .footer-links h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        /* Mobile */
+        @media (max-width: 900px) {
+            .leaderboard-header {
+                display: none;
+            }
+            
+            .player-row {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 20px;
+            }
+            
+            .player-rank {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .player-row {
+                position: relative;
+            }
+            
+            .player-country,
+            .player-game {
+                margin-top: 8px;
+            }
+            
+            .player-earnings {
+                font-size: 1.2rem;
+            }
+            
+            .view-profile {
+                opacity: 1;
+                margin-top: 12px;
+                display: inline-block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .header-stats {
+                gap: 24px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <ul class="nav-links">
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/teams/">Teams</a></li>
+                <li><a href="/players/" class="active">Players</a></li>
+                <li><a href="/countries/">Countries</a></li>
+                <li><a href="/tournaments/">Tournaments</a></li>
+                <li><a href="/betting/">Betting</a></li>
+            </ul>
+            <a href="/live/" class="nav-cta">Live Odds →</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Top <span class="gradient">Esports Players</span></h1>
+        <p>The highest-earning professional gamers in the world, ranked by total career prize money.</p>
+        <div class="header-stats">
+            <div class="header-stat">
+                <div class="header-stat-value">$96.5M+</div>
+                <div class="header-stat-label">Top 20 Total Earnings</div>
+            </div>
+            <div class="header-stat">
+                <div class="header-stat-value">18</div>
+                <div class="header-stat-label">Dota 2 Players</div>
+            </div>
+            <div class="header-stat">
+                <div class="header-stat-value">2</div>
+                <div class="header-stat-label">CS:GO Players</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Filters -->
+        <div class="filter-section">
+            <button class="filter-btn active">All Games</button>
+            <button class="filter-btn">⚔️ Dota 2</button>
+            <button class="filter-btn">🔫 CS:GO</button>
+            <button class="filter-btn">🏰 LoL</button>
+            <button class="filter-btn">💠 Valorant</button>
+        </div>
+
+        <!-- Leaderboard -->
+        <div class="leaderboard">
+            <div class="leaderboard-header">
+                <div>Rank</div>
+                <div>Player</div>
+                <div>Country</div>
+                <div>Game</div>
+                <div>Earnings</div>
+            </div>
+            
+            <!-- Row 1 - N0tail -->
+            <div class="player-row featured">
+                <div class="player-rank gold">#1</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3><a href="/players/n0tail.html">N0tail</a></h3>
+                        <div class="player-meta">Johan Sundstein</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇩🇰</span>
+                    <span class="name">Denmark</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$7,184,163</div>
+            </div>
+            
+            <!-- Row 2 - JerAx -->
+            <div class="player-row featured">
+                <div class="player-rank silver">#2</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3><a href="/players/jerax.html">JerAx</a></h3>
+                        <div class="player-meta">Jesse Vainikka</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇫🇮</span>
+                    <span class="name">Finland</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$6,486,623</div>
+            </div>
+            
+            <!-- Row 3 - Miposhka -->
+            <div class="player-row featured">
+                <div class="player-rank bronze">#3</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3><a href="/players/miposhka.html">Miposhka</a></h3>
+                        <div class="player-meta">Yaroslav Naidenov</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇷🇺</span>
+                    <span class="name">Russia</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$6,227,771</div>
+            </div>
+            
+            <!-- Row 4 - ana -->
+            <div class="player-row featured">
+                <div class="player-rank">#4</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3><a href="/players/ana.html">ana</a></h3>
+                        <div class="player-meta">Anathan Pham</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇦🇺</span>
+                    <span class="name">Australia</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$6,024,411</div>
+            </div>
+            
+            <!-- Row 5 - Ceb -->
+            <div class="player-row featured">
+                <div class="player-rank">#5</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3><a href="/players/ceb.html">Ceb</a></h3>
+                        <div class="player-meta">Sébastien Debs</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇫🇷</span>
+                    <span class="name">France</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$5,949,442</div>
+            </div>
+            
+            <!-- Row 6 - Yatoro -->
+            <div class="player-row">
+                <div class="player-rank">#6</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>Yatoro</h3>
+                        <div class="player-meta">Ilya Mulyarchuk</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇺🇦</span>
+                    <span class="name">Ukraine</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$5,932,736</div>
+            </div>
+            
+            <!-- Row 7 - Collapse -->
+            <div class="player-row">
+                <div class="player-rank">#7</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>Collapse</h3>
+                        <div class="player-meta">Magomed Khalilov</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇷🇺</span>
+                    <span class="name">Russia</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$5,928,111</div>
+            </div>
+            
+            <!-- Row 8 - Topson -->
+            <div class="player-row">
+                <div class="player-rank">#8</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>Topson</h3>
+                        <div class="player-meta">Topias Taavitsainen</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇫🇮</span>
+                    <span class="name">Finland</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$5,898,810</div>
+            </div>
+            
+            <!-- Row 9 - Mira -->
+            <div class="player-row">
+                <div class="player-rank">#9</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>Mira</h3>
+                        <div class="player-meta">Miroslaw Kolpakov</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇺🇦</span>
+                    <span class="name">Ukraine</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$5,638,899</div>
+            </div>
+            
+            <!-- Row 10 - KuroKy -->
+            <div class="player-row">
+                <div class="player-rank">#10</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>KuroKy</h3>
+                        <div class="player-meta">Kuro Takhasomi</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇩🇪</span>
+                    <span class="name">Germany</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$5,295,698</div>
+            </div>
+            
+            <!-- Row 11 - Miracle- -->
+            <div class="player-row">
+                <div class="player-rank">#11</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>Miracle-</h3>
+                        <div class="player-meta">Amer Al-Barkawi</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇯🇴</span>
+                    <span class="name">Jordan</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$4,913,585</div>
+            </div>
+            
+            <!-- Row 12 - MATUMBAMAN -->
+            <div class="player-row">
+                <div class="player-rank">#12</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>MATUMBAMAN</h3>
+                        <div class="player-meta">Lasse Urpalainen</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇫🇮</span>
+                    <span class="name">Finland</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$4,873,086</div>
+            </div>
+            
+            <!-- Row 13 - MinD_ContRoL -->
+            <div class="player-row">
+                <div class="player-rank">#13</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>MinD_ContRoL</h3>
+                        <div class="player-meta">Ivan Ivanov</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇧🇬</span>
+                    <span class="name">Bulgaria</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$4,704,032</div>
+            </div>
+            
+            <!-- Row 14 - TORONTOTOKYO -->
+            <div class="player-row">
+                <div class="player-rank">#14</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>TORONTOTOKYO</h3>
+                        <div class="player-meta">Alexander Khertek</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇷🇺</span>
+                    <span class="name">Russia</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$4,539,863</div>
+            </div>
+            
+            <!-- Row 15 - GH -->
+            <div class="player-row">
+                <div class="player-rank">#15</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>GH</h3>
+                        <div class="player-meta">Maroun Merhej</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇱🇧</span>
+                    <span class="name">Lebanon</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$4,359,887</div>
+            </div>
+            
+            <!-- Row 16 - Puppey -->
+            <div class="player-row">
+                <div class="player-rank">#16</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>Puppey</h3>
+                        <div class="player-meta">Clement Ivanov</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇪🇪</span>
+                    <span class="name">Estonia</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$4,345,228</div>
+            </div>
+            
+            <!-- Row 17 - SumaiL -->
+            <div class="player-row">
+                <div class="player-rank">#17</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>SumaiL</h3>
+                        <div class="player-meta">Sumail Hassan</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇵🇰</span>
+                    <span class="name">Pakistan</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$4,236,833</div>
+            </div>
+            
+            <!-- Row 18 - zai -->
+            <div class="player-row">
+                <div class="player-rank">#18</div>
+                <div class="player-info">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-details">
+                        <h3>zai</h3>
+                        <div class="player-meta">Ludwig Wåhlberg</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇸🇪</span>
+                    <span class="name">Sweden</span>
+                </div>
+                <div class="player-game">⚔️ Dota 2</div>
+                <div class="player-earnings">$4,049,633</div>
+            </div>
+            
+            <!-- Row 19 - s1mple -->
+            <div class="player-row featured">
+                <div class="player-rank">#19</div>
+                <div class="player-info">
+                    <div class="player-avatar">🔫</div>
+                    <div class="player-details">
+                        <h3><a href="/players/s1mple.html">s1mple</a></h3>
+                        <div class="player-meta">Oleksandr Kostyliev</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇺🇦</span>
+                    <span class="name">Ukraine</span>
+                </div>
+                <div class="player-game">🔫 CS:GO</div>
+                <div class="player-earnings">$2,037,678</div>
+            </div>
+            
+            <!-- Row 20 - NiKo -->
+            <div class="player-row">
+                <div class="player-rank">#20</div>
+                <div class="player-info">
+                    <div class="player-avatar">🔫</div>
+                    <div class="player-details">
+                        <h3>NiKo</h3>
+                        <div class="player-meta">Nikola Kovač</div>
+                    </div>
+                </div>
+                <div class="player-country">
+                    <span class="flag">🇧🇦</span>
+                    <span class="name">Bosnia</span>
+                </div>
+                <div class="player-game">🔫 CS:GO</div>
+                <div class="player-earnings">$1,923,456</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">APUESTA ESPORTS</a>
+                    <p>The world's most comprehensive esports reference. Teams, players, countries, tournaments, and betting guides.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Games</h4>
+                    <ul>
+                        <li><a href="/games/cs2.html">Counter-Strike 2</a></li>
+                        <li><a href="/games/dota2.html">Dota 2</a></li>
+                        <li><a href="/games/lol.html">League of Legends</a></li>
+                        <li><a href="/games/valorant.html">Valorant</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="/teams/">Team Rankings</a></li>
+                        <li><a href="/players/">Player Profiles</a></li>
+                        <li><a href="/countries/">Country Stats</a></li>
+                        <li><a href="/tournaments/">Tournaments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Betting</h4>
+                    <ul>
+                        <li><a href="/live/">Live Odds</a></li>
+                        <li><a href="/betting/">Betting Guides</a></li>
+                        <li><a href="/betting/beginners.html">Beginner's Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2026 Apuesta Esports. Data from Esports Earnings.</div>
+                <div class="footer-legal">
+                    <a href="/llms.txt">llms.txt</a>
+                    <a href="/sitemap.xml">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Top Esports Players by Earnings",
+        "description": "Rankings of the highest-earning professional esports players",
+        "url": "https://www.apuestaesports.com/players/",
+        "numberOfItems": 20,
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "N0tail", "url": "https://www.apuestaesports.com/players/n0tail.html"},
+            {"@type": "ListItem", "position": 2, "name": "JerAx", "url": "https://www.apuestaesports.com/players/jerax.html"},
+            {"@type": "ListItem", "position": 3, "name": "Miposhka", "url": "https://www.apuestaesports.com/players/miposhka.html"},
+            {"@type": "ListItem", "position": 4, "name": "ana", "url": "https://www.apuestaesports.com/players/ana.html"},
+            {"@type": "ListItem", "position": 5, "name": "Ceb", "url": "https://www.apuestaesports.com/players/ceb.html"},
+            {"@type": "ListItem", "position": 19, "name": "s1mple", "url": "https://www.apuestaesports.com/players/s1mple.html"}
+        ]
+    }
+    </script>
+</body>
+</html>

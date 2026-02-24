@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USA Esports - $299M Earnings, 29,331 Players | Apuesta Esports</title>
+    <meta name="description" content="United States ranks #2 globally with $299M in esports earnings. Home to 29,331 pro players—the most worldwide. Dominant in Fortnite, Call of Duty, and fighting games.">
+    <meta name="keywords" content="USA esports, American pro players, Fortnite USA, Call of Duty league, EG, Cloud9, 100 Thieves, esports America">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="USA Esports Profile - Most Players Worldwide | Apuesta Esports">
+    <meta property="og:description" content="USA ranks #2 with $299M earnings and the largest player base of 29,331 pros.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apuestaesports.com/countries/usa.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🇺🇸</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #15151f;
+            --orange: #FF6B2F;
+            --purple: #8D52DA;
+            --yellow: #DFFD51;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        a { color: inherit; text-decoration: none; }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 24px;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+        .nav-cta { background: var(--gradient); color: white; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+        
+        .country-hero {
+            padding: 120px 24px 60px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(60, 59, 110, 0.2) 0%, transparent 50%), var(--bg-primary);
+        }
+        
+        .hero-content { max-width: 1200px; margin: 0 auto; }
+        .breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .breadcrumb a:hover { color: var(--text-primary); }
+        
+        .country-header { display: flex; align-items: center; gap: 24px; margin-bottom: 32px; flex-wrap: wrap; }
+        .country-flag { font-size: 5rem; }
+        .country-title h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 8px; }
+        .country-rank { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; padding: 6px 16px; border-radius: 100px; font-weight: 700; font-size: 0.9rem; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+        .stat-card-value { font-size: 2rem; font-weight: 800; color: var(--yellow); font-family: 'JetBrains Mono', monospace; margin-bottom: 4px; }
+        .stat-card-label { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        main { max-width: 1200px; margin: 0 auto; padding: 0 24px 100px; }
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } }
+        
+        .section-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 24px; }
+        .section-card h2 { font-size: 1.5rem; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .section-card h3 { font-size: 1.1rem; margin: 20px 0 12px; color: var(--orange); }
+        .section-card p { color: var(--text-secondary); margin-bottom: 16px; }
+        
+        .player-list { list-style: none; }
+        .player-item { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--border); }
+        .player-item:last-child { border-bottom: none; }
+        .player-info { display: flex; align-items: center; gap: 12px; }
+        .player-rank { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; background: var(--bg-tertiary); border-radius: 6px; font-weight: 700; font-size: 0.85rem; }
+        .player-rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+        .player-rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
+        .player-rank.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
+        .player-name { font-weight: 600; }
+        .player-game { color: var(--text-muted); font-size: 0.85rem; }
+        .player-earnings { font-weight: 700; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        
+        .game-breakdown { margin-top: 16px; }
+        .game-bar { margin-bottom: 16px; }
+        .game-bar-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .game-bar-name { font-weight: 500; }
+        .game-bar-value { color: var(--text-muted); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+        .game-bar-track { height: 8px; background: var(--bg-tertiary); border-radius: 4px; overflow: hidden; }
+        .game-bar-fill { height: 100%; background: var(--gradient); border-radius: 4px; }
+        
+        .infra-list { list-style: none; }
+        .infra-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .infra-item:last-child { border-bottom: none; }
+        .infra-icon { font-size: 1.25rem; }
+        .infra-text strong { display: block; margin-bottom: 4px; }
+        .infra-text span { color: var(--text-secondary); font-size: 0.9rem; }
+        
+        .sidebar-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+        .sidebar-card h3 { font-size: 1.1rem; margin-bottom: 16px; }
+        .quick-facts { list-style: none; }
+        .quick-facts li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .quick-facts li:last-child { border-bottom: none; }
+        .quick-facts .label { color: var(--text-muted); }
+        .quick-facts .value { font-weight: 600; }
+        
+        .cta-card { background: var(--gradient); border-radius: 16px; padding: 28px; text-align: center; }
+        .cta-card h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .cta-card p { font-size: 0.95rem; opacity: 0.9; margin-bottom: 20px; }
+        .cta-btn { display: inline-block; background: white; color: var(--bg-primary); padding: 12px 24px; border-radius: 8px; font-weight: 600; transition: transform 0.2s; }
+        .cta-btn:hover { transform: translateY(-2px); }
+        
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 40px 24px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-content p { color: var(--text-muted); font-size: 0.85rem; }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
+        
+        @media (max-width: 768px) { .nav-links { display: none; } .country-flag { font-size: 3.5rem; } .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <ul class="nav-links">
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/teams/">Teams</a></li>
+                <li><a href="/players/">Players</a></li>
+                <li><a href="/countries/" class="active">Countries</a></li>
+                <li><a href="/tournaments/">Tournaments</a></li>
+                <li><a href="/betting/">Betting</a></li>
+            </ul>
+            <a href="/live/" class="nav-cta">Live Odds →</a>
+        </div>
+    </nav>
+
+    <section class="country-hero">
+        <div class="hero-content">
+            <div class="breadcrumb">
+                <a href="/">Home</a> / <a href="/countries/">Countries</a> / United States
+            </div>
+            
+            <div class="country-header">
+                <span class="country-flag">🇺🇸</span>
+                <div class="country-title">
+                    <h1>United States</h1>
+                    <span class="country-rank">🥈 #2 World Ranking</span>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card-value">$299.9M</div>
+                    <div class="stat-card-label">Total Earnings</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-value">29,331</div>
+                    <div class="stat-card-label">Pro Players</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-value">$10,227</div>
+                    <div class="stat-card-label">Avg per Player</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-value">Fortnite</div>
+                    <div class="stat-card-label">Top Game</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <div class="content-grid">
+            <div class="main-content">
+                <div class="section-card">
+                    <h2>⭐ Top American Players</h2>
+                    <ul class="player-list">
+                        <li class="player-item">
+                            <div class="player-info">
+                                <span class="player-rank gold">1</span>
+                                <div>
+                                    <div class="player-name">Bugha</div>
+                                    <div class="player-game">Fortnite • Sentinels</div>
+                                </div>
+                            </div>
+                            <span class="player-earnings">$3.26M</span>
+                        </li>
+                        <li class="player-item">
+                            <div class="player-info">
+                                <span class="player-rank silver">2</span>
+                                <div>
+                                    <div class="player-name">Mero</div>
+                                    <div class="player-game">Fortnite</div>
+                                </div>
+                            </div>
+                            <span class="player-earnings">$2.11M</span>
+                        </li>
+                        <li class="player-item">
+                            <div class="player-info">
+                                <span class="player-rank bronze">3</span>
+                                <div>
+                                    <div class="player-name">EpikWhale</div>
+                                    <div class="player-game">Fortnite • NRG</div>
+                                </div>
+                            </div>
+                            <span class="player-earnings">$1.98M</span>
+                        </li>
+                        <li class="player-item">
+                            <div class="player-info">
+                                <span class="player-rank">4</span>
+                                <div>
+                                    <div class="player-name">SonicFox</div>
+                                    <div class="player-game">Fighting Games</div>
+                                </div>
+                            </div>
+                            <span class="player-earnings">$1.12M</span>
+                        </li>
+                        <li class="player-item">
+                            <div class="player-info">
+                                <span class="player-rank">5</span>
+                                <div>
+                                    <div class="player-name">TenZ</div>
+                                    <div class="player-game">Valorant • Sentinels</div>
+                                </div>
+                            </div>
+                            <span class="player-earnings">$0.98M</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section-card">
+                    <h2>🎮 Earnings by Game</h2>
+                    <div class="game-breakdown">
+                        <div class="game-bar">
+                            <div class="game-bar-header">
+                                <span class="game-bar-name">Fortnite</span>
+                                <span class="game-bar-value">$81.0M (27%)</span>
+                            </div>
+                            <div class="game-bar-track">
+                                <div class="game-bar-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="game-bar">
+                            <div class="game-bar-header">
+                                <span class="game-bar-name">Dota 2</span>
+                                <span class="game-bar-value">$42.0M (14%)</span>
+                            </div>
+                            <div class="game-bar-track">
+                                <div class="game-bar-fill" style="width: 52%"></div>
+                            </div>
+                        </div>
+                        <div class="game-bar">
+                            <div class="game-bar-header">
+                                <span class="game-bar-name">Call of Duty</span>
+                                <span class="game-bar-value">$33.0M (11%)</span>
+                            </div>
+                            <div class="game-bar-track">
+                                <div class="game-bar-fill" style="width: 41%"></div>
+                            </div>
+                        </div>
+                        <div class="game-bar">
+                            <div class="game-bar-header">
+                                <span class="game-bar-name">CS:GO / CS2</span>
+                                <span class="game-bar-value">$24.0M (8%)</span>
+                            </div>
+                            <div class="game-bar-track">
+                                <div class="game-bar-fill" style="width: 30%"></div>
+                            </div>
+                        </div>
+                        <div class="game-bar">
+                            <div class="game-bar-header">
+                                <span class="game-bar-name">Other Games</span>
+                                <span class="game-bar-value">$119.9M (40%)</span>
+                            </div>
+                            <div class="game-bar-track">
+                                <div class="game-bar-fill" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2>🏢 Esports Infrastructure</h2>
+                    <ul class="infra-list">
+                        <li class="infra-item">
+                            <span class="infra-icon">🏟️</span>
+                            <div class="infra-text">
+                                <strong>Franchised Leagues</strong>
+                                <span>Home to CDL (Call of Duty League) and Overwatch League with city-based franchises worth $25M+ each. Major venues include Esports Stadium Arlington (100,000 sq ft)</span>
+                            </div>
+                        </li>
+                        <li class="infra-item">
+                            <span class="infra-icon">🏫</span>
+                            <div class="infra-text">
+                                <strong>Training Facilities</strong>
+                                <span>Top organizations like 100 Thieves, Cloud9, and Team Liquid operate world-class facilities in LA. 100 Thieves' Cash App Compound is a $35M, 15,000 sq ft complex</span>
+                            </div>
+                        </li>
+                        <li class="infra-item">
+                            <span class="infra-icon">🎓</span>
+                            <div class="infra-text">
+                                <strong>Collegiate Esports</strong>
+                                <span>250+ universities offer esports scholarships. NACE (National Association of Collegiate Esports) has $16M+ in annual scholarships available</span>
+                            </div>
+                        </li>
+                        <li class="infra-item">
+                            <span class="infra-icon">💰</span>
+                            <div class="infra-text">
+                                <strong>Investment Ecosystem</strong>
+                                <span>US esports attracts billions in venture capital. Major investors include Drake (100 Thieves), Michael Jordan (aXiomatic), and traditional sports team owners</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section-card">
+                    <h2>🎌 Esports Culture</h2>
+                    <p>The United States pioneered modern esports with early tournaments like QuakeCon and the CPL (Cyberathlete Professional League) in the late 1990s. Today, the US is the global hub for esports business, investment, and entertainment integration.</p>
+                    
+                    <h3>Content & Entertainment</h3>
+                    <p>American streamers and content creators dominate platforms like Twitch and YouTube. Players like Ninja, Shroud, and xQc have transcended esports to become mainstream entertainers with millions of followers and lucrative brand deals.</p>
+                    
+                    <h3>Fighting Game Community</h3>
+                    <p>The US has the world's most vibrant FGC (Fighting Game Community), centered around major events like EVO. American players like SonicFox and Justin Wong are legends in games like Mortal Kombat, Street Fighter, and Dragon Ball FighterZ.</p>
+                    
+                    <h3>Major Organizations</h3>
+                    <p>The US is headquarters to the world's most valuable esports organizations including Cloud9, Team Liquid (NA), 100 Thieves, FaZe Clan, and Sentinels. These teams compete across multiple titles and have valuations exceeding $300M.</p>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="sidebar-card">
+                    <h3>📊 Quick Facts</h3>
+                    <ul class="quick-facts">
+                        <li>
+                            <span class="label">World Rank</span>
+                            <span class="value">#2</span>
+                        </li>
+                        <li>
+                            <span class="label">Total Earnings</span>
+                            <span class="value">$299.9M</span>
+                        </li>
+                        <li>
+                            <span class="label">Pro Players</span>
+                            <span class="value">29,331</span>
+                        </li>
+                        <li>
+                            <span class="label">Top Game</span>
+                            <span class="value">Fortnite</span>
+                        </li>
+                        <li>
+                            <span class="label">Top Earnings %</span>
+                            <span class="value">27%</span>
+                        </li>
+                        <li>
+                            <span class="label">Colleges w/ Esports</span>
+                            <span class="value">250+</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3>🏆 Major Achievements</h3>
+                    <ul class="quick-facts">
+                        <li>
+                            <span class="label">Fortnite WC 2019</span>
+                            <span class="value">Bugha</span>
+                        </li>
+                        <li>
+                            <span class="label">TI5</span>
+                            <span class="value">Evil Geniuses</span>
+                        </li>
+                        <li>
+                            <span class="label">EVO Champions</span>
+                            <span class="value">Multiple</span>
+                        </li>
+                        <li>
+                            <span class="label">CDL Champions</span>
+                            <span class="value">Multiple</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="cta-card">
+                    <h3>Bet on US Teams</h3>
+                    <p>Get the best odds on Sentinels, 100 Thieves, and more</p>
+                    <a href="/betting/" class="cta-btn">View Betting Guide →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Apuesta Esports. Data sourced from Esports Earnings.</p>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/countries/">All Countries</a>
+                <a href="/betting/">Betting</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "USA Esports Profile - Most Players Worldwide",
+        "description": "USA ranks #2 with $299M earnings and the largest player base of 29,331 pros.",
+        "author": {"@type": "Organization", "name": "Apuesta Esports"}
+    }
+    </script>
+</body>
+</html>
