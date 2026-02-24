@@ -1,45 +1,36 @@
 # Build Progress - Apuesta Esports
 
 ## Status: IN PROGRESS
-Last updated: 2026-02-24 14:10 UTC
+Last updated: 2026-02-24 14:15 UTC
 
 ## Completed ✅
-- [x] Homepage (index.html) - DEPLOYED
-- [x] Live odds (live/index.html) - DEPLOYED
-- [x] Betting index (betting/index.html) - DEPLOYED
-- [x] Games index (games/index.html) - DEPLOYED
-- [x] Teams index (teams/index.html) - DEPLOYED
-- [x] Players index (players/index.html) - DEPLOYED
-- [x] Countries index (countries/index.html) - DEPLOYED
-- [x] SEO: sitemap.xml - DONE
-- [x] SEO: robots.txt - DONE
-- [x] SEO: llms.txt - DONE
+- [x] Homepage (index.html)
+- [x] Live odds (live/index.html)
+- [x] Betting index (betting/index.html)
+- [x] Games index (games/index.html)
+- [x] CS2 page (games/cs2.html)
+- [x] Dota 2 page (games/dota2.html)
+- [x] LoL page (games/lol.html)
+- [x] Valorant page (games/valorant.html)
+- [x] Teams index (teams/index.html)
+- [x] Players index (players/index.html)
+- [x] Countries index (countries/index.html)
+- [x] SEO files (sitemap, robots, llms.txt)
 
-## Team Pages Created
-- [x] teams/team-liquid.html
-- [x] teams/og.html
-- [x] teams/team-spirit.html
-- [x] teams/navi.html
+## Team Pages (4 created)
+- [x] team-liquid, og, team-spirit, navi
 
-## Player Pages Created
-- [x] players/n0tail.html
-- [x] players/jerax.html
-- [x] players/miposhka.html
-- [x] players/ana.html
+## Player Pages (4 created)
+- [x] n0tail, jerax, miposhka, ana
 
-## Country Pages Created
-- [x] countries/china.html
-- [x] countries/usa.html
-- [x] countries/korea.html
-- [x] countries/russia.html
+## Country Pages (4 created)
+- [x] china, usa, korea, russia
 
 ## Still Needed
-- [ ] Individual game pages (cs2.html, dota2.html, lol.html, valorant.html)
-- [ ] More team pages (Evil Geniuses, Fnatic, FaZe, etc.)
-- [ ] More player pages (Ceb, Yatoro, Collapse, etc.)
-- [ ] More country pages (Brazil, Denmark, France, etc.)
+- [ ] More team pages (6+ more)
+- [ ] More player pages (6+ more)
+- [ ] More country pages (6+ more)
 - [ ] Individual betting guides
+- [ ] Fortnite, R6, Rocket League game pages
 
-## Notes
-Sub-agents partially completed their tasks. Main sections are all indexed.
-All pages deployed to https://www.apuestaesports.com
+## Site: https://www.apuestaesports.com
