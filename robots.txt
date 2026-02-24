@@ -1,0 +1,11 @@
+# Apuesta Esports - robots.txt
+# https://www.apuestaesports.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.apuestaesports.com/sitemap.xml
+
+# LLM-friendly content
+# See /llms.txt for AI-readable site description

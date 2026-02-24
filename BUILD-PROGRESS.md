@@ -1,42 +1,32 @@
 # Build Progress - Apuesta Esports
 
-## Status: IN PROGRESS
-Last updated: 2026-02-24 14:00 UTC
+## Status: IN PROGRESS (Sub-agents working)
+Last updated: 2026-02-24 14:15 UTC
 
 ## Completed
 - [x] Backup existing pages to /archive
 - [x] Create data files (countries.json, teams.json, players.json, games.json)
 - [x] Create site structure (folders)
-- [x] Homepage (index.html) - DEPLOYED ✅
+- [x] Homepage (index.html) - DEPLOYED
+- [x] Live odds (live/index.html) - copied from existing
+- [x] Betting index (betting/index.html) - DONE
+- [x] SEO: sitemap.xml - DONE
+- [x] SEO: robots.txt - DONE
+- [x] SEO: llms.txt - DONE
 
-## In Progress
-- [ ] Games section (games/*.html)
+## In Progress (Sub-agents working)
+- [ ] Games section (games-builder sub-agent)
+- [ ] Teams section (teams-builder sub-agent)
+- [ ] Players section (players-builder sub-agent)
+- [ ] Countries section (countries-builder sub-agent)
 
 ## Not Started
-- [ ] Games index (games/index.html)
-- [ ] CS2 page (games/cs2.html)
-- [ ] Dota 2 page (games/dota2.html)
-- [ ] LoL page (games/lol.html)
-- [ ] Valorant page (games/valorant.html)
-- [ ] Other game pages
-- [ ] Teams index (teams/index.html)
-- [ ] Top 20 team pages
-- [ ] Players index (players/index.html)
-- [ ] Top 20 player pages
-- [ ] Countries index (countries/index.html)
-- [ ] Top 20 country pages
-- [ ] Betting guide index (betting/index.html)
-- [ ] Game-specific betting guides
-- [ ] Live dashboard (live/index.html) - use existing map
-- [ ] sitemap.xml
-- [ ] robots.txt
-- [ ] llms.txt update
+- [ ] Individual betting guides (beginners, cs2, dota2, lol, valorant)
+- [ ] Tournaments section
+- [ ] Additional game pages
 
-## Current Task
-Build homepage with:
-- Hero section
-- Navigation
-- Featured games grid
-- Top teams/players preview
-- Country rankings preview
-- SEO meta tags
+## Sub-Agent Sessions
+- games-builder: Building /games/ section
+- teams-builder: Building /teams/ section
+- players-builder: Building /players/ section
+- countries-builder: Building /countries/ section
