@@ -1,0 +1,82 @@
+[
+  {
+    "id": "dota2",
+    "name": "Dota 2",
+    "genre": "MOBA",
+    "total_prize": "$312M+",
+    "top_tournament": "The International",
+    "publisher": "Valve"
+  },
+  {
+    "id": "lol",
+    "name": "League of Legends",
+    "genre": "MOBA",
+    "total_prize": "$100M+",
+    "top_tournament": "World Championship",
+    "publisher": "Riot Games"
+  },
+  {
+    "id": "cs2",
+    "name": "Counter-Strike 2",
+    "genre": "FPS",
+    "total_prize": "$150M+",
+    "top_tournament": "Major Championships",
+    "publisher": "Valve"
+  },
+  {
+    "id": "valorant",
+    "name": "Valorant",
+    "genre": "FPS",
+    "total_prize": "$30M+",
+    "top_tournament": "VCT Champions",
+    "publisher": "Riot Games"
+  },
+  {
+    "id": "fortnite",
+    "name": "Fortnite",
+    "genre": "Battle Royale",
+    "total_prize": "$100M+",
+    "top_tournament": "World Cup",
+    "publisher": "Epic Games"
+  },
+  {
+    "id": "r6",
+    "name": "Rainbow Six Siege",
+    "genre": "FPS",
+    "total_prize": "$20M+",
+    "top_tournament": "Six Invitational",
+    "publisher": "Ubisoft"
+  },
+  {
+    "id": "rl",
+    "name": "Rocket League",
+    "genre": "Sports",
+    "total_prize": "$15M+",
+    "top_tournament": "RLCS World Championship",
+    "publisher": "Psyonix"
+  },
+  {
+    "id": "cod",
+    "name": "Call of Duty",
+    "genre": "FPS",
+    "total_prize": "$40M+",
+    "top_tournament": "CDL Championship",
+    "publisher": "Activision"
+  },
+  {
+    "id": "ow2",
+    "name": "Overwatch 2",
+    "genre": "FPS",
+    "total_prize": "$25M+",
+    "top_tournament": "Overwatch League",
+    "publisher": "Blizzard"
+  },
+  {
+    "id": "sc2",
+    "name": "StarCraft II",
+    "genre": "RTS",
+    "total_prize": "$35M+",
+    "top_tournament": "Global Finals",
+    "publisher": "Blizzard"
+  }
+]

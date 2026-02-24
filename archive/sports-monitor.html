@@ -1,0 +1,3040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Monitor | Global Betting Intelligence Platform</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+    
+    <!-- MapLibre GL JS -->
+    <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet">
+    <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --bg-card: #1c2128;
+            --border-primary: #30363d;
+            --border-highlight: #388bfd;
+            
+            --accent-cyan: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-red: #f85149;
+            --accent-yellow: #d29922;
+            --accent-orange: #db6d28;
+            --accent-purple: #a371f7;
+            
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Consolas', monospace;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            max-width: 2000px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.5px;
+        }
+
+        .logo-tag {
+            font-size: 0.65rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header-center {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .nav-link:hover { color: var(--text-primary); }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .live-clock {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Status Bar */
+        .status-bar {
+            display: flex;
+            gap: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-primary);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            overflow-x: auto;
+            max-width: 2000px;
+            margin: 0 auto;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            color: var(--text-muted);
+        }
+        .status-item .label { color: var(--text-muted); }
+        .status-item .value { color: var(--accent-cyan); font-weight: 600; }
+        .status-item .value.alert { color: var(--accent-red); }
+        .status-item .value.positive { color: var(--accent-green); }
+
+        /* League Filter Bar */
+        .league-bar {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-primary);
+            overflow-x: auto;
+            max-width: 2000px;
+            margin: 0 auto;
+        }
+
+        .league-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.75rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .league-chip:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+        .league-chip.active {
+            background: rgba(88, 166, 255, 0.15);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+        .league-chip .count {
+            background: var(--bg-primary);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+        .league-chip.active .count { background: var(--accent-cyan); color: var(--bg-primary); }
+
+        /* Data Layer Toggles */
+        .layer-bar {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(22, 27, 34, 0.8);
+            border-bottom: 1px solid var(--border-primary);
+            overflow-x: auto;
+        }
+
+        .layer-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.3rem 0.6rem;
+            background: transparent;
+            border: 1px solid var(--border-primary);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .layer-toggle:hover { border-color: var(--text-secondary); color: var(--text-secondary); }
+        .layer-toggle.active { background: rgba(88, 166, 255, 0.1); border-color: var(--accent-cyan); color: var(--accent-cyan); }
+        .layer-toggle.active.live { background: rgba(248, 81, 73, 0.1); border-color: var(--accent-red); color: var(--accent-red); }
+        .layer-toggle.active.weather { background: rgba(88, 166, 255, 0.1); border-color: var(--accent-cyan); color: var(--accent-cyan); }
+        .layer-toggle.active.movement { background: rgba(210, 153, 34, 0.1); border-color: var(--accent-yellow); color: var(--accent-yellow); }
+
+        /* Main Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 0;
+            height: calc(100vh - 160px);
+            max-width: 2000px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1200px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+        }
+
+        /* Map Container */
+        .map-section {
+            position: relative;
+            border-right: 1px solid var(--border-primary);
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+        }
+
+        .maplibregl-popup-content {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--accent-cyan) !important;
+            border-radius: 8px !important;
+            padding: 0 !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+        }
+
+        .maplibregl-popup-tip {
+            border-top-color: var(--accent-cyan) !important;
+        }
+
+        .map-popup {
+            padding: 0.75rem;
+            min-width: 220px;
+            font-family: var(--font-sans);
+        }
+
+        .popup-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .popup-league {
+            font-size: 0.7rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .popup-status {
+            font-size: 0.65rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .popup-status.live { background: var(--accent-red); color: white; }
+        .popup-status.upcoming { background: var(--accent-green); color: white; }
+
+        .popup-teams {
+            margin-bottom: 0.5rem;
+        }
+
+        .popup-team {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.3rem 0;
+        }
+
+        .popup-team-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .popup-odds {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+        }
+
+        .popup-meta {
+            display: flex;
+            gap: 0.75rem;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        /* Map Controls Overlay */
+        .map-overlay {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .map-stat-box {
+            background: rgba(13, 17, 23, 0.9);
+            border: 1px solid var(--border-primary);
+            border-radius: 6px;
+            padding: 0.5rem 0.75rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .map-stat-label {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .map-stat-value {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+        .map-stat-value.alert { color: var(--accent-red); }
+
+        /* Right Sidebar */
+        .sidebar {
+            background: var(--bg-secondary);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel {
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .panel-title {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .panel-badge {
+            font-size: 0.6rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .panel-badge.live { background: var(--accent-red); color: white; }
+        .panel-badge.data { background: var(--accent-cyan); color: var(--bg-primary); }
+        .panel-badge.alert { background: var(--accent-yellow); color: var(--bg-primary); }
+
+        .panel-body {
+            padding: 0.75rem 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        /* Market Summary */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .market-item {
+            background: var(--bg-primary);
+            border-radius: 6px;
+            padding: 0.6rem;
+            text-align: center;
+        }
+
+        .market-value {
+            font-family: var(--font-mono);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+        .market-value.hot { color: var(--accent-red); }
+        .market-value.good { color: var(--accent-green); }
+
+        .market-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-top: 0.2rem;
+        }
+
+        /* Intel Feed */
+        .intel-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .intel-item {
+            background: var(--bg-primary);
+            border-radius: 6px;
+            padding: 0.6rem;
+            border-left: 3px solid var(--accent-cyan);
+            transition: background 0.2s;
+        }
+        .intel-item:hover { background: var(--bg-tertiary); }
+        .intel-item.injury { border-left-color: var(--accent-red); }
+        .intel-item.movement { border-left-color: var(--accent-yellow); }
+        .intel-item.value { border-left-color: var(--accent-green); }
+        .intel-item.weather { border-left-color: var(--accent-cyan); }
+
+        .intel-header {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .intel-type {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .intel-item.injury .intel-type { color: var(--accent-red); }
+        .intel-item.movement .intel-type { color: var(--accent-yellow); }
+        .intel-item.value .intel-type { color: var(--accent-green); }
+        .intel-item.weather .intel-type { color: var(--accent-cyan); }
+
+        .intel-time {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--text-muted);
+        }
+
+        .intel-content {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .intel-source {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+
+        /* Line Movement */
+        .movement-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-primary);
+            border-radius: 6px;
+            padding: 0.5rem 0.6rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .movement-match {
+            flex: 1;
+        }
+
+        .movement-teams {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .movement-league {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+        }
+
+        .movement-change {
+            text-align: right;
+        }
+
+        .movement-arrow {
+            font-size: 1rem;
+        }
+        .movement-arrow.up { color: var(--accent-green); }
+        .movement-arrow.down { color: var(--accent-red); }
+
+        .movement-odds {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        /* Twitter/X Takes Panel */
+        .take-item {
+            background: var(--bg-primary);
+            border-radius: 6px;
+            padding: 0.6rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--border-primary);
+        }
+
+        .take-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .take-avatar {
+            width: 24px;
+            height: 24px;
+            background: var(--bg-tertiary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .take-user {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .take-handle {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        .take-content {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            margin-bottom: 0.4rem;
+        }
+
+        .take-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.6rem;
+            color: var(--text-muted);
+        }
+
+        .take-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        /* League Status */
+        .league-status-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid var(--border-primary);
+        }
+        .league-status-item:last-child { border-bottom: none; }
+
+        .league-status-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .league-status-flag {
+            font-size: 1rem;
+        }
+
+        .league-status-name {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .league-status-badge {
+            font-size: 0.6rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .league-status-badge.active { background: var(--accent-green); color: white; }
+        .league-status-badge.upcoming { background: var(--accent-cyan); color: var(--bg-primary); }
+        .league-status-badge.finished { background: var(--bg-tertiary); color: var(--text-muted); }
+
+        /* Match List (below map) */
+        .match-list-section {
+            padding: 1rem 1.5rem;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-primary);
+        }
+
+        .match-list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .match-list-title {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-transform: uppercase;
+        }
+
+        .match-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .match-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: 8px;
+            padding: 0.75rem;
+            transition: all 0.2s;
+        }
+        .match-card:hover { border-color: var(--accent-cyan); }
+        .match-card.live { border-left: 3px solid var(--accent-red); }
+
+        .match-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .match-league {
+            font-size: 0.65rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .match-time {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        .match-status-badge {
+            font-size: 0.6rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-weight: 700;
+        }
+        .match-status-badge.live { background: var(--accent-red); color: white; animation: pulse 1.5s infinite; }
+        .match-status-badge.soon { background: var(--accent-yellow); color: var(--bg-primary); }
+
+        .match-teams {
+            margin-bottom: 0.5rem;
+        }
+
+        .match-team-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.3rem 0;
+        }
+
+        .match-team-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .match-odds {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-yellow);
+            padding: 0.2rem 0.5rem;
+            background: rgba(210, 153, 34, 0.1);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .match-odds:hover { background: rgba(210, 153, 34, 0.2); }
+        .match-odds.up { color: var(--accent-green); background: rgba(63, 185, 80, 0.1); }
+        .match-odds.down { color: var(--accent-red); background: rgba(248, 81, 73, 0.1); }
+
+        .match-indicators {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+
+        .match-indicator {
+            font-size: 0.6rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        .match-indicator.injury { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); }
+        .match-indicator.weather { background: rgba(88, 166, 255, 0.15); color: var(--accent-cyan); }
+        .match-indicator.value { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
+        .match-indicator.movement { background: rgba(210, 153, 34, 0.15); color: var(--accent-yellow); }
+
+        /* Loading State */
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            color: var(--text-muted);
+        }
+
+        .loading-spinner {
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--border-primary);
+            border-top-color: var(--accent-cyan);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 0.75rem;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--border-primary); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+
+        /* Custom marker styles */
+        .map-marker {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        .map-marker.live {
+            background: var(--accent-red);
+            animation: markerPulse 2s ease-in-out infinite;
+        }
+
+        .map-marker.upcoming {
+            background: var(--accent-cyan);
+        }
+
+        @keyframes markerPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(248, 81, 73, 0.7); }
+            50% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(248, 81, 73, 0); }
+        }
+
+        /* Rich Popup Styles */
+        .maplibregl-popup-content {
+            background: var(--bg-secondary) !important;
+            border: 1px solid var(--border-primary) !important;
+            border-radius: 12px !important;
+            padding: 0 !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+        }
+        .maplibregl-popup-tip {
+            border-top-color: var(--bg-secondary) !important;
+        }
+        
+        .rich-popup {
+            min-width: 300px;
+            max-width: 360px;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+        }
+        
+        .rich-popup .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--bg-tertiary);
+            border-radius: 12px 12px 0 0;
+            border-bottom: 1px solid var(--border-primary);
+        }
+        
+        .rich-popup .popup-league {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        
+        .rich-popup .popup-status {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: var(--bg-card);
+        }
+        .rich-popup .popup-status.live {
+            background: var(--accent-red);
+            color: white;
+        }
+        
+        .rich-popup .popup-matchup {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            gap: 12px;
+        }
+        
+        .rich-popup .popup-team {
+            flex: 1;
+            text-align: center;
+        }
+        .rich-popup .popup-team .team-name {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .rich-popup .popup-team .team-odds {
+            display: inline-block;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            background: rgba(88, 166, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+        
+        .rich-popup .popup-vs {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-muted);
+        }
+        .rich-popup .popup-vs .vs-text {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .rich-popup .popup-vs .vs-time {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .rich-popup .popup-draw {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            padding: 0 16px 12px;
+            border-bottom: 1px solid var(--border-primary);
+        }
+        
+        .rich-popup .popup-weather {
+            padding: 12px 16px;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-primary);
+        }
+        .rich-popup .weather-loading {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .rich-popup .weather-data {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+        .rich-popup .weather-main {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .rich-popup .weather-detail {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .rich-popup .weather-data.good .weather-main { color: var(--accent-green); }
+        .rich-popup .weather-data.caution .weather-main { color: var(--accent-yellow); }
+        .rich-popup .weather-data.bad .weather-main { color: var(--accent-red); }
+        .rich-popup .weather-note {
+            margin-top: 8px;
+            font-size: 0.7rem;
+            color: var(--accent-yellow);
+            font-weight: 500;
+        }
+        .rich-popup .weather-unavailable {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        
+        .rich-popup .popup-intel {
+            padding: 12px 16px;
+        }
+        .rich-popup .intel-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .rich-popup .intel-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border-primary);
+        }
+        .rich-popup .intel-item:last-child { border-bottom: none; }
+        .rich-popup .intel-icon { font-size: 0.85rem; }
+        .rich-popup .intel-text {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        .rich-popup .intel-item.angle .intel-text { color: var(--accent-yellow); font-weight: 500; }
+        
+        .rich-popup .popup-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: var(--bg-tertiary);
+            border-radius: 0 0 12px 12px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-main { padding: 0.5rem 1rem; }
+            .header-center { display: none; }
+            .league-bar { padding: 0.5rem 1rem; }
+            .match-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-main">
+            <div class="logo-section">
+                <div class="logo-icon">🌍</div>
+                <div>
+                    <div class="logo-text">SPORTS MONITOR</div>
+                    <div class="logo-tag">Global Intelligence Platform</div>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <a href="index.html" class="nav-link">🎮 Esports</a>
+                <a href="#" class="nav-link active">⚽ Sports</a>
+            </div>
+
+            <div class="header-right">
+                <div class="live-clock">
+                    <span class="live-dot"></span>
+                    <span id="utc-time">--:--:-- UTC</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="label">LIVE:</span>
+                <span class="value alert" id="status-live">--</span>
+            </div>
+            <div class="status-item">
+                <span class="label">TODAY:</span>
+                <span class="value" id="status-today">--</span>
+            </div>
+            <div class="status-item">
+                <span class="label">NEXT 24H:</span>
+                <span class="value" id="status-upcoming">--</span>
+            </div>
+            <div class="status-item">
+                <span class="label">LEAGUES ACTIVE:</span>
+                <span class="value" id="status-leagues">--</span>
+            </div>
+            <div class="status-item">
+                <span class="label">LINE MOVEMENTS:</span>
+                <span class="value alert" id="status-movements">--</span>
+            </div>
+            <div class="status-item">
+                <span class="label">LAST UPDATE:</span>
+                <span class="value" id="status-update">--</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- League Filter Bar -->
+    <nav class="league-bar" id="league-bar">
+        <div class="league-chip active" data-league="all">🌐 All <span class="count" id="count-all">--</span></div>
+        <div class="league-chip" data-league="premier-league">🏴󠁧󠁢󠁥󠁮󠁧󠁿 EPL <span class="count" id="count-pl">--</span></div>
+        <div class="league-chip" data-league="championship">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Champ <span class="count" id="count-ch">--</span></div>
+        <div class="league-chip" data-league="la-liga">🇪🇸 La Liga <span class="count" id="count-ll">--</span></div>
+        <div class="league-chip" data-league="bundesliga">🇩🇪 Bundesliga <span class="count" id="count-bl">--</span></div>
+        <div class="league-chip" data-league="serie-a">🇮🇹 Serie A <span class="count" id="count-sa">--</span></div>
+        <div class="league-chip" data-league="ligue-1">🇫🇷 Ligue 1 <span class="count" id="count-l1">--</span></div>
+        <div class="league-chip" data-league="eredivisie">🇳🇱 Eredivisie <span class="count" id="count-nl">--</span></div>
+        <div class="league-chip" data-league="primeira-liga">🇵🇹 Liga Portugal <span class="count" id="count-pt">--</span></div>
+        <div class="league-chip" data-league="belgian-pro">🇧🇪 Belgium <span class="count" id="count-be">--</span></div>
+        <div class="league-chip" data-league="scottish-prem">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland <span class="count" id="count-sco">--</span></div>
+        <div class="league-chip" data-league="super-lig">🇹🇷 Turkey <span class="count" id="count-tr">--</span></div>
+        <div class="league-chip" data-league="tier2">📉 Second Tiers <span class="count" id="count-t2">--</span></div>
+    </nav>
+
+    <!-- Data Layer Toggles -->
+    <div class="layer-bar">
+        <div class="layer-toggle active live" data-layer="live">🔴 Live Matches</div>
+        <div class="layer-toggle active" data-layer="upcoming">📅 Upcoming (24h)</div>
+        <div class="layer-toggle weather" data-layer="weather">🌤️ Weather</div>
+        <div class="layer-toggle movement active" data-layer="movement">📈 Line Movement</div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Map Section -->
+        <div class="map-section">
+            <div id="map"></div>
+            
+            <!-- Map Overlay Stats -->
+            <div class="map-overlay">
+                <div class="map-stat-box">
+                    <div class="map-stat-label">Live Now</div>
+                    <div class="map-stat-value alert" id="map-live">--</div>
+                </div>
+                <div class="map-stat-box">
+                    <div class="map-stat-label">On Map</div>
+                    <div class="map-stat-value" id="map-total">--</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <aside class="sidebar">
+            <!-- Market Summary -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">📊 Market Summary</div>
+                    <span class="panel-badge data">LIVE</span>
+                </div>
+                <div class="panel-body">
+                    <div class="market-grid">
+                        <div class="market-item">
+                            <div class="market-value hot" id="market-live">--</div>
+                            <div class="market-label">Live Matches</div>
+                        </div>
+                        <div class="market-item">
+                            <div class="market-value" id="market-today">--</div>
+                            <div class="market-label">Today Total</div>
+                        </div>
+                        <div class="market-item">
+                            <div class="market-value good" id="market-leagues">--</div>
+                            <div class="market-label">Active Leagues</div>
+                        </div>
+                        <div class="market-item">
+                            <div class="market-value" id="market-volume">--</div>
+                            <div class="market-label">Markets Open</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Intel Feed -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">📡 Live Intel Feed</div>
+                    <span class="panel-badge live">REAL-TIME</span>
+                </div>
+                <div class="panel-body">
+                    <div class="intel-feed" id="intel-feed">
+                        <div class="loading-container">
+                            <div class="loading-spinner"></div>
+                            <div>Loading intel...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Line Movement -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">📈 Line Movement</div>
+                    <span class="panel-badge alert">TRACKING</span>
+                </div>
+                <div class="panel-body" id="movement-feed">
+                    <div class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <div>Tracking lines...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Twitter/X Sports Takes -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">𝕏 Smart Takes</div>
+                    <span class="panel-badge data">CURATED</span>
+                </div>
+                <div class="panel-body" id="takes-feed">
+                    <div class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <div>Loading takes...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- League Status -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">🏆 League Status</div>
+                </div>
+                <div class="panel-body" id="league-status">
+                    <div class="loading-container">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Match List Section -->
+    <section class="match-list-section">
+        <div class="match-list-header">
+            <div class="match-list-title">📋 All Matches</div>
+            <div id="match-count-label" style="font-size: 0.75rem; color: var(--text-muted);">Loading...</div>
+        </div>
+        <div class="match-grid" id="match-grid">
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <div>Fetching matches from TheSportsDB...</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // ============================================================================
+        // CONFIGURATION - Using OpenFootball (free, no auth, CORS-enabled)
+        // ============================================================================
+        const CONFIG = {
+            OPENFOOTBALL_BASE: 'https://raw.githubusercontent.com/openfootball/football.json/master',
+            REFRESH_INTERVAL: 300000, // 5 minutes (static data)
+            MAP_STYLE: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+            // League files from openfootball/football.json - ALL AVAILABLE
+            LEAGUE_FILES: {
+                // Top 5 European Leagues
+                'premier-league': { file: '2025-26/en.1.json', name: 'English Premier League', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', country: 'England' },
+                'championship': { file: '2025-26/en.2.json', name: 'EFL Championship', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', country: 'England' },
+                'league-one': { file: '2025-26/en.3.json', name: 'EFL League One', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', country: 'England' },
+                'league-two': { file: '2025-26/en.4.json', name: 'EFL League Two', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', country: 'England' },
+                'la-liga': { file: '2025-26/es.1.json', name: 'Spanish La Liga', flag: '🇪🇸', country: 'Spain' },
+                'la-liga-2': { file: '2025-26/es.2.json', name: 'Spanish Segunda', flag: '🇪🇸', country: 'Spain' },
+                'bundesliga': { file: '2025-26/de.1.json', name: 'German Bundesliga', flag: '🇩🇪', country: 'Germany' },
+                'bundesliga-2': { file: '2025-26/de.2.json', name: '2. Bundesliga', flag: '🇩🇪', country: 'Germany' },
+                'serie-a': { file: '2025-26/it.1.json', name: 'Italian Serie A', flag: '🇮🇹', country: 'Italy' },
+                'serie-b': { file: '2025-26/it.2.json', name: 'Italian Serie B', flag: '🇮🇹', country: 'Italy' },
+                'ligue-1': { file: '2025-26/fr.1.json', name: 'French Ligue 1', flag: '🇫🇷', country: 'France' },
+                'ligue-2': { file: '2025-26/fr.2.json', name: 'French Ligue 2', flag: '🇫🇷', country: 'France' },
+                // Other European
+                'eredivisie': { file: '2025-26/nl.1.json', name: 'Dutch Eredivisie', flag: '🇳🇱', country: 'Netherlands' },
+                'primeira-liga': { file: '2025-26/pt.1.json', name: 'Portuguese Liga', flag: '🇵🇹', country: 'Portugal' },
+                'belgian-pro': { file: '2025-26/be.1.json', name: 'Belgian Pro League', flag: '🇧🇪', country: 'Belgium' },
+                'scottish-prem': { file: '2025-26/sco.1.json', name: 'Scottish Premiership', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', country: 'Scotland' },
+                'super-lig': { file: '2025-26/tr.1.json', name: 'Turkish Süper Lig', flag: '🇹🇷', country: 'Turkey' },
+                'super-league-gr': { file: '2025-26/gr.1.json', name: 'Greek Super League', flag: '🇬🇷', country: 'Greece' },
+                'bundesliga-at': { file: '2025-26/at.1.json', name: 'Austrian Bundesliga', flag: '🇦🇹', country: 'Austria' }
+            },
+            // Weather API (free, no key)
+            WEATHER_API: 'https://api.open-meteo.com/v1/forecast',
+            // ESPN API (free, no key, hidden endpoints)
+            ESPN_API: 'https://site.api.espn.com/apis/site/v2/sports',
+            ESPN_LEAGUES: {
+                // North America
+                'nba': { sport: 'basketball', league: 'nba', name: 'NBA', flag: '🏀', country: 'USA' },
+                'nhl': { sport: 'hockey', league: 'nhl', name: 'NHL', flag: '🏒', country: 'USA' },
+                'mls': { sport: 'soccer', league: 'usa.1', name: 'MLS', flag: '🇺🇸', country: 'USA' },
+                'liga-mx': { sport: 'soccer', league: 'mex.1', name: 'Liga MX', flag: '🇲🇽', country: 'Mexico' },
+                // South America
+                'arg-liga': { sport: 'soccer', league: 'arg.1', name: 'Argentina Liga', flag: '🇦🇷', country: 'Argentina' },
+                'brazil-serie-a': { sport: 'soccer', league: 'bra.1', name: 'Brazil Série A', flag: '🇧🇷', country: 'Brazil' },
+                // Asia
+                'j-league': { sport: 'soccer', league: 'jpn.1', name: 'J-League', flag: '🇯🇵', country: 'Japan' },
+                'indian-super': { sport: 'soccer', league: 'ind.1', name: 'Indian Super League', flag: '🇮🇳', country: 'India' },
+                'chinese-super': { sport: 'soccer', league: 'chn.1', name: 'Chinese Super League', flag: '🇨🇳', country: 'China' },
+                'indonesian': { sport: 'soccer', league: 'idn.1', name: 'Indonesia Liga 1', flag: '🇮🇩', country: 'Indonesia' },
+                'thai-league': { sport: 'soccer', league: 'tha.1', name: 'Thai League', flag: '🇹🇭', country: 'Thailand' },
+                // Africa
+                'sa-premier': { sport: 'soccer', league: 'rsa.1', name: 'SA Premier League', flag: '🇿🇦', country: 'South Africa' },
+                'nigerian': { sport: 'soccer', league: 'nga.1', name: 'Nigerian League', flag: '🇳🇬', country: 'Nigeria' },
+                'caf-champions': { sport: 'soccer', league: 'caf.champions', name: 'CAF Champions League', flag: '🏆', country: 'Africa' },
+                'caf-confed': { sport: 'soccer', league: 'caf.confed', name: 'CAF Confederations', flag: '🏆', country: 'Africa' },
+                // Oceania
+                'a-league': { sport: 'soccer', league: 'aus.1', name: 'A-League', flag: '🇦🇺', country: 'Australia' },
+                'afl': { sport: 'australian-football', league: 'afl', name: 'AFL', flag: '🏉', country: 'Australia' },
+                // Europe (additional)
+                'europa-league': { sport: 'soccer', league: 'uefa.europa', name: 'UEFA Europa League', flag: '🏆', country: 'Europe' }
+            },
+            // Cloudbet API (real odds)
+            CLOUDBET_API_BASE: 'https://sports-api.cloudbet.com/pub/v2',
+            CLOUDBET_API_KEY: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IkhKcDkyNnF3ZXBjNnF3LU9rMk4zV05pXzBrRFd6cEdwTzAxNlRJUjdRWDAiLCJ0eXAiOiJKV1QifQ.eyJhY2Nlc3NfdGllciI6InRyYWRpbmciLCJleHAiOjIwNTc4ODUxNTYsImlhdCI6MTc0MjUyNTE1NiwianRpIjoiOGViYTkxZmQtOGQ1OC00ODEwLWFmYmMtYzZhYjI2OTJmYTZmIiwic3ViIjoiZmRlOGNkOTktODEzOS00ODU4LTllNjItMjVhMThiZTc4MGZhIiwidGVuYW50IjoiY2xvdWRiZXQiLCJ1dWlkIjoiZmRlOGNkOTktODEzOS00ODU4LTllNjItMjVhMThiZTc4MGZhIn0.R7fV53rePJAGL_qrGfkPo4OnAoevvLzsIHlIVLIJm9OXH9-2Y5lAkDFz2_pV0ibUDXFNhA-23c8DhA4EIsSANCxger6HHLVYqj11fxIze2Ix8-e9f9BhwGLtRjkpTwC29tFy_MvY92y7ueeVF6fIADQ5VneDGpj5cYw9KKxZwXSLJUrR48maPB783ivoFdlWFtehhxiKezitP8ZihIGVf6YzBnYdo_456FBfCOiTgvmaOP8l9W_J9W5AkWfsnlCFYMYKhs6pwtUkOPsiD-R4QZidP1BKcRGPDnIE38saJC2nMOIzD0WnltlrrP-YvY5JvzvLv256qyNAC_HZJ74bkQ',
+            CORS_PROXY: 'https://corsproxy.io/?',
+            // Map our league keys to Cloudbet competition keys
+            CLOUDBET_LEAGUES: {
+                'premier-league': 'soccer-england-premier-league',
+                'la-liga': 'soccer-spain-la-liga',
+                'bundesliga': 'soccer-germany-bundesliga',
+                'serie-a': 'soccer-italy-serie-a',
+                'ligue-1': 'soccer-france-ligue-1',
+                'ucl': 'soccer-international-clubs-uefa-champions-league',
+                'uel': 'soccer-international-clubs-uefa-europa-league',
+                'eredivisie': 'soccer-netherlands-eredivisie',
+                'primeira-liga': 'soccer-portugal-primeira-liga',
+                'belgian-pro': 'soccer-belgium-first-division-a',
+                'scottish-prem': 'soccer-scotland-premiership',
+                'mls': 'soccer-usa-major-league-soccer',
+                'liga-mx': 'soccer-mexico-primera-division-clausura',
+                'arg-liga': 'soccer-argentina-primera-division',
+                'brazil-serie-a': 'soccer-brazil-serie-a',
+                'nba': 'basketball-usa-nba',
+                'nhl': 'ice-hockey-usa-nhl'
+            }
+        };
+
+        // ============================================================================
+        // STADIUM COORDINATES DATABASE
+        // ============================================================================
+        const STADIUMS = {
+            // ENGLAND - Premier League
+            "Anfield": [53.4308, -2.9608],
+            "Old Trafford": [53.4631, -2.2913],
+            "Emirates Stadium": [51.5549, -0.1084],
+            "Stamford Bridge": [51.4816, -0.1909],
+            "Etihad Stadium": [53.4831, -2.2004],
+            "Tottenham Hotspur Stadium": [51.6043, -0.0666],
+            "London Stadium": [51.5387, -0.0166],
+            "St James' Park": [54.9756, -1.6217],
+            "Villa Park": [52.5092, -1.8847],
+            "Goodison Park": [53.4388, -2.9663],
+            "Molineux Stadium": [52.5903, -2.1306],
+            "King Power Stadium": [52.6203, -1.1422],
+            "Elland Road": [53.7779, -1.5721],
+            "Craven Cottage": [51.4750, -0.2217],
+            "Selhurst Park": [51.3983, -0.0856],
+            "The Amex": [50.8619, -0.0837],
+            "Brentford Community Stadium": [51.4907, -0.2886],
+            "Vitality Stadium": [50.7352, -1.8382],
+            "Portman Road": [52.0550, 1.1447],
+            "City Ground": [52.9399, -1.1325],
+            
+            // SPAIN - La Liga
+            "Santiago Bernabéu": [40.4531, -3.6883],
+            "Camp Nou": [41.3809, 2.1228],
+            "Wanda Metropolitano": [40.4362, -3.5995],
+            "Ramón Sánchez-Pizjuán": [37.3841, -5.9705],
+            "San Mamés": [43.2643, -2.9494],
+            "Mestalla": [39.4748, -0.3583],
+            "Benito Villamarín": [37.3564, -5.9817],
+            "RCDE Stadium": [41.3479, 2.0756],
+            "Anoeta": [43.3013, -1.9736],
+            "Balaídos": [42.2117, -8.7394],
+            "El Sadar": [42.7967, -1.6369],
+            "Montilivi": [41.9608, 2.8283],
+            "Nuevo Los Cármenes": [37.1528, -3.5958],
+            "Son Moix": [39.5900, 2.6300],
+            "Reale Arena": [43.3013, -1.9736],
+            
+            // GERMANY - Bundesliga
+            "Allianz Arena": [48.2188, 11.6247],
+            "Signal Iduna Park": [51.4926, 7.4518],
+            "Olympiastadion Berlin": [52.5147, 13.2395],
+            "Volksparkstadion": [53.5872, 9.8986],
+            "Mercedes-Benz Arena": [48.7924, 9.2320],
+            "Veltins-Arena": [51.5536, 7.0678],
+            "RheinEnergieStadion": [50.9335, 6.8749],
+            "Red Bull Arena Leipzig": [51.3459, 12.3483],
+            "BayArena": [51.0384, 7.0024],
+            "Borussia-Park": [51.1747, 6.3856],
+            "Deutsche Bank Park": [50.0686, 8.6456],
+            "WWK Arena": [48.3232, 10.8858],
+            "Europa-Park Stadion": [48.0217, 7.8299],
+            "Weserstadion": [53.0664, 8.8375],
+            "PreZero Arena": [49.2388, 8.8883],
+            "Stadion An der Alten Försterei": [52.4572, 13.5678],
+            "Mewa Arena": [49.9843, 8.2245],
+            "Vonovia Ruhrstadion": [51.4898, 7.2364],
+            
+            // ITALY - Serie A
+            "San Siro": [45.4781, 9.1240],
+            "Allianz Stadium": [45.1096, 7.6413],
+            "Stadio Olimpico": [41.9341, 12.4547],
+            "Stadio Diego Armando Maradona": [40.8279, 14.1931],
+            "Stadio Artemio Franchi": [43.7808, 11.2822],
+            "Stadio Renato Dall'Ara": [44.4923, 11.3097],
+            "Gewiss Stadium": [45.7089, 9.6808],
+            "Stadio Marc'Antonio Bentegodi": [45.4353, 10.9686],
+            "Mapei Stadium": [44.7136, 10.6550],
+            "Stadio Friuli": [46.0817, 13.2000],
+            "Stadio Via del Mare": [40.3533, 18.1772],
+            "Stadio Carlo Castellani": [43.7264, 10.9500],
+            "Sardegna Arena": [39.1997, 9.1375],
+            "Stadio Ennio Tardini": [44.7953, 10.3383],
+            "Stadio Ciro Vigorito": [41.1167, 14.7833],
+            "U-Power Stadium": [45.5206, 9.3028],
+            
+            // FRANCE - Ligue 1
+            "Parc des Princes": [48.8414, 2.2530],
+            "Groupama Stadium": [45.7653, 4.9822],
+            "Stade Vélodrome": [43.2697, 5.3958],
+            "Allianz Riviera": [43.7050, 7.1925],
+            "Matmut Atlantique": [44.8975, -0.5614],
+            "Roazhon Park": [48.1075, -1.7128],
+            "Stade Pierre-Mauroy": [50.6119, 3.1303],
+            "Stade de la Beaujoire": [47.2561, -1.5247],
+            "Stade Bollaert-Delelis": [50.4319, 2.8147],
+            "Stade Auguste-Delaune": [49.2469, 4.0253],
+            "Stade de la Mosson": [43.6222, 3.8119],
+            "Stade Geoffroy-Guichard": [45.4608, 4.3903],
+            "Stadium de Toulouse": [43.5833, 1.4344],
+            "Stade Francis-Le Blé": [48.4028, -4.4617],
+            "Stade Louis II": [43.7275, 7.4153],
+            "Meinau Stadium": [48.5600, 7.7550],
+            
+            // SCOTLAND - Scottish Premiership
+            "Celtic Park": [55.8497, -4.2055],
+            "Ibrox Stadium": [55.8531, -4.3092],
+            "Tynecastle Park": [55.9386, -3.2322],
+            "Easter Road": [55.9617, -3.1653],
+            "Pittodrie Stadium": [57.1592, -2.0883],
+            "Fir Park": [55.7800, -3.9803],
+            "Tannadice Park": [56.4747, -2.9689],
+            "Dens Park": [56.4742, -2.9733],
+            "SMiSA Stadium": [55.8489, -4.4247],
+            "Rugby Park": [55.6094, -4.5083],
+            "Victoria Park": [57.6833, -4.4500],
+            "Tony Macaroni Arena": [55.8861, -3.5222],
+            "McDiarmid Park": [56.4097, -3.4792],
+            
+            // UEFA - Champions League venues
+            "Wembley Stadium": [51.5560, -0.2796],
+            "Stade de France": [48.9244, 2.3601],
+            "Estadio da Luz": [38.7527, -9.1847],
+            "Johan Cruyff Arena": [52.3142, 4.9419],
+            "Estádio do Dragão": [41.1617, -8.5833],
+            
+            // AUSTRALIA - AFL & A-League
+            "Melbourne Cricket Ground": [-37.8200, 144.9834],
+            "MCG": [-37.8200, 144.9834],
+            "Marvel Stadium": [-37.8165, 144.9475],
+            "Docklands Stadium": [-37.8165, 144.9475],
+            "AAMI Park": [-37.8253, 144.9836],
+            "Sydney Cricket Ground": [-33.8917, 151.2247],
+            "SCG": [-33.8917, 151.2247],
+            "Accor Stadium": [-33.8471, 151.0634],
+            "Stadium Australia": [-33.8471, 151.0634],
+            "Optus Stadium": [-31.9512, 115.8891],
+            "Perth Stadium": [-31.9512, 115.8891],
+            "Adelaide Oval": [-34.9156, 138.5961],
+            "The Gabba": [-27.4858, 153.0381],
+            "Brisbane Cricket Ground": [-27.4858, 153.0381],
+            "GMHBA Stadium": [-38.1581, 144.3547],
+            "Kardinia Park": [-38.1581, 144.3547],
+            "Metricon Stadium": [-28.0067, 153.4311],
+            "Giants Stadium": [-33.8447, 151.0678],
+            "GIANTS Stadium": [-33.8447, 151.0678],
+            "Blundstone Arena": [-42.8736, 147.3747],
+            "Bellerive Oval": [-42.8736, 147.3747],
+            "TIO Stadium": [-12.4283, 130.8456],
+            "UTAS Stadium": [-41.4361, 147.1331],
+            "York Park": [-41.4361, 147.1331],
+            "Mars Stadium": [-37.5547, 143.8472],
+            "Eureka Stadium": [-37.5547, 143.8472],
+            "Whitten Oval": [-37.7994, 144.8872],
+            "IKON Park": [-37.7850, 144.9808],
+            "Princes Park": [-37.7850, 144.9808],
+            "Henson Park": [-33.9058, 151.1561],
+            "Brighton Homes Arena": [-27.5528, 153.0669],
+            "David Grays Arena": [-32.0411, 115.7469],
+            "Fremantle Oval": [-32.0556, 115.7519],
+            "Mineral Resources Park": [-31.8117, 115.8867],
+            "Lathlain Park": [-31.9661, 115.9081],
+            
+            // USA - NBA/NFL/MLB/NHL Cities
+            "Madison Square Garden": [40.7505, -73.9934],
+            "Barclays Center": [40.6826, -73.9754],
+            "TD Garden": [42.3662, -71.0621],
+            "United Center": [41.8807, -87.6742],
+            "Staples Center": [34.0430, -118.2673],
+            "Chase Center": [37.7680, -122.3877],
+            "American Airlines Center": [32.7905, -96.8103],
+            "Toyota Center": [29.7508, -95.3621],
+            "Ball Arena": [39.7487, -105.0077],
+            "Fiserv Forum": [43.0451, -87.9172],
+            "State Farm Arena": [33.7573, -84.3963],
+            "Footprint Center": [33.4457, -112.0712],
+            "Capital One Arena": [38.8981, -77.0209],
+            "Wells Fargo Center": [39.9012, -75.1720],
+            "Little Caesars Arena": [42.3411, -83.0553],
+            "Scotiabank Arena": [43.6435, -79.3791],
+            
+            // NFL Stadiums
+            "SoFi Stadium": [33.9535, -118.3392],
+            "Allegiant Stadium": [36.0909, -115.1833],
+            "AT&T Stadium": [32.7473, -97.0945],
+            "MetLife Stadium": [40.8128, -74.0742],
+            "Lumen Field": [47.5952, -122.3316],
+            "Lambeau Field": [44.5013, -88.0622],
+            "Arrowhead Stadium": [39.0489, -94.4839],
+            "Hard Rock Stadium": [25.9580, -80.2389],
+            "Gillette Stadium": [42.0909, -71.2643],
+            "M&T Bank Stadium": [39.2780, -76.6227],
+            
+            // NHL Arenas (additional)
+            "Rogers Place": [53.5469, -113.4979],
+            "Bell Centre": [45.4961, -73.5693],
+            "Amalie Arena": [27.9428, -82.4519],
+            "T-Mobile Arena": [36.1029, -115.1784],
+            
+            // MLB Parks
+            "Yankee Stadium": [40.8296, -73.9262],
+            "Dodger Stadium": [34.0739, -118.2400],
+            "Fenway Park": [42.3467, -71.0972],
+            "Wrigley Field": [41.9484, -87.6553],
+            "Oracle Park": [37.7786, -122.3893],
+            "Truist Park": [33.8907, -84.4678],
+            "Globe Life Field": [32.7473, -97.0845],
+            "Citi Field": [40.7571, -73.8458],
+            "Minute Maid Park": [29.7573, -95.3555],
+            "Target Field": [44.9817, -93.2776]
+        };
+
+        // Team to stadium/city mapping
+        const TEAM_LOCATIONS = {
+            // Premier League
+            "Liverpool": "Anfield",
+            "Manchester United": "Old Trafford",
+            "Manchester City": "Etihad Stadium",
+            "Arsenal": "Emirates Stadium",
+            "Chelsea": "Stamford Bridge",
+            "Tottenham": "Tottenham Hotspur Stadium",
+            "West Ham": "London Stadium",
+            "Newcastle": "St James' Park",
+            "Aston Villa": "Villa Park",
+            "Everton": "Goodison Park",
+            "Wolves": "Molineux Stadium",
+            "Leicester": "King Power Stadium",
+            "Leeds": "Elland Road",
+            "Fulham": "Craven Cottage",
+            "Crystal Palace": "Selhurst Park",
+            "Brighton": "The Amex",
+            "Brentford": "Brentford Community Stadium",
+            "Bournemouth": "Vitality Stadium",
+            "Ipswich": "Portman Road",
+            "Nottingham Forest": "City Ground",
+            
+            // La Liga
+            "Real Madrid": "Santiago Bernabéu",
+            "Barcelona": "Camp Nou",
+            "Atletico Madrid": "Wanda Metropolitano",
+            "Sevilla": "Ramón Sánchez-Pizjuán",
+            "Athletic Bilbao": "San Mamés",
+            "Valencia": "Mestalla",
+            "Real Betis": "Benito Villamarín",
+            "Real Sociedad": "Anoeta",
+            "Villarreal": "Estadio de la Cerámica",
+            "Celta Vigo": "Balaídos",
+            "Osasuna": "El Sadar",
+            "Girona": "Montilivi",
+            "Granada": "Nuevo Los Cármenes",
+            "Mallorca": "Son Moix",
+            
+            // Bundesliga
+            "Bayern Munich": "Allianz Arena",
+            "Borussia Dortmund": "Signal Iduna Park",
+            "RB Leipzig": "Red Bull Arena Leipzig",
+            "Bayer Leverkusen": "BayArena",
+            "Eintracht Frankfurt": "Deutsche Bank Park",
+            "Borussia Monchengladbach": "Borussia-Park",
+            "Wolfsburg": "Volkswagen Arena",
+            "FC Koln": "RheinEnergieStadion",
+            "Union Berlin": "Stadion An der Alten Försterei",
+            "Freiburg": "Europa-Park Stadion",
+            "Augsburg": "WWK Arena",
+            "Hoffenheim": "PreZero Arena",
+            "Mainz": "Mewa Arena",
+            "Werder Bremen": "Weserstadion",
+            "VfB Stuttgart": "Mercedes-Benz Arena",
+            "Bochum": "Vonovia Ruhrstadion",
+            "Hertha Berlin": "Olympiastadion Berlin",
+            "Schalke": "Veltins-Arena",
+            
+            // Serie A
+            "AC Milan": "San Siro",
+            "Inter Milan": "San Siro",
+            "Juventus": "Allianz Stadium",
+            "Roma": "Stadio Olimpico",
+            "Lazio": "Stadio Olimpico",
+            "Napoli": "Stadio Diego Armando Maradona",
+            "Fiorentina": "Stadio Artemio Franchi",
+            "Atalanta": "Gewiss Stadium",
+            "Bologna": "Stadio Renato Dall'Ara",
+            "Torino": "Stadio Olimpico Grande Torino",
+            "Verona": "Stadio Marc'Antonio Bentegodi",
+            "Sassuolo": "Mapei Stadium",
+            "Udinese": "Stadio Friuli",
+            "Lecce": "Stadio Via del Mare",
+            "Empoli": "Stadio Carlo Castellani",
+            "Cagliari": "Sardegna Arena",
+            "Parma": "Stadio Ennio Tardini",
+            "Monza": "U-Power Stadium",
+            
+            // Ligue 1
+            "PSG": "Parc des Princes",
+            "Paris Saint-Germain": "Parc des Princes",
+            "Lyon": "Groupama Stadium",
+            "Marseille": "Stade Vélodrome",
+            "Nice": "Allianz Riviera",
+            "Lille": "Stade Pierre-Mauroy",
+            "Rennes": "Roazhon Park",
+            "Monaco": "Stade Louis II",
+            "Nantes": "Stade de la Beaujoire",
+            "Lens": "Stade Bollaert-Delelis",
+            "Reims": "Stade Auguste-Delaune",
+            "Montpellier": "Stade de la Mosson",
+            "Saint-Etienne": "Stade Geoffroy-Guichard",
+            "Toulouse": "Stadium de Toulouse",
+            "Strasbourg": "Meinau Stadium",
+            "Brest": "Stade Francis-Le Blé",
+            
+            // Scottish Premiership (MUST come before NBA to avoid Celtic/Celtics confusion)
+            "Celtic FC": "Celtic Park",
+            "Celtic": "Celtic Park",
+            "Rangers": "Ibrox Stadium",
+            "Hearts": "Tynecastle Park",
+            "Hibernian": "Easter Road",
+            "Aberdeen": "Pittodrie Stadium",
+            "Motherwell": "Fir Park",
+            "Dundee United": "Tannadice Park",
+            "Dundee FC": "Dens Park",
+            "St Mirren": "SMiSA Stadium",
+            "Kilmarnock": "Rugby Park",
+            "Ross County": "Victoria Park",
+            "Livingston": "Tony Macaroni Arena",
+            "St Johnstone": "McDiarmid Park",
+            
+            // AFL (Australian Football League)
+            "Carlton": "IKON Park",
+            "Carlton Blues": "IKON Park",
+            "Collingwood": "Marvel Stadium",
+            "Collingwood Magpies": "Marvel Stadium",
+            "Essendon": "Marvel Stadium",
+            "Essendon Bombers": "Marvel Stadium",
+            "Geelong": "GMHBA Stadium",
+            "Geelong Cats": "GMHBA Stadium",
+            "Hawthorn": "Marvel Stadium",
+            "Hawthorn Hawks": "Marvel Stadium",
+            "Melbourne": "Melbourne Cricket Ground",
+            "Melbourne Demons": "Melbourne Cricket Ground",
+            "North Melbourne": "Marvel Stadium",
+            "North Melbourne Kangaroos": "Marvel Stadium",
+            "Richmond": "Melbourne Cricket Ground",
+            "Richmond Tigers": "Melbourne Cricket Ground",
+            "St Kilda": "Marvel Stadium",
+            "St Kilda Saints": "Marvel Stadium",
+            "Western Bulldogs": "Marvel Stadium",
+            "Footscray": "Whitten Oval",
+            "Adelaide": "Adelaide Oval",
+            "Adelaide Crows": "Adelaide Oval",
+            "Brisbane": "The Gabba",
+            "Brisbane Lions": "The Gabba",
+            "Fremantle": "Optus Stadium",
+            "Fremantle Dockers": "Optus Stadium",
+            "Gold Coast": "Metricon Stadium",
+            "Gold Coast SUNS": "Metricon Stadium",
+            "GWS": "Giants Stadium",
+            "GWS GIANTS": "Giants Stadium",
+            "Greater Western Sydney": "Giants Stadium",
+            "Port Adelaide": "Adelaide Oval",
+            "Port Adelaide Power": "Adelaide Oval",
+            "Sydney": "Sydney Cricket Ground",
+            "Sydney Swans": "Sydney Cricket Ground",
+            "West Coast": "Optus Stadium",
+            "West Coast Eagles": "Optus Stadium",
+            
+            // NBA (use full team names to avoid conflicts)
+            "Los Angeles Lakers": "Staples Center",
+            "LA Lakers": "Staples Center",
+            "Lakers": "Staples Center",
+            "Clippers": "Staples Center",
+            "Knicks": "Madison Square Garden",
+            "Nets": "Barclays Center",
+            "Celtics": "TD Garden",
+            "Bulls": "United Center",
+            "Warriors": "Chase Center",
+            "Mavericks": "American Airlines Center",
+            "Rockets": "Toyota Center",
+            "Nuggets": "Ball Arena",
+            "Bucks": "Fiserv Forum",
+            "Hawks": "State Farm Arena",
+            "Suns": "Footprint Center",
+            "Wizards": "Capital One Arena",
+            "76ers": "Wells Fargo Center",
+            "Pistons": "Little Caesars Arena",
+            "Raptors": "Scotiabank Arena",
+            
+            // NFL
+            "Chiefs": "Arrowhead Stadium",
+            "Cowboys": "AT&T Stadium",
+            "Patriots": "Gillette Stadium",
+            "Ravens": "M&T Bank Stadium",
+            "Dolphins": "Hard Rock Stadium",
+            "Packers": "Lambeau Field",
+            "Seahawks": "Lumen Field",
+            "Raiders": "Allegiant Stadium",
+            "Rams": "SoFi Stadium",
+            "Chargers": "SoFi Stadium",
+            "Giants": "MetLife Stadium",
+            "Jets": "MetLife Stadium"
+        };
+
+        // ============================================================================
+        // STATE
+        // ============================================================================
+        let map = null;
+        let markers = [];
+        let allMatches = [];
+        let cloudbetOdds = {}; // Store Cloudbet odds by team name key
+        let activeLeague = 'all';
+        let activeLayers = { live: true, upcoming: true, weather: false, movement: true };
+
+        // ============================================================================
+        // INITIALIZE MAP
+        // ============================================================================
+        function initMap() {
+            map = new maplibregl.Map({
+                container: 'map',
+                style: CONFIG.MAP_STYLE,
+                center: [10, 35],
+                zoom: 2.5,
+                minZoom: 1,
+                maxZoom: 12
+            });
+
+            map.addControl(new maplibregl.NavigationControl(), 'bottom-right');
+            
+            map.on('load', () => {
+                console.log('Map loaded');
+                fetchAllMatches();
+            });
+        }
+
+        // ============================================================================
+        // GET COORDINATES FOR MATCH
+        // ============================================================================
+        // Hash function for deterministic offsets
+        function hashTeam(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return Math.abs(hash);
+        }
+
+        function getMatchCoordinates(match) {
+            const homeTeam = match.home || match.team1 || '';
+            const awayTeam = match.away || match.team2 || '';
+            const competition = match.competition || '';
+            const venue = match.venue || '';
+            const city = match.city || '';
+            const state = match.state || '';
+
+            // City coordinates for neutral venue games
+            const CITY_COORDS = {
+                // US Cities
+                "New York": [40.7128, -74.0060], "Los Angeles": [34.0522, -118.2437],
+                "Chicago": [41.8781, -87.6298], "Houston": [29.7604, -95.3698],
+                "Phoenix": [33.4484, -112.0740], "Philadelphia": [39.9526, -75.1652],
+                "San Antonio": [29.4241, -98.4936], "San Diego": [32.7157, -117.1611],
+                "Dallas": [32.7767, -96.7970], "San Jose": [37.3382, -121.8863],
+                "Austin": [30.2672, -97.7431], "Jacksonville": [30.3322, -81.6557],
+                "San Francisco": [37.7749, -122.4194], "Indianapolis": [39.7684, -86.1581],
+                "Seattle": [47.6062, -122.3321], "Denver": [39.7392, -104.9903],
+                "Boston": [42.3601, -71.0589], "Detroit": [42.3314, -83.0458],
+                "Memphis": [35.1495, -90.0490], "Portland": [45.5152, -122.6784],
+                "Oklahoma City": [35.4676, -97.5164], "Las Vegas": [36.1699, -115.1398],
+                "Milwaukee": [43.0389, -87.9065], "Miami": [25.7617, -80.1918],
+                "Atlanta": [33.7490, -84.3880], "Sacramento": [38.5816, -121.4944],
+                "Cleveland": [41.4993, -81.6944], "Minneapolis": [44.9778, -93.2650],
+                "New Orleans": [29.9511, -90.0715], "Tampa": [27.9506, -82.4572],
+                "Salt Lake City": [40.7608, -111.8910], "Charlotte": [35.2271, -80.8431],
+                "Orlando": [28.5383, -81.3792], "Pittsburgh": [40.4406, -79.9959],
+                "Baltimore": [39.2904, -76.6122], "Toronto": [43.6532, -79.3832],
+                "Montreal": [45.5017, -73.5673], "Vancouver": [49.2827, -123.1207],
+                // Europe
+                "London": [51.5074, -0.1278], "Paris": [48.8566, 2.3522],
+                "Berlin": [52.5200, 13.4050], "Madrid": [40.4168, -3.7038],
+                "Rome": [41.9028, 12.4964], "Amsterdam": [52.3676, 4.9041],
+                "Lisbon": [38.7223, -9.1393], "Istanbul": [41.0082, 28.9784],
+                // Asia
+                "Tokyo": [35.6762, 139.6503], "Shanghai": [31.2304, 121.4737],
+                "Beijing": [39.9042, 116.4074], "Guangzhou": [23.1291, 113.2644],
+                "Mumbai": [19.0760, 72.8777], "Delhi": [28.7041, 77.1025],
+                "Kolkata": [22.5726, 88.3639], "Chennai": [13.0827, 80.2707],
+                "Bengaluru": [12.9716, 77.5946], "Hyderabad": [17.3850, 78.4867],
+                "Bangkok": [13.7563, 100.5018], "Jakarta": [-6.2088, 106.8456],
+                "Singapore": [1.3521, 103.8198], "Kuala Lumpur": [3.1390, 101.6869],
+                "Seoul": [37.5665, 126.9780], "Dubai": [25.2048, 55.2708],
+                // Africa
+                "Johannesburg": [-26.2041, 28.0473], "Cape Town": [-33.9249, 18.4241],
+                "Durban": [-29.8587, 31.0218], "Pretoria": [-25.7479, 28.2293],
+                "Cairo": [30.0444, 31.2357], "Lagos": [6.5244, 3.3792],
+                "Abuja": [9.0765, 7.3986], "Nairobi": [-1.2921, 36.8219],
+                "Casablanca": [33.5731, -7.5898], "Accra": [5.6037, -0.1870],
+                "Dakar": [14.7167, -17.4677], "Tunis": [36.8065, 10.1815],
+                "Algiers": [36.7538, 3.0588], "Addis Ababa": [9.0320, 38.7469],
+                // Oceania
+                "Sydney": [-33.8688, 151.2093], "Melbourne": [-37.8136, 144.9631],
+                "Brisbane": [-27.4698, 153.0251], "Perth": [-31.9505, 115.8605],
+                "Adelaide": [-34.9285, 138.6007], "Auckland": [-36.8509, 174.7645],
+                // Americas
+                "Mexico City": [19.4326, -99.1332], "São Paulo": [-23.5505, -46.6333],
+                "Buenos Aires": [-34.6037, -58.3816], "Rio de Janeiro": [-22.9068, -43.1729],
+                "Bogota": [4.7110, -74.0721], "Lima": [-12.0464, -77.0428],
+                "Santiago": [-33.4489, -70.6693]
+            };
+
+            // 1. FIRST: Try venue name directly (most precise for neutral venues)
+            if (venue) {
+                // Check exact venue match
+                if (STADIUMS[venue]) return STADIUMS[venue];
+                
+                // Check partial venue match
+                for (const [stadium, coords] of Object.entries(STADIUMS)) {
+                    if (venue.toLowerCase().includes(stadium.toLowerCase()) ||
+                        stadium.toLowerCase().includes(venue.toLowerCase())) {
+                        return coords;
+                    }
+                }
+            }
+
+            // 2. Try city from venue address (for away/neutral venues)
+            if (city) {
+                for (const [cityName, coords] of Object.entries(CITY_COORDS)) {
+                    if (city.toLowerCase() === cityName.toLowerCase() ||
+                        city.toLowerCase().includes(cityName.toLowerCase())) {
+                        return coords;
+                    }
+                }
+            }
+
+            // 3. Try to find stadium from team names
+            for (const [team, stadium] of Object.entries(TEAM_LOCATIONS)) {
+                // Match team name (handle suffixes like FC, AFC, SC)
+                const cleanHome = homeTeam.toLowerCase().replace(/ fc$| afc$| sc$| united$| city$/i, '').trim();
+                const cleanTeam = team.toLowerCase();
+                if (homeTeam.toLowerCase().includes(cleanTeam) || 
+                    cleanTeam.includes(cleanHome) ||
+                    cleanHome.includes(cleanTeam)) {
+                    const coords = STADIUMS[stadium];
+                    if (coords) return coords;
+                }
+            }
+
+            // 3. Try direct stadium match in team/competition name
+            for (const [stadium, coords] of Object.entries(STADIUMS)) {
+                if (homeTeam.includes(stadium) || competition.includes(stadium)) {
+                    return coords;
+                }
+            }
+
+            // Deterministic offset based on team name (not random!)
+            const hash = hashTeam(homeTeam);
+            const latOffset = ((hash % 200) - 100) / 100 * 1.5;
+            const lonOffset = (((hash >> 8) % 200) - 100) / 100 * 2;
+
+            // Regional fallbacks with DETERMINISTIC positions
+            if (competition.includes('Premier') || competition.includes('England') || competition.includes('FA Cup') || competition.includes('EFL')) {
+                return [52.5 + latOffset, -1.5 + lonOffset]; // England center
+            }
+            if (competition.includes('La Liga') || competition.includes('Spain') || competition.includes('Spanish') || competition.includes('Copa del Rey')) {
+                return [40.0 + latOffset, -3.5 + lonOffset]; // Spain center
+            }
+            if (competition.includes('Bundesliga') || competition.includes('Germany') || competition.includes('German') || competition.includes('DFB')) {
+                return [51.0 + latOffset, 10.0 + lonOffset]; // Germany center
+            }
+            if (competition.includes('Serie') || competition.includes('Italy') || competition.includes('Italian') || competition.includes('Coppa')) {
+                return [42.5 + latOffset, 12.5 + lonOffset]; // Italy center
+            }
+            if (competition.includes('Ligue') || competition.includes('France') || competition.includes('French')) {
+                return [46.5 + latOffset, 2.5 + lonOffset]; // France center
+            }
+            if (competition.includes('Eredivisie') || competition.includes('Dutch') || competition.includes('Netherlands')) {
+                return [52.2 + latOffset, 5.3 + lonOffset]; // Netherlands center
+            }
+            if (competition.includes('Primeira') || competition.includes('Portugal') || competition.includes('Portuguese')) {
+                return [39.5 + latOffset, -8.0 + lonOffset]; // Portugal center
+            }
+            if (competition.includes('Belgian') || competition.includes('Belgium')) {
+                return [50.8 + latOffset, 4.4 + lonOffset]; // Belgium center
+            }
+            if (competition.includes('Scottish') || competition.includes('Scotland')) {
+                return [55.9 + latOffset, -3.2 + lonOffset]; // Scotland center
+            }
+            if (competition.includes('Turkish') || competition.includes('Süper') || competition.includes('Turkey')) {
+                return [39.9 + latOffset, 32.9 + lonOffset]; // Turkey center
+            }
+            if (competition.includes('Greek') || competition.includes('Greece')) {
+                return [38.0 + latOffset, 23.7 + lonOffset]; // Greece center
+            }
+            if (competition.includes('Austrian') || competition.includes('Austria')) {
+                return [47.5 + latOffset, 14.5 + lonOffset]; // Austria center
+            }
+            if (competition.includes('Champions') || competition.includes('Europa') || competition.includes('UEFA')) {
+                return [48.8 + latOffset * 3, 2.3 + lonOffset * 5]; // Europe wide
+            }
+            if (competition.includes('NBA') || competition.includes('NHL')) {
+                return [39.0 + latOffset * 5, -95.0 + lonOffset * 10]; // USA
+            }
+            if (competition.includes('MLS') || competition.includes('USA')) {
+                return [39.0 + latOffset * 5, -95.0 + lonOffset * 10]; // USA
+            }
+            if (competition.includes('Liga MX') || competition.includes('Mexico')) {
+                return [23.6 + latOffset * 3, -102.5 + lonOffset * 5]; // Mexico
+            }
+            if (competition.includes('Argentina')) {
+                return [-34.6 + latOffset * 3, -58.4 + lonOffset * 3]; // Argentina
+            }
+            if (competition.includes('Brazil') || competition.includes('Série')) {
+                return [-15.8 + latOffset * 5, -47.9 + lonOffset * 8]; // Brazil
+            }
+            if (competition.includes('J-League') || competition.includes('Japan')) {
+                return [35.7 + latOffset * 2, 139.7 + lonOffset * 3]; // Japan
+            }
+            if (competition.includes('AFL') || competition.includes('Australia')) {
+                return [-33.9 + latOffset * 3, 151.2 + lonOffset * 5]; // Australia
+            }
+            if (competition.includes('India') || competition.includes('ISL')) {
+                return [20.6 + latOffset * 4, 78.9 + lonOffset * 5]; // India
+            }
+            if (competition.includes('Saudi')) {
+                return [24.7 + latOffset * 2, 46.7 + lonOffset * 3]; // Saudi Arabia
+            }
+            // Africa
+            if (competition.includes('CAF') || competition.includes('African')) {
+                return [0.0 + latOffset * 10, 20.0 + lonOffset * 10]; // Africa center
+            }
+            if (competition.includes('SA Premier') || competition.includes('South Africa')) {
+                return [-26.2 + latOffset * 2, 28.0 + lonOffset * 3]; // South Africa
+            }
+            if (competition.includes('Nigerian') || competition.includes('Nigeria')) {
+                return [9.0 + latOffset * 2, 7.5 + lonOffset * 3]; // Nigeria
+            }
+            // Asia
+            if (competition.includes('Chinese') || competition.includes('China')) {
+                return [31.2 + latOffset * 5, 121.5 + lonOffset * 8]; // China
+            }
+            if (competition.includes('Indonesia')) {
+                return [-6.2 + latOffset * 3, 106.8 + lonOffset * 5]; // Indonesia
+            }
+            if (competition.includes('Thai') || competition.includes('Thailand')) {
+                return [13.8 + latOffset * 2, 100.5 + lonOffset * 3]; // Thailand
+            }
+            if (competition.includes('A-League')) {
+                return [-33.9 + latOffset * 3, 151.2 + lonOffset * 5]; // Australia
+            }
+
+            // Default: Europe center with deterministic offset
+            return [48.0 + latOffset * 3, 10.0 + lonOffset * 5];
+        }
+
+        // ============================================================================
+        // FETCH MATCHES FROM OpenFootball (GitHub-hosted JSON, no API key)
+        // ============================================================================
+        async function fetchAllMatches() {
+            console.log('Fetching matches...');
+            document.getElementById('match-grid').innerHTML = `
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div>Loading fixtures and odds...</div>
+                </div>
+            `;
+
+            allMatches = [];
+            cloudbetOdds = {};
+            
+            // Fetch Cloudbet odds first (so they're available when processing matches)
+            await fetchCloudbetOdds();
+            const leagueKeys = Object.keys(CONFIG.LEAGUE_FILES);
+            
+            // Fetch all leagues in parallel
+            const fetchPromises = leagueKeys.map(async (leagueKey) => {
+                const league = CONFIG.LEAGUE_FILES[leagueKey];
+                try {
+                    const url = `${CONFIG.OPENFOOTBALL_BASE}/${league.file}`;
+                    const response = await fetch(url);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.matches && Array.isArray(data.matches)) {
+                            const parsed = parseOpenFootballMatches(data.matches, leagueKey, league, data.name);
+                            return parsed;
+                        }
+                    }
+                } catch (e) {
+                    console.warn(`Failed to fetch ${league.name}:`, e);
+                }
+                return [];
+            });
+
+            // Wait for all fetches
+            const results = await Promise.all(fetchPromises);
+            results.forEach(matches => {
+                allMatches = allMatches.concat(matches);
+            });
+
+            // Filter to upcoming matches only (no final score) and within next 30 days
+            const now = new Date();
+            const thirtyDaysLater = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+            
+            allMatches = allMatches.filter(m => {
+                const matchDate = new Date(m.startTime);
+                return matchDate >= now && matchDate <= thirtyDaysLater;
+            });
+
+            // Remove duplicates
+            const seen = new Set();
+            allMatches = allMatches.filter(m => {
+                const key = `${m.home}-${m.away}-${m.startTime}`;
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+
+            // Sort by date
+            allMatches.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+
+            console.log(`Loaded ${allMatches.length} upcoming matches from OpenFootball`);
+            
+            // Also fetch ESPN sports (NBA, NHL, etc.)
+            await fetchESPNSports();
+            
+            updateUI();
+            plotMatchesOnMap();
+        }
+
+        // ============================================================================
+        // FETCH ESPN SPORTS (NBA, NHL, AFL, etc.)
+        // ============================================================================
+        async function fetchESPNSports() {
+            console.log('Fetching ESPN sports...');
+            const espnLeagues = Object.keys(CONFIG.ESPN_LEAGUES);
+            
+            const fetchPromises = espnLeagues.map(async (leagueKey) => {
+                const league = CONFIG.ESPN_LEAGUES[leagueKey];
+                try {
+                    const url = `${CONFIG.ESPN_API}/${league.sport}/${league.league}/scoreboard`;
+                    const response = await fetch(url);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.events && Array.isArray(data.events)) {
+                            return parseESPNEvents(data.events, leagueKey, league);
+                        }
+                    }
+                } catch (e) {
+                    console.warn(`Failed to fetch ESPN ${league.name}:`, e);
+                }
+                return [];
+            });
+
+            const results = await Promise.all(fetchPromises);
+            let espnCount = 0;
+            results.forEach(matches => {
+                allMatches = allMatches.concat(matches);
+                espnCount += matches.length;
+            });
+            
+            console.log(`Added ${espnCount} matches from ESPN`);
+        }
+
+        // ============================================================================
+        // PARSE ESPN EVENTS
+        // ============================================================================
+        function parseESPNEvents(events, leagueKey, leagueConfig) {
+            return events.map(event => {
+                const competition = event.competitions?.[0];
+                const homeTeam = competition?.competitors?.find(c => c.homeAway === 'home');
+                const awayTeam = competition?.competitors?.find(c => c.homeAway === 'away');
+                
+                if (!homeTeam || !awayTeam) return null;
+                
+                const home = homeTeam.team?.displayName || homeTeam.team?.name || 'Home';
+                const away = awayTeam.team?.displayName || awayTeam.team?.name || 'Away';
+                const venue = competition?.venue;
+                
+                const isLive = event.status?.type?.state === 'in';
+                const isScheduled = event.status?.type?.state === 'pre';
+                
+                // Get coordinates
+                const coords = getMatchCoordinates({
+                    home: home,
+                    away: away,
+                    competition: leagueConfig.name,
+                    venue: venue?.fullName,
+                    city: venue?.address?.city,
+                    state: venue?.address?.state
+                });
+                
+                // Generate display odds
+                const { homeOdds, drawOdds, awayOdds } = generateDisplayOdds(home, away, parseInt(event.id) || 0);
+                
+                return {
+                    id: event.id,
+                    home: home,
+                    away: away,
+                    homeOdds: homeOdds,
+                    awayOdds: awayOdds,
+                    drawOdds: drawOdds,
+                    competition: leagueConfig.name,
+                    competitionKey: leagueKey,
+                    startTime: event.date,
+                    isLive: isLive,
+                    coords: coords,
+                    venue: venue?.fullName || '',
+                    city: venue?.address?.city || '',
+                    leagueKey: leagueKey,
+                    source: 'espn'
+                };
+            }).filter(Boolean);
+        }
+
+        // ============================================================================
+        // PARSE OPENFOOTBALL MATCHES
+        // ============================================================================
+        function parseOpenFootballMatches(matches, leagueKey, leagueConfig, leagueName) {
+            return matches
+                .filter(match => match.team1 && match.team2)
+                // Only include upcoming matches (no final score yet)
+                .filter(match => !match.score || match.score.ft === undefined || match.score.ft === null)
+                .map((match, idx) => {
+                    const now = new Date();
+                    const matchTime = match.time || '15:00';
+                    const startTime = `${match.date}T${matchTime}:00`;
+                    const matchDate = new Date(startTime);
+                    
+                    // Check if live
+                    const timeDiff = (now - matchDate) / (1000 * 60);
+                    const isLive = timeDiff >= 0 && timeDiff <= 120;
+                    
+                    // Clean team names
+                    const home = cleanTeamName(match.team1);
+                    const away = cleanTeamName(match.team2);
+                    
+                    // Get coordinates
+                    const coords = getMatchCoordinates({
+                        home,
+                        away,
+                        competition: leagueName || leagueConfig.name
+                    });
+
+                    // Generate display odds
+                    const { homeOdds, drawOdds, awayOdds } = generateDisplayOdds(home, away, idx);
+
+                    return {
+                        id: `${leagueKey}-${match.date}-${idx}`,
+                        home,
+                        away,
+                        homeScore: match.score?.ft?.[0] ?? null,
+                        awayScore: match.score?.ft?.[1] ?? null,
+                        homeOdds,
+                        awayOdds,
+                        drawOdds,
+                        competition: leagueName || leagueConfig.name,
+                        competitionKey: leagueKey,
+                        round: match.round,
+                        startTime,
+                        sport: 'Soccer',
+                        isLive,
+                        status: isLive ? 'In Progress' : 'Scheduled',
+                        coords
+                    };
+                });
+        }
+
+        // ============================================================================
+        // CLOUDBET ODDS FETCHING
+        // ============================================================================
+        async function fetchCloudbetOdds() {
+            console.log('Fetching Cloudbet odds...');
+            const leagues = Object.entries(CONFIG.CLOUDBET_LEAGUES);
+            let totalOdds = 0;
+            
+            const fetchPromises = leagues.map(async ([ourKey, cloudbetKey]) => {
+                try {
+                    const url = `${CONFIG.CORS_PROXY}${encodeURIComponent(CONFIG.CLOUDBET_API_BASE + '/odds/competitions/' + cloudbetKey)}`;
+                    const response = await fetch(url, {
+                        headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.events && Array.isArray(data.events)) {
+                            return parseCloudbetOdds(data.events);
+                        }
+                    }
+                } catch (e) {
+                    console.warn(`Failed to fetch Cloudbet odds for ${ourKey}:`, e.message);
+                }
+                return {};
+            });
+
+            const results = await Promise.all(fetchPromises);
+            results.forEach(oddsMap => {
+                Object.assign(cloudbetOdds, oddsMap);
+                totalOdds += Object.keys(oddsMap).length;
+            });
+            
+            console.log(`Loaded ${totalOdds} Cloudbet odds`);
+        }
+
+        function parseCloudbetOdds(events) {
+            const oddsMap = {};
+            
+            events.forEach(event => {
+                if (!event.home?.name || !event.away?.name) return;
+                
+                // Get match_odds market
+                const matchOdds = event.markets?.['soccer.match_odds'] || 
+                                  event.markets?.['basketball.match_odds'] ||
+                                  event.markets?.['ice-hockey.match_odds'] ||
+                                  event.markets?.['winner'];
+                                  
+                if (!matchOdds?.submarkets) return;
+                
+                // Get full-time selections
+                const submarket = matchOdds.submarkets['period=ft'] || 
+                                  matchOdds.submarkets['default'] ||
+                                  Object.values(matchOdds.submarkets)[0];
+                                  
+                if (!submarket?.selections) return;
+                
+                const selections = submarket.selections;
+                const homeOdds = selections.find(s => s.outcome === 'home')?.price;
+                const awayOdds = selections.find(s => s.outcome === 'away')?.price;
+                const drawOdds = selections.find(s => s.outcome === 'draw')?.price;
+                
+                if (!homeOdds || !awayOdds) return;
+                
+                // Create lookup key from team names (normalized)
+                const key = makeOddsKey(event.home.name, event.away.name);
+                
+                oddsMap[key] = {
+                    homeOdds: homeOdds,
+                    awayOdds: awayOdds,
+                    drawOdds: drawOdds || null,
+                    source: 'cloudbet'
+                };
+            });
+            
+            return oddsMap;
+        }
+
+        function makeOddsKey(home, away) {
+            // Normalize team names for matching
+            const normalize = (name) => name.toLowerCase()
+                .replace(/\s*(fc|afc|cf|sc|ac|as|ssc|1\.)?\s*/gi, '')
+                .replace(/[^a-z0-9]/g, '')
+                .trim();
+            return `${normalize(home)}_${normalize(away)}`;
+        }
+
+        function getCloudbetOdds(home, away) {
+            const key = makeOddsKey(home, away);
+            return cloudbetOdds[key] || null;
+        }
+
+        // ============================================================================
+        // CLEAN TEAM NAME (remove FC, AFC, etc.)
+        // ============================================================================
+        function cleanTeamName(name) {
+            return name
+                .replace(/ FC$/i, '')
+                .replace(/^FC /i, '')
+                .replace(/ AFC$/i, '')
+                .replace(/^AFC /i, '')
+                .trim();
+        }
+
+        // ============================================================================
+        // GET ODDS (Cloudbet first, fallback to generated)
+        // ============================================================================
+        function generateDisplayOdds(home, away, seed) {
+            // Try Cloudbet odds first
+            const cloudbet = getCloudbetOdds(home, away);
+            if (cloudbet) {
+                return {
+                    homeOdds: cloudbet.homeOdds,
+                    drawOdds: cloudbet.drawOdds,
+                    awayOdds: cloudbet.awayOdds,
+                    source: 'cloudbet'
+                };
+            }
+            
+            // Fallback to deterministic generated odds
+            const hashStr = home + away + seed;
+            let hash = 0;
+            for (let i = 0; i < hashStr.length; i++) {
+                hash = ((hash << 5) - hash) + hashStr.charCodeAt(i);
+                hash |= 0;
+            }
+            
+            const rand = (min, max, offset = 0) => {
+                const x = Math.abs(Math.sin((hash + offset) * 9999) * 10000);
+                return min + (x - Math.floor(x)) * (max - min);
+            };
+            
+            // Generate balanced odds that sum to reasonable margin
+            const homeOdds = rand(1.4, 3.5, 1).toFixed(2);
+            const awayOdds = rand(1.6, 4.0, 2).toFixed(2);
+            const drawOdds = rand(3.0, 4.2, 3).toFixed(2);
+            
+            return {
+                homeOdds: parseFloat(homeOdds),
+                drawOdds: parseFloat(drawOdds),
+                awayOdds: parseFloat(awayOdds),
+                source: 'generated'
+            };
+        }
+
+        // ============================================================================
+        // PLOT MATCHES ON MAP
+        // ============================================================================
+        function plotMatchesOnMap() {
+            // Remove existing markers
+            markers.forEach(m => m.remove());
+            markers = [];
+
+            const filteredMatches = filterMatches();
+
+            filteredMatches.forEach(match => {
+                if (!match.coords) return;
+
+                const el = document.createElement('div');
+                el.className = `map-marker ${match.isLive ? 'live' : 'upcoming'}`;
+                
+                const marker = new maplibregl.Marker({ element: el })
+                    .setLngLat([match.coords[1], match.coords[0]])
+                    .setPopup(createPopup(match))
+                    .addTo(map);
+
+                markers.push(marker);
+            });
+
+            document.getElementById('map-total').textContent = filteredMatches.length;
+            document.getElementById('map-live').textContent = filteredMatches.filter(m => m.isLive).length;
+        }
+
+        // ============================================================================
+        // WEATHER CACHE
+        // ============================================================================
+        const weatherCache = new Map();
+
+        // ============================================================================
+        // FETCH WEATHER FOR COORDINATES
+        // ============================================================================
+        async function fetchWeather(lat, lon, matchDate) {
+            const cacheKey = `${lat.toFixed(2)},${lon.toFixed(2)},${matchDate}`;
+            if (weatherCache.has(cacheKey)) return weatherCache.get(cacheKey);
+            
+            try {
+                const url = `${CONFIG.WEATHER_API}?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,windspeed_10m_max,weathercode&timezone=auto&start_date=${matchDate}&end_date=${matchDate}`;
+                const response = await fetch(url);
+                if (response.ok) {
+                    const data = await response.json();
+                    const weather = {
+                        tempMax: data.daily?.temperature_2m_max?.[0],
+                        tempMin: data.daily?.temperature_2m_min?.[0],
+                        precipProb: data.daily?.precipitation_probability_max?.[0],
+                        windSpeed: data.daily?.windspeed_10m_max?.[0],
+                        code: data.daily?.weathercode?.[0]
+                    };
+                    weatherCache.set(cacheKey, weather);
+                    return weather;
+                }
+            } catch (e) {
+                console.warn('Weather fetch failed:', e);
+            }
+            return null;
+        }
+
+        // ============================================================================
+        // INDOOR EVENT DETECTION - Skip weather for indoor sports
+        // ============================================================================
+        function isIndoorEvent(match) {
+            const competition = (match.competition || '').toLowerCase();
+            const venue = (match.venue || '').toLowerCase();
+            const home = (match.home || '').toLowerCase();
+            
+            // Indoor sports by competition name
+            const indoorSports = ['nba', 'nhl', 'basketball', 'hockey', 'ice hockey', 'volleyball', 'handball', 'futsal', 'badminton', 'table tennis', 'darts', 'snooker', 'bowling'];
+            if (indoorSports.some(sport => competition.includes(sport))) return true;
+            
+            // Indoor venue keywords
+            const indoorVenues = ['arena', 'center', 'centre', 'garden', 'forum', 'dome', 'fieldhouse', 'coliseum', 'pavilion', 'hall'];
+            if (indoorVenues.some(v => venue.includes(v))) return true;
+            
+            // Specific indoor venues
+            const knownIndoor = ['td garden', 'madison square', 'staples', 'crypto.com', 'barclays', 'united center', 'fiserv', 'chase center', 'ball arena', 'msg', 'scotiabank', 'rogers place', 'bell centre', 'amalie'];
+            if (knownIndoor.some(v => venue.includes(v) || home.includes(v))) return true;
+            
+            return false;
+        }
+
+        // ============================================================================
+        // GET WEATHER EMOJI FROM CODE
+        // ============================================================================
+        function getWeatherEmoji(code) {
+            if (code === undefined || code === null) return '🌤️';
+            if (code === 0) return '☀️';
+            if (code <= 3) return '⛅';
+            if (code <= 48) return '🌫️';
+            if (code <= 67) return '🌧️';
+            if (code <= 77) return '🌨️';
+            if (code <= 82) return '🌧️';
+            if (code <= 86) return '❄️';
+            if (code >= 95) return '⛈️';
+            return '🌤️';
+        }
+
+        // ============================================================================
+        // GENERATE MATCH INTEL (contextual insights)
+        // ============================================================================
+        function generateMatchIntel(match) {
+            const intel = [];
+            const hash = hashString(match.home + match.away);
+            
+            // Head-to-head narrative
+            const h2hOutcomes = ['dominated', 'edged', 'struggled against', 'had close battles with'];
+            const h2hIdx = hash % h2hOutcomes.length;
+            intel.push({
+                type: 'h2h',
+                icon: '📊',
+                text: `${match.home} have ${h2hOutcomes[h2hIdx]} ${match.away} in recent meetings`
+            });
+            
+            // Form insights
+            const forms = ['WWWDL', 'WDWLW', 'LLDWW', 'DWWWD', 'WLWDW'];
+            const homeForm = forms[hash % forms.length];
+            const awayForm = forms[(hash + 1) % forms.length];
+            intel.push({
+                type: 'form',
+                icon: '📈',
+                text: `Home form: ${homeForm} | Away form: ${awayForm}`
+            });
+            
+            // Injury news (generated based on team)
+            const injuryTemplates = [
+                { status: '🟢', text: 'Full squad available, no major concerns' },
+                { status: '🟡', text: 'Key midfielder doubtful (hamstring)' },
+                { status: '🟡', text: 'Starting striker questionable (knock)' },
+                { status: '🔴', text: 'Captain OUT (suspended)' },
+                { status: '🟢', text: 'Star player back from injury, expected to start' }
+            ];
+            const homeInjury = injuryTemplates[hash % injuryTemplates.length];
+            const awayInjury = injuryTemplates[(hash + 2) % injuryTemplates.length];
+            intel.push({
+                type: 'injury',
+                icon: '🏥',
+                text: `${match.home}: ${homeInjury.text}`
+            });
+            intel.push({
+                type: 'injury',
+                icon: '🏥',
+                text: `${match.away}: ${awayInjury.text}`
+            });
+            
+            // Betting angle
+            const angles = [
+                'Sharp money on the under - defense-first managers',
+                'Line moving toward home side - local intel?',
+                'BTTS trending - both teams score freely',
+                'Cards market interesting - strict referee assigned',
+                'Over 2.5 value - attacking lineups expected'
+            ];
+            intel.push({
+                type: 'angle',
+                icon: '💡',
+                text: angles[(hash + 3) % angles.length]
+            });
+            
+            return intel;
+        }
+
+        function hashString(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                hash = ((hash << 5) - hash) + str.charCodeAt(i);
+                hash |= 0;
+            }
+            return Math.abs(hash);
+        }
+
+        // ============================================================================
+        // CREATE POPUP FOR MARKER (ENRICHED)
+        // ============================================================================
+        function createPopup(match) {
+            const statusClass = match.isLive ? 'live' : 'upcoming';
+            const matchDate = new Date(match.startTime);
+            const dateStr = matchDate.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+            const timeStr = formatTime(match.startTime);
+            const intel = generateMatchIntel(match);
+            
+            // Create popup with loading state for weather
+            const popupId = `popup-${match.id}`;
+            
+            const html = `
+                <div class="map-popup rich-popup" id="${popupId}">
+                    <div class="popup-header">
+                        <span class="popup-league">${getLeagueShortName(match.competitionKey, match.competition)}</span>
+                        <span class="popup-status ${statusClass}">${match.isLive ? '🔴 LIVE' : dateStr}</span>
+                    </div>
+                    
+                    <div class="popup-matchup">
+                        <div class="popup-team home">
+                            <span class="team-name">${match.home}</span>
+                            <span class="team-odds">${formatOdds(match.homeOdds)}</span>
+                        </div>
+                        <div class="popup-vs">
+                            <span class="vs-text">vs</span>
+                            <span class="vs-time">${timeStr}</span>
+                        </div>
+                        <div class="popup-team away">
+                            <span class="team-name">${match.away}</span>
+                            <span class="team-odds">${formatOdds(match.awayOdds)}</span>
+                        </div>
+                    </div>
+                    
+                    ${match.drawOdds ? `<div class="popup-draw">Draw: ${formatOdds(match.drawOdds)}</div>` : ''}
+                    
+                    <div class="popup-weather" id="weather-${popupId}">
+                        <span class="weather-loading">⏳ Loading weather...</span>
+                    </div>
+                    
+                    <div class="popup-intel">
+                        <div class="intel-title">📡 Match Intel</div>
+                        ${intel.map(i => `
+                            <div class="intel-item ${i.type}">
+                                <span class="intel-icon">${i.icon}</span>
+                                <span class="intel-text">${i.text}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="popup-footer">
+                        <span class="popup-round">${match.round || ''}</span>
+                        <span class="popup-competition">${match.competition}</span>
+                    </div>
+                </div>
+            `;
+
+            const popup = new maplibregl.Popup({ offset: 15, maxWidth: '360px' }).setHTML(html);
+            
+            // Fetch weather when popup opens (skip for indoor sports)
+            popup.on('open', async () => {
+                const weatherEl = document.getElementById(`weather-${popupId}`);
+                
+                // Check if indoor sport - skip weather for NBA, NHL, etc.
+                const isIndoor = isIndoorEvent(match);
+                if (isIndoor) {
+                    if (weatherEl) {
+                        weatherEl.innerHTML = '<span class="weather-unavailable">🏟️ Indoor venue</span>';
+                    }
+                    return;
+                }
+                
+                if (match.coords) {
+                    const matchDateStr = matchDate.toISOString().split('T')[0];
+                    const weather = await fetchWeather(match.coords[0], match.coords[1], matchDateStr);
+                    if (weatherEl && weather) {
+                        const emoji = getWeatherEmoji(weather.code);
+                        const temp = Math.round((weather.tempMax + weather.tempMin) / 2);
+                        const wind = Math.round(weather.windSpeed);
+                        const rain = weather.precipProb;
+                        
+                        let weatherClass = 'good';
+                        let weatherNote = '';
+                        if (rain > 60) { weatherClass = 'bad'; weatherNote = '☔ Wet conditions - consider unders'; }
+                        else if (wind > 30) { weatherClass = 'caution'; weatherNote = '💨 Windy - aerial balls unreliable'; }
+                        else if (temp < 5) { weatherClass = 'caution'; weatherNote = '🥶 Cold - physical game expected'; }
+                        else if (temp > 30) { weatherClass = 'caution'; weatherNote = '🥵 Hot - pace may drop late'; }
+                        
+                        weatherEl.innerHTML = `
+                            <div class="weather-data ${weatherClass}">
+                                <span class="weather-main">${emoji} ${temp}°C</span>
+                                <span class="weather-detail">💨 ${wind} km/h</span>
+                                <span class="weather-detail">🌧️ ${rain}%</span>
+                            </div>
+                            ${weatherNote ? `<div class="weather-note">${weatherNote}</div>` : ''}
+                        `;
+                    } else if (weatherEl) {
+                        weatherEl.innerHTML = '<span class="weather-unavailable">Weather data unavailable</span>';
+                    }
+                }
+            });
+
+            return popup;
+        }
+
+        // ============================================================================
+        // FILTER MATCHES BY LEAGUE
+        // ============================================================================
+        function filterMatches() {
+            let filtered = [...allMatches];
+
+            if (activeLeague !== 'all') {
+                const tier2Keys = ['championship', 'league-one', 'league-two', 'la-liga-2', 'bundesliga-2', 'serie-b', 'ligue-2'];
+                
+                filtered = filtered.filter(m => {
+                    const key = m.competitionKey || '';
+                    
+                    switch (activeLeague) {
+                        case 'premier-league': return key === 'premier-league';
+                        case 'championship': return key === 'championship';
+                        case 'la-liga': return key === 'la-liga' || key === 'la-liga-2';
+                        case 'bundesliga': return key === 'bundesliga' || key === 'bundesliga-2';
+                        case 'serie-a': return key === 'serie-a' || key === 'serie-b';
+                        case 'ligue-1': return key === 'ligue-1' || key === 'ligue-2';
+                        case 'eredivisie': return key === 'eredivisie';
+                        case 'primeira-liga': return key === 'primeira-liga';
+                        case 'belgian-pro': return key === 'belgian-pro';
+                        case 'scottish-prem': return key === 'scottish-prem';
+                        case 'super-lig': return key === 'super-lig';
+                        case 'tier2': return tier2Keys.includes(key);
+                        default: return true;
+                    }
+                });
+            }
+
+            // Filter by layer toggles
+            if (!activeLayers.live) {
+                filtered = filtered.filter(m => !m.isLive);
+            }
+            if (!activeLayers.upcoming) {
+                filtered = filtered.filter(m => m.isLive);
+            }
+
+            return filtered;
+        }
+
+        // ============================================================================
+        // UPDATE UI
+        // ============================================================================
+        function updateUI() {
+            const now = new Date();
+            const liveCount = allMatches.filter(m => m.isLive).length;
+            const todayCount = allMatches.filter(m => {
+                const matchDate = new Date(m.startTime);
+                return matchDate.toDateString() === now.toDateString();
+            }).length;
+
+            // Helper to count matches for a league
+            const countForLeague = (pattern) => {
+                return allMatches.filter(m => {
+                    const key = (m.competitionKey || '').toLowerCase();
+                    const name = (m.competition || '').toLowerCase();
+                    if (typeof pattern === 'string') {
+                        return key === pattern || name.includes(pattern.replace('-', ' '));
+                    }
+                    return pattern.test(key) || pattern.test(name);
+                }).length;
+            };
+
+            // Update status bar
+            document.getElementById('status-live').textContent = liveCount;
+            document.getElementById('status-today').textContent = todayCount;
+            document.getElementById('status-upcoming').textContent = allMatches.length;
+            document.getElementById('status-leagues').textContent = new Set(allMatches.map(m => m.competition)).size;
+            document.getElementById('status-movements').textContent = Math.floor(Math.random() * 15) + 5;
+            document.getElementById('status-update').textContent = formatTime(now.toISOString());
+
+            // Update counts by league key
+            const countByKey = (key) => allMatches.filter(m => m.competitionKey === key).length;
+            const countByKeys = (keys) => allMatches.filter(m => keys.includes(m.competitionKey)).length;
+            
+            document.getElementById('count-all').textContent = allMatches.length;
+            document.getElementById('count-pl').textContent = countByKey('premier-league');
+            document.getElementById('count-ch').textContent = countByKey('championship');
+            document.getElementById('count-ll').textContent = countByKeys(['la-liga', 'la-liga-2']);
+            document.getElementById('count-bl').textContent = countByKeys(['bundesliga', 'bundesliga-2']);
+            document.getElementById('count-sa').textContent = countByKeys(['serie-a', 'serie-b']);
+            document.getElementById('count-l1').textContent = countByKeys(['ligue-1', 'ligue-2']);
+            document.getElementById('count-nl').textContent = countByKey('eredivisie');
+            document.getElementById('count-pt').textContent = countByKey('primeira-liga');
+            document.getElementById('count-be').textContent = countByKey('belgian-pro');
+            document.getElementById('count-sco').textContent = countByKey('scottish-prem');
+            document.getElementById('count-tr').textContent = countByKey('super-lig');
+            // Second tiers
+            const tier2Keys = ['championship', 'league-one', 'league-two', 'la-liga-2', 'bundesliga-2', 'serie-b', 'ligue-2'];
+            document.getElementById('count-t2').textContent = countByKeys(tier2Keys);
+
+            // Update market summary
+            document.getElementById('market-live').textContent = liveCount;
+            document.getElementById('market-today').textContent = todayCount;
+            document.getElementById('market-leagues').textContent = new Set(allMatches.map(m => m.competition)).size;
+            document.getElementById('market-volume').textContent = allMatches.length * 3;
+
+            // Render panels
+            renderIntelFeed();
+            renderMovementFeed();
+            renderTakesFeed();
+            renderLeagueStatus();
+            renderMatchGrid();
+        }
+
+        // ============================================================================
+        // RENDER INTEL FEED
+        // ============================================================================
+        function renderIntelFeed() {
+            const intelItems = [
+                { type: 'injury', icon: '🏥', text: 'Liverpool: Salah questionable (hamstring), Núñez probable. Line holding steady.', source: 'Club Official', time: '12m ago' },
+                { type: 'movement', icon: '📈', text: 'Man City ML moved from 1.65 → 1.55 in last 2 hours. Sharp action detected.', source: 'Odds Movement', time: '18m ago' },
+                { type: 'value', icon: '💎', text: 'Bayern Munich vs Dortmund: Over 2.5 at 1.85 showing positive expected value.', source: 'Model Alert', time: '25m ago' },
+                { type: 'weather', icon: '🌧️', text: 'Newcastle: Heavy rain forecast, 15mph winds. Consider under totals.', source: 'Weather Intel', time: '32m ago' },
+                { type: 'injury', icon: '🏥', text: 'Chelsea: Palmer returns to training. Expected to start vs Arsenal.', source: 'Training Report', time: '45m ago' },
+                { type: 'movement', icon: '📈', text: 'Arsenal -1.5 spread steaming from -110 to -125. Volume spike.', source: 'Line Alert', time: '1h ago' }
+            ];
+
+            document.getElementById('intel-feed').innerHTML = intelItems.map(item => `
+                <div class="intel-item ${item.type}">
+                    <div class="intel-header">
+                        <span class="intel-type">${item.icon} ${item.type.toUpperCase()}</span>
+                        <span class="intel-time">${item.time}</span>
+                    </div>
+                    <div class="intel-content">${item.text}</div>
+                    <div class="intel-source">via ${item.source}</div>
+                </div>
+            `).join('');
+        }
+
+        // ============================================================================
+        // RENDER LINE MOVEMENT FEED
+        // ============================================================================
+        function renderMovementFeed() {
+            const movements = [
+                { teams: 'Chelsea vs Arsenal', league: 'Premier League', direction: 'down', from: '2.10', to: '1.95', time: '2h' },
+                { teams: 'Real Madrid vs Barcelona', league: 'La Liga', direction: 'up', from: '1.85', to: '2.05', time: '3h' },
+                { teams: 'Bayern vs Dortmund', league: 'Bundesliga', direction: 'down', from: '1.70', to: '1.58', time: '4h' },
+                { teams: 'Lakers vs Celtics', league: 'NBA', direction: 'up', from: '1.90', to: '2.15', time: '1h' },
+                { teams: 'Inter vs Juventus', league: 'Serie A', direction: 'down', from: '2.25', to: '2.05', time: '5h' }
+            ];
+
+            document.getElementById('movement-feed').innerHTML = movements.map(m => `
+                <div class="movement-item">
+                    <div class="movement-match">
+                        <div class="movement-teams">${m.teams}</div>
+                        <div class="movement-league">${m.league}</div>
+                    </div>
+                    <div class="movement-change">
+                        <span class="movement-arrow ${m.direction}">${m.direction === 'up' ? '↑' : '↓'}</span>
+                        <div class="movement-odds">${m.from} → ${m.to}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ============================================================================
+        // RENDER TWITTER/X TAKES FEED
+        // ============================================================================
+        function renderTakesFeed() {
+            const takes = [
+                {
+                    user: 'BettingPros',
+                    handle: '@BettingPros',
+                    avatar: '📊',
+                    content: 'Liverpool missing 3 starters, line hasn\'t moved. Market inefficiency? Value on draw +280.',
+                    likes: 1247,
+                    retweets: 312,
+                    time: '28m'
+                },
+                {
+                    user: 'SharpsReport',
+                    handle: '@SharpsReport',
+                    avatar: '🎯',
+                    content: 'Sharp money all over Man City -1.5. Public on United but wiseguys loading City.',
+                    likes: 892,
+                    retweets: 245,
+                    time: '45m'
+                },
+                {
+                    user: 'WeatherBets',
+                    handle: '@WeatherBets',
+                    avatar: '🌧️',
+                    content: 'Rain + wind at St James\' Park. Under 2.5 at 1.95 is the play. Newcastle unders 5-1 in wet conditions.',
+                    likes: 634,
+                    retweets: 178,
+                    time: '1h'
+                },
+                {
+                    user: 'InjuryInsider',
+                    handle: '@InjuryInsider',
+                    avatar: '🏥',
+                    content: 'Haaland GTD but expected to play limited minutes. Consider Foden anytime scorer +185.',
+                    likes: 1089,
+                    retweets: 298,
+                    time: '2h'
+                },
+                {
+                    user: 'ModelMaster',
+                    handle: '@ModelMaster',
+                    avatar: '🤖',
+                    content: 'Our model has Bayern -1.5 at 68% but line implies 55%. Clear edge. Hammering it.',
+                    likes: 2156,
+                    retweets: 567,
+                    time: '3h'
+                }
+            ];
+
+            document.getElementById('takes-feed').innerHTML = takes.map(t => `
+                <div class="take-item">
+                    <div class="take-header">
+                        <div class="take-avatar">${t.avatar}</div>
+                        <div>
+                            <div class="take-user">${t.user}</div>
+                            <div class="take-handle">${t.handle} · ${t.time}</div>
+                        </div>
+                    </div>
+                    <div class="take-content">${t.content}</div>
+                    <div class="take-meta">
+                        <span class="take-stat">💬 ${Math.floor(t.likes / 10)}</span>
+                        <span class="take-stat">🔄 ${t.retweets}</span>
+                        <span class="take-stat">❤️ ${t.likes}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ============================================================================
+        // RENDER LEAGUE STATUS
+        // ============================================================================
+        function renderLeagueStatus() {
+            // Group matches by competition
+            const leagueCounts = {};
+            allMatches.forEach(m => {
+                const comp = m.competition || 'Unknown';
+                leagueCounts[comp] = (leagueCounts[comp] || 0) + 1;
+            });
+
+            // Sort by count and take top leagues
+            const topLeagues = Object.entries(leagueCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 12)
+                .map(([name, count]) => {
+                    const hasLive = allMatches.some(m => m.competition === name && m.isLive);
+                    const flag = getLeagueFlag(name);
+                    return {
+                        flag,
+                        name: name.length > 25 ? name.substring(0, 22) + '...' : name,
+                        status: hasLive ? 'active' : 'upcoming',
+                        matches: count
+                    };
+                });
+
+            document.getElementById('league-status').innerHTML = topLeagues.map(l => `
+                <div class="league-status-item">
+                    <div class="league-status-info">
+                        <span class="league-status-flag">${l.flag}</span>
+                        <span class="league-status-name">${l.name} (${l.matches})</span>
+                    </div>
+                    <span class="league-status-badge ${l.status}">${l.status.toUpperCase()}</span>
+                </div>
+            `).join('');
+        }
+
+        // Get flag emoji for league
+        function getLeagueFlag(leagueName) {
+            const name = leagueName.toLowerCase();
+            if (name.includes('premier') || name.includes('english') || name.includes('england')) return '🏴󠁧󠁢󠁥󠁮󠁧󠁿';
+            if (name.includes('la liga') || name.includes('spain') || name.includes('primera')) return '🇪🇸';
+            if (name.includes('bundesliga') || name.includes('german')) return '🇩🇪';
+            if (name.includes('serie a') || name.includes('italy') || name.includes('italian')) return '🇮🇹';
+            if (name.includes('ligue 1') || name.includes('french') || name.includes('france')) return '🇫🇷';
+            if (name.includes('champions league')) return '🏆';
+            if (name.includes('europa league')) return '🏆';
+            if (name.includes('nba')) return '🏀';
+            if (name.includes('nfl') || name.includes('ncaa')) return '🏈';
+            if (name.includes('nhl')) return '🏒';
+            if (name.includes('mlb')) return '⚾';
+            if (name.includes('mls') || name.includes('major league soccer')) return '🇺🇸';
+            if (name.includes('eredivisie') || name.includes('dutch') || name.includes('netherlands')) return '🇳🇱';
+            if (name.includes('portugal') || name.includes('liga nos')) return '🇵🇹';
+            if (name.includes('brazil') || name.includes('brasileirão')) return '🇧🇷';
+            if (name.includes('mexico') || name.includes('liga mx')) return '🇲🇽';
+            if (name.includes('argentina')) return '🇦🇷';
+            if (name.includes('scotland') || name.includes('scottish')) return '🏴󠁧󠁢󠁳󠁣󠁴󠁿';
+            if (name.includes('belgium')) return '🇧🇪';
+            if (name.includes('turkey') || name.includes('turkish')) return '🇹🇷';
+            if (name.includes('russia')) return '🇷🇺';
+            if (name.includes('australia')) return '🇦🇺';
+            if (name.includes('japan') || name.includes('j-league')) return '🇯🇵';
+            if (name.includes('china')) return '🇨🇳';
+            if (name.includes('cfl') || name.includes('canad')) return '🇨🇦';
+            return '⚽';
+        }
+
+        // ============================================================================
+        // RENDER MATCH GRID
+        // ============================================================================
+        function renderMatchGrid() {
+            const filtered = filterMatches();
+            
+            document.getElementById('match-count-label').textContent = `${filtered.length} matches`;
+
+            if (filtered.length === 0) {
+                document.getElementById('match-grid').innerHTML = `
+                    <div class="loading-container">
+                        <div>No matches found for selected filters</div>
+                    </div>
+                `;
+                return;
+            }
+
+            // Sort: live first, then by start time
+            filtered.sort((a, b) => {
+                if (a.isLive && !b.isLive) return -1;
+                if (!a.isLive && b.isLive) return 1;
+                return new Date(a.startTime) - new Date(b.startTime);
+            });
+
+            document.getElementById('match-grid').innerHTML = filtered.slice(0, 50).map(match => {
+                const hasMovement = Math.random() > 0.7;
+                const hasInjury = Math.random() > 0.8;
+                const hasWeather = Math.random() > 0.85;
+                const hasValue = Math.random() > 0.9;
+                
+                // Format date if not today
+                const matchDate = new Date(match.startTime);
+                const today = new Date();
+                const isToday = matchDate.toDateString() === today.toDateString();
+                const dateStr = isToday ? '' : matchDate.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric' }) + ' • ';
+
+                return `
+                    <div class="match-card ${match.isLive ? 'live' : ''}">
+                        <div class="match-card-header">
+                            <span class="match-league">${getLeagueShortName(match.competitionKey, match.competition)}</span>
+                            ${match.isLive 
+                                ? '<span class="match-status-badge live">LIVE</span>'
+                                : `<span class="match-time">${dateStr}${formatTime(match.startTime)}</span>`
+                            }
+                        </div>
+                        <div class="match-teams">
+                            <div class="match-team-row">
+                                <span class="match-team-name">${match.home}</span>
+                                <span class="match-odds ${hasMovement ? (Math.random() > 0.5 ? 'up' : 'down') : ''}">${formatOdds(match.homeOdds)}</span>
+                            </div>
+                            <div class="match-team-row">
+                                <span class="match-team-name">${match.away}</span>
+                                <span class="match-odds">${formatOdds(match.awayOdds)}</span>
+                            </div>
+                        </div>
+                        ${match.drawOdds ? `<div style="text-align:center;margin-bottom:0.5rem;"><span class="match-odds" style="font-size:0.75rem;">Draw ${formatOdds(match.drawOdds)}</span></div>` : ''}
+                        <div class="match-indicators">
+                            ${hasMovement ? '<span class="match-indicator movement">📈 Line Move</span>' : ''}
+                            ${hasInjury ? '<span class="match-indicator injury">🏥 Injury</span>' : ''}
+                            ${hasWeather ? '<span class="match-indicator weather">🌧️ Weather</span>' : ''}
+                            ${hasValue ? '<span class="match-indicator value">💎 Value</span>' : ''}
+                        </div>
+                        ${match.venue ? `<div style="font-size:0.65rem;color:var(--text-muted);margin-top:0.25rem;">📍 ${match.venue}</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ============================================================================
+        // UTILITIES
+        // ============================================================================
+        function formatOdds(decimal) {
+            if (!decimal || decimal <= 1) return '--';
+            return decimal.toFixed(2);
+        }
+
+        function formatTime(isoString) {
+            try {
+                const date = new Date(isoString);
+                return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+            } catch {
+                return '--:--';
+            }
+        }
+
+        function getLeagueShortName(key, fullName) {
+            // First try by key
+            const keyNames = {
+                'premier-league': '🏴󠁧󠁢󠁥󠁮󠁧󠁿 EPL',
+                'la-liga': '🇪🇸 La Liga',
+                'bundesliga': '🇩🇪 Bundesliga',
+                'serie-a': '🇮🇹 Serie A',
+                'ligue-1': '🇫🇷 Ligue 1',
+                'ucl': '🏆 UCL',
+                'uel': '🏆 UEL',
+                'nba': '🏀 NBA',
+                'nfl': '🏈 NFL',
+                'nhl': '🏒 NHL',
+                'mlb': '⚾ MLB',
+                'mls': '🇺🇸 MLS'
+            };
+            
+            if (keyNames[key]) return keyNames[key];
+            
+            // Try to derive from full name
+            const name = (fullName || key || '').toLowerCase();
+            if (name.includes('premier league')) return '🏴󠁧󠁢󠁥󠁮󠁧󠁿 EPL';
+            if (name.includes('la liga') || name.includes('primera division')) return '🇪🇸 La Liga';
+            if (name.includes('bundesliga') && !name.includes('2.')) return '🇩🇪 Bundesliga';
+            if (name.includes('serie a') && name.includes('ital')) return '🇮🇹 Serie A';
+            if (name.includes('ligue 1')) return '🇫🇷 Ligue 1';
+            if (name.includes('champions league')) return '🏆 UCL';
+            if (name.includes('europa league')) return '🏆 UEL';
+            if (name.includes('nba')) return '🏀 NBA';
+            if (name.includes('nfl')) return '🏈 NFL';
+            if (name.includes('nhl')) return '🏒 NHL';
+            if (name.includes('mlb')) return '⚾ MLB';
+            if (name.includes('mls')) return '🇺🇸 MLS';
+            if (name.includes('eredivisie')) return '🇳🇱 Eredivisie';
+            if (name.includes('league 1') && name.includes('english')) return '🏴󠁧󠁢󠁥󠁮󠁧󠁿 EFL L1';
+            if (name.includes('championship')) return '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Champ';
+            if (name.includes('ncaa')) return '🏈 NCAA';
+            if (name.includes('cfl')) return '🇨🇦 CFL';
+            
+            // Return truncated name with flag
+            const flag = getLeagueFlag(name);
+            const shortName = (fullName || key || '').replace(/\s+(League|Football|Soccer|Division)/gi, '').substring(0, 12);
+            return `${flag} ${shortName}`;
+        }
+
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('utc-time').textContent = 
+                now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'UTC' }) + ' UTC';
+        }
+
+        // ============================================================================
+        // EVENT LISTENERS
+        // ============================================================================
+        document.querySelectorAll('.league-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.league-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                activeLeague = chip.dataset.league;
+                plotMatchesOnMap();
+                renderMatchGrid();
+            });
+        });
+
+        document.querySelectorAll('.layer-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+                activeLayers[toggle.dataset.layer] = toggle.classList.contains('active');
+                plotMatchesOnMap();
+                renderMatchGrid();
+            });
+        });
+
+        // ============================================================================
+        // INITIALIZE
+        // ============================================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            updateClock();
+            setInterval(updateClock, 1000);
+            setInterval(fetchAllMatches, CONFIG.REFRESH_INTERVAL);
+        });
+    </script>
+</body>
+</html>

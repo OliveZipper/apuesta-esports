@@ -1,0 +1,122 @@
+[
+  {
+    "rank": 1,
+    "name": "Team Liquid",
+    "earnings": "$56,396,588",
+    "tournaments": 2982
+  },
+  {
+    "rank": 2,
+    "name": "OG",
+    "earnings": "$38,773,813",
+    "tournaments": 208
+  },
+  {
+    "rank": 3,
+    "name": "Team Spirit",
+    "earnings": "$35,582,603",
+    "tournaments": 308
+  },
+  {
+    "rank": 4,
+    "name": "Evil Geniuses",
+    "earnings": "$28,567,423",
+    "tournaments": 1019
+  },
+  {
+    "rank": 5,
+    "name": "Natus Vincere",
+    "earnings": "$24,425,714",
+    "tournaments": 870
+  },
+  {
+    "rank": 6,
+    "name": "Fnatic",
+    "earnings": "$22,315,366",
+    "tournaments": 1194
+  },
+  {
+    "rank": 7,
+    "name": "FaZe Clan",
+    "earnings": "$21,451,431",
+    "tournaments": 808
+  },
+  {
+    "rank": 8,
+    "name": "Virtus.pro",
+    "earnings": "$21,193,087",
+    "tournaments": 736
+  },
+  {
+    "rank": 9,
+    "name": "Team Secret",
+    "earnings": "$21,051,901",
+    "tournaments": 451
+  },
+  {
+    "rank": 10,
+    "name": "PSG Esports",
+    "earnings": "$19,810,565",
+    "tournaments": 181
+  },
+  {
+    "rank": 11,
+    "name": "G2 Esports",
+    "earnings": "$18,976,347",
+    "tournaments": 783
+  },
+  {
+    "rank": 12,
+    "name": "All Gamers",
+    "earnings": "$18,525,987",
+    "tournaments": 197
+  },
+  {
+    "rank": 13,
+    "name": "LGD Gaming",
+    "earnings": "$17,393,358",
+    "tournaments": 243
+  },
+  {
+    "rank": 14,
+    "name": "T1",
+    "earnings": "$15,992,415",
+    "tournaments": 518
+  },
+  {
+    "rank": 15,
+    "name": "Vici Gaming",
+    "earnings": "$15,756,478",
+    "tournaments": 318
+  },
+  {
+    "rank": 16,
+    "name": "Invictus Gaming",
+    "earnings": "$15,251,360",
+    "tournaments": 635
+  },
+  {
+    "rank": 17,
+    "name": "OpTic Gaming",
+    "earnings": "$14,592,124",
+    "tournaments": 428
+  },
+  {
+    "rank": 18,
+    "name": "Cloud9",
+    "earnings": "$14,497,101",
+    "tournaments": 1104
+  },
+  {
+    "rank": 19,
+    "name": "Team Falcons",
+    "earnings": "$14,461,976",
+    "tournaments": 412
+  },
+  {
+    "rank": 20,
+    "name": "Newbee",
+    "earnings": "$14,230,154",
+    "tournaments": 236
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "rank": 1,
+    "code": "cn",
+    "name": "China",
+    "earnings": "$331,631,729",
+    "players": 9350,
+    "top_game": "Dota 2"
+  },
+  {
+    "rank": 2,
+    "code": "us",
+    "name": "United States",
+    "earnings": "$299,977,476",
+    "players": 29331,
+    "top_game": "Fortnite"
+  },
+  {
+    "rank": 3,
+    "code": "kr",
+    "name": "South Korea",
+    "earnings": "$156,874,986",
+    "players": 5964,
+    "top_game": "League of Legends"
+  },
+  {
+    "rank": 4,
+    "code": "ru",
+    "name": "Russia",
+    "earnings": "$96,117,234",
+    "players": 5864,
+    "top_game": "Dota 2"
+  },
+  {
+    "rank": 5,
+    "code": "br",
+    "name": "Brazil",
+    "earnings": "$72,756,987",
+    "players": 5966,
+    "top_game": "Rainbow Six Siege"
+  },
+  {
+    "rank": 6,
+    "code": "dk",
+    "name": "Denmark",
+    "earnings": "$64,129,207",
+    "players": 2202,
+    "top_game": "CS:GO"
+  },
+  {
+    "rank": 7,
+    "code": "fr",
+    "name": "France",
+    "earnings": "$61,696,801",
+    "players": 6650,
+    "top_game": "CS:GO"
+  },
+  {
+    "rank": 8,
+    "code": "se",
+    "name": "Sweden",
+    "earnings": "$58,564,528",
+    "players": 3358,
+    "top_game": "Dota 2"
+  },
+  {
+    "rank": 9,
+    "code": "de",
+    "name": "Germany",
+    "earnings": "$53,023,293",
+    "players": 6933,
+    "top_game": "Dota 2"
+  },
+  {
+    "rank": 10,
+    "code": "ca",
+    "name": "Canada",
+    "earnings": "$50,589,750",
+    "players": 4380,
+    "top_game": "Fortnite"
+  },
+  {
+    "rank": 11,
+    "code": "gb",
+    "name": "United Kingdom",
+    "earnings": "$49,915,312",
+    "players": 5715,
+    "top_game": "Fortnite"
+  },
+  {
+    "rank": 12,
+    "code": "jp",
+    "name": "Japan",
+    "earnings": "$41,282,697",
+    "players": 3984,
+    "top_game": "PUBG Mobile"
+  },
+  {
+    "rank": 13,
+    "code": "ua",
+    "name": "Ukraine",
+    "earnings": "$40,460,742",
+    "players": 1719,
+    "top_game": "Dota 2"
+  },
+  {
+    "rank": 14,
+    "code": "au",
+    "name": "Australia",
+    "earnings": "$34,538,348",
+    "players": 4595,
+    "top_game": "Dota 2"
+  },
+  {
+    "rank": 15,
+    "code": "fi",
+    "name": "Finland",
+    "earnings": "$34,098,053",
+    "players": 2215,
+    "top_game": "Dota 2"
+  },
+  {
+    "rank": 16,
+    "code": "pl",
+    "name": "Poland",
+    "earnings": "$31,840,017",
+    "players": 3133,
+    "top_game": "CS:GO"
+  },
+  {
+    "rank": 17,
+    "code": "th",
+    "name": "Thailand",
+    "earnings": "$31,122,961",
+    "players": 2309,
+    "top_game": "Arena of Valor"
+  },
+  {
+    "rank": 18,
+    "code": "ph",
+    "name": "Philippines",
+    "earnings": "$27,260,691",
+    "players": 1916,
+    "top_game": "Dota 2"
+  },
+  {
+    "rank": 19,
+    "code": "my",
+    "name": "Malaysia",
+    "earnings": "$23,230,117",
+    "players": 1715,
+    "top_game": "Dota 2"
+  },
+  {
+    "rank": 20,
+    "code": "tw",
+    "name": "Taiwan",
+    "earnings": "$22,996,191",
+    "players": 1725,
+    "top_game": "League of Legends"
+  }
+]

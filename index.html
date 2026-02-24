@@ -3,1127 +3,979 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esports Monitor | Global Betting Intelligence</title>
+    <title>Apuesta Esports - The World's Most Comprehensive Esports Reference</title>
+    <meta name="description" content="Complete esports database with team rankings, player profiles, country statistics, tournament coverage, and betting guides for CS2, Dota 2, League of Legends, Valorant and more.">
+    <meta name="keywords" content="esports, competitive gaming, CS2, Dota 2, League of Legends, Valorant, esports betting, team rankings, player stats">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Apuesta Esports - Complete Esports Database">
+    <meta property="og:description" content="The world's most comprehensive esports reference. Teams, players, countries, tournaments, and betting guides.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.apuestaesports.com">
+    <meta property="og:image" content="https://www.apuestaesports.com/og-image.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Apuesta Esports - Complete Esports Database">
+    <meta name="twitter:description" content="The world's most comprehensive esports reference.">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
     
-    <!-- MapLibre GL JS -->
-    <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet">
-    <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
-    
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-tertiary: #21262d;
-            --bg-card: #1c2128;
-            --border-primary: #30363d;
-            --border-highlight: #a855f7;
-            
-            --accent-cyan: #22d3ee;
-            --accent-green: #3fb950;
-            --accent-red: #f85149;
-            --accent-yellow: #d29922;
-            --accent-purple: #a855f7;
-            --accent-pink: #ec4899;
-            
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --text-muted: #6e7681;
-            
-            --font-mono: 'JetBrains Mono', monospace;
-            --font-sans: 'Inter', sans-serif;
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #15151f;
+            --orange: #FF6B2F;
+            --purple: #8D52DA;
+            --yellow: #DFFD51;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: var(--font-sans);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            min-height: 100vh;
+            line-height: 1.6;
         }
-
-        /* Header */
-        header {
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-primary);
-            padding: 0.75rem 1.5rem;
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 24px;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            height: 64px;
         }
-
+        
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo-icon { font-size: 1.75rem; }
-        .logo-text {
-            font-family: var(--font-mono);
-            font-size: 1.1rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        .header-stats {
+        
+        .nav-links {
             display: flex;
-            gap: 1.5rem;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
+            gap: 32px;
+            list-style: none;
         }
-
-        .stat { display: flex; align-items: center; gap: 0.5rem; }
-        .stat-label { color: var(--text-muted); }
-        .stat-value { color: var(--accent-cyan); font-weight: 600; }
-        .stat-value.live { color: var(--accent-red); }
-
-        /* Game Tabs */
-        .game-tabs {
-            display: flex;
-            gap: 0.25rem;
-            padding: 0.5rem 1rem;
-            background: var(--bg-secondary);
-            overflow-x: auto;
-            border-bottom: 1px solid var(--border-primary);
-        }
-
-        .game-tab {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.4rem 0.75rem;
-            background: transparent;
-            border: 1px solid transparent;
-            border-radius: 6px;
+        
+        .nav-links a {
             color: var(--text-secondary);
-            font-size: 0.8rem;
             font-weight: 500;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.2s;
-        }
-
-        .game-tab:hover { background: var(--bg-tertiary); color: var(--text-primary); }
-        .game-tab.active {
-            background: var(--bg-tertiary);
-            border-color: var(--accent-purple);
-            color: var(--accent-purple);
-        }
-
-        .game-tab .count {
-            background: var(--accent-purple);
-            color: white;
-            font-size: 0.65rem;
-            padding: 1px 5px;
-            border-radius: 8px;
-        }
-
-        /* Main Layout */
-        main {
-            display: grid;
-            grid-template-columns: 1fr 400px;
-            height: calc(100vh - 110px);
-        }
-
-        @media (max-width: 1200px) {
-            main { grid-template-columns: 1fr; }
-            .sidebar { display: none; }
-        }
-
-        /* Map */
-        #map {
-            width: 100%;
-            height: 100%;
-            background: var(--bg-primary);
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background: var(--bg-secondary);
-            border-left: 1px solid var(--border-primary);
-            overflow-y: auto;
-            padding: 1rem;
-        }
-
-        .sidebar-title {
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* Match Cards */
-        .match-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-primary);
-            border-radius: 8px;
-            padding: 0.75rem;
-            margin-bottom: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .match-card:hover {
-            border-color: var(--accent-purple);
-            transform: translateX(2px);
-        }
-
-        .match-card.live { border-left: 3px solid var(--accent-red); }
-
-        .match-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .match-tournament {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .match-status {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-            background: var(--bg-tertiary);
-        }
-
-        .match-status.live {
-            background: var(--accent-red);
-            color: white;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        .match-teams {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .team {
-            flex: 1;
-            text-align: center;
-        }
-
-        .team-name {
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 0.25rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .team-odds {
-            font-family: var(--font-mono);
             font-size: 0.9rem;
-            color: var(--accent-cyan);
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(141, 82, 218, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(255, 107, 47, 0.1) 0%, transparent 40%),
+                var(--bg-primary);
+        }
+        
+        .hero-content {
+            max-width: 900px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        
+        .hero-badge span {
+            color: var(--yellow);
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        h1 .gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Sections */
+        section {
+            padding: 100px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
             font-weight: 700;
+            margin-bottom: 16px;
         }
-
-        .vs { color: var(--text-muted); font-size: 0.75rem; padding: 0 0.5rem; }
-
-        /* Map Popup */
-        .maplibregl-popup-content {
-            background: var(--bg-card) !important;
-            border: 1px solid var(--border-primary) !important;
-            border-radius: 12px !important;
-            padding: 0 !important;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
-            min-width: 320px;
-            max-width: 380px;
+        
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
-
-        .maplibregl-popup-close-button {
-            color: var(--text-secondary) !important;
-            font-size: 20px !important;
-            padding: 8px !important;
+        
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
         }
-
-        .popup-content {
-            padding: 1rem;
+        
+        .game-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.2s, border-color 0.2s;
         }
-
-        .popup-header {
+        
+        .game-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--purple);
+        }
+        
+        .game-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+        
+        .game-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .game-meta {
+            display: flex;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+        }
+        
+        .game-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .game-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        /* Rankings Table */
+        .rankings-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+        
+        .ranking-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .ranking-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-primary);
         }
-
-        .popup-game {
-            font-size: 0.75rem;
-            color: var(--accent-purple);
-            font-weight: 600;
+        
+        .ranking-header h3 {
+            font-size: 1.25rem;
         }
-
-        .popup-tournament {
-            font-size: 0.7rem;
-            color: var(--text-muted);
+        
+        .view-all {
+            color: var(--orange);
+            font-size: 0.9rem;
+            font-weight: 500;
         }
-
-        .popup-matchup {
-            text-align: center;
-            margin-bottom: 1rem;
+        
+        .ranking-list {
+            list-style: none;
         }
-
-        .popup-team {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .popup-odds {
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--accent-cyan);
-        }
-
-        .popup-vs {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            margin: 0.5rem 0;
-        }
-
-        .popup-intel {
-            background: var(--bg-tertiary);
-            border-radius: 8px;
-            padding: 0.75rem;
-        }
-
-        .intel-title {
-            font-size: 0.75rem;
-            color: var(--accent-purple);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .intel-item {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.4rem;
+        
+        .ranking-item {
             display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
+            align-items: center;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
         }
-
-        .intel-icon { flex-shrink: 0; }
-
-        /* Custom Marker */
-        .esports-marker {
+        
+        .ranking-item:last-child {
+            border-bottom: none;
+        }
+        
+        .ranking-item:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        .rank {
             width: 32px;
             height: 32px;
-            background: var(--accent-purple);
-            border: 2px solid white;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
-            cursor: pointer;
-            transition: transform 0.2s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 16px;
         }
-
-        .esports-marker:hover { transform: scale(1.2); }
-        .esports-marker.live {
-            animation: marker-pulse 2s infinite;
+        
+        .rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+        .rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
+        .rank.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
+        
+        .ranking-info {
+            flex: 1;
         }
-
-        @keyframes marker-pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(248, 81, 73, 0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(248, 81, 73, 0); }
+        
+        .ranking-name {
+            font-weight: 600;
+            margin-bottom: 2px;
         }
-
-        /* Loading */
-        .loading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 200px;
+        
+        .ranking-detail {
+            font-size: 0.85rem;
             color: var(--text-muted);
         }
-
-        .spinner {
-            width: 24px;
-            height: 24px;
-            border: 2px solid var(--border-primary);
-            border-top-color: var(--accent-purple);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 0.5rem;
+        
+        .ranking-value {
+            font-weight: 700;
+            color: var(--yellow);
+            font-family: 'JetBrains Mono', monospace;
         }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* Countries Section */
+        .countries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        
+        .country-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .country-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--purple);
+        }
+        
+        .country-flag {
+            font-size: 2rem;
+        }
+        
+        .country-info h4 {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .country-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        .country-earnings {
+            margin-left: auto;
+            font-weight: 700;
+            color: var(--yellow);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 80px 40px;
+            text-align: center;
+            margin: 100px auto;
+            max-width: 1000px;
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+        
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
+        }
+        
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--purple);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 60px 24px 30px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand {
+            max-width: 300px;
+        }
+        
+        .footer-brand .logo {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+        
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .footer-links h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        .footer-legal a {
+            margin-left: 24px;
+            color: var(--text-muted);
+        }
+        
+        .footer-legal a:hover {
+            color: var(--text-secondary);
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-stats {
+                gap: 24px;
+            }
+            
+            .stat-value {
+                font-size: 2rem;
+            }
+            
+            .rankings-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <span class="logo-icon">🎮</span>
-            <span class="logo-text">ESPORTS_MONITOR</span>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <ul class="nav-links">
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/teams/">Teams</a></li>
+                <li><a href="/players/">Players</a></li>
+                <li><a href="/countries/">Countries</a></li>
+                <li><a href="/tournaments/">Tournaments</a></li>
+                <li><a href="/betting/">Betting</a></li>
+            </ul>
+            <a href="/live/" class="nav-cta">Live Odds →</a>
         </div>
-        <div class="header-stats">
-            <div class="stat">
-                <span class="stat-label">LIVE</span>
-                <span class="stat-value live" id="live-count">0</span>
-            </div>
-            <div class="stat">
-                <span class="stat-label">MATCHES</span>
-                <span class="stat-value" id="total-count">0</span>
-            </div>
-            <div class="stat">
-                <span class="stat-label">UTC</span>
-                <span class="stat-value" id="clock">--:--</span>
-            </div>
-        </div>
-    </header>
-
-    <nav class="game-tabs" id="game-tabs">
-        <button class="game-tab active" data-game="all">
-            <span>🌐</span>
-            <span>All</span>
-            <span class="count" id="count-all">0</span>
-        </button>
     </nav>
 
-    <main>
-        <div id="map"></div>
-        <aside class="sidebar">
-            <div class="sidebar-title">📋 UPCOMING MATCHES</div>
-            <div id="match-list">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Loading matches...
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                🏆 <span>$2B+</span> in tracked prize money
+            </div>
+            <h1>
+                The World's Most<br>
+                <span class="gradient">Comprehensive Esports</span><br>
+                Reference
+            </h1>
+            <p class="hero-subtitle">
+                Complete database of teams, players, countries, tournaments, and betting guides. 
+                Everything you need to follow and bet on competitive gaming.
+            </p>
+            <div class="cta-buttons">
+                <a href="/games/" class="btn btn-primary">Explore Games</a>
+                <a href="/live/" class="btn btn-secondary">Live Odds Map</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-value">10+</div>
+                    <div class="stat-label">Major Games</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">500+</div>
+                    <div class="stat-label">Teams</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">5,000+</div>
+                    <div class="stat-label">Players</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">Countries</div>
                 </div>
             </div>
-        </aside>
-    </main>
+        </div>
+    </section>
 
-    <script>
-        // ============================================================================
-        // CONFIG
-        // ============================================================================
-        const CONFIG = {
-            REFRESH_INTERVAL: 60000,
-            MAP_STYLE: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
-            CLOUDBET_API_BASE: 'https://sports-api.cloudbet.com/pub/v2',
-            CLOUDBET_API_KEY: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IkhKcDkyNnF3ZXBjNnF3LU9rMk4zV05pXzBrRFd6cEdwTzAxNlRJUjdRWDAiLCJ0eXAiOiJKV1QifQ.eyJhY2Nlc3NfdGllciI6InRyYWRpbmciLCJleHAiOjIwNTc4ODUxNTYsImlhdCI6MTc0MjUyNTE1NiwianRpIjoiOGViYTkxZmQtOGQ1OC00ODEwLWFmYmMtYzZhYjI2OTJmYTZmIiwic3ViIjoiZmRlOGNkOTktODEzOS00ODU4LTllNjItMjVhMThiZTc4MGZhIiwidGVuYW50IjoiY2xvdWRiZXQiLCJ1dWlkIjoiZmRlOGNkOTktODEzOS00ODU4LTllNjItMjVhMThiZTc4MGZhIn0.R7fV53rePJAGL_qrGfkPo4OnAoevvLzsIHlIVLIJm9OXH9-2Y5lAkDFz2_pV0ibUDXFNhA-23c8DhA4EIsSANCxger6HHLVYqj11fxIze2Ix8-e9f9BhwGLtRjkpTwC29tFy_MvY92y7ueeVF6fIADQ5VneDGpj5cYw9KKxZwXSLJUrR48maPB783ivoFdlWFtehhxiKezitP8ZihIGVf6YzBnYdo_456FBfCOiTgvmaOP8l9W_J9W5AkWfsnlCFYMYKhs6pwtUkOPsiD-R4QZidP1BKcRGPDnIE38saJC2nMOIzD0WnltlrrP-YvY5JvzvLv256qyNAC_HZJ74bkQ',
-            // No CORS proxy needed - Cloudbet allows CORS from apuestaesports.com
-            ESPORTS: {
-                'csgo': { sport: 'counter-strike', name: 'CS2', icon: '🔫' },
-                'dota2': { sport: 'dota-2', name: 'Dota 2', icon: '🛡️' },
-                'lol': { sport: 'league-of-legends', name: 'LoL', icon: '⚔️' },
-                'valorant': { sport: 'esport-valorant', name: 'Valorant', icon: '🎯' },
-                'cod': { sport: 'call-of-duty', name: 'CoD', icon: '💥' },
-                'overwatch': { sport: 'overwatch', name: 'Overwatch', icon: '🦸' },
-                'r6': { sport: 'rainbow-six', name: 'R6', icon: '🔒' },
-                'rocket': { sport: 'rocket-league', name: 'Rocket', icon: '🚀' },
-                'starcraft': { sport: 'starcraft', name: 'SC2', icon: '👾' },
-                'wildrift': { sport: 'wild-rift', name: 'Wild Rift', icon: '📱' },
-                'fifa': { sport: 'esport-fifa', name: 'EA FC', icon: '⚽' },
-                'kog': { sport: 'esport-king-of-glory', name: 'KoG', icon: '👑' },
-                'freefire': { sport: 'esport-free-fire', name: 'Free Fire', icon: '🔥' }
-            }
-        };
-
-        // Known team power ratings (1-100 scale) for generating realistic odds
-        const TEAM_RATINGS = {
-            // CS2 - Tier 1
-            'navi': 95, 'g2': 93, 'faze': 92, 'vitality': 91, 'spirit': 90,
-            'heroic': 88, 'mouz': 87, 'liquid': 86, 'complexity': 85, 'astralis': 84,
-            'cloud9': 83, 'eternal fire': 82, 'big': 81, 'ence': 80, 'fnatic': 79,
-            // LoL - LCK
-            't1': 96, 'gen.g': 95, 'hanwha': 93, 'dplus': 91, 'kt': 89,
-            'drx': 87, 'kwangdong': 85, 'brion': 82, 'nongshim': 80, 'fearx': 78,
-            // LoL - LPL
-            'bilibili': 94, 'jdg': 93, 'weibo': 92, 'tes': 91, 'lng': 90,
-            'edg': 89, 'ig': 85, 'fpx': 84, 'rng': 83, 'we': 80,
-            'anyone': 75, 'ninjas in pyjamas': 82, 'top esports': 91, 'jd gaming': 93,
-            // LoL - LEC/LFL
-            'g2 esports': 90, 'fnatic': 88, 'mad lions': 86, 'koi': 84, 'team heretics': 83,
-            'karmine corp': 87, 'team vitality': 85, 'gentle mates': 82, 'solary': 80, 'bdsa': 78,
-            // Valorant
-            'sentinels': 92, 'loud': 91, 'fnatic': 90, 'paper rex': 89, 'drx': 88,
-            'evil geniuses': 87, 'nrg': 86, 'cloud9': 85, '100 thieves': 84, 'kru': 82,
-            // Dota 2
-            'team spirit': 94, 'gaimin gladiators': 92, 'tundra': 91, 'team liquid': 90,
-            'og': 88, 'entity': 86, 'betboom': 85, 'quest': 83, 'talon': 81,
-        };
-        
-        function getTeamRating(teamName) {
-            const name = teamName.toLowerCase();
-            for (const [team, rating] of Object.entries(TEAM_RATINGS)) {
-                if (name.includes(team) || team.includes(name.split(' ')[0])) {
-                    return rating;
-                }
-            }
-            // Unknown team - assign based on competition tier
-            return 70 + Math.floor(Math.random() * 15); // 70-85 range
-        }
-        
-        function generateOdds(home, away) {
-            const homeRating = getTeamRating(home);
-            const awayRating = getTeamRating(away);
-            
-            // Calculate implied probability from ratings
-            const totalRating = homeRating + awayRating;
-            const homeProb = homeRating / totalRating;
-            const awayProb = awayRating / totalRating;
-            
-            // Add bookmaker margin (~5%)
-            const margin = 1.05;
-            
-            // Convert to decimal odds
-            const homeOdds = Math.max(1.05, (margin / homeProb)).toFixed(2);
-            const awayOdds = Math.max(1.05, (margin / awayProb)).toFixed(2);
-            
-            return { homeOdds: parseFloat(homeOdds), awayOdds: parseFloat(awayOdds) };
-        }
-
-        // Tournament/Team Locations
-        const ESPORTS_LOCATIONS = {
-            // Major Esports Cities
-            "Los Angeles": [34.0522, -118.2437],
-            "Las Vegas": [36.1699, -115.1398],
-            "Seattle": [47.6062, -122.3321],
-            "New York": [40.7128, -74.0060],
-            "Dallas": [32.7767, -96.7970],
-            "Atlanta": [33.7490, -84.3880],
-            "Toronto": [43.6532, -79.3832],
-            "Berlin": [52.5200, 13.4050],
-            "Cologne": [50.9375, 6.9603],
-            "Paris": [48.8566, 2.3522],
-            "London": [51.5074, -0.1278],
-            "Stockholm": [59.3293, 18.0686],
-            "Copenhagen": [55.6761, 12.5683],
-            "Katowice": [50.2649, 19.0238],
-            "Moscow": [55.7558, 37.6173],
-            "Shanghai": [31.2304, 121.4737],
-            "Beijing": [39.9042, 116.4074],
-            "Seoul": [37.5665, 126.9780],
-            "Tokyo": [35.6762, 139.6503],
-            "Singapore": [1.3521, 103.8198],
-            "Manila": [14.5995, 120.9842],
-            "Jakarta": [-6.2088, 106.8456],
-            "Sydney": [-33.8688, 151.2093],
-            "Melbourne": [-37.8136, 144.9631],
-            "São Paulo": [-23.5505, -46.6333],
-            "Rio de Janeiro": [-22.9068, -43.1729],
-            "Dubai": [25.2048, 55.2708],
-            "Riyadh": [24.7136, 46.6753],
-            // Org/Team HQs (for online matches)
-            "Team Liquid": [40.7128, -74.0060],
-            "Cloud9": [34.0522, -118.2437],
-            "Fnatic": [51.5074, -0.1278],
-            "G2": [52.5200, 13.4050],
-            "Navi": [50.4501, 30.5234],
-            "FaZe": [34.0522, -118.2437],
-            "T1": [37.5665, 126.9780],
-            "Gen.G": [37.5665, 126.9780],
-            "EDG": [31.2304, 121.4737],
-            "JDG": [39.9042, 116.4074],
-            "TES": [31.2304, 121.4737],
-            "LOUD": [-23.5505, -46.6333],
-            "Vitality": [48.8566, 2.3522],
-            "BIG": [52.5200, 13.4050],
-            "Astralis": [55.6761, 12.5683],
-            "NIP": [59.3293, 18.0686],
-            // Regions
-            "Europe": [50.0, 10.0],
-            "North America": [39.0, -98.0],
-            "South America": [-15.0, -55.0],
-            "Asia": [35.0, 105.0],
-            "China": [35.0, 105.0],
-            "Korea": [36.5, 127.5],
-            "SEA": [5.0, 115.0],
-            "CIS": [55.0, 60.0],
-            "Oceania": [-25.0, 135.0]
-        };
-
-        // State
-        let map;
-        let markers = [];
-        let allMatches = [];
-        let currentGame = 'all';
-
-        // ============================================================================
-        // INIT
-        // ============================================================================
-        function init() {
-            initMap();
-            initTabs();
-            updateClock();
-            setInterval(updateClock, 1000);
-            fetchAllMatches();
-            setInterval(fetchAllMatches, CONFIG.REFRESH_INTERVAL);
-        }
-
-        function initMap() {
-            map = new maplibregl.Map({
-                container: 'map',
-                style: CONFIG.MAP_STYLE,
-                center: [0, 20],
-                zoom: 1.5,
-                attributionControl: false
-            });
-        }
-
-        function initTabs() {
-            const tabsContainer = document.getElementById('game-tabs');
-            Object.entries(CONFIG.ESPORTS).forEach(([key, cfg]) => {
-                const btn = document.createElement('button');
-                btn.className = 'game-tab';
-                btn.dataset.game = key;
-                btn.innerHTML = `
-                    <span>${cfg.icon}</span>
-                    <span>${cfg.name}</span>
-                    <span class="count" id="count-${key}">0</span>
-                `;
-                btn.onclick = () => selectGame(key);
-                tabsContainer.appendChild(btn);
-            });
-        }
-
-        function selectGame(game) {
-            currentGame = game;
-            document.querySelectorAll('.game-tab').forEach(t => t.classList.remove('active'));
-            document.querySelector(`[data-game="${game}"]`).classList.add('active');
-            renderMatches();
-            plotMarkers();
-        }
-
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('clock').textContent = 
-                now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC' });
-        }
-
-        // ============================================================================
-        // DATA FETCHING
-        // ============================================================================
-        async function fetchAllMatches() {
-            console.log('Fetching esports matches...');
-            allMatches = [];
-
-            const fetchPromises = Object.entries(CONFIG.ESPORTS).map(async ([gameKey, cfg]) => {
-                const matches = await fetchGameMatches(gameKey, cfg.sport);
-                return { gameKey, matches };
-            });
-
-            const results = await Promise.all(fetchPromises);
-            
-            const counts = { all: 0 };
-            results.forEach(({ gameKey, matches }) => {
-                allMatches = allMatches.concat(matches);
-                counts[gameKey] = matches.length;
-                counts.all += matches.length;
-            });
-
-            // Update counts
-            Object.entries(counts).forEach(([key, count]) => {
-                const el = document.getElementById(`count-${key}`);
-                if (el) el.textContent = count;
-            });
-
-            document.getElementById('total-count').textContent = counts.all;
-            document.getElementById('live-count').textContent = allMatches.filter(m => m.isLive).length;
-
-            console.log(`Loaded ${counts.all} esports matches`);
-            renderMatches();
-            plotMarkers();
-        }
-
-        async function fetchGameMatches(gameKey, sportKey) {
-            try {
-                // Fetch competitions for this sport (direct - CORS allowed)
-                const compUrl = `${CONFIG.CLOUDBET_API_BASE}/odds/sports/${sportKey}`;
-                const compRes = await fetch(compUrl, { 
-                    headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY }
-                });
-                if (!compRes.ok) {
-                    console.warn(`${gameKey}: Failed to fetch sports/${sportKey} - ${compRes.status}`);
-                    return [];
-                }
-
-                const compData = await compRes.json();
-                const competitions = [];
-                if (compData.categories) {
-                    compData.categories.forEach(cat => {
-                        if (cat.competitions) {
-                            cat.competitions.forEach(c => competitions.push(c.key));
-                        }
-                    });
-                }
-
-                console.log(`${gameKey}: Found ${competitions.length} competitions`);
-                if (competitions.length === 0) return [];
-
-                // Fetch events from ALL competitions
-                const eventPromises = competitions.map(async (compKey) => {
-                    try {
-                        const url = `${CONFIG.CLOUDBET_API_BASE}/odds/competitions/${compKey}`;
-                        const res = await fetch(url, { 
-                            headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY }
-                        });
-                        if (!res.ok) return [];
-                        const data = await res.json();
-                        const events = parseEvents(data.events || [], gameKey, compKey);
-                        if (events.length > 0) console.log(`  ${compKey}: ${events.length} events`);
-                        return events;
-                    } catch (e) { 
-                        console.warn(`  ${compKey}: Error - ${e.message}`);
-                        return []; 
-                    }
-                });
-
-                const results = await Promise.all(eventPromises);
-                const allEvents = results.flat();
-                console.log(`${gameKey}: Total ${allEvents.length} events`);
-                return allEvents;
-            } catch (e) {
-                console.warn(`Error fetching ${gameKey}:`, e.message);
-                return [];
-            }
-        }
-
-        function parseEvents(events, gameKey, compKey) {
-            return events.map(event => {
-                if (!event.home?.name || !event.away?.name) return null;
-
-                const markets = event.markets || {};
-                let homeOdds = null, awayOdds = null;
-
-                // Try to find odds in various market structures
-                const marketKeys = Object.keys(markets);
-                for (const key of marketKeys) {
-                    const mkt = markets[key];
-                    // Try submarkets first
-                    if (mkt.submarkets) {
-                        const sub = Object.values(mkt.submarkets)[0];
-                        if (sub?.selections?.length >= 2) {
-                            const home = sub.selections.find(s => s.outcome === 'home' || s.outcome === 'team1');
-                            const away = sub.selections.find(s => s.outcome === 'away' || s.outcome === 'team2');
-                            if (home && away) {
-                                homeOdds = home.price;
-                                awayOdds = away.price;
-                                break;
-                            }
-                            // Fallback to first two selections
-                            if (!homeOdds && sub.selections.length >= 2) {
-                                homeOdds = sub.selections[0].price;
-                                awayOdds = sub.selections[1].price;
-                                break;
-                            }
-                        }
-                    }
-                    // Try direct selections
-                    if (mkt.selections?.length >= 2) {
-                        homeOdds = mkt.selections[0].price;
-                        awayOdds = mkt.selections[1].price;
-                        break;
-                    }
-                }
-
-                const coords = getMatchCoords(event.home.name, event.away.name, compKey);
-
-                // Generate odds if API didn't provide them
-                if (!homeOdds || !awayOdds) {
-                    const generated = generateOdds(event.home.name, event.away.name);
-                    homeOdds = generated.homeOdds;
-                    awayOdds = generated.awayOdds;
-                }
-
-                return {
-                    id: event.id,
-                    game: gameKey,
-                    home: event.home.name,
-                    away: event.away.name,
-                    homeOdds,
-                    awayOdds,
-                    homeRating: getTeamRating(event.home.name),
-                    awayRating: getTeamRating(event.away.name),
-                    tournament: extractTournament(compKey),
-                    startTime: event.cutoffTime,
-                    isLive: event.status === 'TRADING_LIVE',
-                    coords
-                };
-            }).filter(Boolean);
-        }
-
-        function extractTournament(compKey) {
-            return compKey.split('-').slice(2).join(' ')
-                .replace(/\bt\w{4}\b/g, '')
-                .replace(/\s+/g, ' ')
-                .trim()
-                .split(' ')
-                .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-                .join(' ') || 'Tournament';
-        }
-
-        function getMatchCoords(home, away, compKey) {
-            const key = compKey.toLowerCase();
-            
-            // Extract country/region from competition key (format: sport-country-tournament)
-            const parts = key.split('-');
-            const country = parts[1] || '';
-            
-            // Country-specific mappings
-            const COUNTRY_COORDS = {
-                'international': [48.8, 2.3], // Paris (neutral)
-                'germany': [52.52, 13.4], // Berlin
-                'france': [48.8, 2.3], // Paris
-                'spain': [40.4, -3.7], // Madrid
-                'italy': [41.9, 12.5], // Rome
-                'uk': [51.5, -0.1], // London
-                'poland': [50.26, 19.02], // Katowice
-                'sweden': [59.3, 18.07], // Stockholm
-                'denmark': [55.68, 12.57], // Copenhagen
-                'romania': [44.43, 26.1], // Bucharest
-                'russia': [55.75, 37.62], // Moscow
-                'ukraine': [50.45, 30.52], // Kyiv
-                'turkey': [41.0, 29.0], // Istanbul
-                'czech': [50.08, 14.44], // Prague
-                'usa': [34.05, -118.24], // Los Angeles
-                'brazil': [-23.55, -46.63], // São Paulo
-                'argentina': [-34.6, -58.38], // Buenos Aires
-                'mexico': [19.43, -99.13], // Mexico City
-                'china': [31.23, 121.47], // Shanghai
-                'korea': [37.57, 126.98], // Seoul
-                'japan': [35.68, 139.65], // Tokyo
-                'australia': [-33.87, 151.21], // Sydney
-                'singapore': [1.35, 103.82], // Singapore
-                'thailand': [13.76, 100.5], // Bangkok
-                'vietnam': [21.03, 105.85], // Hanoi
-                'indonesia': [-6.21, 106.85], // Jakarta
-                'philippines': [14.6, 120.98], // Manila
-                'malaysia': [3.14, 101.69], // Kuala Lumpur
-            };
-            
-            // Check country from competition key
-            if (COUNTRY_COORDS[country]) {
-                const [lat, lon] = COUNTRY_COORDS[country];
-                // Add small offset based on match ID for clustering
-                const hash = (home + away).split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-                return [lat + (hash % 10 - 5) * 0.1, lon + (hash % 10 - 5) * 0.1];
-            }
-            
-            // Tournament/League-based fallbacks
-            if (key.includes('lpl') || key.includes('china')) return [31.23, 121.47]; // Shanghai
-            if (key.includes('lck') || key.includes('korea')) return [37.57, 126.98]; // Seoul
-            if (key.includes('lfl') || key.includes('france')) return [48.86, 2.35]; // Paris
-            if (key.includes('lec') || key.includes('emea')) return [52.52, 13.4]; // Berlin
-            if (key.includes('lcs') || key.includes('north-america')) return [34.05, -118.24]; // LA
-            if (key.includes('cblol') || key.includes('brazil')) return [-23.55, -46.63]; // São Paulo
-            if (key.includes('pcs') || key.includes('pacific')) return [25.03, 121.57]; // Taipei
-            if (key.includes('vcs') || key.includes('vietnam')) return [21.03, 105.85]; // Hanoi
-            if (key.includes('ljl') || key.includes('japan')) return [35.68, 139.65]; // Tokyo
-            if (key.includes('lco') || key.includes('oceania')) return [-33.87, 151.21]; // Sydney
-            if (key.includes('esl') || key.includes('iem')) return [50.26, 19.02]; // Katowice
-            if (key.includes('blast') || key.includes('denmark')) return [55.68, 12.57]; // Copenhagen
-            if (key.includes('challengers')) return [48.8, 2.3]; // Paris (default for challengers)
-            if (key.includes('ultraliga') || key.includes('poland')) return [52.23, 21.01]; // Warsaw
-            if (key.includes('hitpoint') || key.includes('czech')) return [50.08, 14.44]; // Prague
-            if (key.includes('prime') || key.includes('germany')) return [52.52, 13.4]; // Berlin
-            if (key.includes('latin') || key.includes('latam')) return [19.43, -99.13]; // Mexico City
-            
-            // Try team name matching
-            for (const [name, coords] of Object.entries(ESPORTS_LOCATIONS)) {
-                if (home.toLowerCase().includes(name.toLowerCase()) ||
-                    away.toLowerCase().includes(name.toLowerCase())) {
-                    return coords;
-                }
-            }
-            
-            // Default to central Europe for "international" matches
-            const hash = (home + away).split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-            const baseLat = 48 + (hash % 20 - 10) * 0.5; // Spread around Europe
-            const baseLon = 10 + (hash % 30 - 15) * 0.5;
-            return [baseLat, baseLon];
-        }
-
-        // ============================================================================
-        // RENDERING
-        // ============================================================================
-        function renderMatches() {
-            let matches = currentGame === 'all' ? allMatches : allMatches.filter(m => m.game === currentGame);
-            
-            // Sort: live first, then by time
-            matches.sort((a, b) => {
-                if (a.isLive && !b.isLive) return -1;
-                if (!a.isLive && b.isLive) return 1;
-                return new Date(a.startTime) - new Date(b.startTime);
-            });
-
-            const container = document.getElementById('match-list');
-            
-            if (matches.length === 0) {
-                container.innerHTML = `
-                    <div class="loading" style="flex-direction: column; gap: 0.5rem;">
-                        <span style="font-size: 2rem;">🎮</span>
-                        <span>No matches found</span>
-                    </div>
-                `;
-                return;
-            }
-
-            container.innerHTML = matches.slice(0, 50).map(m => renderMatchCard(m)).join('');
-        }
-
-        function renderMatchCard(match) {
-            const cfg = CONFIG.ESPORTS[match.game] || { icon: '🎮', name: match.game };
-            const date = new Date(match.startTime);
-            const now = new Date();
-            const isToday = date.toDateString() === now.toDateString();
-            const isTomorrow = date.toDateString() === new Date(now.getTime() + 86400000).toDateString();
-            
-            let dateStr;
-            if (match.isLive) {
-                dateStr = '🔴 LIVE';
-            } else if (isToday) {
-                dateStr = `Today ${date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`;
-            } else if (isTomorrow) {
-                dateStr = `Tomorrow ${date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`;
-            } else {
-                dateStr = date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }) + 
-                          ' ' + date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-            }
-            
-            return `
-                <div class="match-card ${match.isLive ? 'live' : ''}" onclick="flyToMatch(${match.coords[0]}, ${match.coords[1]}, '${match.id}')">
-                    <div class="match-header">
-                        <span class="match-tournament">${cfg.icon} ${match.tournament}</span>
-                        <span class="match-status ${match.isLive ? 'live' : ''}">${dateStr}</span>
-                    </div>
-                    <div class="match-teams">
-                        <div class="team">
-                            <span class="team-name">${match.home}</span>
-                            <span class="team-odds">${formatOdds(match.homeOdds)}</span>
-                        </div>
-                        <span class="vs">vs</span>
-                        <div class="team">
-                            <span class="team-name">${match.away}</span>
-                            <span class="team-odds">${formatOdds(match.awayOdds)}</span>
-                        </div>
-                    </div>
+    <!-- Games Section -->
+    <section id="games">
+        <div class="section-header">
+            <h2>Featured Games</h2>
+            <p>Comprehensive coverage of the world's biggest competitive titles</p>
+        </div>
+        <div class="games-grid">
+            <a href="/games/cs2.html" class="game-card">
+                <div class="game-icon">🔫</div>
+                <h3>Counter-Strike 2</h3>
+                <div class="game-meta">
+                    <span>FPS</span>
+                    <span>•</span>
+                    <span>$150M+ prize pool</span>
                 </div>
-            `;
-        }
-
-        function formatOdds(odds) {
-            return odds ? odds.toFixed(2) : '--';
-        }
-
-        // ============================================================================
-        // MAP
-        // ============================================================================
-        function plotMarkers() {
-            // Clear existing
-            markers.forEach(m => m.remove());
-            markers = [];
-
-            let matches = currentGame === 'all' ? allMatches : allMatches.filter(m => m.game === currentGame);
-
-            matches.forEach(match => {
-                if (!match.coords) return;
-
-                const cfg = CONFIG.ESPORTS[match.game] || { icon: '🎮' };
-                
-                const el = document.createElement('div');
-                el.className = `esports-marker ${match.isLive ? 'live' : ''}`;
-                el.innerHTML = cfg.icon;
-                el.title = `${match.home} vs ${match.away}`;
-
-                const marker = new maplibregl.Marker({ element: el })
-                    .setLngLat([match.coords[1], match.coords[0]])
-                    .setPopup(createPopup(match))
-                    .addTo(map);
-
-                markers.push(marker);
-            });
-        }
-
-        function createPopup(match) {
-            const cfg = CONFIG.ESPORTS[match.game] || { icon: '🎮', name: match.game };
-            const date = new Date(match.startTime);
-            const now = new Date();
-            const isToday = date.toDateString() === now.toDateString();
-            const isTomorrow = date.toDateString() === new Date(now.getTime() + 86400000).toDateString();
-            
-            let dateStr;
-            if (match.isLive) {
-                dateStr = '🔴 LIVE NOW';
-            } else if (isToday) {
-                dateStr = `Today ${date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })} UTC`;
-            } else if (isTomorrow) {
-                dateStr = `Tomorrow ${date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })} UTC`;
-            } else {
-                dateStr = date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }) + 
-                          ' ' + date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' UTC';
-            }
-            
-            const intel = generateIntel(match);
-
-            const html = `
-                <div class="popup-content">
-                    <div class="popup-header">
-                        <span class="popup-game">${cfg.icon} ${cfg.name}</span>
-                        <span class="popup-tournament">${match.tournament}</span>
-                    </div>
-                    <div class="popup-matchup">
-                        <div class="popup-team">${match.home}</div>
-                        <div class="popup-odds">${formatOdds(match.homeOdds)}</div>
-                        <div class="popup-vs">${dateStr}</div>
-                        <div class="popup-team">${match.away}</div>
-                        <div class="popup-odds">${formatOdds(match.awayOdds)}</div>
-                    </div>
-                    <div class="popup-intel">
-                        <div class="intel-title">📡 Match Intel</div>
-                        ${intel.map(i => `<div class="intel-item"><span class="intel-icon">${i.icon}</span><span>${i.text}</span></div>`).join('')}
-                    </div>
+                <p>The world's premier tactical shooter. Major Championships, Pro League, and more.</p>
+            </a>
+            <a href="/games/dota2.html" class="game-card">
+                <div class="game-icon">⚔️</div>
+                <h3>Dota 2</h3>
+                <div class="game-meta">
+                    <span>MOBA</span>
+                    <span>•</span>
+                    <span>$312M+ prize pool</span>
                 </div>
-            `;
+                <p>Home to The International, esports' largest prize pool tournament.</p>
+            </a>
+            <a href="/games/lol.html" class="game-card">
+                <div class="game-icon">🏰</div>
+                <h3>League of Legends</h3>
+                <div class="game-meta">
+                    <span>MOBA</span>
+                    <span>•</span>
+                    <span>$100M+ prize pool</span>
+                </div>
+                <p>The world's most-watched esport. Worlds Championship draws millions.</p>
+            </a>
+            <a href="/games/valorant.html" class="game-card">
+                <div class="game-icon">💠</div>
+                <h3>Valorant</h3>
+                <div class="game-meta">
+                    <span>FPS</span>
+                    <span>•</span>
+                    <span>$30M+ prize pool</span>
+                </div>
+                <p>Riot's tactical shooter. VCT Champions and international leagues.</p>
+            </a>
+            <a href="/games/fortnite.html" class="game-card">
+                <div class="game-icon">🎯</div>
+                <h3>Fortnite</h3>
+                <div class="game-meta">
+                    <span>Battle Royale</span>
+                    <span>•</span>
+                    <span>$100M+ prize pool</span>
+                </div>
+                <p>Epic's battle royale phenomenon. World Cup and FNCS tournaments.</p>
+            </a>
+            <a href="/games/" class="game-card">
+                <div class="game-icon">➕</div>
+                <h3>More Games</h3>
+                <div class="game-meta">
+                    <span>R6, Rocket League, CoD...</span>
+                </div>
+                <p>Rainbow Six Siege, Rocket League, Call of Duty, Overwatch 2, and more.</p>
+            </a>
+        </div>
+    </section>
 
-            return new maplibregl.Popup({ offset: 25, maxWidth: '380px' }).setHTML(html);
+    <!-- Rankings Section -->
+    <section id="rankings">
+        <div class="section-header">
+            <h2>Global Rankings</h2>
+            <p>Top teams and players by career earnings</p>
+        </div>
+        <div class="rankings-section">
+            <!-- Top Teams -->
+            <div class="ranking-card">
+                <div class="ranking-header">
+                    <h3>🏆 Top Teams</h3>
+                    <a href="/teams/" class="view-all">View All →</a>
+                </div>
+                <ul class="ranking-list">
+                    <li class="ranking-item">
+                        <div class="rank gold">1</div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">Team Liquid</div>
+                            <div class="ranking-detail">2,982 tournaments</div>
+                        </div>
+                        <div class="ranking-value">$56.4M</div>
+                    </li>
+                    <li class="ranking-item">
+                        <div class="rank silver">2</div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">OG</div>
+                            <div class="ranking-detail">208 tournaments</div>
+                        </div>
+                        <div class="ranking-value">$38.8M</div>
+                    </li>
+                    <li class="ranking-item">
+                        <div class="rank bronze">3</div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">Team Spirit</div>
+                            <div class="ranking-detail">308 tournaments</div>
+                        </div>
+                        <div class="ranking-value">$35.6M</div>
+                    </li>
+                    <li class="ranking-item">
+                        <div class="rank">4</div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">Evil Geniuses</div>
+                            <div class="ranking-detail">1,019 tournaments</div>
+                        </div>
+                        <div class="ranking-value">$28.6M</div>
+                    </li>
+                    <li class="ranking-item">
+                        <div class="rank">5</div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">Natus Vincere</div>
+                            <div class="ranking-detail">870 tournaments</div>
+                        </div>
+                        <div class="ranking-value">$24.4M</div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Top Players -->
+            <div class="ranking-card">
+                <div class="ranking-header">
+                    <h3>⭐ Top Players</h3>
+                    <a href="/players/" class="view-all">View All →</a>
+                </div>
+                <ul class="ranking-list">
+                    <li class="ranking-item">
+                        <div class="rank gold">1</div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">N0tail</div>
+                            <div class="ranking-detail">🇩🇰 Denmark • Dota 2</div>
+                        </div>
+                        <div class="ranking-value">$7.2M</div>
+                    </li>
+                    <li class="ranking-item">
+                        <div class="rank silver">2</div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">JerAx</div>
+                            <div class="ranking-detail">🇫🇮 Finland • Dota 2</div>
+                        </div>
+                        <div class="ranking-value">$6.5M</div>
+                    </li>
+                    <li class="ranking-item">
+                        <div class="rank bronze">3</div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">Miposhka</div>
+                            <div class="ranking-detail">🇷🇺 Russia • Dota 2</div>
+                        </div>
+                        <div class="ranking-value">$6.2M</div>
+                    </li>
+                    <li class="ranking-item">
+                        <div class="rank">4</div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">ana</div>
+                            <div class="ranking-detail">🇦🇺 Australia • Dota 2</div>
+                        </div>
+                        <div class="ranking-value">$6.0M</div>
+                    </li>
+                    <li class="ranking-item">
+                        <div class="rank">5</div>
+                        <div class="ranking-info">
+                            <div class="ranking-name">Ceb</div>
+                            <div class="ranking-detail">🇫🇷 France • Dota 2</div>
+                        </div>
+                        <div class="ranking-value">$5.9M</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countries Section -->
+    <section id="countries">
+        <div class="section-header">
+            <h2>Esports by Country</h2>
+            <p>Where the world's best players come from</p>
+        </div>
+        <div class="countries-grid">
+            <a href="/countries/cn.html" class="country-card">
+                <div class="country-flag">🇨🇳</div>
+                <div class="country-info">
+                    <h4>China</h4>
+                    <p>9,350 players • Dota 2</p>
+                </div>
+                <div class="country-earnings">$331M</div>
+            </a>
+            <a href="/countries/us.html" class="country-card">
+                <div class="country-flag">🇺🇸</div>
+                <div class="country-info">
+                    <h4>United States</h4>
+                    <p>29,331 players • Fortnite</p>
+                </div>
+                <div class="country-earnings">$300M</div>
+            </a>
+            <a href="/countries/kr.html" class="country-card">
+                <div class="country-flag">🇰🇷</div>
+                <div class="country-info">
+                    <h4>South Korea</h4>
+                    <p>5,964 players • LoL</p>
+                </div>
+                <div class="country-earnings">$157M</div>
+            </a>
+            <a href="/countries/ru.html" class="country-card">
+                <div class="country-flag">🇷🇺</div>
+                <div class="country-info">
+                    <h4>Russia</h4>
+                    <p>5,864 players • Dota 2</p>
+                </div>
+                <div class="country-earnings">$96M</div>
+            </a>
+            <a href="/countries/br.html" class="country-card">
+                <div class="country-flag">🇧🇷</div>
+                <div class="country-info">
+                    <h4>Brazil</h4>
+                    <p>5,966 players • R6 Siege</p>
+                </div>
+                <div class="country-earnings">$73M</div>
+            </a>
+            <a href="/countries/dk.html" class="country-card">
+                <div class="country-flag">🇩🇰</div>
+                <div class="country-info">
+                    <h4>Denmark</h4>
+                    <p>2,202 players • CS:GO</p>
+                </div>
+                <div class="country-earnings">$64M</div>
+            </a>
+            <a href="/countries/fr.html" class="country-card">
+                <div class="country-flag">🇫🇷</div>
+                <div class="country-info">
+                    <h4>France</h4>
+                    <p>6,650 players • CS:GO</p>
+                </div>
+                <div class="country-earnings">$62M</div>
+            </a>
+            <a href="/countries/se.html" class="country-card">
+                <div class="country-flag">🇸🇪</div>
+                <div class="country-info">
+                    <h4>Sweden</h4>
+                    <p>3,358 players • Dota 2</p>
+                </div>
+                <div class="country-earnings">$59M</div>
+            </a>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="/countries/" class="btn btn-secondary">View All Countries →</a>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <h2>Ready to Bet on Esports?</h2>
+        <p>Check out our comprehensive betting guides and live odds tracker.</p>
+        <div class="cta-buttons">
+            <a href="/betting/" class="btn btn-primary">Betting Guides</a>
+            <a href="/live/" class="btn btn-secondary">Live Odds Map</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">APUESTA ESPORTS</a>
+                    <p>The world's most comprehensive esports reference. Teams, players, countries, tournaments, and betting guides.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Games</h4>
+                    <ul>
+                        <li><a href="/games/cs2.html">Counter-Strike 2</a></li>
+                        <li><a href="/games/dota2.html">Dota 2</a></li>
+                        <li><a href="/games/lol.html">League of Legends</a></li>
+                        <li><a href="/games/valorant.html">Valorant</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="/teams/">Team Rankings</a></li>
+                        <li><a href="/players/">Player Profiles</a></li>
+                        <li><a href="/countries/">Country Stats</a></li>
+                        <li><a href="/tournaments/">Tournaments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Betting</h4>
+                    <ul>
+                        <li><a href="/live/">Live Odds</a></li>
+                        <li><a href="/betting/">Betting Guides</a></li>
+                        <li><a href="/betting/beginners.html">Beginner's Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2026 Apuesta Esports. Data from Esports Earnings.</div>
+                <div class="footer-legal">
+                    <a href="/llms.txt">llms.txt</a>
+                    <a href="/sitemap.xml">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Apuesta Esports",
+        "url": "https://www.apuestaesports.com",
+        "description": "The world's most comprehensive esports reference with team rankings, player profiles, country statistics, and betting guides.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.apuestaesports.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
         }
-
-        function generateIntel(match) {
-            const intel = [];
-            const homeRating = match.homeRating || getTeamRating(match.home);
-            const awayRating = match.awayRating || getTeamRating(match.away);
-            
-            // Team tier analysis
-            const getTier = (rating) => {
-                if (rating >= 90) return 'Tier 1 (Elite)';
-                if (rating >= 82) return 'Tier 2 (Strong)';
-                if (rating >= 75) return 'Tier 3 (Competitive)';
-                return 'Tier 4 (Emerging)';
-            };
-            
-            // Favorite analysis
-            if (match.homeOdds && match.awayOdds) {
-                const favorite = match.homeOdds < match.awayOdds ? match.home : match.away;
-                const underdog = match.homeOdds < match.awayOdds ? match.away : match.home;
-                const favOdds = Math.min(match.homeOdds, match.awayOdds);
-                const underdogOdds = Math.max(match.homeOdds, match.awayOdds);
-                
-                // Clear favorite
-                if (favOdds < 1.5) {
-                    intel.push({
-                        icon: '🎯',
-                        text: `Heavy favorite: ${favorite} at ${favOdds.toFixed(2)}`
-                    });
-                } else {
-                    intel.push({
-                        icon: '📊',
-                        text: `${favorite} favored at ${favOdds.toFixed(2)}`
-                    });
-                }
-
-                // Upset potential
-                if (underdogOdds > 2.5 && awayRating >= 80) {
-                    intel.push({
-                        icon: '⚡',
-                        text: `Upset alert: ${underdog} capable of surprise at ${underdogOdds.toFixed(2)}`
-                    });
-                } else if (underdogOdds > 3.0) {
-                    intel.push({
-                        icon: '💰',
-                        text: `Value spot: ${underdog} at ${underdogOdds.toFixed(2)} (+${((underdogOdds - 1) * 100).toFixed(0)}%)`
-                    });
-                }
-
-                // Close matchup
-                if (Math.abs(match.homeOdds - match.awayOdds) < 0.25) {
-                    intel.push({
-                        icon: '⚔️',
-                        text: 'Coin flip matchup - high variance expected'
-                    });
-                }
-            }
-            
-            // Team strength insights
-            if (homeRating >= 90 && awayRating >= 90) {
-                intel.push({
-                    icon: '🔥',
-                    text: 'Elite matchup - both teams Tier 1'
-                });
-            } else if (homeRating >= 90 || awayRating >= 90) {
-                const elite = homeRating >= 90 ? match.home : match.away;
-                intel.push({
-                    icon: '⭐',
-                    text: `${elite.split(' ')[0]} is elite (${getTier(Math.max(homeRating, awayRating))})`
-                });
-            }
-            
-            // Tournament prestige
-            const tourney = match.tournament.toLowerCase();
-            if (tourney.includes('lck') || tourney.includes('lpl') || tourney.includes('lec')) {
-                intel.push({ icon: '🏆', text: 'Major League match - high stakes' });
-            } else if (tourney.includes('challengers') || tourney.includes('cl')) {
-                intel.push({ icon: '📈', text: 'Academy/Challengers - talent scouting' });
-            } else if (tourney.includes('iem') || tourney.includes('major')) {
-                intel.push({ icon: '🌍', text: 'International Major event' });
-            }
-
-            // Live match
-            if (match.isLive) {
-                intel.push({
-                    icon: '🔴',
-                    text: 'LIVE - In-play betting available'
-                });
-            }
-
-            return intel.slice(0, 5);
-        }
-
-        function flyToMatch(lat, lon, matchId) {
-            map.flyTo({
-                center: [lon, lat],
-                zoom: 4,
-                duration: 1500
-            });
-
-            // Open popup
-            setTimeout(() => {
-                const marker = markers.find(m => {
-                    const pos = m.getLngLat();
-                    return Math.abs(pos.lat - lat) < 0.1 && Math.abs(pos.lng - lon) < 0.1;
-                });
-                if (marker) marker.togglePopup();
-            }, 1600);
-        }
-
-        // ============================================================================
-        // START
-        // ============================================================================
-        document.addEventListener('DOMContentLoaded', init);
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Apuesta Esports",
+        "url": "https://www.apuestaesports.com",
+        "logo": "https://www.apuestaesports.com/logo.png",
+        "sameAs": []
+    }
     </script>
 </body>
 </html>
