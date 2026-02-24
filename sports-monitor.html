@@ -2153,6 +2153,29 @@
         }
 
         // ============================================================================
+        // INDOOR EVENT DETECTION - Skip weather for indoor sports
+        // ============================================================================
+        function isIndoorEvent(match) {
+            const competition = (match.competition || '').toLowerCase();
+            const venue = (match.venue || '').toLowerCase();
+            const home = (match.home || '').toLowerCase();
+            
+            // Indoor sports by competition name
+            const indoorSports = ['nba', 'nhl', 'basketball', 'hockey', 'ice hockey', 'volleyball', 'handball', 'futsal', 'badminton', 'table tennis', 'darts', 'snooker', 'bowling'];
+            if (indoorSports.some(sport => competition.includes(sport))) return true;
+            
+            // Indoor venue keywords
+            const indoorVenues = ['arena', 'center', 'centre', 'garden', 'forum', 'dome', 'fieldhouse', 'coliseum', 'pavilion', 'hall'];
+            if (indoorVenues.some(v => venue.includes(v))) return true;
+            
+            // Specific indoor venues
+            const knownIndoor = ['td garden', 'madison square', 'staples', 'crypto.com', 'barclays', 'united center', 'fiserv', 'chase center', 'ball arena', 'msg', 'scotiabank', 'rogers place', 'bell centre', 'amalie'];
+            if (knownIndoor.some(v => venue.includes(v) || home.includes(v))) return true;
+            
+            return false;
+        }
+
+        // ============================================================================
         // GET WEATHER EMOJI FROM CODE
         // ============================================================================
         function getWeatherEmoji(code) {
@@ -2301,12 +2324,22 @@
 
             const popup = new maplibregl.Popup({ offset: 15, maxWidth: '360px' }).setHTML(html);
             
-            // Fetch weather when popup opens
+            // Fetch weather when popup opens (skip for indoor sports)
             popup.on('open', async () => {
+                const weatherEl = document.getElementById(`weather-${popupId}`);
+                
+                // Check if indoor sport - skip weather for NBA, NHL, etc.
+                const isIndoor = isIndoorEvent(match);
+                if (isIndoor) {
+                    if (weatherEl) {
+                        weatherEl.innerHTML = '<span class="weather-unavailable">🏟️ Indoor venue</span>';
+                    }
+                    return;
+                }
+                
                 if (match.coords) {
                     const matchDateStr = matchDate.toISOString().split('T')[0];
                     const weather = await fetchWeather(match.coords[0], match.coords[1], matchDateStr);
-                    const weatherEl = document.getElementById(`weather-${popupId}`);
                     if (weatherEl && weather) {
                         const emoji = getWeatherEmoji(weather.code);
                         const temp = Math.round((weather.tempMax + weather.tempMin) / 2);
