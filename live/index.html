@@ -666,8 +666,52 @@
             document.getElementById('live-count').textContent = allMatches.filter(m => m.isLive).length;
 
             console.log(`Loaded ${counts.all} esports matches`);
+            
+            // If no live matches, show demo data
+            if (counts.all === 0) {
+                console.log('No live matches - loading demo data');
+                loadDemoData();
+            }
+            
             renderMatches();
             plotMarkers();
+        }
+        
+        function loadDemoData() {
+            const demoMatches = [
+                { id: 'demo-1', game: 'csgo', home: 'Natus Vincere', away: 'FaZe Clan', homeOdds: 1.65, awayOdds: 2.20, tournament: 'IEM Katowice 2026', isLive: true, startTime: new Date().toISOString(), coords: [50.2649, 19.0238] },
+                { id: 'demo-2', game: 'dota2', home: 'Team Spirit', away: 'Team Liquid', homeOdds: 1.85, awayOdds: 1.95, tournament: 'DPC Europe', isLive: true, startTime: new Date().toISOString(), coords: [52.5200, 13.4050] },
+                { id: 'demo-3', game: 'lol', home: 'T1', away: 'Gen.G', homeOdds: 2.10, awayOdds: 1.72, tournament: 'LCK Spring 2026', isLive: false, startTime: new Date(Date.now() + 3600000).toISOString(), coords: [37.5665, 126.9780] },
+                { id: 'demo-4', game: 'valorant', home: 'Sentinels', away: 'LOUD', homeOdds: 1.90, awayOdds: 1.90, tournament: 'VCT Americas', isLive: false, startTime: new Date(Date.now() + 7200000).toISOString(), coords: [34.0522, -118.2437] },
+                { id: 'demo-5', game: 'csgo', home: 'G2', away: 'Vitality', homeOdds: 2.05, awayOdds: 1.78, tournament: 'BLAST Premier', isLive: false, startTime: new Date(Date.now() + 5400000).toISOString(), coords: [48.8566, 2.3522] },
+                { id: 'demo-6', game: 'dota2', home: 'OG', away: 'Tundra', homeOdds: 1.75, awayOdds: 2.05, tournament: 'ESL One Birmingham', isLive: true, startTime: new Date().toISOString(), coords: [52.4862, -1.8904] },
+                { id: 'demo-7', game: 'lol', home: 'JDG', away: 'BLG', homeOdds: 1.55, awayOdds: 2.45, tournament: 'LPL Spring', isLive: false, startTime: new Date(Date.now() + 10800000).toISOString(), coords: [39.9042, 116.4074] },
+                { id: 'demo-8', game: 'valorant', home: 'Fnatic', away: 'Team Heretics', homeOdds: 1.60, awayOdds: 2.30, tournament: 'VCT EMEA', isLive: true, startTime: new Date().toISOString(), coords: [51.5074, -0.1278] },
+                { id: 'demo-9', game: 'csgo', home: 'Cloud9', away: 'Complexity', homeOdds: 1.45, awayOdds: 2.70, tournament: 'ESL Pro League', isLive: false, startTime: new Date(Date.now() + 9000000).toISOString(), coords: [32.7767, -96.7970] },
+                { id: 'demo-10', game: 'dota2', home: 'PSG.LGD', away: 'Xtreme Gaming', homeOdds: 1.80, awayOdds: 2.00, tournament: 'DPC China', isLive: false, startTime: new Date(Date.now() + 14400000).toISOString(), coords: [31.2304, 121.4737] },
+                { id: 'demo-11', game: 'rocket', home: 'Team Vitality', away: 'G2', homeOdds: 1.70, awayOdds: 2.15, tournament: 'RLCS EU', isLive: true, startTime: new Date().toISOString(), coords: [48.8566, 2.3522] },
+                { id: 'demo-12', game: 'cod', home: 'Atlanta FaZe', away: 'OpTic Texas', homeOdds: 1.85, awayOdds: 1.95, tournament: 'CDL Major IV', isLive: false, startTime: new Date(Date.now() + 18000000).toISOString(), coords: [33.7490, -84.3880] }
+            ];
+            
+            allMatches = demoMatches;
+            
+            // Update counts
+            const counts = { all: demoMatches.length };
+            Object.keys(CONFIG.ESPORTS).forEach(k => counts[k] = 0);
+            demoMatches.forEach(m => {
+                counts[m.game] = (counts[m.game] || 0) + 1;
+            });
+            
+            Object.entries(counts).forEach(([key, count]) => {
+                const el = document.getElementById(`count-${key}`);
+                if (el) el.textContent = count;
+            });
+            
+            document.getElementById('total-count').textContent = counts.all;
+            document.getElementById('live-count').textContent = demoMatches.filter(m => m.isLive).length;
+            
+            // Show demo notice
+            console.log('Demo data loaded - showing sample matches');
         }
 
         async function fetchGameMatches(gameKey, sportKey) {
