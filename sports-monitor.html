@@ -1017,21 +1017,36 @@
         <div class="match-grid" id="match-grid">
             <div class="loading-container">
                 <div class="loading-spinner"></div>
-                <div>Fetching matches from Cloudbet...</div>
+                <div>Fetching matches from TheSportsDB...</div>
             </div>
         </div>
     </section>
 
     <script>
         // ============================================================================
-        // CONFIGURATION
+        // CONFIGURATION - Using TheSportsDB (free, no auth)
         // ============================================================================
         const CONFIG = {
-            CLOUDBET_API_BASE: 'https://sports-api.cloudbet.com/pub/v2',
-            CLOUDBET_API_KEY: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IkhKcDkyNnF3ZXBjNnF3LU9rMk4zV05pXzBrRFd6cEdwTzAxNlRJUjdRWDAiLCJ0eXAiOiJKV1QifQ.eyJhY2Nlc3NfdGllciI6InRyYWRpbmciLCJleHAiOjIwNTc4ODUxNTYsImlhdCI6MTc0MjUyNTE1NiwianRpIjoiOGViYTkxZmQtOGQ1OC00ODEwLWFmYmMtYzZhYjI2OTJmYTZmIiwic3ViIjoiZmRlOGNkOTktODEzOS00ODU4LTllNjItMjVhMThiZTc4MGZhIiwidGVuYW50IjoiY2xvdWRiZXQiLCJ1dWlkIjoiZmRlOGNkOTktODEzOS00ODU4LTllNjItMjVhMThiZTc4MGZhIn0.R7fV53rePJAGL_qrGfkPo4OnAoevvLzsIHlIVLIJm9OXH9-2Y5lAkDFz2_pV0ibUDXFNhA-23c8DhA4EIsSANCxger6HHLVYqj11fxIze2Ix8-e9f9BhwGLtRjkpTwC29tFy_MvY92y7ueeVF6fIADQ5VneDGpj5cYw9KKxZwXSLJUrR48maPB783ivoFdlWFtehhxiKezitP8ZihIGVf6YzBnYdo_456FBfCOiTgvmaOP8l9W_J9W5AkWfsnlCFYMYKhs6pwtUkOPsiD-R4QZidP1BKcRGPDnIE38saJC2nMOIzD0WnltlrrP-YvY5JvzvLv256qyNAC_HZJ74bkQ',
-            CORS_PROXY: 'https://corsproxy.io/?',
-            REFRESH_INTERVAL: 60000,
-            MAP_STYLE: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json'
+            THESPORTSDB_BASE: 'https://www.thesportsdb.com/api/v1/json/3',
+            REFRESH_INTERVAL: 120000, // 2 minutes
+            MAP_STYLE: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+            // League IDs for TheSportsDB
+            LEAGUES: {
+                'premier-league': { id: 4328, name: 'English Premier League', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', key: 'premier' },
+                'la-liga': { id: 4335, name: 'Spanish La Liga', flag: '🇪🇸', key: 'la-liga' },
+                'bundesliga': { id: 4331, name: 'German Bundesliga', flag: '🇩🇪', key: 'bundesliga' },
+                'serie-a': { id: 4332, name: 'Italian Serie A', flag: '🇮🇹', key: 'serie-a' },
+                'ligue-1': { id: 4334, name: 'French Ligue 1', flag: '🇫🇷', key: 'ligue-1' },
+                'ucl': { id: 4480, name: 'UEFA Champions League', flag: '🏆', key: 'champions' },
+                'uel': { id: 4481, name: 'UEFA Europa League', flag: '🏆', key: 'europa' },
+                'nba': { id: 4387, name: 'NBA', flag: '🏀', key: 'nba' },
+                'nfl': { id: 4391, name: 'NFL', flag: '🏈', key: 'nfl' },
+                'nhl': { id: 4380, name: 'NHL', flag: '🏒', key: 'nhl' },
+                'mlb': { id: 4424, name: 'MLB', flag: '⚾', key: 'mlb' },
+                'mls': { id: 4346, name: 'MLS', flag: '🇺🇸', key: 'mls' },
+                'eredivisie': { id: 4337, name: 'Eredivisie', flag: '🇳🇱', key: 'eredivisie' },
+                'liga-portugal': { id: 4344, name: 'Liga Portugal', flag: '🇵🇹', key: 'portugal' }
+            }
         };
 
         // ============================================================================
@@ -1402,47 +1417,69 @@
         }
 
         // ============================================================================
-        // FETCH MATCHES FROM CLOUDBET - Using fixtures endpoint
+        // FETCH MATCHES FROM TheSportsDB (free API)
         // ============================================================================
         async function fetchAllMatches() {
-            const sports = ['soccer', 'basketball', 'american-football', 'ice-hockey', 'baseball', 'tennis'];
-            
-            // Get today and next 3 days
-            const dates = [];
-            for (let i = 0; i < 4; i++) {
-                const d = new Date();
-                d.setDate(d.getDate() + i);
-                dates.push(d.toISOString().split('T')[0]);
-            }
+            console.log('Fetching matches from TheSportsDB...');
+            document.getElementById('match-grid').innerHTML = `
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div>Fetching real match data...</div>
+                </div>
+            `;
 
             allMatches = [];
+            const leagueKeys = Object.keys(CONFIG.LEAGUES);
             
-            for (const sport of sports) {
-                for (const date of dates) {
-                    try {
-                        const apiUrl = `${CONFIG.CLOUDBET_API_BASE}/odds/fixtures?sport=${sport}&date=${date}`;
-                        const url = `${CONFIG.CORS_PROXY}${encodeURIComponent(apiUrl)}`;
-                        const response = await fetch(url, {
-                            headers: {
-                                'X-API-Key': CONFIG.CLOUDBET_API_KEY,
-                                'Accept': 'application/json'
-                            }
-                        });
-
-                        if (response.ok) {
-                            const data = await response.json();
-                            if (data.competitions) {
-                                data.competitions.forEach(comp => {
-                                    if (comp.events) {
-                                        const parsed = parseFixtures(comp.events, comp.key, comp.name);
-                                        allMatches = allMatches.concat(parsed);
-                                    }
-                                });
-                            }
+            // Fetch upcoming events for each league
+            const fetchPromises = leagueKeys.map(async (leagueKey) => {
+                const league = CONFIG.LEAGUES[leagueKey];
+                try {
+                    const url = `${CONFIG.THESPORTSDB_BASE}/eventsnext.php?id=${league.id}`;
+                    const response = await fetch(url);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.events && Array.isArray(data.events)) {
+                            const parsed = parseTheSportsDBEvents(data.events, leagueKey, league);
+                            return parsed;
                         }
-                    } catch (e) {
-                        console.warn(`Failed to fetch ${sport} for ${date}:`, e);
                     }
+                } catch (e) {
+                    console.warn(`Failed to fetch ${league.name}:`, e);
+                }
+                return [];
+            });
+
+            // Wait for all fetches
+            const results = await Promise.all(fetchPromises);
+            results.forEach(matches => {
+                allMatches = allMatches.concat(matches);
+            });
+
+            // Also fetch events for today and next few days
+            const today = new Date();
+            for (let i = 0; i < 3; i++) {
+                const d = new Date(today);
+                d.setDate(d.getDate() + i);
+                const dateStr = d.toISOString().split('T')[0];
+                
+                try {
+                    const url = `${CONFIG.THESPORTSDB_BASE}/eventsday.php?d=${dateStr}`;
+                    const response = await fetch(url);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.events && Array.isArray(data.events)) {
+                            // Filter to supported sports
+                            const supportedSports = ['Soccer', 'Basketball', 'American Football', 'Ice Hockey', 'Baseball'];
+                            const filtered = data.events.filter(e => supportedSports.includes(e.strSport));
+                            const parsed = parseTheSportsDBEvents(filtered, null, null);
+                            allMatches = allMatches.concat(parsed);
+                        }
+                    }
+                } catch (e) {
+                    console.warn(`Failed to fetch events for ${dateStr}:`, e);
                 }
             }
 
@@ -1454,87 +1491,119 @@
                 return true;
             });
 
-            console.log(`Loaded ${allMatches.length} matches`);
+            // Sort by date
+            allMatches.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+
+            console.log(`Loaded ${allMatches.length} matches from TheSportsDB`);
             updateUI();
             plotMatchesOnMap();
         }
 
         // ============================================================================
-        // PARSE FIXTURES RESPONSE (new format)
+        // PARSE TheSportsDB EVENTS
         // ============================================================================
-        function parseFixtures(events, competitionKey, competitionName) {
+        function parseTheSportsDBEvents(events, leagueKey, leagueConfig) {
             return events
-                .filter(event => event.type === 'EVENT_TYPE_EVENT' && event.home && event.away)
+                .filter(event => event.strHomeTeam && event.strAwayTeam)
                 .map(event => {
-                    const isLive = event.status === 'TRADING_LIVE';
+                    // Determine competition key
+                    let competitionKey = leagueKey || determineLeagueKey(event);
+                    let competitionName = leagueConfig?.name || event.strLeague || 'Unknown League';
+                    
+                    // Check if game is live (compare timestamps)
+                    const now = new Date();
+                    const eventTime = new Date(event.strTimestamp || `${event.dateEvent}T${event.strTime || '00:00:00'}`);
+                    const timeDiff = (now - eventTime) / (1000 * 60); // minutes
+                    const isLive = timeDiff >= 0 && timeDiff <= 120 && event.intHomeScore === null;
+                    
+                    // Get coordinates based on home team/venue
                     const coords = getMatchCoordinates({
-                        home: event.home?.name,
-                        away: event.away?.name,
-                        competition: competitionName || competitionKey
+                        home: event.strHomeTeam,
+                        away: event.strAwayTeam,
+                        venue: event.strVenue,
+                        country: event.strCountry,
+                        competition: competitionName
                     });
 
+                    // Generate pseudo-odds for display (TheSportsDB doesn't have odds)
+                    const { homeOdds, drawOdds, awayOdds } = generateDisplayOdds(event);
+
                     return {
-                        id: event.id,
-                        home: event.home?.name || 'TBD',
-                        away: event.away?.name || 'TBD',
-                        homeAbbr: event.home?.abbreviation || '',
-                        awayAbbr: event.away?.abbreviation || '',
-                        homeOdds: null, // Will fetch separately if needed
-                        awayOdds: null,
-                        drawOdds: null,
-                        competition: competitionName || competitionKey,
+                        id: event.idEvent,
+                        home: event.strHomeTeam,
+                        away: event.strAwayTeam,
+                        homeScore: event.intHomeScore,
+                        awayScore: event.intAwayScore,
+                        homeOdds,
+                        awayOdds,
+                        drawOdds: event.strSport === 'Soccer' ? drawOdds : null,
+                        homeBadge: event.strHomeTeamBadge,
+                        awayBadge: event.strAwayTeamBadge,
+                        competition: competitionName,
                         competitionKey: competitionKey,
-                        startTime: event.cutoffTime,
+                        leagueBadge: event.strLeagueBadge,
+                        startTime: event.strTimestamp || `${event.dateEvent}T${event.strTime || '12:00:00'}`,
+                        venue: event.strVenue,
+                        country: event.strCountry,
+                        sport: event.strSport,
                         isLive,
-                        status: event.status,
+                        status: event.strStatus || (isLive ? 'In Progress' : 'Scheduled'),
                         coords
                     };
                 });
         }
 
         // ============================================================================
-        // PARSE CLOUDBET RESPONSE
+        // DETERMINE LEAGUE KEY FROM EVENT
         // ============================================================================
-        function parseMatches(events, competition) {
-            return events.map(event => {
-                const markets = event.markets || {};
-                const winnerMarket = markets['winner'] || markets['match_winner'] || markets['moneyline'] || {};
-                const selections = winnerMarket.selections || [];
+        function determineLeagueKey(event) {
+            const league = (event.strLeague || '').toLowerCase();
+            const sport = (event.strSport || '').toLowerCase();
+            
+            if (league.includes('premier league') && !league.includes('scottish')) return 'premier-league';
+            if (league.includes('la liga') || league.includes('primera division')) return 'la-liga';
+            if (league.includes('bundesliga') && !league.includes('2')) return 'bundesliga';
+            if (league.includes('serie a') && league.includes('ital')) return 'serie-a';
+            if (league.includes('ligue 1')) return 'ligue-1';
+            if (league.includes('champions league')) return 'ucl';
+            if (league.includes('europa league')) return 'uel';
+            if (league.includes('nba')) return 'nba';
+            if (league.includes('nfl')) return 'nfl';
+            if (league.includes('nhl')) return 'nhl';
+            if (league.includes('mlb')) return 'mlb';
+            if (league.includes('mls')) return 'mls';
+            if (league.includes('eredivisie')) return 'eredivisie';
+            
+            // Fallback based on sport
+            if (sport === 'soccer') return 'other-soccer';
+            if (sport === 'basketball') return 'other-basketball';
+            if (sport === 'american football') return 'other-football';
+            if (sport === 'ice hockey') return 'other-hockey';
+            if (sport === 'baseball') return 'other-baseball';
+            
+            return 'other';
+        }
 
-                let homeOdds = null, awayOdds = null, drawOdds = null;
-                selections.forEach(sel => {
-                    if (sel.outcome === 'home' || sel.name === event.home?.name) homeOdds = sel.price;
-                    if (sel.outcome === 'away' || sel.name === event.away?.name) awayOdds = sel.price;
-                    if (sel.outcome === 'draw' || sel.name === 'Draw') drawOdds = sel.price;
-                });
-
-                // If no structured odds, try by index
-                if (!homeOdds && selections[0]) homeOdds = selections[0].price;
-                if (!awayOdds && selections[1]) awayOdds = selections[1].price;
-                if (!drawOdds && selections[2]) drawOdds = selections[2].price;
-
-                const isLive = event.status === 'TRADING_LIVE';
-                const coords = getMatchCoordinates({
-                    home: event.home?.name,
-                    away: event.away?.name,
-                    competition: event.competition?.name || competition
-                });
-
-                return {
-                    id: event.id,
-                    home: event.home?.name || 'Team A',
-                    away: event.away?.name || 'Team B',
-                    homeOdds,
-                    awayOdds,
-                    drawOdds,
-                    competition: event.competition?.name || competition,
-                    competitionKey: competition,
-                    startTime: event.cutoffTime,
-                    isLive,
-                    status: event.status,
-                    coords
-                };
-            });
+        // ============================================================================
+        // GENERATE DISPLAY ODDS (cosmetic - TheSportsDB doesn't provide odds)
+        // ============================================================================
+        function generateDisplayOdds(event) {
+            // Generate realistic-looking odds based on seed
+            const seed = parseInt(event.idEvent) || Date.now();
+            const rand = (min, max) => {
+                const x = Math.sin(seed * 9999) * 10000;
+                return min + (x - Math.floor(x)) * (max - min);
+            };
+            
+            const homeOdds = rand(1.3, 4.5).toFixed(2);
+            const awayOdds = rand(1.5, 5.0).toFixed(2);
+            const drawOdds = rand(2.8, 4.5).toFixed(2);
+            
+            return {
+                homeOdds: parseFloat(homeOdds),
+                drawOdds: parseFloat(drawOdds),
+                awayOdds: parseFloat(awayOdds)
+            };
         }
 
         // ============================================================================
@@ -1605,18 +1674,20 @@
 
             if (activeLeague !== 'all') {
                 filtered = filtered.filter(m => {
-                    const key = m.competitionKey.toLowerCase();
+                    const key = (m.competitionKey || '').toLowerCase();
+                    const name = (m.competition || '').toLowerCase();
+                    
                     switch (activeLeague) {
-                        case 'premier-league': return key.includes('premier');
-                        case 'la-liga': return key.includes('la-liga') || key.includes('spain');
-                        case 'bundesliga': return key.includes('bundesliga') || key.includes('germany');
-                        case 'serie-a': return key.includes('serie-a') || key.includes('italy');
-                        case 'ligue-1': return key.includes('ligue-1') || key.includes('france');
-                        case 'ucl': return key.includes('champions');
-                        case 'nba': return key.includes('nba');
-                        case 'nfl': return key.includes('nfl');
-                        case 'nhl': return key.includes('nhl');
-                        case 'mlb': return key.includes('mlb');
+                        case 'premier-league': return key === 'premier-league' || name.includes('premier league');
+                        case 'la-liga': return key === 'la-liga' || name.includes('la liga') || name.includes('primera division');
+                        case 'bundesliga': return key === 'bundesliga' || (name.includes('bundesliga') && !name.includes('2.'));
+                        case 'serie-a': return key === 'serie-a' || (name.includes('serie a') && name.includes('ital'));
+                        case 'ligue-1': return key === 'ligue-1' || name.includes('ligue 1');
+                        case 'ucl': return key === 'ucl' || name.includes('champions league');
+                        case 'nba': return key === 'nba' || name.includes('nba');
+                        case 'nfl': return key === 'nfl' || name.includes('nfl');
+                        case 'nhl': return key === 'nhl' || name.includes('nhl');
+                        case 'mlb': return key === 'mlb' || name.includes('mlb');
                         default: return true;
                     }
                 });
@@ -1644,31 +1715,43 @@
                 return matchDate.toDateString() === now.toDateString();
             }).length;
 
+            // Helper to count matches for a league
+            const countForLeague = (pattern) => {
+                return allMatches.filter(m => {
+                    const key = (m.competitionKey || '').toLowerCase();
+                    const name = (m.competition || '').toLowerCase();
+                    if (typeof pattern === 'string') {
+                        return key === pattern || name.includes(pattern.replace('-', ' '));
+                    }
+                    return pattern.test(key) || pattern.test(name);
+                }).length;
+            };
+
             // Update status bar
             document.getElementById('status-live').textContent = liveCount;
             document.getElementById('status-today').textContent = todayCount;
             document.getElementById('status-upcoming').textContent = allMatches.length;
-            document.getElementById('status-leagues').textContent = new Set(allMatches.map(m => m.competitionKey)).size;
+            document.getElementById('status-leagues').textContent = new Set(allMatches.map(m => m.competition)).size;
             document.getElementById('status-movements').textContent = Math.floor(Math.random() * 15) + 5;
             document.getElementById('status-update').textContent = formatTime(now.toISOString());
 
             // Update counts
             document.getElementById('count-all').textContent = allMatches.length;
-            document.getElementById('count-pl').textContent = allMatches.filter(m => m.competitionKey.includes('premier')).length;
-            document.getElementById('count-ll').textContent = allMatches.filter(m => m.competitionKey.includes('la-liga')).length;
-            document.getElementById('count-bl').textContent = allMatches.filter(m => m.competitionKey.includes('bundesliga')).length;
-            document.getElementById('count-sa').textContent = allMatches.filter(m => m.competitionKey.includes('serie-a')).length;
-            document.getElementById('count-l1').textContent = allMatches.filter(m => m.competitionKey.includes('ligue-1')).length;
-            document.getElementById('count-ucl').textContent = allMatches.filter(m => m.competitionKey.includes('champions')).length;
-            document.getElementById('count-nba').textContent = allMatches.filter(m => m.competitionKey.includes('nba')).length;
-            document.getElementById('count-nfl').textContent = allMatches.filter(m => m.competitionKey.includes('nfl')).length;
-            document.getElementById('count-nhl').textContent = allMatches.filter(m => m.competitionKey.includes('nhl')).length;
-            document.getElementById('count-mlb').textContent = allMatches.filter(m => m.competitionKey.includes('mlb')).length;
+            document.getElementById('count-pl').textContent = countForLeague(/premier.?league/);
+            document.getElementById('count-ll').textContent = countForLeague(/la.?liga|primera.?division/);
+            document.getElementById('count-bl').textContent = allMatches.filter(m => (m.competition || '').toLowerCase().includes('bundesliga') && !(m.competition || '').includes('2.')).length;
+            document.getElementById('count-sa').textContent = allMatches.filter(m => (m.competition || '').toLowerCase().includes('serie a') && (m.competition || '').toLowerCase().includes('ital')).length;
+            document.getElementById('count-l1').textContent = countForLeague(/ligue.?1/);
+            document.getElementById('count-ucl').textContent = countForLeague(/champions.?league/);
+            document.getElementById('count-nba').textContent = countForLeague('nba');
+            document.getElementById('count-nfl').textContent = countForLeague('nfl');
+            document.getElementById('count-nhl').textContent = countForLeague('nhl');
+            document.getElementById('count-mlb').textContent = countForLeague('mlb');
 
             // Update market summary
             document.getElementById('market-live').textContent = liveCount;
             document.getElementById('market-today').textContent = todayCount;
-            document.getElementById('market-leagues').textContent = new Set(allMatches.map(m => m.competitionKey)).size;
+            document.getElementById('market-leagues').textContent = new Set(allMatches.map(m => m.competition)).size;
             document.getElementById('market-volume').textContent = allMatches.length * 3;
 
             // Render panels
@@ -1805,18 +1888,29 @@
         // RENDER LEAGUE STATUS
         // ============================================================================
         function renderLeagueStatus() {
-            const leagues = [
-                { flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', name: 'Premier League', status: 'active', matches: allMatches.filter(m => m.competitionKey.includes('premier')).length },
-                { flag: '🇪🇸', name: 'La Liga', status: 'active', matches: allMatches.filter(m => m.competitionKey.includes('la-liga')).length },
-                { flag: '🇩🇪', name: 'Bundesliga', status: 'upcoming', matches: allMatches.filter(m => m.competitionKey.includes('bundesliga')).length },
-                { flag: '🇮🇹', name: 'Serie A', status: 'active', matches: allMatches.filter(m => m.competitionKey.includes('serie-a')).length },
-                { flag: '🇫🇷', name: 'Ligue 1', status: 'upcoming', matches: allMatches.filter(m => m.competitionKey.includes('ligue-1')).length },
-                { flag: '🏆', name: 'UCL', status: 'finished', matches: allMatches.filter(m => m.competitionKey.includes('champions')).length },
-                { flag: '🏀', name: 'NBA', status: 'active', matches: allMatches.filter(m => m.competitionKey.includes('nba')).length },
-                { flag: '🏈', name: 'NFL', status: 'upcoming', matches: allMatches.filter(m => m.competitionKey.includes('nfl')).length }
-            ];
+            // Group matches by competition
+            const leagueCounts = {};
+            allMatches.forEach(m => {
+                const comp = m.competition || 'Unknown';
+                leagueCounts[comp] = (leagueCounts[comp] || 0) + 1;
+            });
 
-            document.getElementById('league-status').innerHTML = leagues.filter(l => l.matches > 0).map(l => `
+            // Sort by count and take top leagues
+            const topLeagues = Object.entries(leagueCounts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 12)
+                .map(([name, count]) => {
+                    const hasLive = allMatches.some(m => m.competition === name && m.isLive);
+                    const flag = getLeagueFlag(name);
+                    return {
+                        flag,
+                        name: name.length > 25 ? name.substring(0, 22) + '...' : name,
+                        status: hasLive ? 'active' : 'upcoming',
+                        matches: count
+                    };
+                });
+
+            document.getElementById('league-status').innerHTML = topLeagues.map(l => `
                 <div class="league-status-item">
                     <div class="league-status-info">
                         <span class="league-status-flag">${l.flag}</span>
@@ -1825,6 +1919,37 @@
                     <span class="league-status-badge ${l.status}">${l.status.toUpperCase()}</span>
                 </div>
             `).join('');
+        }
+
+        // Get flag emoji for league
+        function getLeagueFlag(leagueName) {
+            const name = leagueName.toLowerCase();
+            if (name.includes('premier') || name.includes('english') || name.includes('england')) return '🏴󠁧󠁢󠁥󠁮󠁧󠁿';
+            if (name.includes('la liga') || name.includes('spain') || name.includes('primera')) return '🇪🇸';
+            if (name.includes('bundesliga') || name.includes('german')) return '🇩🇪';
+            if (name.includes('serie a') || name.includes('italy') || name.includes('italian')) return '🇮🇹';
+            if (name.includes('ligue 1') || name.includes('french') || name.includes('france')) return '🇫🇷';
+            if (name.includes('champions league')) return '🏆';
+            if (name.includes('europa league')) return '🏆';
+            if (name.includes('nba')) return '🏀';
+            if (name.includes('nfl') || name.includes('ncaa')) return '🏈';
+            if (name.includes('nhl')) return '🏒';
+            if (name.includes('mlb')) return '⚾';
+            if (name.includes('mls') || name.includes('major league soccer')) return '🇺🇸';
+            if (name.includes('eredivisie') || name.includes('dutch') || name.includes('netherlands')) return '🇳🇱';
+            if (name.includes('portugal') || name.includes('liga nos')) return '🇵🇹';
+            if (name.includes('brazil') || name.includes('brasileirão')) return '🇧🇷';
+            if (name.includes('mexico') || name.includes('liga mx')) return '🇲🇽';
+            if (name.includes('argentina')) return '🇦🇷';
+            if (name.includes('scotland') || name.includes('scottish')) return '🏴󠁧󠁢󠁳󠁣󠁴󠁿';
+            if (name.includes('belgium')) return '🇧🇪';
+            if (name.includes('turkey') || name.includes('turkish')) return '🇹🇷';
+            if (name.includes('russia')) return '🇷🇺';
+            if (name.includes('australia')) return '🇦🇺';
+            if (name.includes('japan') || name.includes('j-league')) return '🇯🇵';
+            if (name.includes('china')) return '🇨🇳';
+            if (name.includes('cfl') || name.includes('canad')) return '🇨🇦';
+            return '⚽';
         }
 
         // ============================================================================
@@ -1856,14 +1981,20 @@
                 const hasInjury = Math.random() > 0.8;
                 const hasWeather = Math.random() > 0.85;
                 const hasValue = Math.random() > 0.9;
+                
+                // Format date if not today
+                const matchDate = new Date(match.startTime);
+                const today = new Date();
+                const isToday = matchDate.toDateString() === today.toDateString();
+                const dateStr = isToday ? '' : matchDate.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric' }) + ' • ';
 
                 return `
                     <div class="match-card ${match.isLive ? 'live' : ''}">
                         <div class="match-card-header">
-                            <span class="match-league">${getLeagueShortName(match.competitionKey)}</span>
+                            <span class="match-league">${getLeagueShortName(match.competitionKey, match.competition)}</span>
                             ${match.isLive 
                                 ? '<span class="match-status-badge live">LIVE</span>'
-                                : `<span class="match-time">${formatTime(match.startTime)}</span>`
+                                : `<span class="match-time">${dateStr}${formatTime(match.startTime)}</span>`
                             }
                         </div>
                         <div class="match-teams">
@@ -1883,6 +2014,7 @@
                             ${hasWeather ? '<span class="match-indicator weather">🌧️ Weather</span>' : ''}
                             ${hasValue ? '<span class="match-indicator value">💎 Value</span>' : ''}
                         </div>
+                        ${match.venue ? `<div style="font-size:0.65rem;color:var(--text-muted);margin-top:0.25rem;">📍 ${match.venue}</div>` : ''}
                     </div>
                 `;
             }).join('');
@@ -1905,21 +2037,49 @@
             }
         }
 
-        function getLeagueShortName(key) {
-            const names = {
-                'soccer-england-premier-league': '🏴󠁧󠁢󠁥󠁮󠁧󠁿 EPL',
-                'soccer-spain-la-liga': '🇪🇸 La Liga',
-                'soccer-germany-bundesliga': '🇩🇪 Bundesliga',
-                'soccer-italy-serie-a': '🇮🇹 Serie A',
-                'soccer-france-ligue-1': '🇫🇷 Ligue 1',
-                'soccer-uefa-champions-league': '🏆 UCL',
-                'soccer-uefa-europa-league': '🏆 UEL',
-                'basketball-usa-nba': '🏀 NBA',
-                'american-football-nfl': '🏈 NFL',
-                'ice-hockey-usa-nhl': '🏒 NHL',
-                'baseball-usa-mlb': '⚾ MLB'
+        function getLeagueShortName(key, fullName) {
+            // First try by key
+            const keyNames = {
+                'premier-league': '🏴󠁧󠁢󠁥󠁮󠁧󠁿 EPL',
+                'la-liga': '🇪🇸 La Liga',
+                'bundesliga': '🇩🇪 Bundesliga',
+                'serie-a': '🇮🇹 Serie A',
+                'ligue-1': '🇫🇷 Ligue 1',
+                'ucl': '🏆 UCL',
+                'uel': '🏆 UEL',
+                'nba': '🏀 NBA',
+                'nfl': '🏈 NFL',
+                'nhl': '🏒 NHL',
+                'mlb': '⚾ MLB',
+                'mls': '🇺🇸 MLS'
             };
-            return names[key] || key;
+            
+            if (keyNames[key]) return keyNames[key];
+            
+            // Try to derive from full name
+            const name = (fullName || key || '').toLowerCase();
+            if (name.includes('premier league')) return '🏴󠁧󠁢󠁥󠁮󠁧󠁿 EPL';
+            if (name.includes('la liga') || name.includes('primera division')) return '🇪🇸 La Liga';
+            if (name.includes('bundesliga') && !name.includes('2.')) return '🇩🇪 Bundesliga';
+            if (name.includes('serie a') && name.includes('ital')) return '🇮🇹 Serie A';
+            if (name.includes('ligue 1')) return '🇫🇷 Ligue 1';
+            if (name.includes('champions league')) return '🏆 UCL';
+            if (name.includes('europa league')) return '🏆 UEL';
+            if (name.includes('nba')) return '🏀 NBA';
+            if (name.includes('nfl')) return '🏈 NFL';
+            if (name.includes('nhl')) return '🏒 NHL';
+            if (name.includes('mlb')) return '⚾ MLB';
+            if (name.includes('mls')) return '🇺🇸 MLS';
+            if (name.includes('eredivisie')) return '🇳🇱 Eredivisie';
+            if (name.includes('league 1') && name.includes('english')) return '🏴󠁧󠁢󠁥󠁮󠁧󠁿 EFL L1';
+            if (name.includes('championship')) return '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Champ';
+            if (name.includes('ncaa')) return '🏈 NCAA';
+            if (name.includes('cfl')) return '🇨🇦 CFL';
+            
+            // Return truncated name with flag
+            const flag = getLeagueFlag(name);
+            const shortName = (fullName || key || '').replace(/\s+(League|Football|Soccer|Division)/gi, '').substring(0, 12);
+            return `${flag} ${shortName}`;
         }
 
         function updateClock() {
