@@ -1402,50 +1402,94 @@
         }
 
         // ============================================================================
-        // FETCH MATCHES FROM CLOUDBET
+        // FETCH MATCHES FROM CLOUDBET - Using fixtures endpoint
         // ============================================================================
         async function fetchAllMatches() {
-            const competitions = [
-                'soccer-england-premier-league',
-                'soccer-spain-la-liga',
-                'soccer-germany-bundesliga',
-                'soccer-italy-serie-a',
-                'soccer-france-ligue-1',
-                'soccer-uefa-champions-league',
-                'soccer-uefa-europa-league',
-                'basketball-usa-nba',
-                'american-football-nfl',
-                'ice-hockey-usa-nhl',
-                'baseball-usa-mlb'
-            ];
+            const sports = ['soccer', 'basketball', 'american-football', 'ice-hockey', 'baseball', 'tennis'];
+            
+            // Get today and next 3 days
+            const dates = [];
+            for (let i = 0; i < 4; i++) {
+                const d = new Date();
+                d.setDate(d.getDate() + i);
+                dates.push(d.toISOString().split('T')[0]);
+            }
 
             allMatches = [];
             
-            for (const comp of competitions) {
-                try {
-                    const url = `${CONFIG.CORS_PROXY}${encodeURIComponent(CONFIG.CLOUDBET_API_BASE + '/odds/competitions/' + comp)}`;
-                    const response = await fetch(url, {
-                        headers: {
-                            'X-API-Key': CONFIG.CLOUDBET_API_KEY,
-                            'Accept': 'application/json'
-                        }
-                    });
+            for (const sport of sports) {
+                for (const date of dates) {
+                    try {
+                        const apiUrl = `${CONFIG.CLOUDBET_API_BASE}/odds/fixtures?sport=${sport}&date=${date}`;
+                        const url = `${CONFIG.CORS_PROXY}${encodeURIComponent(apiUrl)}`;
+                        const response = await fetch(url, {
+                            headers: {
+                                'X-API-Key': CONFIG.CLOUDBET_API_KEY,
+                                'Accept': 'application/json'
+                            }
+                        });
 
-                    if (response.ok) {
-                        const data = await response.json();
-                        if (data.events) {
-                            const parsed = parseMatches(data.events, comp);
-                            allMatches = allMatches.concat(parsed);
+                        if (response.ok) {
+                            const data = await response.json();
+                            if (data.competitions) {
+                                data.competitions.forEach(comp => {
+                                    if (comp.events) {
+                                        const parsed = parseFixtures(comp.events, comp.key, comp.name);
+                                        allMatches = allMatches.concat(parsed);
+                                    }
+                                });
+                            }
                         }
+                    } catch (e) {
+                        console.warn(`Failed to fetch ${sport} for ${date}:`, e);
                     }
-                } catch (e) {
-                    console.warn(`Failed to fetch ${comp}:`, e);
                 }
             }
+
+            // Remove duplicates by event ID
+            const seen = new Set();
+            allMatches = allMatches.filter(m => {
+                if (seen.has(m.id)) return false;
+                seen.add(m.id);
+                return true;
+            });
 
             console.log(`Loaded ${allMatches.length} matches`);
             updateUI();
             plotMatchesOnMap();
+        }
+
+        // ============================================================================
+        // PARSE FIXTURES RESPONSE (new format)
+        // ============================================================================
+        function parseFixtures(events, competitionKey, competitionName) {
+            return events
+                .filter(event => event.type === 'EVENT_TYPE_EVENT' && event.home && event.away)
+                .map(event => {
+                    const isLive = event.status === 'TRADING_LIVE';
+                    const coords = getMatchCoordinates({
+                        home: event.home?.name,
+                        away: event.away?.name,
+                        competition: competitionName || competitionKey
+                    });
+
+                    return {
+                        id: event.id,
+                        home: event.home?.name || 'TBD',
+                        away: event.away?.name || 'TBD',
+                        homeAbbr: event.home?.abbreviation || '',
+                        awayAbbr: event.away?.abbreviation || '',
+                        homeOdds: null, // Will fetch separately if needed
+                        awayOdds: null,
+                        drawOdds: null,
+                        competition: competitionName || competitionKey,
+                        competitionKey: competitionKey,
+                        startTime: event.cutoffTime,
+                        isLive,
+                        status: event.status,
+                        coords
+                    };
+                });
         }
 
         // ============================================================================
