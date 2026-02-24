@@ -1231,7 +1231,19 @@
                 'bundesliga-at': { file: '2025-26/at.1.json', name: 'Austrian Bundesliga', flag: '🇦🇹', country: 'Austria' }
             },
             // Weather API (free, no key)
-            WEATHER_API: 'https://api.open-meteo.com/v1/forecast'
+            WEATHER_API: 'https://api.open-meteo.com/v1/forecast',
+            // ESPN API (free, no key, hidden endpoints)
+            ESPN_API: 'https://site.api.espn.com/apis/site/v2/sports',
+            ESPN_LEAGUES: {
+                'nba': { sport: 'basketball', league: 'nba', name: 'NBA', flag: '🏀', country: 'USA' },
+                'nhl': { sport: 'hockey', league: 'nhl', name: 'NHL', flag: '🏒', country: 'USA' },
+                'afl': { sport: 'australian-football', league: 'afl', name: 'AFL', flag: '🏉', country: 'Australia' },
+                'mls': { sport: 'soccer', league: 'usa.1', name: 'MLS', flag: '🇺🇸', country: 'USA' },
+                'liga-mx': { sport: 'soccer', league: 'mex.1', name: 'Liga MX', flag: '🇲🇽', country: 'Mexico' },
+                'arg-liga': { sport: 'soccer', league: 'arg.1', name: 'Argentina Liga', flag: '🇦🇷', country: 'Argentina' },
+                'brazil-serie-a': { sport: 'soccer', league: 'bra.1', name: 'Brazil Série A', flag: '🇧🇷', country: 'Brazil' },
+                'j-league': { sport: 'soccer', league: 'jpn.1', name: 'J-League', flag: '🇯🇵', country: 'Japan' }
+            }
         };
 
         // ============================================================================
@@ -1332,6 +1344,21 @@
             "Stade Francis-Le Blé": [48.4028, -4.4617],
             "Stade Louis II": [43.7275, 7.4153],
             "Meinau Stadium": [48.5600, 7.7550],
+            
+            // SCOTLAND - Scottish Premiership
+            "Celtic Park": [55.8497, -4.2055],
+            "Ibrox Stadium": [55.8531, -4.3092],
+            "Tynecastle Park": [55.9386, -3.2322],
+            "Easter Road": [55.9617, -3.1653],
+            "Pittodrie Stadium": [57.1592, -2.0883],
+            "Fir Park": [55.7800, -3.9803],
+            "Tannadice Park": [56.4747, -2.9689],
+            "Dens Park": [56.4742, -2.9733],
+            "SMiSA Stadium": [55.8489, -4.4247],
+            "Rugby Park": [55.6094, -4.5083],
+            "Victoria Park": [57.6833, -4.4500],
+            "Tony Macaroni Arena": [55.8861, -3.5222],
+            "McDiarmid Park": [56.4097, -3.4792],
             
             // UEFA - Champions League venues
             "Wembley Stadium": [51.5560, -0.2796],
@@ -1487,7 +1514,25 @@
             "Strasbourg": "Meinau Stadium",
             "Brest": "Stade Francis-Le Blé",
             
-            // NBA
+            // Scottish Premiership (MUST come before NBA to avoid Celtic/Celtics confusion)
+            "Celtic FC": "Celtic Park",
+            "Celtic": "Celtic Park",
+            "Rangers": "Ibrox Stadium",
+            "Hearts": "Tynecastle Park",
+            "Hibernian": "Easter Road",
+            "Aberdeen": "Pittodrie Stadium",
+            "Motherwell": "Fir Park",
+            "Dundee United": "Tannadice Park",
+            "Dundee FC": "Dens Park",
+            "St Mirren": "SMiSA Stadium",
+            "Kilmarnock": "Rugby Park",
+            "Ross County": "Victoria Park",
+            "Livingston": "Tony Macaroni Arena",
+            "St Johnstone": "McDiarmid Park",
+            
+            // NBA (use full team names to avoid conflicts)
+            "Los Angeles Lakers": "Staples Center",
+            "LA Lakers": "Staples Center",
             "Lakers": "Staples Center",
             "Clippers": "Staples Center",
             "Knicks": "Madison Square Garden",
@@ -1726,8 +1771,89 @@
             allMatches.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
 
             console.log(`Loaded ${allMatches.length} upcoming matches from OpenFootball`);
+            
+            // Also fetch ESPN sports (NBA, NHL, etc.)
+            await fetchESPNSports();
+            
             updateUI();
             plotMatchesOnMap();
+        }
+
+        // ============================================================================
+        // FETCH ESPN SPORTS (NBA, NHL, AFL, etc.)
+        // ============================================================================
+        async function fetchESPNSports() {
+            console.log('Fetching ESPN sports...');
+            const espnLeagues = Object.keys(CONFIG.ESPN_LEAGUES);
+            
+            const fetchPromises = espnLeagues.map(async (leagueKey) => {
+                const league = CONFIG.ESPN_LEAGUES[leagueKey];
+                try {
+                    const url = `${CONFIG.ESPN_API}/${league.sport}/${league.league}/scoreboard`;
+                    const response = await fetch(url);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.events && Array.isArray(data.events)) {
+                            return parseESPNEvents(data.events, leagueKey, league);
+                        }
+                    }
+                } catch (e) {
+                    console.warn(`Failed to fetch ESPN ${league.name}:`, e);
+                }
+                return [];
+            });
+
+            const results = await Promise.all(fetchPromises);
+            let espnCount = 0;
+            results.forEach(matches => {
+                allMatches = allMatches.concat(matches);
+                espnCount += matches.length;
+            });
+            
+            console.log(`Added ${espnCount} matches from ESPN`);
+        }
+
+        // ============================================================================
+        // PARSE ESPN EVENTS
+        // ============================================================================
+        function parseESPNEvents(events, leagueKey, leagueConfig) {
+            return events.map(event => {
+                const competition = event.competitions?.[0];
+                const homeTeam = competition?.competitors?.find(c => c.homeAway === 'home');
+                const awayTeam = competition?.competitors?.find(c => c.homeAway === 'away');
+                
+                if (!homeTeam || !awayTeam) return null;
+                
+                const home = homeTeam.team?.displayName || homeTeam.team?.name || 'Home';
+                const away = awayTeam.team?.displayName || awayTeam.team?.name || 'Away';
+                const venue = competition?.venue;
+                
+                const isLive = event.status?.type?.state === 'in';
+                const isScheduled = event.status?.type?.state === 'pre';
+                
+                // Get coordinates
+                const coords = getMatchCoordinates({
+                    home: home,
+                    away: away,
+                    competition: leagueConfig.name,
+                    venue: venue?.fullName
+                });
+                
+                return {
+                    id: event.id,
+                    home: home,
+                    away: away,
+                    competition: leagueConfig.name,
+                    startTime: event.date,
+                    isLive: isLive,
+                    coords: coords,
+                    venue: venue?.fullName || '',
+                    city: venue?.address?.city || '',
+                    leagueKey: leagueKey,
+                    source: 'espn'
+                };
+            }).filter(Boolean);
         }
 
         // ============================================================================
