@@ -1963,10 +1963,6 @@
             return null;
         }
 
-            // Default: random location in Europe/Americas
-            return [40 + (Math.random() - 0.5) * 40, 0 + (Math.random() - 0.5) * 80];
-        }
-
         // ============================================================================
         // FETCH MATCHES - With caching and parallel loading
         // ============================================================================
@@ -2147,94 +2143,6 @@
             console.log('Fetching all ESPN sports...');
             const allESPN = { ...CONFIG.PRIORITY_ESPN, ...CONFIG.SECONDARY_ESPN };
             return fetchESPNLeagues(allESPN);
-        }
-
-        // ============================================================================
-        // FETCH OpenFootball DATA (LEGACY - kept for compatibility)
-        // ============================================================================
-        async function fetchOpenFootballDataLegacy() {
-            console.log('Fetching OpenFootball leagues...');
-            const leagueKeys = Object.keys(CONFIG.LEAGUE_FILES);
-            let matches = [];
-            
-            // Fetch all leagues in parallel
-            const fetchPromises = leagueKeys.map(async (leagueKey) => {
-                const league = CONFIG.LEAGUE_FILES[leagueKey];
-                try {
-                    const url = `${CONFIG.OPENFOOTBALL_BASE}/${league.file}`;
-                    const response = await fetch(url);
-                    
-                    if (response.ok) {
-                        const data = await response.json();
-                        if (data.matches && Array.isArray(data.matches)) {
-                            return parseOpenFootballMatches(data.matches, leagueKey, league, data.name);
-                        }
-                    }
-                } catch (e) {
-                    console.warn(`Failed to fetch ${league.name}:`, e);
-                }
-                return [];
-            });
-
-            const results = await Promise.all(fetchPromises);
-            results.forEach(m => { matches = matches.concat(m); });
-
-            // Filter to upcoming matches within next 30 days
-            const now = new Date();
-            const thirtyDaysLater = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
-            
-            matches = matches.filter(m => {
-                const matchDate = new Date(m.startTime);
-                return matchDate >= now && matchDate <= thirtyDaysLater;
-            });
-
-            // Remove duplicates
-            const seen = new Set();
-            matches = matches.filter(m => {
-                const key = `${m.home}-${m.away}-${m.startTime}`;
-                if (seen.has(key)) return false;
-                seen.add(key);
-                return true;
-            });
-
-            // Sort by date
-            matches.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
-
-            console.log(`OpenFootball: ${matches.length} upcoming matches`);
-            return matches;
-        }
-
-        // ============================================================================
-        // FETCH ESPN DATA (NBA, NHL, AFL, South American soccer)
-        // ============================================================================
-        async function fetchESPNData() {
-            console.log('Fetching ESPN sports...');
-            const espnLeagues = Object.keys(CONFIG.ESPN_LEAGUES);
-            let matches = [];
-            
-            const fetchPromises = espnLeagues.map(async (leagueKey) => {
-                const league = CONFIG.ESPN_LEAGUES[leagueKey];
-                try {
-                    const url = `${CONFIG.ESPN_API}/${league.sport}/${league.league}/scoreboard`;
-                    const response = await fetch(url);
-                    
-                    if (response.ok) {
-                        const data = await response.json();
-                        if (data.events && Array.isArray(data.events)) {
-                            return parseESPNEvents(data.events, leagueKey, league);
-                        }
-                    }
-                } catch (e) {
-                    console.warn(`Failed to fetch ESPN ${league.name}:`, e);
-                }
-                return [];
-            });
-
-            const results = await Promise.all(fetchPromises);
-            results.forEach(m => { matches = matches.concat(m); });
-            
-            console.log(`ESPN: ${matches.length} matches`);
-            return matches;
         }
 
         // ============================================================================
