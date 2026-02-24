@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call of Duty Esports - CDL, Teams, Betting Guide | Apuesta Esports</title>
+    <meta name="description" content="Complete Call of Duty esports guide. CDL Championship, top teams like OpTic and FaZe. League format, betting markets, and competitive CoD analysis.">
+    <meta name="keywords" content="Call of Duty esports, CDL betting, Call of Duty League, OpTic Gaming, FaZe Clan CoD, competitive CoD">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Call of Duty Esports Guide | Apuesta Esports">
+    <meta property="og:description" content="Complete CDL guide with Championship coverage, team rankings, and betting markets.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apuestaesports.com/games/cod.html">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💥</text></svg>">
+    <link rel="canonical" href="https://www.apuestaesports.com/games/cod.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f; --bg-secondary: #12121a; --bg-card: #15151f;
+            --orange: #FF6B2F; --purple: #8D52DA; --yellow: #DFFD51;
+            --text-primary: #ffffff; --text-secondary: #a0a0b0; --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+        
+        nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 1000; padding: 0 24px; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-weight: 800; font-size: 1.25rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        
+        .hero { padding: 140px 24px 80px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(255, 107, 47, 0.15) 0%, transparent 50%), var(--bg-primary); }
+        .hero-icon { font-size: 5rem; margin-bottom: 24px; }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 16px; }
+        .hero-meta { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+        .hero-tag { background: var(--bg-secondary); padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; color: var(--text-secondary); }
+        .hero p { color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 60px; }
+        .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: 800; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+        
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        .main-content h2 { font-size: 1.5rem; margin: 40px 0 16px; color: var(--text-primary); }
+        .main-content h2:first-child { margin-top: 0; }
+        .main-content p { color: var(--text-secondary); margin-bottom: 16px; }
+        .main-content ul { color: var(--text-secondary); margin-left: 24px; margin-bottom: 16px; }
+        .main-content li { margin-bottom: 8px; }
+        
+        .sidebar-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+        .sidebar-card h3 { font-size: 1rem; margin-bottom: 16px; color: var(--purple); }
+        .team-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .team-item:last-child { border-bottom: none; }
+        .team-name { font-weight: 600; }
+        .team-earnings { font-family: 'JetBrains Mono', monospace; color: var(--yellow); font-size: 0.9rem; }
+        
+        .tournament-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .tournament-item:last-child { border-bottom: none; }
+        .tournament-name { font-weight: 600; margin-bottom: 4px; }
+        .tournament-info { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .cta-box { background: var(--gradient); border-radius: 16px; padding: 40px; text-align: center; margin-top: 60px; }
+        .cta-box h2 { margin-bottom: 12px; }
+        .cta-box p { opacity: 0.9; margin-bottom: 24px; }
+        .btn { display: inline-block; padding: 14px 28px; border-radius: 10px; font-weight: 600; background: white; color: var(--bg-primary); transition: transform 0.2s; }
+        .btn:hover { transform: translateY(-2px); }
+        
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; color: var(--text-muted); margin-top: 60px; }
+        footer a { color: var(--text-secondary); margin: 0 8px; }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .content-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <ul class="nav-links">
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/teams/">Teams</a></li>
+                <li><a href="/players/">Players</a></li>
+                <li><a href="/countries/">Countries</a></li>
+                <li><a href="/betting/">Betting</a></li>
+                <li><a href="/live/">Live</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-icon">💥</div>
+        <h1>Call of Duty</h1>
+        <div class="hero-meta">
+            <span class="hero-tag">FPS</span>
+            <span class="hero-tag">Activision</span>
+            <span class="hero-tag">Since 2003</span>
+        </div>
+        <p>The Call of Duty League (CDL) features franchised city-based teams competing in the world's most popular FPS franchise. Annual title changes keep the competitive scene fresh and dynamic.</p>
+    </section>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">$50M+</div>
+                <div class="stat-label">Total Prize Pool</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">$2.5M</div>
+                <div class="stat-label">Championship Prize</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">12</div>
+                <div class="stat-label">CDL Franchises</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">4v4</div>
+                <div class="stat-label">Team Format</div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <h2>About Call of Duty Esports</h2>
+                <p>Call of Duty has been a cornerstone of console esports since the mid-2000s. The franchise transitioned to a franchised city-based league model in 2020 with the Call of Duty League (CDL), featuring 12 permanent teams with multi-million dollar buy-ins from major esports organizations and traditional sports owners.</p>
+                
+                <p>Unlike most esports, CoD releases a new title annually, meaning the competitive meta completely resets each year. This creates unique dynamics where teams that dominated one title might struggle with the next, and new stars can emerge quickly. The current format features 4v4 gameplay across multiple game modes.</p>
+
+                <h2>Competitive Format</h2>
+                <p>The CDL uses a structured format that mirrors traditional sports leagues:</p>
+                
+                <ul>
+                    <li><strong>Team Size:</strong> 4 players + substitutes per franchise</li>
+                    <li><strong>Game Modes:</strong> Hardpoint, Search & Destroy, Control</li>
+                    <li><strong>Match Format:</strong> Best of 5 maps (HP, S&D, Control, HP, S&D)</li>
+                    <li><strong>Season:</strong> Regular season + Majors + Championship</li>
+                    <li><strong>Majors:</strong> 4 major tournaments throughout the season</li>
+                    <li><strong>CDL Points:</strong> Accumulate throughout season for playoff seeding</li>
+                </ul>
+
+                <h2>Major Tournaments</h2>
+                <p>The CDL season features several high-stakes events:</p>
+                
+                <ul>
+                    <li><strong>CDL Championship (Champs)</strong> - Season-ending championship, $2.5M prize pool</li>
+                    <li><strong>CDL Majors</strong> - 4 major LAN events per season ($500K each)</li>
+                    <li><strong>CDL Online Qualifiers</strong> - Regular season matches for Major seeding</li>
+                    <li><strong>Challengers</strong> - Path-to-pro circuit for amateur players</li>
+                    <li><strong>All-Star Weekend</strong> - Exhibition event featuring top performers</li>
+                </ul>
+
+                <h2>CDL Franchises</h2>
+                <p>The 12 franchised teams represent major cities across North America and Europe:</p>
+                <ul>
+                    <li><strong>OpTic Texas</strong> - The most popular org in CoD history</li>
+                    <li><strong>Atlanta FaZe</strong> - Backed by FaZe Clan, multiple championships</li>
+                    <li><strong>Los Angeles Thieves</strong> - 100 Thieves franchise</li>
+                    <li><strong>Toronto Ultra</strong> - Competitive NA franchise</li>
+                    <li><strong>New York Subliners</strong> - NYXL ownership group</li>
+                    <li><strong>London Royal Ravens</strong> - Premier European franchise</li>
+                    <li><strong>And more:</strong> Minnesota, Seattle, Boston, LA Guerrillas, Vegas, Miami</li>
+                </ul>
+
+                <h2>Betting Markets</h2>
+                <p>CoD betting offers extensive markets due to its multi-map format:</p>
+                <ul>
+                    <li><strong>Match Winner</strong> - Overall series result</li>
+                    <li><strong>Map Winner</strong> - Individual map outcomes</li>
+                    <li><strong>Map Handicap</strong> - Spread on maps won</li>
+                    <li><strong>Total Maps</strong> - Over/under on maps played</li>
+                    <li><strong>First Map Winner</strong> - Opening map (always Hardpoint)</li>
+                    <li><strong>Tournament Winner</strong> - Outright Major/Championship winner</li>
+                    <li><strong>Player Props</strong> - Individual K/D, kills per map</li>
+                </ul>
+
+                <h2>Betting Tips</h2>
+                <ul>
+                    <li><strong>Mode Specialists:</strong> Some teams excel at specific modes (HP vs S&D)</li>
+                    <li><strong>Map Vetoes:</strong> Understanding team map pools is crucial</li>
+                    <li><strong>New Titles:</strong> Early season is volatile as teams adapt</li>
+                    <li><strong>LAN vs Online:</strong> Home crowd advantage matters in CDL</li>
+                    <li><strong>Head-to-Head:</strong> Certain matchups consistently favor one team</li>
+                    <li><strong>OpTic Factor:</strong> Matches involving OpTic draw different energy/pressure</li>
+                </ul>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-card">
+                    <h3>🏆 Top CDL Teams</h3>
+                    <div class="team-item">
+                        <span class="team-name">Atlanta FaZe</span>
+                        <span class="team-earnings">$4.2M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">OpTic Texas</span>
+                        <span class="team-earnings">$3.8M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">LA Thieves</span>
+                        <span class="team-earnings">$2.1M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">Toronto Ultra</span>
+                        <span class="team-earnings">$1.9M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">NY Subliners</span>
+                        <span class="team-earnings">$1.5M</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>⭐ Top Players</h3>
+                    <div class="team-item">
+                        <span class="team-name">Simp 🇺🇸</span>
+                        <span class="team-earnings">$1.2M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">aBeZy 🇺🇸</span>
+                        <span class="team-earnings">$1.1M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">Cellium 🇺🇸</span>
+                        <span class="team-earnings">$980K</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">Shotzzy 🇺🇸</span>
+                        <span class="team-earnings">$920K</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">Dashy 🇨🇦</span>
+                        <span class="team-earnings">$850K</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>📅 CDL Season</h3>
+                    <div class="tournament-item">
+                        <div class="tournament-name">CDL Championship</div>
+                        <div class="tournament-info">$2.5M • Season Finals</div>
+                    </div>
+                    <div class="tournament-item">
+                        <div class="tournament-name">CDL Major I-IV</div>
+                        <div class="tournament-info">$500K each • Quarterly</div>
+                    </div>
+                    <div class="tournament-item">
+                        <div class="tournament-name">Online Qualifiers</div>
+                        <div class="tournament-info">Weekly • CDL Points</div>
+                    </div>
+                    <div class="tournament-item">
+                        <div class="tournament-name">Challengers</div>
+                        <div class="tournament-info">Path to Pro Circuit</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <h2>Ready to Bet on Call of Duty?</h2>
+            <p>Track live CDL matches and odds on our real-time monitor.</p>
+            <a href="/live/" class="btn">Live Odds Monitor →</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Apuesta Esports</p>
+        <p style="margin-top: 8px;"><a href="/">Home</a> · <a href="/games/">Games</a> · <a href="/teams/">Teams</a> · <a href="/betting/">Betting</a></p>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Call of Duty",
+        "alternateName": "CoD",
+        "description": "First-person shooter franchise by Activision with franchised esports league",
+        "genre": ["First-person shooter", "Action"],
+        "gamePlatform": ["PC", "PlayStation", "Xbox"],
+        "publisher": {"@type": "Organization", "name": "Activision"},
+        "url": "https://www.apuestaesports.com/games/cod.html"
+    }
+    </script>
+</body>
+</html>

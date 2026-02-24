@@ -3,38 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esports Monitor | Global Betting Intelligence</title>
+    <title>Live Esports Odds Monitor | Real-Time Betting Map | Apuesta Esports</title>
+    <meta name="description" content="Live esports betting monitor with interactive world map. Track real-time odds for CS2, Dota 2, League of Legends, Valorant, and more across global tournaments.">
+    <meta name="keywords" content="live esports odds, esports betting map, real-time esports, CS2 odds, Dota 2 betting, League of Legends odds">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Live Esports Odds Monitor | Apuesta Esports">
+    <meta property="og:description" content="Real-time esports betting intelligence with interactive world map showing live matches and odds.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.apuestaesports.com/live/">
+    
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    <link rel="canonical" href="https://www.apuestaesports.com/live/">
     
     <!-- MapLibre GL JS -->
     <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet">
     <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-tertiary: #21262d;
-            --bg-card: #1c2128;
-            --border-primary: #30363d;
-            --border-highlight: #a855f7;
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #15151f;
+            --border: #2a2a3a;
+            --border-highlight: #8D52DA;
             
-            --accent-cyan: #22d3ee;
-            --accent-green: #3fb950;
-            --accent-red: #f85149;
-            --accent-yellow: #d29922;
-            --accent-purple: #a855f7;
-            --accent-pink: #ec4899;
+            --orange: #FF6B2F;
+            --purple: #8D52DA;
+            --yellow: #DFFD51;
+            --cyan: #22d3ee;
+            --green: #3fb950;
+            --red: #f85149;
             
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --text-muted: #6e7681;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
             
             --font-mono: 'JetBrains Mono', monospace;
             --font-sans: 'Inter', sans-serif;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -46,97 +57,122 @@
             min-height: 100vh;
         }
 
-        /* Header */
-        header {
+        a { color: inherit; text-decoration: none; }
+
+        /* Navigation */
+        nav {
             background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-primary);
-            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            padding: 0 24px;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1800px;
+            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            justify-content: space-between;
+            height: 64px;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo-icon { font-size: 1.75rem; }
-        .logo-text {
-            font-family: var(--font-mono);
-            font-size: 1.1rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a.active {
+            color: var(--yellow);
         }
 
         .header-stats {
             display: flex;
-            gap: 1.5rem;
+            gap: 24px;
             font-family: var(--font-mono);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
 
-        .stat { display: flex; align-items: center; gap: 0.5rem; }
+        .stat { display: flex; align-items: center; gap: 8px; }
         .stat-label { color: var(--text-muted); }
-        .stat-value { color: var(--accent-cyan); font-weight: 600; }
-        .stat-value.live { color: var(--accent-red); }
+        .stat-value { color: var(--cyan); font-weight: 600; }
+        .stat-value.live { color: var(--red); }
 
         /* Game Tabs */
         .game-tabs {
             display: flex;
-            gap: 0.25rem;
-            padding: 0.5rem 1rem;
+            gap: 4px;
+            padding: 12px 24px;
             background: var(--bg-secondary);
             overflow-x: auto;
-            border-bottom: 1px solid var(--border-primary);
+            border-bottom: 1px solid var(--border);
         }
 
         .game-tab {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            padding: 0.4rem 0.75rem;
+            gap: 6px;
+            padding: 8px 14px;
             background: transparent;
             border: 1px solid transparent;
-            border-radius: 6px;
+            border-radius: 8px;
             color: var(--text-secondary);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 500;
             cursor: pointer;
             white-space: nowrap;
             transition: all 0.2s;
+            font-family: var(--font-sans);
         }
 
         .game-tab:hover { background: var(--bg-tertiary); color: var(--text-primary); }
         .game-tab.active {
             background: var(--bg-tertiary);
-            border-color: var(--accent-purple);
-            color: var(--accent-purple);
+            border-color: var(--purple);
+            color: var(--purple);
         }
 
         .game-tab .count {
-            background: var(--accent-purple);
+            background: var(--purple);
             color: white;
-            font-size: 0.65rem;
-            padding: 1px 5px;
-            border-radius: 8px;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
         }
 
         /* Main Layout */
         main {
             display: grid;
-            grid-template-columns: 1fr 400px;
-            height: calc(100vh - 110px);
+            grid-template-columns: 1fr 420px;
+            height: calc(100vh - 130px);
         }
 
         @media (max-width: 1200px) {
             main { grid-template-columns: 1fr; }
             .sidebar { display: none; }
+            .nav-links { display: none; }
         }
 
         /* Map */
@@ -149,64 +185,64 @@
         /* Sidebar */
         .sidebar {
             background: var(--bg-secondary);
-            border-left: 1px solid var(--border-primary);
+            border-left: 1px solid var(--border);
             overflow-y: auto;
-            padding: 1rem;
+            padding: 16px;
         }
 
         .sidebar-title {
             font-family: var(--font-mono);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 1rem;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
         }
 
         /* Match Cards */
         .match-card {
             background: var(--bg-card);
-            border: 1px solid var(--border-primary);
-            border-radius: 8px;
-            padding: 0.75rem;
-            margin-bottom: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 12px;
             cursor: pointer;
             transition: all 0.2s;
         }
 
         .match-card:hover {
-            border-color: var(--accent-purple);
-            transform: translateX(2px);
+            border-color: var(--purple);
+            transform: translateX(3px);
         }
 
-        .match-card.live { border-left: 3px solid var(--accent-red); }
+        .match-card.live { border-left: 3px solid var(--red); }
 
         .match-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.5rem;
+            margin-bottom: 10px;
         }
 
         .match-tournament {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 6px;
         }
 
         .match-status {
             font-family: var(--font-mono);
-            font-size: 0.65rem;
-            padding: 2px 6px;
-            border-radius: 4px;
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 6px;
             background: var(--bg-tertiary);
         }
 
         .match-status.live {
-            background: var(--accent-red);
+            background: var(--red);
             color: white;
             animation: pulse 2s infinite;
         }
@@ -220,7 +256,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.5rem;
         }
 
         .team {
@@ -229,10 +264,10 @@
         }
 
         .team-name {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
             display: block;
-            margin-bottom: 0.25rem;
+            margin-bottom: 4px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -240,115 +275,119 @@
 
         .team-odds {
             font-family: var(--font-mono);
-            font-size: 0.9rem;
-            color: var(--accent-cyan);
+            font-size: 1rem;
+            color: var(--cyan);
             font-weight: 700;
         }
 
-        .vs { color: var(--text-muted); font-size: 0.75rem; padding: 0 0.5rem; }
+        .vs { color: var(--text-muted); font-size: 0.8rem; padding: 0 8px; }
 
         /* Map Popup */
         .maplibregl-popup-content {
             background: var(--bg-card) !important;
-            border: 1px solid var(--border-primary) !important;
-            border-radius: 12px !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 14px !important;
             padding: 0 !important;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
             min-width: 320px;
             max-width: 380px;
         }
 
         .maplibregl-popup-close-button {
             color: var(--text-secondary) !important;
-            font-size: 20px !important;
-            padding: 8px !important;
+            font-size: 22px !important;
+            padding: 10px !important;
+        }
+
+        .maplibregl-popup-tip {
+            border-top-color: var(--bg-card) !important;
         }
 
         .popup-content {
-            padding: 1rem;
+            padding: 16px;
         }
 
         .popup-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-primary);
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
         }
 
         .popup-game {
-            font-size: 0.75rem;
-            color: var(--accent-purple);
+            font-size: 0.8rem;
+            color: var(--purple);
             font-weight: 600;
         }
 
         .popup-tournament {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
         }
 
         .popup-matchup {
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 16px;
         }
 
         .popup-team {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin-bottom: 0.25rem;
+            margin-bottom: 4px;
         }
 
         .popup-odds {
             font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            color: var(--cyan);
         }
 
         .popup-vs {
             color: var(--text-muted);
-            font-size: 0.8rem;
-            margin: 0.5rem 0;
+            font-size: 0.85rem;
+            margin: 10px 0;
         }
 
         .popup-intel {
             background: var(--bg-tertiary);
-            border-radius: 8px;
-            padding: 0.75rem;
+            border-radius: 10px;
+            padding: 12px;
         }
 
         .intel-title {
-            font-size: 0.75rem;
-            color: var(--accent-purple);
-            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--purple);
+            margin-bottom: 8px;
             font-weight: 600;
         }
 
         .intel-item {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
-            margin-bottom: 0.4rem;
+            margin-bottom: 6px;
             display: flex;
             align-items: flex-start;
-            gap: 0.5rem;
+            gap: 8px;
         }
 
         .intel-icon { flex-shrink: 0; }
 
         /* Custom Marker */
         .esports-marker {
-            width: 32px;
-            height: 32px;
-            background: var(--accent-purple);
+            width: 36px;
+            height: 36px;
+            background: var(--purple);
             border: 2px solid white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 16px;
             cursor: pointer;
             transition: transform 0.2s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
         }
 
         .esports-marker:hover { transform: scale(1.2); }
@@ -358,7 +397,7 @@
 
         @keyframes marker-pulse {
             0%, 100% { box-shadow: 0 0 0 0 rgba(248, 81, 73, 0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(248, 81, 73, 0); }
+            50% { box-shadow: 0 0 0 12px rgba(248, 81, 73, 0); }
         }
 
         /* Loading */
@@ -368,47 +407,71 @@
             justify-content: center;
             height: 200px;
             color: var(--text-muted);
+            flex-direction: column;
+            gap: 12px;
         }
 
         .spinner {
-            width: 24px;
-            height: 24px;
-            border: 2px solid var(--border-primary);
-            border-top-color: var(--accent-purple);
+            width: 28px;
+            height: 28px;
+            border: 3px solid var(--border);
+            border-top-color: var(--purple);
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-right: 0.5rem;
         }
 
         @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1200px) {
+            .mobile-menu-btn { display: block; }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <span class="logo-icon">🎮</span>
-            <span class="logo-text">ESPORTS_MONITOR</span>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <ul class="nav-links">
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/teams/">Teams</a></li>
+                <li><a href="/players/">Players</a></li>
+                <li><a href="/countries/">Countries</a></li>
+                <li><a href="/tournaments/">Tournaments</a></li>
+                <li><a href="/betting/">Betting</a></li>
+                <li><a href="/live/" class="active">Live</a></li>
+            </ul>
+            <div class="header-stats">
+                <div class="stat">
+                    <span class="stat-label">🔴 LIVE</span>
+                    <span class="stat-value live" id="live-count">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">TOTAL</span>
+                    <span class="stat-value" id="total-count">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">UTC</span>
+                    <span class="stat-value" id="clock">--:--</span>
+                </div>
+            </div>
         </div>
-        <div class="header-stats">
-            <div class="stat">
-                <span class="stat-label">LIVE</span>
-                <span class="stat-value live" id="live-count">0</span>
-            </div>
-            <div class="stat">
-                <span class="stat-label">MATCHES</span>
-                <span class="stat-value" id="total-count">0</span>
-            </div>
-            <div class="stat">
-                <span class="stat-label">UTC</span>
-                <span class="stat-value" id="clock">--:--</span>
-            </div>
-        </div>
-    </header>
+    </nav>
 
     <nav class="game-tabs" id="game-tabs">
         <button class="game-tab active" data-game="all">
             <span>🌐</span>
-            <span>All</span>
+            <span>All Games</span>
             <span class="count" id="count-all">0</span>
         </button>
     </nav>
@@ -420,7 +483,7 @@
             <div id="match-list">
                 <div class="loading">
                     <div class="spinner"></div>
-                    Loading matches...
+                    <span>Loading live matches...</span>
                 </div>
             </div>
         </aside>
@@ -449,7 +512,8 @@
                 'wildrift': { sport: 'wild-rift', name: 'Wild Rift', icon: '📱' },
                 'fifa': { sport: 'esport-fifa', name: 'EA FC', icon: '⚽' },
                 'kog': { sport: 'esport-king-of-glory', name: 'KoG', icon: '👑' },
-                'freefire': { sport: 'esport-free-fire', name: 'Free Fire', icon: '🔥' }
+                'freefire': { sport: 'esport-free-fire', name: 'Free Fire', icon: '🔥' },
+                'fortnite': { sport: 'fortnite', name: 'Fortnite', icon: '🏝️' }
             }
         };
 
@@ -484,7 +548,7 @@
             "Rio de Janeiro": [-22.9068, -43.1729],
             "Dubai": [25.2048, 55.2708],
             "Riyadh": [24.7136, 46.6753],
-            // Org/Team HQs (for online matches)
+            // Org/Team HQs
             "Team Liquid": [40.7128, -74.0060],
             "Cloud9": [34.0522, -118.2437],
             "Fnatic": [51.5074, -0.1278],
@@ -608,7 +672,6 @@
 
         async function fetchGameMatches(gameKey, sportKey) {
             try {
-                // First get competitions for this sport
                 const compUrl = `${CONFIG.CORS_PROXY}${encodeURIComponent(CONFIG.CLOUDBET_API_BASE + '/odds/sports/' + sportKey)}`;
                 const compRes = await fetch(compUrl, { headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY } });
                 if (!compRes.ok) return [];
@@ -625,7 +688,6 @@
 
                 if (competitions.length === 0) return [];
 
-                // Fetch events from competitions
                 const eventPromises = competitions.slice(0, 8).map(async (compKey) => {
                     try {
                         const url = `${CONFIG.CORS_PROXY}${encodeURIComponent(CONFIG.CLOUDBET_API_BASE + '/odds/competitions/' + compKey)}`;
@@ -651,7 +713,6 @@
                 const markets = event.markets || {};
                 let homeOdds = null, awayOdds = null;
 
-                // Try to find odds
                 for (const mkt of Object.values(markets)) {
                     if (mkt.submarkets) {
                         const sub = Object.values(mkt.submarkets)[0];
@@ -695,7 +756,6 @@
         }
 
         function getMatchCoords(home, away, compKey) {
-            // Try to find location based on team names or tournament
             const searchTerms = [home, away, compKey];
             
             for (const term of searchTerms) {
@@ -707,7 +767,6 @@
                 }
             }
 
-            // Regional fallbacks
             if (compKey.includes('europe') || compKey.includes('esl')) return ESPORTS_LOCATIONS['Europe'];
             if (compKey.includes('america') || compKey.includes('na')) return ESPORTS_LOCATIONS['North America'];
             if (compKey.includes('asia') || compKey.includes('apac')) return ESPORTS_LOCATIONS['Asia'];
@@ -715,7 +774,6 @@
             if (compKey.includes('korea') || compKey.includes('lck')) return ESPORTS_LOCATIONS['Korea'];
             if (compKey.includes('brazil') || compKey.includes('south-america')) return ESPORTS_LOCATIONS['South America'];
 
-            // Hash-based fallback for consistency
             const hash = (home + away).split('').reduce((a, c) => a + c.charCodeAt(0), 0);
             const lat = -60 + (hash % 120);
             const lon = -180 + ((hash * 7) % 360);
@@ -728,7 +786,6 @@
         function renderMatches() {
             let matches = currentGame === 'all' ? allMatches : allMatches.filter(m => m.game === currentGame);
             
-            // Sort: live first, then by time
             matches.sort((a, b) => {
                 if (a.isLive && !b.isLive) return -1;
                 if (!a.isLive && b.isLive) return 1;
@@ -739,9 +796,10 @@
             
             if (matches.length === 0) {
                 container.innerHTML = `
-                    <div class="loading" style="flex-direction: column; gap: 0.5rem;">
-                        <span style="font-size: 2rem;">🎮</span>
+                    <div class="loading">
+                        <span style="font-size: 3rem;">🎮</span>
                         <span>No matches found</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Check back later for live events</span>
                     </div>
                 `;
                 return;
@@ -783,7 +841,6 @@
         // MAP
         // ============================================================================
         function plotMarkers() {
-            // Clear existing
             markers.forEach(m => m.remove());
             markers = [];
 
@@ -840,7 +897,6 @@
         function generateIntel(match) {
             const intel = [];
             
-            // Odds analysis
             if (match.homeOdds && match.awayOdds) {
                 const favorite = match.homeOdds < match.awayOdds ? match.home : match.away;
                 const favOdds = Math.min(match.homeOdds, match.awayOdds);
@@ -858,7 +914,6 @@
                     });
                 }
 
-                // Close matchup
                 if (Math.abs(match.homeOdds - match.awayOdds) < 0.3) {
                     intel.push({
                         icon: '⚖️',
@@ -867,13 +922,11 @@
                 }
             }
 
-            // Tournament context
             intel.push({
                 icon: '🏆',
                 text: `${match.tournament}`
             });
 
-            // Live match intel
             if (match.isLive) {
                 intel.push({
                     icon: '🔴',
@@ -891,7 +944,6 @@
                 duration: 1500
             });
 
-            // Open popup
             setTimeout(() => {
                 const marker = markers.find(m => {
                     const pos = m.getLngLat();
@@ -905,6 +957,19 @@
         // START
         // ============================================================================
         document.addEventListener('DOMContentLoaded', init);
+    </script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Apuesta Esports Live Monitor",
+        "description": "Real-time esports betting intelligence with interactive world map",
+        "url": "https://www.apuestaesports.com/live/",
+        "applicationCategory": "SportsApplication",
+        "operatingSystem": "Web Browser"
+    }
     </script>
 </body>
 </html>

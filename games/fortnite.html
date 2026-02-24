@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortnite Esports - Tournaments, Pro Players, Betting Guide | Apuesta Esports</title>
+    <meta name="description" content="Complete Fortnite esports guide. FNCS tournaments, World Cup history, top players like Bugha and Clix. Betting markets and competitive strategies.">
+    <meta name="keywords" content="Fortnite esports, FNCS betting, Fortnite World Cup, Bugha, Fortnite competitive, battle royale esports">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Fortnite Esports Guide | Apuesta Esports">
+    <meta property="og:description" content="Complete Fortnite competitive guide with tournaments, players, and betting markets.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apuestaesports.com/games/fortnite.html">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏝️</text></svg>">
+    <link rel="canonical" href="https://www.apuestaesports.com/games/fortnite.html">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f; --bg-secondary: #12121a; --bg-card: #15151f;
+            --orange: #FF6B2F; --purple: #8D52DA; --yellow: #DFFD51;
+            --text-primary: #ffffff; --text-secondary: #a0a0b0; --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+        
+        nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 1000; padding: 0 24px; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-weight: 800; font-size: 1.25rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        
+        .hero { padding: 140px 24px 80px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(141, 82, 218, 0.15) 0%, transparent 50%), var(--bg-primary); }
+        .hero-icon { font-size: 5rem; margin-bottom: 24px; }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 16px; }
+        .hero-meta { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+        .hero-tag { background: var(--bg-secondary); padding: 8px 16px; border-radius: 8px; font-size: 0.9rem; color: var(--text-secondary); }
+        .hero p { color: var(--text-secondary); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 60px; }
+        .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: 800; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+        
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        .main-content h2 { font-size: 1.5rem; margin: 40px 0 16px; color: var(--text-primary); }
+        .main-content h2:first-child { margin-top: 0; }
+        .main-content p { color: var(--text-secondary); margin-bottom: 16px; }
+        .main-content ul { color: var(--text-secondary); margin-left: 24px; margin-bottom: 16px; }
+        .main-content li { margin-bottom: 8px; }
+        
+        .sidebar-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+        .sidebar-card h3 { font-size: 1rem; margin-bottom: 16px; color: var(--purple); }
+        .team-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .team-item:last-child { border-bottom: none; }
+        .team-name { font-weight: 600; }
+        .team-earnings { font-family: 'JetBrains Mono', monospace; color: var(--yellow); font-size: 0.9rem; }
+        
+        .tournament-item { padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .tournament-item:last-child { border-bottom: none; }
+        .tournament-name { font-weight: 600; margin-bottom: 4px; }
+        .tournament-info { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .cta-box { background: var(--gradient); border-radius: 16px; padding: 40px; text-align: center; margin-top: 60px; }
+        .cta-box h2 { margin-bottom: 12px; }
+        .cta-box p { opacity: 0.9; margin-bottom: 24px; }
+        .btn { display: inline-block; padding: 14px 28px; border-radius: 10px; font-weight: 600; background: white; color: var(--bg-primary); transition: transform 0.2s; }
+        .btn:hover { transform: translateY(-2px); }
+        
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; color: var(--text-muted); margin-top: 60px; }
+        footer a { color: var(--text-secondary); margin: 0 8px; }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .content-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <ul class="nav-links">
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/teams/">Teams</a></li>
+                <li><a href="/players/">Players</a></li>
+                <li><a href="/countries/">Countries</a></li>
+                <li><a href="/betting/">Betting</a></li>
+                <li><a href="/live/">Live</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-icon">🏝️</div>
+        <h1>Fortnite</h1>
+        <div class="hero-meta">
+            <span class="hero-tag">Battle Royale</span>
+            <span class="hero-tag">Epic Games</span>
+            <span class="hero-tag">Since 2017</span>
+        </div>
+        <p>Epic Games' battle royale phenomenon that revolutionized esports with massive prize pools and unique building mechanics. The Fortnite World Cup remains one of the largest esports events in history.</p>
+    </section>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">$150M+</div>
+                <div class="stat-label">Total Prize Pool</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">$3M</div>
+                <div class="stat-label">World Cup Solo Prize</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">5,000+</div>
+                <div class="stat-label">Pro Players</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">40M+</div>
+                <div class="stat-label">World Cup Viewers</div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <h2>About Fortnite Esports</h2>
+                <p>Fortnite burst onto the gaming scene in 2017 and quickly became a cultural phenomenon. Epic Games committed unprecedented resources to competitive play, offering over $100 million in prize money in 2019 alone. The game combines traditional battle royale gameplay with unique building mechanics that create a high skill ceiling.</p>
+                
+                <p>The competitive scene peaked with the 2019 Fortnite World Cup in New York, where 16-year-old Kyle "Bugha" Giersdorf won $3 million in the solo competition. The event drew over 40 million online viewers and filled Arthur Ashe Stadium, typically home to the US Open tennis tournament.</p>
+
+                <h2>Competitive Format</h2>
+                <p>Fortnite competitive modes have evolved significantly since launch. The current format typically features:</p>
+                
+                <ul>
+                    <li><strong>Solo:</strong> 100 players compete individually, placement and eliminations earn points</li>
+                    <li><strong>Duos:</strong> 50 teams of 2 players compete for combined points</li>
+                    <li><strong>Trios:</strong> Teams of 3 players in rotating competitive formats</li>
+                    <li><strong>Point System:</strong> Victory Royale (25 pts) + placement points + elimination points</li>
+                    <li><strong>Game Count:</strong> Multiple games per session, highest cumulative score wins</li>
+                </ul>
+
+                <h2>Major Tournaments</h2>
+                <p>Fortnite's tournament circuit has evolved from massive open events to a more structured competitive ecosystem:</p>
+                
+                <ul>
+                    <li><strong>FNCS (Fortnite Champion Series)</strong> - Premier seasonal competition with regional qualifiers</li>
+                    <li><strong>FNCS Global Championship</strong> - Annual world championship featuring top regional players</li>
+                    <li><strong>Cash Cups</strong> - Weekly online tournaments with prize pools</li>
+                    <li><strong>FNCS Invitational</strong> - Elite invitational events for top performers</li>
+                    <li><strong>Fortnite World Cup</strong> - Historic 2019 event with $30M total prize pool</li>
+                </ul>
+
+                <h2>Regional Scenes</h2>
+                <p>Fortnite competitive is divided into seven main regions: NA East, NA West, Europe, Brazil, Asia, Oceania, and Middle East. Europe and NA East historically produce the most competitive players, with countries like the UK, France, Germany, and USA dominating the scene.</p>
+                
+                <p>The open qualifier format means any player can compete for major prizes, leading to constant roster changes and young talent emerging rapidly. Many top players are teenagers who rose through the ranks via Cash Cups and open qualifiers.</p>
+
+                <h2>Betting Markets</h2>
+                <p>Fortnite betting presents unique challenges due to the battle royale format:</p>
+                <ul>
+                    <li><strong>Tournament Winner</strong> - Outright winner of multi-game events</li>
+                    <li><strong>Top 5/Top 10 Finish</strong> - Placement markets for individual games</li>
+                    <li><strong>Head-to-Head</strong> - Which player/team finishes higher</li>
+                    <li><strong>Most Eliminations</strong> - Kill leader for individual games</li>
+                    <li><strong>Region Winner</strong> - Which region's representative wins</li>
+                    <li><strong>Match Winner (Duos/Trios)</strong> - Team vs team in qualifying rounds</li>
+                </ul>
+
+                <h2>Betting Tips</h2>
+                <p>Key factors to consider when betting on Fortnite:</p>
+                <ul>
+                    <li><strong>Recent Form:</strong> Cash Cup results are the best indicator of current skill</li>
+                    <li><strong>Playstyle:</strong> Some players are "W-keyers" (aggressive) vs "placement players" (defensive)</li>
+                    <li><strong>Meta Changes:</strong> Major updates can shift the competitive landscape overnight</li>
+                    <li><strong>Age Factor:</strong> Many top players are very young with inconsistent performance</li>
+                    <li><strong>LAN vs Online:</strong> Some players perform differently under pressure</li>
+                </ul>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-card">
+                    <h3>⭐ Top Fortnite Players</h3>
+                    <div class="team-item">
+                        <span class="team-name">Bugha 🇺🇸</span>
+                        <span class="team-earnings">$3.4M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">EpikWhale 🇺🇸</span>
+                        <span class="team-earnings">$1.8M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">Mero 🇺🇸</span>
+                        <span class="team-earnings">$1.5M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">Clix 🇺🇸</span>
+                        <span class="team-earnings">$1.3M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">Queasy 🇬🇧</span>
+                        <span class="team-earnings">$1.2M</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>🏆 Top Organizations</h3>
+                    <div class="team-item">
+                        <span class="team-name">Sentinels</span>
+                        <span class="team-earnings">$4.2M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">FaZe Clan</span>
+                        <span class="team-earnings">$3.8M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">100 Thieves</span>
+                        <span class="team-earnings">$2.9M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">Guild Esports</span>
+                        <span class="team-earnings">$2.1M</span>
+                    </div>
+                    <div class="team-item">
+                        <span class="team-name">NRG</span>
+                        <span class="team-earnings">$1.8M</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>📅 Major Events</h3>
+                    <div class="tournament-item">
+                        <div class="tournament-name">FNCS Global Championship</div>
+                        <div class="tournament-info">$4M+ • Annual Finals</div>
+                    </div>
+                    <div class="tournament-item">
+                        <div class="tournament-name">FNCS Major</div>
+                        <div class="tournament-info">$2M • Quarterly</div>
+                    </div>
+                    <div class="tournament-item">
+                        <div class="tournament-name">FNCS Season Finals</div>
+                        <div class="tournament-info">$1M+ • Each Season</div>
+                    </div>
+                    <div class="tournament-item">
+                        <div class="tournament-name">Cash Cups</div>
+                        <div class="tournament-info">$50K+ • Weekly</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <h2>Ready to Bet on Fortnite?</h2>
+            <p>Check live Fortnite odds and upcoming tournaments on our live tracker.</p>
+            <a href="/live/" class="btn">Live Odds Monitor →</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Apuesta Esports</p>
+        <p style="margin-top: 8px;"><a href="/">Home</a> · <a href="/games/">Games</a> · <a href="/teams/">Teams</a> · <a href="/betting/">Betting</a></p>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Fortnite",
+        "description": "Battle royale game developed by Epic Games with competitive esports scene",
+        "genre": ["Battle Royale", "Third-person shooter"],
+        "gamePlatform": ["PC", "PlayStation", "Xbox", "Nintendo Switch", "Mobile"],
+        "publisher": {"@type": "Organization", "name": "Epic Games"},
+        "url": "https://www.apuestaesports.com/games/fortnite.html"
+    }
+    </script>
+</body>
+</html>
