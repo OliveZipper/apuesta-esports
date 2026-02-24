@@ -2043,11 +2043,18 @@
                     state: venue?.address?.state
                 });
                 
+                // Generate display odds
+                const { homeOdds, drawOdds, awayOdds } = generateDisplayOdds(home, away, parseInt(event.id) || 0);
+                
                 return {
                     id: event.id,
                     home: home,
                     away: away,
+                    homeOdds: homeOdds,
+                    awayOdds: awayOdds,
+                    drawOdds: drawOdds,
                     competition: leagueConfig.name,
+                    competitionKey: leagueKey,
                     startTime: event.date,
                     isLive: isLive,
                     coords: coords,
