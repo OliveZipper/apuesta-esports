@@ -726,31 +726,84 @@
         }
 
         function getMatchCoords(home, away, compKey) {
-            // Try to find location based on team names or tournament
-            const searchTerms = [home, away, compKey];
+            const key = compKey.toLowerCase();
             
-            for (const term of searchTerms) {
-                for (const [name, coords] of Object.entries(ESPORTS_LOCATIONS)) {
-                    if (term.toLowerCase().includes(name.toLowerCase()) ||
-                        name.toLowerCase().includes(term.toLowerCase().split(' ')[0])) {
-                        return coords;
-                    }
+            // Extract country/region from competition key (format: sport-country-tournament)
+            const parts = key.split('-');
+            const country = parts[1] || '';
+            
+            // Country-specific mappings
+            const COUNTRY_COORDS = {
+                'international': [48.8, 2.3], // Paris (neutral)
+                'germany': [52.52, 13.4], // Berlin
+                'france': [48.8, 2.3], // Paris
+                'spain': [40.4, -3.7], // Madrid
+                'italy': [41.9, 12.5], // Rome
+                'uk': [51.5, -0.1], // London
+                'poland': [50.26, 19.02], // Katowice
+                'sweden': [59.3, 18.07], // Stockholm
+                'denmark': [55.68, 12.57], // Copenhagen
+                'romania': [44.43, 26.1], // Bucharest
+                'russia': [55.75, 37.62], // Moscow
+                'ukraine': [50.45, 30.52], // Kyiv
+                'turkey': [41.0, 29.0], // Istanbul
+                'czech': [50.08, 14.44], // Prague
+                'usa': [34.05, -118.24], // Los Angeles
+                'brazil': [-23.55, -46.63], // São Paulo
+                'argentina': [-34.6, -58.38], // Buenos Aires
+                'mexico': [19.43, -99.13], // Mexico City
+                'china': [31.23, 121.47], // Shanghai
+                'korea': [37.57, 126.98], // Seoul
+                'japan': [35.68, 139.65], // Tokyo
+                'australia': [-33.87, 151.21], // Sydney
+                'singapore': [1.35, 103.82], // Singapore
+                'thailand': [13.76, 100.5], // Bangkok
+                'vietnam': [21.03, 105.85], // Hanoi
+                'indonesia': [-6.21, 106.85], // Jakarta
+                'philippines': [14.6, 120.98], // Manila
+                'malaysia': [3.14, 101.69], // Kuala Lumpur
+            };
+            
+            // Check country from competition key
+            if (COUNTRY_COORDS[country]) {
+                const [lat, lon] = COUNTRY_COORDS[country];
+                // Add small offset based on match ID for clustering
+                const hash = (home + away).split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+                return [lat + (hash % 10 - 5) * 0.1, lon + (hash % 10 - 5) * 0.1];
+            }
+            
+            // Tournament/League-based fallbacks
+            if (key.includes('lpl') || key.includes('china')) return [31.23, 121.47]; // Shanghai
+            if (key.includes('lck') || key.includes('korea')) return [37.57, 126.98]; // Seoul
+            if (key.includes('lfl') || key.includes('france')) return [48.86, 2.35]; // Paris
+            if (key.includes('lec') || key.includes('emea')) return [52.52, 13.4]; // Berlin
+            if (key.includes('lcs') || key.includes('north-america')) return [34.05, -118.24]; // LA
+            if (key.includes('cblol') || key.includes('brazil')) return [-23.55, -46.63]; // São Paulo
+            if (key.includes('pcs') || key.includes('pacific')) return [25.03, 121.57]; // Taipei
+            if (key.includes('vcs') || key.includes('vietnam')) return [21.03, 105.85]; // Hanoi
+            if (key.includes('ljl') || key.includes('japan')) return [35.68, 139.65]; // Tokyo
+            if (key.includes('lco') || key.includes('oceania')) return [-33.87, 151.21]; // Sydney
+            if (key.includes('esl') || key.includes('iem')) return [50.26, 19.02]; // Katowice
+            if (key.includes('blast') || key.includes('denmark')) return [55.68, 12.57]; // Copenhagen
+            if (key.includes('challengers')) return [48.8, 2.3]; // Paris (default for challengers)
+            if (key.includes('ultraliga') || key.includes('poland')) return [52.23, 21.01]; // Warsaw
+            if (key.includes('hitpoint') || key.includes('czech')) return [50.08, 14.44]; // Prague
+            if (key.includes('prime') || key.includes('germany')) return [52.52, 13.4]; // Berlin
+            if (key.includes('latin') || key.includes('latam')) return [19.43, -99.13]; // Mexico City
+            
+            // Try team name matching
+            for (const [name, coords] of Object.entries(ESPORTS_LOCATIONS)) {
+                if (home.toLowerCase().includes(name.toLowerCase()) ||
+                    away.toLowerCase().includes(name.toLowerCase())) {
+                    return coords;
                 }
             }
-
-            // Regional fallbacks
-            if (compKey.includes('europe') || compKey.includes('esl')) return ESPORTS_LOCATIONS['Europe'];
-            if (compKey.includes('america') || compKey.includes('na')) return ESPORTS_LOCATIONS['North America'];
-            if (compKey.includes('asia') || compKey.includes('apac')) return ESPORTS_LOCATIONS['Asia'];
-            if (compKey.includes('china') || compKey.includes('chn')) return ESPORTS_LOCATIONS['China'];
-            if (compKey.includes('korea') || compKey.includes('lck')) return ESPORTS_LOCATIONS['Korea'];
-            if (compKey.includes('brazil') || compKey.includes('south-america')) return ESPORTS_LOCATIONS['South America'];
-
-            // Hash-based fallback for consistency
+            
+            // Default to central Europe for "international" matches
             const hash = (home + away).split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-            const lat = -60 + (hash % 120);
-            const lon = -180 + ((hash * 7) % 360);
-            return [lat, lon];
+            const baseLat = 48 + (hash % 20 - 10) * 0.5; // Spread around Europe
+            const baseLon = 10 + (hash % 30 - 15) * 0.5;
+            return [baseLat, baseLon];
         }
 
         // ============================================================================
@@ -783,13 +836,28 @@
 
         function renderMatchCard(match) {
             const cfg = CONFIG.ESPORTS[match.game] || { icon: '🎮', name: match.game };
-            const time = new Date(match.startTime).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+            const date = new Date(match.startTime);
+            const now = new Date();
+            const isToday = date.toDateString() === now.toDateString();
+            const isTomorrow = date.toDateString() === new Date(now.getTime() + 86400000).toDateString();
+            
+            let dateStr;
+            if (match.isLive) {
+                dateStr = '🔴 LIVE';
+            } else if (isToday) {
+                dateStr = `Today ${date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`;
+            } else if (isTomorrow) {
+                dateStr = `Tomorrow ${date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`;
+            } else {
+                dateStr = date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }) + 
+                          ' ' + date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+            }
             
             return `
                 <div class="match-card ${match.isLive ? 'live' : ''}" onclick="flyToMatch(${match.coords[0]}, ${match.coords[1]}, '${match.id}')">
                     <div class="match-header">
                         <span class="match-tournament">${cfg.icon} ${match.tournament}</span>
-                        <span class="match-status ${match.isLive ? 'live' : ''}">${match.isLive ? '🔴 LIVE' : time}</span>
+                        <span class="match-status ${match.isLive ? 'live' : ''}">${dateStr}</span>
                     </div>
                     <div class="match-teams">
                         <div class="team">
@@ -841,7 +909,22 @@
 
         function createPopup(match) {
             const cfg = CONFIG.ESPORTS[match.game] || { icon: '🎮', name: match.game };
-            const time = new Date(match.startTime).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+            const date = new Date(match.startTime);
+            const now = new Date();
+            const isToday = date.toDateString() === now.toDateString();
+            const isTomorrow = date.toDateString() === new Date(now.getTime() + 86400000).toDateString();
+            
+            let dateStr;
+            if (match.isLive) {
+                dateStr = '🔴 LIVE NOW';
+            } else if (isToday) {
+                dateStr = `Today ${date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })} UTC`;
+            } else if (isTomorrow) {
+                dateStr = `Tomorrow ${date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })} UTC`;
+            } else {
+                dateStr = date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }) + 
+                          ' ' + date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + ' UTC';
+            }
             
             const intel = generateIntel(match);
 
@@ -854,7 +937,7 @@
                     <div class="popup-matchup">
                         <div class="popup-team">${match.home}</div>
                         <div class="popup-odds">${formatOdds(match.homeOdds)}</div>
-                        <div class="popup-vs">${match.isLive ? '🔴 LIVE' : time} UTC</div>
+                        <div class="popup-vs">${dateStr}</div>
                         <div class="popup-team">${match.away}</div>
                         <div class="popup-odds">${formatOdds(match.awayOdds)}</div>
                     </div>
