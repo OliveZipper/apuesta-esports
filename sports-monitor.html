@@ -1028,7 +1028,6 @@
                     <span class="live-dot"></span>
                     <span id="utc-time">--:--:-- UTC</span>
                 </div>
-                <div id="loading-status" style="font-size: 0.7rem; color: var(--accent-cyan); opacity: 0.6; margin-left: 1rem; font-family: var(--font-mono);">Loading...</div>
             </div>
         </div>
 
@@ -1214,25 +1213,22 @@
             OPENFOOTBALL_BASE: 'https://raw.githubusercontent.com/openfootball/football.json/master',
             REFRESH_INTERVAL: 300000, // 5 minutes (static data)
             MAP_STYLE: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
-            
-            // PRIORITY LEAGUES - Load first for fast initial render (5 top leagues only)
-            PRIORITY_LEAGUES: {
+            // League files from openfootball/football.json - ALL AVAILABLE
+            LEAGUE_FILES: {
+                // Top 5 European Leagues
                 'premier-league': { file: '2025-26/en.1.json', name: 'English Premier League', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', country: 'England' },
-                'la-liga': { file: '2025-26/es.1.json', name: 'Spanish La Liga', flag: '🇪🇸', country: 'Spain' },
-                'bundesliga': { file: '2025-26/de.1.json', name: 'German Bundesliga', flag: '🇩🇪', country: 'Germany' },
-                'serie-a': { file: '2025-26/it.1.json', name: 'Italian Serie A', flag: '🇮🇹', country: 'Italy' },
-                'ligue-1': { file: '2025-26/fr.1.json', name: 'French Ligue 1', flag: '🇫🇷', country: 'France' }
-            },
-            
-            // SECONDARY LEAGUES - Load in background after initial render
-            SECONDARY_LEAGUES: {
                 'championship': { file: '2025-26/en.2.json', name: 'EFL Championship', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', country: 'England' },
                 'league-one': { file: '2025-26/en.3.json', name: 'EFL League One', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', country: 'England' },
                 'league-two': { file: '2025-26/en.4.json', name: 'EFL League Two', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', country: 'England' },
+                'la-liga': { file: '2025-26/es.1.json', name: 'Spanish La Liga', flag: '🇪🇸', country: 'Spain' },
                 'la-liga-2': { file: '2025-26/es.2.json', name: 'Spanish Segunda', flag: '🇪🇸', country: 'Spain' },
+                'bundesliga': { file: '2025-26/de.1.json', name: 'German Bundesliga', flag: '🇩🇪', country: 'Germany' },
                 'bundesliga-2': { file: '2025-26/de.2.json', name: '2. Bundesliga', flag: '🇩🇪', country: 'Germany' },
+                'serie-a': { file: '2025-26/it.1.json', name: 'Italian Serie A', flag: '🇮🇹', country: 'Italy' },
                 'serie-b': { file: '2025-26/it.2.json', name: 'Italian Serie B', flag: '🇮🇹', country: 'Italy' },
+                'ligue-1': { file: '2025-26/fr.1.json', name: 'French Ligue 1', flag: '🇫🇷', country: 'France' },
                 'ligue-2': { file: '2025-26/fr.2.json', name: 'French Ligue 2', flag: '🇫🇷', country: 'France' },
+                // Other European
                 'eredivisie': { file: '2025-26/nl.1.json', name: 'Dutch Eredivisie', flag: '🇳🇱', country: 'Netherlands' },
                 'primeira-liga': { file: '2025-26/pt.1.json', name: 'Portuguese Liga', flag: '🇵🇹', country: 'Portugal' },
                 'belgian-pro': { file: '2025-26/be.1.json', name: 'Belgian Pro League', flag: '🇧🇪', country: 'Belgium' },
@@ -1241,25 +1237,13 @@
                 'super-league-gr': { file: '2025-26/gr.1.json', name: 'Greek Super League', flag: '🇬🇷', country: 'Greece' },
                 'bundesliga-at': { file: '2025-26/at.1.json', name: 'Austrian Bundesliga', flag: '🇦🇹', country: 'Austria' }
             },
-            
-            // Combined for compatibility
-            get LEAGUE_FILES() {
-                return { ...this.PRIORITY_LEAGUES, ...this.SECONDARY_LEAGUES };
-            },
-            
             // Weather API (free, no key)
             WEATHER_API: 'https://api.open-meteo.com/v1/forecast',
             // ESPN API (free, no key, hidden endpoints)
             ESPN_API: 'https://site.api.espn.com/apis/site/v2/sports',
-            
-            // PRIORITY ESPN - Load first
-            PRIORITY_ESPN: {
+            ESPN_LEAGUES: {
                 'nba': { sport: 'basketball', league: 'nba', name: 'NBA', flag: '🏀' },
-                'nhl': { sport: 'hockey', league: 'nhl', name: 'NHL', flag: '🏒' }
-            },
-            
-            // SECONDARY ESPN - Load in background
-            SECONDARY_ESPN: {
+                'nhl': { sport: 'hockey', league: 'nhl', name: 'NHL', flag: '🏒' },
                 'afl': { sport: 'australian-football', league: 'afl', name: 'AFL', flag: '🏉' },
                 'mls': { sport: 'soccer', league: 'usa.1', name: 'MLS', flag: '🇺🇸' },
                 'liga-mx': { sport: 'soccer', league: 'mex.1', name: 'Liga MX', flag: '🇲🇽' },
@@ -1268,11 +1252,6 @@
                 'j-league': { sport: 'soccer', league: 'jpn.1', name: 'J-League', flag: '🇯🇵' },
                 'india-isl': { sport: 'soccer', league: 'ind.1', name: 'India ISL', flag: '🇮🇳' },
                 'saudi-pro': { sport: 'soccer', league: 'sau.1', name: 'Saudi Pro', flag: '🇸🇦' }
-            },
-            
-            // Combined for compatibility
-            get ESPN_LEAGUES() {
-                return { ...this.PRIORITY_ESPN, ...this.SECONDARY_ESPN };
             }
         };
 
@@ -1564,54 +1543,6 @@
         };
 
         // ============================================================================
-        // CACHE CONFIGURATION (15-minute TTL)
-        // ============================================================================
-        const CACHE = {
-            TTL_MS: 15 * 60 * 1000, // 15 minutes
-            KEYS: {
-                OPENFOOTBALL: 'sm_cache_openfootball',
-                ESPN: 'sm_cache_espn',
-                TIMESTAMP: 'sm_cache_timestamp'
-            },
-            
-            get(key) {
-                try {
-                    const data = localStorage.getItem(key);
-                    const timestamp = localStorage.getItem(this.KEYS.TIMESTAMP + '_' + key);
-                    if (!data || !timestamp) return null;
-                    if (Date.now() - parseInt(timestamp) > this.TTL_MS) {
-                        this.clear(key);
-                        return null;
-                    }
-                    return JSON.parse(data);
-                } catch (e) {
-                    console.warn('Cache read failed:', e);
-                    return null;
-                }
-            },
-            
-            set(key, data) {
-                try {
-                    localStorage.setItem(key, JSON.stringify(data));
-                    localStorage.setItem(this.KEYS.TIMESTAMP + '_' + key, Date.now().toString());
-                } catch (e) {
-                    console.warn('Cache write failed:', e);
-                }
-            },
-            
-            clear(key) {
-                localStorage.removeItem(key);
-                localStorage.removeItem(this.KEYS.TIMESTAMP + '_' + key);
-            },
-            
-            getAge(key) {
-                const timestamp = localStorage.getItem(this.KEYS.TIMESTAMP + '_' + key);
-                if (!timestamp) return null;
-                return Math.round((Date.now() - parseInt(timestamp)) / 1000 / 60); // minutes
-            }
-        };
-
-        // ============================================================================
         // STATE
         // ============================================================================
         let map = null;
@@ -1619,19 +1550,11 @@
         let allMatches = [];
         let activeLeague = 'all';
         let activeLayers = { live: true, upcoming: true, weather: false, movement: true };
-        let loadingState = { openfootball: false, espn: false };
 
         // ============================================================================
         // INITIALIZE MAP
         // ============================================================================
-        let mapLoaded = false;
-        let dataLoaded = false;
-        let pendingMatches = null;
-        
         function initMap() {
-            // Start data fetch IMMEDIATELY (don't wait for map)
-            fetchAllMatches();
-            
             map = new maplibregl.Map({
                 container: 'map',
                 style: CONFIG.MAP_STYLE,
@@ -1645,12 +1568,7 @@
             
             map.on('load', () => {
                 console.log('Map loaded');
-                mapLoaded = true;
-                // If data arrived before map loaded, plot it now
-                if (pendingMatches) {
-                    plotMatchesOnMap();
-                    pendingMatches = null;
-                }
+                fetchAllMatches();
             });
         }
 
@@ -1963,113 +1881,37 @@
             return null;
         }
 
-        // ============================================================================
-        // FETCH MATCHES - With caching and parallel loading
-        // ============================================================================
-        async function fetchAllMatches() {
-            console.log('Fetching matches...');
-            allMatches = [];
-            
-            // Check caches first
-            const cachedOpenFootball = CACHE.get(CACHE.KEYS.OPENFOOTBALL);
-            const cachedESPN = CACHE.get(CACHE.KEYS.ESPN);
-            const cacheAge = CACHE.getAge(CACHE.KEYS.OPENFOOTBALL);
-            
-            // If we have valid cache, use it immediately (instant load!)
-            if (cachedOpenFootball && cachedESPN) {
-                console.log(`Using cached data (${cacheAge}m old)`);
-                allMatches = [...cachedOpenFootball, ...cachedESPN];
-                updateUI();
-                plotMatchesOnMap();
-                updateLoadingStatus(`Loaded from cache (${cacheAge}m ago) • ${allMatches.length} matches`);
-                
-                // Background refresh if cache > 10 minutes old
-                if (cacheAge > 10) {
-                    setTimeout(() => refreshDataInBackground(), 100);
-                }
-                return;
-            }
-            
-            // No cache - use TIERED LOADING for fast initial render
-            updateLoadingStatus('Loading top leagues...');
-            
-            // PHASE 1: Load priority leagues only (5 soccer + NBA/NHL = 7 requests)
-            const [priorityFootball, priorityESPN] = await Promise.all([
-                fetchLeagues(CONFIG.PRIORITY_LEAGUES),
-                fetchESPNLeagues(CONFIG.PRIORITY_ESPN)
-            ]);
-            
-            allMatches = [...priorityFootball, ...priorityESPN];
-            updateUI();
-            plotMatchesOnMap();
-            updateLoadingStatus(`${allMatches.length} matches (loading more...)`);
-            
-            // PHASE 2: Load secondary leagues in background (non-blocking)
-            setTimeout(async () => {
-                const [secondaryFootball, secondaryESPN] = await Promise.all([
-                    fetchLeagues(CONFIG.SECONDARY_LEAGUES),
-                    fetchESPNLeagues(CONFIG.SECONDARY_ESPN)
-                ]);
-                
-                allMatches = [...priorityFootball, ...priorityESPN, ...secondaryFootball, ...secondaryESPN];
-                
-                // Cache the complete results
-                CACHE.set(CACHE.KEYS.OPENFOOTBALL, [...priorityFootball, ...secondaryFootball]);
-                CACHE.set(CACHE.KEYS.ESPN, [...priorityESPN, ...secondaryESPN]);
-                
-                updateUI();
-                plotMatchesOnMap();
-                updateLoadingStatus(`Loaded ${allMatches.length} matches`);
-            }, 50);
-        }
-        
-        // Background refresh without blocking UI
-        async function refreshDataInBackground() {
-            console.log('Background refresh...');
-            const [openFootballMatches, espnMatches] = await Promise.all([
-                fetchOpenFootballData(),
-                fetchESPNData()
-            ]);
-            
-            const newMatches = [...openFootballMatches, ...espnMatches];
-            
-            // Only update if we got data
-            if (newMatches.length > 0) {
-                allMatches = newMatches;
-                CACHE.set(CACHE.KEYS.OPENFOOTBALL, openFootballMatches);
-                CACHE.set(CACHE.KEYS.ESPN, espnMatches);
-                updateUI();
-                plotMatchesOnMap();
-                console.log('Background refresh complete');
-            }
-        }
-        
-        // Update loading status in the header
-        function updateLoadingStatus(message) {
-            const statusEl = document.getElementById('loading-status');
-            if (statusEl) {
-                statusEl.textContent = message;
-                statusEl.style.opacity = '1';
-                setTimeout(() => { statusEl.style.opacity = '0.6'; }, 2000);
-            }
+            // Default: random location in Europe/Americas
+            return [40 + (Math.random() - 0.5) * 40, 0 + (Math.random() - 0.5) * 80];
         }
 
         // ============================================================================
-        // FETCH LEAGUES (configurable - for tiered loading)
+        // FETCH MATCHES FROM OpenFootball (GitHub-hosted JSON, no API key)
         // ============================================================================
-        async function fetchLeagues(leagueConfig) {
-            const leagueKeys = Object.keys(leagueConfig);
-            let matches = [];
+        async function fetchAllMatches() {
+            console.log('Fetching matches from OpenFootball...');
+            document.getElementById('match-grid').innerHTML = `
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                    <div>Loading fixtures from OpenFootball...</div>
+                </div>
+            `;
+
+            allMatches = [];
+            const leagueKeys = Object.keys(CONFIG.LEAGUE_FILES);
             
+            // Fetch all leagues in parallel
             const fetchPromises = leagueKeys.map(async (leagueKey) => {
-                const league = leagueConfig[leagueKey];
+                const league = CONFIG.LEAGUE_FILES[leagueKey];
                 try {
                     const url = `${CONFIG.OPENFOOTBALL_BASE}/${league.file}`;
                     const response = await fetch(url);
+                    
                     if (response.ok) {
                         const data = await response.json();
                         if (data.matches && Array.isArray(data.matches)) {
-                            return parseOpenFootballMatches(data.matches, leagueKey, league, data.name);
+                            const parsed = parseOpenFootballMatches(data.matches, leagueKey, league, data.name);
+                            return parsed;
                         }
                     }
                 } catch (e) {
@@ -2078,25 +1920,60 @@
                 return [];
             });
 
+            // Wait for all fetches
             const results = await Promise.all(fetchPromises);
-            results.forEach(m => { matches = matches.concat(m); });
-            return processMatches(matches);
-        }
-        
-        // Fetch ESPN leagues (configurable)
-        async function fetchESPNLeagues(leagueConfig) {
-            const leagueKeys = Object.keys(leagueConfig);
-            let matches = [];
+            results.forEach(matches => {
+                allMatches = allMatches.concat(matches);
+            });
+
+            // Filter to upcoming matches only (no final score) and within next 30 days
+            const now = new Date();
+            const thirtyDaysLater = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
             
-            const fetchPromises = leagueKeys.map(async (leagueKey) => {
-                const league = leagueConfig[leagueKey];
+            allMatches = allMatches.filter(m => {
+                const matchDate = new Date(m.startTime);
+                return matchDate >= now && matchDate <= thirtyDaysLater;
+            });
+
+            // Remove duplicates
+            const seen = new Set();
+            allMatches = allMatches.filter(m => {
+                const key = `${m.home}-${m.away}-${m.startTime}`;
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+
+            // Sort by date
+            allMatches.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+
+            console.log(`Loaded ${allMatches.length} upcoming matches from OpenFootball`);
+            
+            // Now fetch ESPN sports (NBA, NHL, AFL, etc.)
+            await fetchESPNSports();
+            
+            updateUI();
+            plotMatchesOnMap();
+        }
+
+        // ============================================================================
+        // FETCH ESPN SPORTS (NBA, NHL, AFL, South American soccer)
+        // ============================================================================
+        async function fetchESPNSports() {
+            console.log('Fetching ESPN sports...');
+            const espnLeagues = Object.keys(CONFIG.ESPN_LEAGUES);
+            
+            const fetchPromises = espnLeagues.map(async (leagueKey) => {
+                const league = CONFIG.ESPN_LEAGUES[leagueKey];
                 try {
                     const url = `${CONFIG.ESPN_API}/${league.sport}/${league.league}/scoreboard`;
                     const response = await fetch(url);
+                    
                     if (response.ok) {
                         const data = await response.json();
                         if (data.events && Array.isArray(data.events)) {
-                            return parseESPNEvents(data.events, leagueKey, league);
+                            const parsed = parseESPNEvents(data.events, leagueKey, league);
+                            return parsed;
                         }
                     }
                 } catch (e) {
@@ -2106,43 +1983,13 @@
             });
 
             const results = await Promise.all(fetchPromises);
-            results.forEach(m => { matches = matches.concat(m); });
-            return matches;
-        }
-        
-        // Process matches (filter, dedupe, sort)
-        function processMatches(matches) {
-            const now = new Date();
-            const thirtyDaysLater = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+            let espnCount = 0;
+            results.forEach(matches => {
+                allMatches = allMatches.concat(matches);
+                espnCount += matches.length;
+            });
             
-            matches = matches.filter(m => {
-                const matchDate = new Date(m.startTime);
-                return matchDate >= now && matchDate <= thirtyDaysLater;
-            });
-
-            const seen = new Set();
-            matches = matches.filter(m => {
-                const key = `${m.home}-${m.away}-${m.startTime}`;
-                if (seen.has(key)) return false;
-                seen.add(key);
-                return true;
-            });
-
-            matches.sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
-            return matches;
-        }
-
-        // Legacy function for background refresh
-        async function fetchOpenFootballData() {
-            console.log('Fetching all OpenFootball leagues...');
-            const allLeagues = { ...CONFIG.PRIORITY_LEAGUES, ...CONFIG.SECONDARY_LEAGUES };
-            return fetchLeagues(allLeagues);
-        }
-        
-        async function fetchESPNData() {
-            console.log('Fetching all ESPN sports...');
-            const allESPN = { ...CONFIG.PRIORITY_ESPN, ...CONFIG.SECONDARY_ESPN };
-            return fetchESPNLeagues(allESPN);
+            console.log(`Added ${espnCount} matches from ESPN`);
         }
 
         // ============================================================================
@@ -2300,13 +2147,6 @@
         // PLOT MATCHES ON MAP
         // ============================================================================
         function plotMatchesOnMap() {
-            // If map not loaded yet, mark data as pending
-            if (!mapLoaded || !map) {
-                pendingMatches = true;
-                console.log('Data ready, waiting for map...');
-                return;
-            }
-            
             // Remove existing markers
             markers.forEach(m => m.remove());
             markers = [];
@@ -3058,10 +2898,8 @@
             initMap();
             updateClock();
             setInterval(updateClock, 1000);
-            // Use background refresh to avoid blocking UI
-            setInterval(refreshDataInBackground, CONFIG.REFRESH_INTERVAL);
+            setInterval(fetchAllMatches, CONFIG.REFRESH_INTERVAL);
         });
     </script>
 </body>
 </html>
-
