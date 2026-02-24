@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N0tail (Johan Sundstein) - #1 Highest Earning Esports Player | Apuesta Esports</title>
-    <meta name="description" content="N0tail (Johan Sundstein) profile - The highest-earning esports player in history with $7.1M+ in prize money. Two-time TI champion, OG founder, Dota 2 legend.">
-    <meta name="keywords" content="N0tail, Johan Sundstein, OG Dota 2, TI winner, highest earning esports player, Dota 2 support">
+    <title>N0tail - Johan Sundstein | #1 Highest Earning Esports Player | Apuesta Esports</title>
+    <meta name="description" content="N0tail (Johan Sundstein) is the highest-earning esports player in history with $7.18M in career earnings. Two-time TI champion with OG, captain and support player from Denmark.">
+    <meta name="keywords" content="N0tail, Johan Sundstein, Dota 2, OG, The International, esports player, Denmark, highest earning gamer">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="N0tail - #1 Highest Earning Esports Player">
-    <meta property="og:description" content="Johan Sundstein: Two-time TI champion, OG founder, $7.1M+ in career earnings.">
+    <meta property="og:title" content="N0tail - #1 Highest Earning Esports Player | Apuesta Esports">
+    <meta property="og:description" content="Johan Sundstein is the highest-earning esports player in history with $7.18M. Two-time TI champion with OG.">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://www.apuestaesports.com/players/n0tail.html">
+    <meta property="og:image" content="https://www.apuestaesports.com/players/og-n0tail.png">
+    <meta property="profile:first_name" content="Johan">
+    <meta property="profile:last_name" content="Sundstein">
+    <meta property="profile:username" content="N0tail">
     
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="N0tail - #1 Highest Earning Esports Player">
-    <meta name="twitter:description" content="Johan Sundstein: Two-time TI champion, OG founder, $7.1M+ career earnings.">
+    <meta name="twitter:description" content="Two-time TI champion with $7.18M in career earnings.">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.apuestaesports.com/players/n0tail.html">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
@@ -106,38 +113,26 @@
             border-radius: 8px;
             font-weight: 600;
             font-size: 0.9rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
         }
         
         /* Breadcrumb */
         .breadcrumb {
-            padding: 100px 24px 20px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-        }
-        
-        .breadcrumb a {
-            color: var(--text-muted);
+            padding: 80px 24px 20px;
             font-size: 0.9rem;
-            transition: color 0.2s;
+            color: var(--text-muted);
         }
         
-        .breadcrumb a:hover { color: var(--text-secondary); }
-        
-        .breadcrumb span { color: var(--text-muted); margin: 0 8px; }
-        
-        .breadcrumb-current { color: var(--text-secondary); font-size: 0.9rem; }
+        .breadcrumb a { color: var(--text-secondary); }
+        .breadcrumb a:hover { color: var(--text-primary); }
+        .breadcrumb span { margin: 0 8px; }
         
         /* Player Header */
         .player-header {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 20px 24px 60px;
+            padding: 0 24px 60px;
             display: grid;
             grid-template-columns: auto 1fr;
             gap: 40px;
@@ -145,41 +140,52 @@
         }
         
         .player-avatar {
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
             border-radius: 24px;
-            background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 5rem;
+            font-size: 6rem;
+            position: relative;
+        }
+        
+        .player-rank-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: #000;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
         }
         
         .player-info h1 {
             font-size: 3rem;
             font-weight: 800;
             margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .player-rank-badge {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #000;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-        
-        .player-real-name {
+        .player-realname {
             font-size: 1.25rem;
             color: var(--text-secondary);
             margin-bottom: 16px;
         }
         
-        .player-meta-row {
+        .player-meta {
             display: flex;
             gap: 24px;
             flex-wrap: wrap;
@@ -195,33 +201,41 @@
         
         .meta-item .icon { font-size: 1.25rem; }
         
+        .game-badge {
+            padding: 6px 16px;
+            background: rgba(141, 82, 218, 0.2);
+            color: #B388FF;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
         .earnings-highlight {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 24px 32px;
-            display: inline-flex;
-            align-items: center;
-            gap: 16px;
+            display: inline-block;
         }
         
         .earnings-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 8px;
         }
         
         .earnings-value {
             font-size: 2.5rem;
             font-weight: 800;
-            font-family: 'JetBrains Mono', monospace;
             color: var(--yellow);
+            font-family: 'JetBrains Mono', monospace;
         }
         
-        /* Main Content */
-        main {
-            max-width: 1200px;
+        /* Content Grid */
+        .content-grid {
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 24px 80px;
             display: grid;
@@ -229,7 +243,7 @@
             gap: 40px;
         }
         
-        .content-section {
+        .card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
@@ -237,118 +251,140 @@
             margin-bottom: 24px;
         }
         
-        .content-section h2 {
-            font-size: 1.25rem;
-            margin-bottom: 20px;
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
-        .content-section h2 .icon { font-size: 1.5rem; }
+        .card h2 .icon { font-size: 1.5rem; }
         
-        .content-section p {
+        /* About Section */
+        .about-text {
             color: var(--text-secondary);
+            font-size: 1rem;
             line-height: 1.8;
-            margin-bottom: 16px;
         }
         
-        .content-section p:last-child { margin-bottom: 0; }
+        .about-text p { margin-bottom: 16px; }
+        .about-text p:last-child { margin-bottom: 0; }
         
-        /* Team History */
-        .team-history {
+        /* Achievements */
+        .achievement-list {
             list-style: none;
         }
         
-        .team-item {
+        .achievement-item {
             display: flex;
-            align-items: center;
+            align-items: start;
             gap: 16px;
             padding: 16px 0;
             border-bottom: 1px solid var(--border);
         }
         
-        .team-item:last-child { border-bottom: none; }
+        .achievement-item:last-child { border-bottom: none; }
         
-        .team-logo {
+        .achievement-icon {
             width: 48px;
             height: 48px;
-            border-radius: 12px;
             background: var(--bg-tertiary);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
+            flex-shrink: 0;
         }
         
-        .team-details h4 { font-size: 1rem; margin-bottom: 2px; }
+        .achievement-icon.gold { background: linear-gradient(135deg, #FFD700, #FFA500); }
         
-        .team-details span {
+        .achievement-details h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .achievement-details p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        /* Team History */
+        .team-timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+        
+        .team-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--border);
+        }
+        
+        .team-entry {
+            position: relative;
+            padding-bottom: 24px;
+        }
+        
+        .team-entry:last-child { padding-bottom: 0; }
+        
+        .team-entry::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background: var(--purple);
+            border-radius: 50%;
+        }
+        
+        .team-entry.current::before {
+            background: var(--yellow);
+            box-shadow: 0 0 10px var(--yellow);
+        }
+        
+        .team-years {
             font-size: 0.85rem;
             color: var(--text-muted);
+            margin-bottom: 4px;
         }
         
-        .team-highlight {
-            margin-left: auto;
-            padding: 4px 10px;
-            background: rgba(223, 253, 81, 0.1);
-            border: 1px solid var(--yellow);
-            border-radius: 6px;
-            color: var(--yellow);
-            font-size: 0.8rem;
+        .team-name {
             font-weight: 600;
+            font-size: 1.1rem;
         }
         
-        /* Achievements */
-        .achievements-grid {
+        .team-role {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
             display: grid;
-            gap: 12px;
-        }
-        
-        .achievement-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            background: var(--bg-tertiary);
-            border-radius: 10px;
-        }
-        
-        .achievement-icon {
-            font-size: 1.5rem;
-        }
-        
-        .achievement-info h4 {
-            font-size: 0.95rem;
-            margin-bottom: 2px;
-        }
-        
-        .achievement-info span {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-        
-        /* Sidebar */
-        .sidebar .content-section { padding: 24px; }
-        
-        .stat-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 16px;
         }
         
         .stat-item {
             background: var(--bg-tertiary);
-            padding: 16px;
-            border-radius: 10px;
+            border-radius: 12px;
+            padding: 20px;
             text-align: center;
         }
         
         .stat-value {
             font-size: 1.5rem;
             font-weight: 700;
+            color: var(--text-primary);
             font-family: 'JetBrains Mono', monospace;
-            color: var(--orange);
         }
         
         .stat-label {
@@ -359,33 +395,20 @@
             margin-top: 4px;
         }
         
-        /* Signature Heroes */
-        .heroes-list {
-            list-style: none;
-        }
-        
-        .hero-item {
+        /* Playstyle */
+        .playstyle-tags {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 8px;
         }
         
-        .hero-item:last-child { border-bottom: none; }
-        
-        .hero-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+        .playstyle-tag {
+            padding: 8px 16px;
             background: var(--bg-tertiary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
-        
-        .hero-name { font-weight: 500; }
         
         /* Related Players */
         .related-players {
@@ -399,7 +422,7 @@
             gap: 12px;
             padding: 12px;
             background: var(--bg-tertiary);
-            border-radius: 10px;
+            border-radius: 12px;
             transition: background 0.2s;
         }
         
@@ -408,92 +431,38 @@
         .related-avatar {
             width: 40px;
             height: 40px;
-            border-radius: 10px;
             background: var(--bg-card);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.25rem;
         }
         
-        .related-info h4 { font-size: 0.9rem; margin-bottom: 2px; }
-        .related-info span { font-size: 0.8rem; color: var(--text-muted); }
+        .related-info h4 { font-size: 0.95rem; }
+        .related-info p { font-size: 0.8rem; color: var(--text-muted); }
         
         /* Footer */
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border);
-            padding: 60px 24px 30px;
-        }
-        
-        .footer-content { max-width: 1400px; margin: 0 auto; }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-brand { max-width: 300px; }
-        .footer-brand .logo { font-size: 1.5rem; margin-bottom: 16px; display: inline-block; }
-        .footer-brand p { color: var(--text-muted); font-size: 0.9rem; }
-        
-        .footer-links h4 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            padding: 40px 24px;
+            text-align: center;
             color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-        
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 10px; }
-        .footer-links a { color: var(--text-secondary); font-size: 0.95rem; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--text-primary); }
-        
-        .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
         }
         
         /* Mobile */
         @media (max-width: 900px) {
-            .player-header {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
+            .player-header { grid-template-columns: 1fr; text-align: center; }
             .player-avatar { margin: 0 auto; }
-            
-            .player-meta-row { justify-content: center; }
-            
-            .earnings-highlight { margin: 0 auto; }
-            
-            main { grid-template-columns: 1fr; }
+            .content-grid { grid-template-columns: 1fr; }
         }
         
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            
-            .player-info h1 { font-size: 2rem; flex-direction: column; gap: 8px; }
-            
-            .player-avatar { width: 120px; height: 120px; font-size: 3rem; }
-            
-            .earnings-value { font-size: 1.8rem; }
-            
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-            .footer-brand { grid-column: 1 / -1; }
-            
-            .footer-bottom {
-                flex-direction: column;
-                gap: 16px;
-                text-align: center;
-            }
+            .player-info h1 { font-size: 2rem; }
+            .player-avatar { width: 150px; height: 150px; font-size: 4rem; }
         }
     </style>
 </head>
@@ -520,30 +489,29 @@
         <span>›</span>
         <a href="/players/">Players</a>
         <span>›</span>
-        <span class="breadcrumb-current">N0tail</span>
+        N0tail
     </div>
 
     <!-- Player Header -->
     <header class="player-header">
-        <div class="player-avatar">🏆</div>
+        <div class="player-avatar">
+            🇩🇰
+            <div class="player-rank-badge">#1</div>
+        </div>
         <div class="player-info">
-            <h1>
-                N0tail
-                <span class="player-rank-badge">#1 World</span>
-            </h1>
-            <div class="player-real-name">Johan Sundstein</div>
-            <div class="player-meta-row">
+            <h1>N0tail</h1>
+            <p class="player-realname">Johan Sundstein</p>
+            <div class="player-meta">
                 <div class="meta-item">
                     <span class="icon">🇩🇰</span>
                     <span>Denmark</span>
                 </div>
                 <div class="meta-item">
-                    <span class="icon">⚔️</span>
-                    <span>Dota 2</span>
+                    <span class="game-badge">Dota 2</span>
                 </div>
                 <div class="meta-item">
                     <span class="icon">🎂</span>
-                    <span>Born Oct 8, 1993</span>
+                    <span>Born: October 8, 1993</span>
                 </div>
                 <div class="meta-item">
                     <span class="icon">🎮</span>
@@ -551,175 +519,178 @@
                 </div>
             </div>
             <div class="earnings-highlight">
-                <div>
-                    <div class="earnings-label">Total Career Earnings</div>
-                    <div class="earnings-value">$7,184,163</div>
-                </div>
+                <div class="earnings-label">Career Earnings</div>
+                <div class="earnings-value">$7,184,163</div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
+    <!-- Content -->
+    <main class="content-grid">
         <div class="main-content">
-            <!-- Bio -->
-            <section class="content-section">
-                <h2><span class="icon">📖</span> Biography</h2>
-                <p>Johan "N0tail" Sundstein is a Danish professional Dota 2 player widely regarded as one of the greatest support players and captains in esports history. He is the co-founder and long-time captain of OG, one of the most successful Dota 2 organizations ever.</p>
-                <p>N0tail holds the distinction of being the highest-earning esports player of all time, primarily thanks to OG's back-to-back victories at The International 2018 and 2019 — an unprecedented achievement that cemented his legacy in competitive gaming.</p>
-                <p>Before his Dota 2 career, N0tail was a top Heroes of Newerth player. His transition to Dota 2 began with Fnatic in 2012, and he has been competing at the highest level ever since.</p>
-            </section>
+            <!-- About -->
+            <div class="card">
+                <h2><span class="icon">📖</span> About N0tail</h2>
+                <div class="about-text">
+                    <p>Johan "N0tail" Sundstein is a Danish professional Dota 2 player and the highest-earning esports player in history. Known for his exceptional leadership and innovative drafting, N0tail captained OG to back-to-back victories at The International 2018 and 2019, an unprecedented achievement in esports.</p>
+                    <p>Before transitioning to Dota 2, N0tail was a professional Heroes of Newerth player, where he was considered one of the best players in the world. His versatility allowed him to play multiple positions throughout his career, eventually settling into the support role where he became the strategic mastermind behind OG's success.</p>
+                    <p>N0tail is renowned for his positive attitude, flower-power philosophy, and ability to foster team synergy. He co-founded OG in 2015 and built it into the most successful Dota 2 organization in history. His leadership style emphasizes mental fortitude and team chemistry over pure mechanical skill.</p>
+                </div>
+            </div>
 
-            <!-- Playstyle -->
-            <section class="content-section">
-                <h2><span class="icon">🎯</span> Playstyle</h2>
-                <p>N0tail is known for his versatile, cerebral approach to the position 5 support role. As a captain, he excels at reading the game, making decisive shotcalls, and fostering team chemistry. His leadership style prioritizes adaptability and mental resilience — qualities that proved crucial during OG's legendary lower bracket runs at TI8 and TI9.</p>
-                <p>Mechanically, N0tail is adept at a wide range of support heroes, with particular mastery of playmakers like Io, Chen, and Treant Protector. He's known for his selfless playstyle, always prioritizing team objectives over personal statistics.</p>
-            </section>
-
-            <!-- Team History -->
-            <section class="content-section">
-                <h2><span class="icon">📋</span> Team History</h2>
-                <ul class="team-history">
-                    <li class="team-item">
-                        <div class="team-logo">🌸</div>
-                        <div class="team-details">
-                            <h4>OG</h4>
-                            <span>2015 - Present • Co-founder & Captain</span>
-                        </div>
-                        <span class="team-highlight">2x TI Champion</span>
-                    </li>
-                    <li class="team-item">
-                        <div class="team-logo">☁️</div>
-                        <div class="team-details">
-                            <h4>Cloud9</h4>
-                            <span>2014 - 2015</span>
+            <!-- Achievements -->
+            <div class="card">
+                <h2><span class="icon">🏆</span> Major Achievements</h2>
+                <ul class="achievement-list">
+                    <li class="achievement-item">
+                        <div class="achievement-icon gold">🏆</div>
+                        <div class="achievement-details">
+                            <h3>The International 2019 - Champion</h3>
+                            <p>$15,620,181 prize pool • Shanghai, China</p>
                         </div>
                     </li>
-                    <li class="team-item">
-                        <div class="team-logo">🦊</div>
-                        <div class="team-details">
-                            <h4>Fnatic</h4>
-                            <span>2012 - 2014</span>
+                    <li class="achievement-item">
+                        <div class="achievement-icon gold">🏆</div>
+                        <div class="achievement-details">
+                            <h3>The International 2018 - Champion</h3>
+                            <p>$11,234,158 prize pool • Vancouver, Canada</p>
+                        </div>
+                    </li>
+                    <li class="achievement-item">
+                        <div class="achievement-icon">🥇</div>
+                        <div class="achievement-details">
+                            <h3>MDL Disneyland Paris Major 2019 - Champion</h3>
+                            <p>OG defeated Team Liquid 3-2 in the Grand Final</p>
+                        </div>
+                    </li>
+                    <li class="achievement-item">
+                        <div class="achievement-icon">🥇</div>
+                        <div class="achievement-details">
+                            <h3>DreamLeague Season 11 Major - Champion</h3>
+                            <p>Stockholm, Sweden 2019</p>
+                        </div>
+                    </li>
+                    <li class="achievement-item">
+                        <div class="achievement-icon">🥇</div>
+                        <div class="achievement-details">
+                            <h3>4x Dota 2 Major Champion</h3>
+                            <p>Frankfurt, Manila, Boston, Kiev Majors</p>
                         </div>
                     </li>
                 </ul>
-            </section>
+            </div>
 
-            <!-- Major Achievements -->
-            <section class="content-section">
-                <h2><span class="icon">🏆</span> Major Achievements</h2>
-                <div class="achievements-grid">
-                    <div class="achievement-item">
-                        <span class="achievement-icon">🥇</span>
-                        <div class="achievement-info">
-                            <h4>The International 2019</h4>
-                            <span>1st Place • $15,620,181</span>
-                        </div>
-                    </div>
-                    <div class="achievement-item">
-                        <span class="achievement-icon">🥇</span>
-                        <div class="achievement-info">
-                            <h4>The International 2018</h4>
-                            <span>1st Place • $11,234,158</span>
-                        </div>
-                    </div>
-                    <div class="achievement-item">
-                        <span class="achievement-icon">🥇</span>
-                        <div class="achievement-info">
-                            <h4>4x Major Champion</h4>
-                            <span>Frankfurt, Manila, Boston, Kiev</span>
-                        </div>
-                    </div>
-                    <div class="achievement-item">
-                        <span class="achievement-icon">🥈</span>
-                        <div class="achievement-info">
-                            <h4>MDL Disneyland Paris Major 2019</h4>
-                            <span>2nd Place</span>
-                        </div>
-                    </div>
-                    <div class="achievement-item">
-                        <span class="achievement-icon">🥉</span>
-                        <div class="achievement-info">
-                            <h4>The International 2017</h4>
-                            <span>7-8th Place</span>
-                        </div>
-                    </div>
+            <!-- Playstyle -->
+            <div class="card">
+                <h2><span class="icon">🎯</span> Playstyle & Role</h2>
+                <div class="about-text">
+                    <p>As a Position 5 hard support and in-game captain, N0tail excels at creating space for his team, providing vision control, and making crucial shot-calling decisions during team fights. His hero pool includes Chen, Io (Wisp), and Enchantress, known for his micro-management skills.</p>
+                    <p>N0tail's greatest strength lies in his ability to read the game state and adapt strategies on the fly. He's known for unconventional picks and creative drafting that keeps opponents guessing. His calm demeanor under pressure has helped OG make legendary lower bracket runs at multiple Internationals.</p>
                 </div>
-            </section>
+                <div class="playstyle-tags" style="margin-top: 20px;">
+                    <span class="playstyle-tag">🎯 Shot-caller</span>
+                    <span class="playstyle-tag">🧠 Strategic Mind</span>
+                    <span class="playstyle-tag">🌸 Flower Power</span>
+                    <span class="playstyle-tag">👁️ Vision Control</span>
+                    <span class="playstyle-tag">🎪 Micro-intensive</span>
+                    <span class="playstyle-tag">💪 Mental Fortitude</span>
+                </div>
+            </div>
         </div>
 
-        <!-- Sidebar -->
         <aside class="sidebar">
             <!-- Quick Stats -->
-            <div class="content-section">
-                <h2><span class="icon">📊</span> Quick Stats</h2>
-                <div class="stat-grid">
+            <div class="card">
+                <h2><span class="icon">📊</span> Career Stats</h2>
+                <div class="stats-grid">
                     <div class="stat-item">
-                        <div class="stat-value">2</div>
+                        <div class="stat-value">$7.18M</div>
+                        <div class="stat-label">Earnings</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">2x</div>
                         <div class="stat-label">TI Wins</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value">4</div>
-                        <div class="stat-label">Majors Won</div>
+                        <div class="stat-value">4x</div>
+                        <div class="stat-label">Major Wins</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value">128+</div>
+                        <div class="stat-value">125+</div>
                         <div class="stat-label">Tournaments</div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-value">10+</div>
-                        <div class="stat-label">Years Pro</div>
+                </div>
+            </div>
+
+            <!-- Team History -->
+            <div class="card">
+                <h2><span class="icon">👥</span> Team History</h2>
+                <div class="team-timeline">
+                    <div class="team-entry current">
+                        <div class="team-years">2015 - Present</div>
+                        <div class="team-name">OG</div>
+                        <div class="team-role">Co-founder, Captain</div>
+                    </div>
+                    <div class="team-entry">
+                        <div class="team-years">2014 - 2015</div>
+                        <div class="team-name">Cloud9</div>
+                        <div class="team-role">Support</div>
+                    </div>
+                    <div class="team-entry">
+                        <div class="team-years">2012 - 2014</div>
+                        <div class="team-name">Fnatic</div>
+                        <div class="team-role">Support / Core</div>
+                    </div>
+                    <div class="team-entry">
+                        <div class="team-years">2011 - 2012</div>
+                        <div class="team-name">Fnatic.MSI (HoN)</div>
+                        <div class="team-role">Core Player</div>
                     </div>
                 </div>
             </div>
 
             <!-- Signature Heroes -->
-            <div class="content-section">
-                <h2><span class="icon">⭐</span> Signature Heroes</h2>
-                <ul class="heroes-list">
-                    <li class="hero-item">
-                        <div class="hero-icon">💫</div>
-                        <span class="hero-name">Io (Wisp)</span>
-                    </li>
-                    <li class="hero-item">
-                        <div class="hero-icon">🐉</div>
-                        <span class="hero-name">Chen</span>
-                    </li>
-                    <li class="hero-item">
-                        <div class="hero-icon">🌳</div>
-                        <span class="hero-name">Treant Protector</span>
-                    </li>
-                    <li class="hero-item">
-                        <div class="hero-icon">🔮</div>
-                        <span class="hero-name">Oracle</span>
-                    </li>
-                </ul>
+            <div class="card">
+                <h2><span class="icon">⚔️</span> Signature Heroes</h2>
+                <div class="playstyle-tags">
+                    <span class="playstyle-tag">🌳 Chen</span>
+                    <span class="playstyle-tag">💫 Io</span>
+                    <span class="playstyle-tag">🦌 Enchantress</span>
+                    <span class="playstyle-tag">🔮 Oracle</span>
+                    <span class="playstyle-tag">🌊 Treant Protector</span>
+                </div>
             </div>
 
-            <!-- OG Teammates -->
-            <div class="content-section">
-                <h2><span class="icon">👥</span> OG Teammates</h2>
+            <!-- Related Players -->
+            <div class="card">
+                <h2><span class="icon">🤝</span> Notable Teammates</h2>
                 <div class="related-players">
                     <a href="/players/jerax.html" class="related-player">
-                        <div class="related-avatar">🎮</div>
+                        <div class="related-avatar">🇫🇮</div>
                         <div class="related-info">
                             <h4>JerAx</h4>
-                            <span>#2 • $6.5M</span>
+                            <p>2-time TI Champion</p>
                         </div>
                     </a>
                     <a href="/players/ana.html" class="related-player">
-                        <div class="related-avatar">🎮</div>
+                        <div class="related-avatar">🇦🇺</div>
                         <div class="related-info">
                             <h4>ana</h4>
-                            <span>#4 • $6.0M</span>
+                            <p>2-time TI Champion</p>
                         </div>
                     </a>
                     <a href="/players/ceb.html" class="related-player">
-                        <div class="related-avatar">🎮</div>
+                        <div class="related-avatar">🇫🇷</div>
                         <div class="related-info">
                             <h4>Ceb</h4>
-                            <span>#5 • $5.9M</span>
+                            <p>2-time TI Champion</p>
+                        </div>
+                    </a>
+                    <a href="/players/topson.html" class="related-player">
+                        <div class="related-avatar">🇫🇮</div>
+                        <div class="related-info">
+                            <h4>Topson</h4>
+                            <p>2-time TI Champion</p>
                         </div>
                     </a>
                 </div>
@@ -729,63 +700,69 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="/" class="logo">APUESTA ESPORTS</a>
-                    <p>The world's most comprehensive esports reference. Teams, players, countries, tournaments, and betting guides.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Games</h4>
-                    <ul>
-                        <li><a href="/games/cs2.html">Counter-Strike 2</a></li>
-                        <li><a href="/games/dota2.html">Dota 2</a></li>
-                        <li><a href="/games/lol.html">League of Legends</a></li>
-                        <li><a href="/games/valorant.html">Valorant</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="/teams/">Team Rankings</a></li>
-                        <li><a href="/players/">Player Profiles</a></li>
-                        <li><a href="/countries/">Country Stats</a></li>
-                        <li><a href="/tournaments/">Tournaments</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Betting</h4>
-                    <ul>
-                        <li><a href="/live/">Live Odds</a></li>
-                        <li><a href="/betting/">Betting Guides</a></li>
-                        <li><a href="/betting/beginners.html">Beginner's Guide</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div>© 2026 Apuesta Esports. Data from Esports Earnings.</div>
-                <div class="footer-legal">
-                    <a href="/llms.txt">llms.txt</a>
-                    <a href="/sitemap.xml">Sitemap</a>
-                </div>
-            </div>
-        </div>
+        <p>© 2026 Apuesta Esports. Data from Esports Earnings. <a href="/players/" style="color: var(--orange);">Back to Players →</a></p>
     </footer>
 
-    <!-- JSON-LD -->
+    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Johan Sundstein",
         "alternateName": "N0tail",
-        "nationality": "Danish",
-        "birthDate": "1993-10-08",
-        "description": "Danish professional Dota 2 player, co-founder and captain of OG. Two-time The International champion and highest-earning esports player in history.",
         "url": "https://www.apuestaesports.com/players/n0tail.html",
+        "image": "https://www.apuestaesports.com/players/images/n0tail.jpg",
+        "birthDate": "1993-10-08",
+        "birthPlace": {
+            "@type": "Place",
+            "name": "Denmark"
+        },
+        "nationality": {
+            "@type": "Country",
+            "name": "Denmark"
+        },
+        "jobTitle": "Professional Esports Player",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "OG",
+            "url": "https://ogs.gg"
+        },
+        "knowsAbout": ["Dota 2", "Esports", "Professional Gaming"],
+        "award": [
+            "The International 2018 Champion",
+            "The International 2019 Champion",
+            "Highest-earning esports player"
+        ],
         "sameAs": [
             "https://twitter.com/OG_BDN0tail",
+            "https://www.instagram.com/n0telephones/",
             "https://liquipedia.net/dota2/N0tail"
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.apuestaesports.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Players",
+                "item": "https://www.apuestaesports.com/players/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "N0tail",
+                "item": "https://www.apuestaesports.com/players/n0tail.html"
+            }
         ]
     }
     </script>

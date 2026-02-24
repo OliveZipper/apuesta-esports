@@ -3,16 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esports Games - CS2, Dota 2, LoL, Valorant & More | Apuesta Esports</title>
-    <meta name="description" content="Complete guide to major esports games. Counter-Strike 2, Dota 2, League of Legends, Valorant, Fortnite, and more with prize pools, top teams, and tournaments.">
+    <title>Esports Games - Complete Guide to Competitive Gaming | Apuesta Esports</title>
+    <meta name="description" content="Explore 10+ major esports titles including CS2, Dota 2, League of Legends, Valorant, and more. Complete guides with team rankings, player profiles, tournaments, and betting markets.">
+    <meta name="keywords" content="esports games, competitive gaming, CS2, Dota 2, League of Legends, Valorant, Fortnite, esports tournaments, gaming guide">
     
+    <!-- Open Graph -->
+    <meta property="og:title" content="Esports Games - Complete Guide to Competitive Gaming">
+    <meta property="og:description" content="Explore 10+ major esports titles with complete guides, team rankings, player profiles, and betting markets.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.apuestaesports.com/games/">
+    <meta property="og:image" content="https://www.apuestaesports.com/og-games.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Esports Games - Complete Guide | Apuesta Esports">
+    <meta name="twitter:description" content="Explore 10+ major esports titles with complete guides and betting markets.">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.apuestaesports.com/games/">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
             --bg-card: #15151f;
             --orange: #FF6B2F;
             --purple: #8D52DA;
@@ -23,59 +45,462 @@
             --border: #2a2a3a;
             --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
         }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
         a { color: inherit; text-decoration: none; }
         
-        nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 1000; padding: 0 24px; }
-        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-        .logo { font-weight: 800; font-size: 1.25rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .nav-links { display: flex; gap: 32px; list-style: none; }
-        .nav-links a { color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; }
-        .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 24px;
+        }
         
-        .hero { padding: 140px 24px 80px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(141, 82, 218, 0.15) 0%, transparent 50%), var(--bg-primary); }
-        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 16px; }
-        .hero p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
         
-        .container { max-width: 1400px; margin: 0 auto; padding: 60px 24px; }
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
         
-        .games-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 24px; }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
         
-        .game-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: transform 0.2s, border-color 0.2s; }
-        .game-card:hover { transform: translateY(-4px); border-color: var(--purple); }
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
         
-        .game-header { padding: 32px; border-bottom: 1px solid var(--border); }
-        .game-icon { font-size: 4rem; margin-bottom: 16px; }
-        .game-header h2 { font-size: 1.75rem; margin-bottom: 8px; }
-        .game-meta { display: flex; gap: 16px; flex-wrap: wrap; }
-        .game-tag { background: var(--bg-secondary); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; color: var(--text-secondary); }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
         
-        .game-body { padding: 24px 32px; }
-        .game-body p { color: var(--text-secondary); margin-bottom: 20px; line-height: 1.7; }
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
         
-        .game-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
-        .stat { text-align: center; padding: 16px; background: var(--bg-secondary); border-radius: 10px; }
-        .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--yellow); }
-        .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
+        }
         
-        .game-links { display: flex; gap: 12px; }
-        .btn { padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; flex: 1; text-align: center; }
-        .btn-primary { background: var(--gradient); color: white; }
-        .btn-primary:hover { transform: translateY(-2px); }
-        .btn-secondary { background: var(--bg-secondary); border: 1px solid var(--border); }
-        .btn-secondary:hover { border-color: var(--purple); }
+        /* Page Header */
+        .page-header {
+            padding: 140px 24px 60px;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(141, 82, 218, 0.15) 0%, transparent 50%),
+                var(--bg-primary);
+        }
         
-        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; color: var(--text-muted); }
+        .page-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .page-header h1 .gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--text-primary);
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+        }
+        
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            padding: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Featured Games */
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .featured-games {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+        
+        .featured-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            gap: 32px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--purple);
+        }
+        
+        .featured-icon {
+            font-size: 4rem;
+            flex-shrink: 0;
+        }
+        
+        .featured-content h3 {
+            font-size: 1.75rem;
+            margin-bottom: 8px;
+        }
+        
+        .featured-meta {
+            display: flex;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        
+        .featured-content p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .featured-stats {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .featured-stat {
+            background: var(--bg-tertiary);
+            padding: 12px 16px;
+            border-radius: 10px;
+        }
+        
+        .featured-stat-value {
+            font-weight: 700;
+            color: var(--yellow);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .featured-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .view-game-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+        
+        .view-game-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* All Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        
+        .game-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--purple);
+        }
+        
+        .game-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .game-icon {
+            font-size: 2.5rem;
+        }
+        
+        .game-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+        
+        .game-genre {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .game-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        
+        .game-stats {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .game-stat {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+        }
+        
+        .game-stat-value {
+            font-weight: 700;
+            color: var(--yellow);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .game-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        
+        .game-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            color: var(--orange);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 60px 24px 30px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand {
+            max-width: 300px;
+        }
+        
+        .footer-brand .logo {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+        
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .footer-links h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        .footer-legal a {
+            margin-left: 24px;
+            color: var(--text-muted);
+        }
+        
+        .footer-legal a:hover {
+            color: var(--text-secondary);
+        }
+        
+        /* Mobile */
+        @media (max-width: 968px) {
+            .featured-games {
+                grid-template-columns: 1fr;
+            }
+        }
         
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .games-grid { grid-template-columns: 1fr; }
-            .game-stats { grid-template-columns: 1fr; }
+            
+            .featured-card {
+                flex-direction: column;
+                padding: 28px;
+            }
+            
+            .featured-icon {
+                font-size: 3rem;
+            }
+            
+            .stats-bar {
+                gap: 24px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <a href="/" class="logo">APUESTA ESPORTS</a>
@@ -84,241 +509,548 @@
                 <li><a href="/teams/">Teams</a></li>
                 <li><a href="/players/">Players</a></li>
                 <li><a href="/countries/">Countries</a></li>
+                <li><a href="/tournaments/">Tournaments</a></li>
                 <li><a href="/betting/">Betting</a></li>
             </ul>
+            <a href="/live/" class="nav-cta">Live Odds →</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <h1>Esports Games</h1>
-        <p>Complete coverage of the world's biggest competitive gaming titles. Prize pools, top teams, tournaments, and betting guides.</p>
-    </section>
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <span>Games</span>
+        </div>
+        <h1>Esports <span class="gradient">Games</span></h1>
+        <p>Complete guides to the world's biggest competitive gaming titles. History, top teams, star players, major tournaments, and betting markets.</p>
+    </header>
 
-    <div class="container">
-        <div class="games-grid">
-            <!-- CS2 -->
-            <div class="game-card">
-                <div class="game-header">
-                    <div class="game-icon">🔫</div>
-                    <h2>Counter-Strike 2</h2>
-                    <div class="game-meta">
-                        <span class="game-tag">FPS</span>
-                        <span class="game-tag">Valve</span>
-                        <span class="game-tag">5v5 Tactical</span>
-                    </div>
-                </div>
-                <div class="game-body">
-                    <p>The world's premier tactical shooter. Counter-Strike has defined competitive FPS since 1999, with CS2 bringing the franchise to Source 2 engine.</p>
-                    <div class="game-stats">
-                        <div class="stat"><div class="stat-value">$150M+</div><div class="stat-label">Prize Pool</div></div>
-                        <div class="stat"><div class="stat-value">15,000+</div><div class="stat-label">Tournaments</div></div>
-                        <div class="stat"><div class="stat-value">15,000+</div><div class="stat-label">Pro Players</div></div>
-                    </div>
-                    <div class="game-links">
-                        <a href="/games/cs2.html" class="btn btn-primary">Learn More</a>
-                        <a href="/betting/cs2.html" class="btn btn-secondary">Betting Guide</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dota 2 -->
-            <div class="game-card">
-                <div class="game-header">
-                    <div class="game-icon">⚔️</div>
-                    <h2>Dota 2</h2>
-                    <div class="game-meta">
-                        <span class="game-tag">MOBA</span>
-                        <span class="game-tag">Valve</span>
-                        <span class="game-tag">5v5 Strategy</span>
-                    </div>
-                </div>
-                <div class="game-body">
-                    <p>Home to The International, esports' largest prize pool tournament. Complex strategic depth with over 120 heroes and infinite possibilities.</p>
-                    <div class="game-stats">
-                        <div class="stat"><div class="stat-value">$312M+</div><div class="stat-label">Prize Pool</div></div>
-                        <div class="stat"><div class="stat-value">$40M+</div><div class="stat-label">Largest Prize</div></div>
-                        <div class="stat"><div class="stat-value">3,500+</div><div class="stat-label">Pro Players</div></div>
-                    </div>
-                    <div class="game-links">
-                        <a href="/games/dota2.html" class="btn btn-primary">Learn More</a>
-                        <a href="/betting/dota2.html" class="btn btn-secondary">Betting Guide</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- League of Legends -->
-            <div class="game-card">
-                <div class="game-header">
-                    <div class="game-icon">🏰</div>
-                    <h2>League of Legends</h2>
-                    <div class="game-meta">
-                        <span class="game-tag">MOBA</span>
-                        <span class="game-tag">Riot Games</span>
-                        <span class="game-tag">5v5 Strategy</span>
-                    </div>
-                </div>
-                <div class="game-body">
-                    <p>The world's most-watched esport. Worlds Championship regularly draws 100M+ viewers. Franchised leagues across major regions.</p>
-                    <div class="game-stats">
-                        <div class="stat"><div class="stat-value">$100M+</div><div class="stat-label">Prize Pool</div></div>
-                        <div class="stat"><div class="stat-value">180M</div><div class="stat-label">Peak Viewers</div></div>
-                        <div class="stat"><div class="stat-value">8,000+</div><div class="stat-label">Pro Players</div></div>
-                    </div>
-                    <div class="game-links">
-                        <a href="/games/lol.html" class="btn btn-primary">Learn More</a>
-                        <a href="/betting/lol.html" class="btn btn-secondary">Betting Guide</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Valorant -->
-            <div class="game-card">
-                <div class="game-header">
-                    <div class="game-icon">💠</div>
-                    <h2>Valorant</h2>
-                    <div class="game-meta">
-                        <span class="game-tag">FPS</span>
-                        <span class="game-tag">Riot Games</span>
-                        <span class="game-tag">5v5 Tactical</span>
-                    </div>
-                </div>
-                <div class="game-body">
-                    <p>Riot's tactical shooter combining CS-style gameplay with hero abilities. VCT circuit spans three international leagues plus Champions.</p>
-                    <div class="game-stats">
-                        <div class="stat"><div class="stat-value">$30M+</div><div class="stat-label">Prize Pool</div></div>
-                        <div class="stat"><div class="stat-value">3</div><div class="stat-label">Int'l Leagues</div></div>
-                        <div class="stat"><div class="stat-value">2,500+</div><div class="stat-label">Pro Players</div></div>
-                    </div>
-                    <div class="game-links">
-                        <a href="/games/valorant.html" class="btn btn-primary">Learn More</a>
-                        <a href="/betting/valorant.html" class="btn btn-secondary">Betting Guide</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Fortnite -->
-            <div class="game-card">
-                <div class="game-header">
-                    <div class="game-icon">🎯</div>
-                    <h2>Fortnite</h2>
-                    <div class="game-meta">
-                        <span class="game-tag">Battle Royale</span>
-                        <span class="game-tag">Epic Games</span>
-                        <span class="game-tag">100 Players</span>
-                    </div>
-                </div>
-                <div class="game-body">
-                    <p>Epic's cultural phenomenon. $30M World Cup in 2019 remains one of the largest single esports events. FNCS runs throughout the year.</p>
-                    <div class="game-stats">
-                        <div class="stat"><div class="stat-value">$100M+</div><div class="stat-label">Prize Pool</div></div>
-                        <div class="stat"><div class="stat-value">$3M</div><div class="stat-label">Top Prize</div></div>
-                        <div class="stat"><div class="stat-value">10,000+</div><div class="stat-label">Pro Players</div></div>
-                    </div>
-                    <div class="game-links">
-                        <a href="/games/fortnite.html" class="btn btn-primary">Learn More</a>
-                        <a href="/betting/fortnite.html" class="btn btn-secondary">Betting Guide</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Rainbow Six Siege -->
-            <div class="game-card">
-                <div class="game-header">
-                    <div class="game-icon">🛡️</div>
-                    <h2>Rainbow Six Siege</h2>
-                    <div class="game-meta">
-                        <span class="game-tag">FPS</span>
-                        <span class="game-tag">Ubisoft</span>
-                        <span class="game-tag">5v5 Tactical</span>
-                    </div>
-                </div>
-                <div class="game-body">
-                    <p>Destruction-based tactical shooter with unique operator abilities. Six Invitational is the pinnacle, with strong scenes in Brazil and EU.</p>
-                    <div class="game-stats">
-                        <div class="stat"><div class="stat-value">$20M+</div><div class="stat-label">Prize Pool</div></div>
-                        <div class="stat"><div class="stat-value">$3M</div><div class="stat-label">SI Prize Pool</div></div>
-                        <div class="stat"><div class="stat-value">1,500+</div><div class="stat-label">Pro Players</div></div>
-                    </div>
-                    <div class="game-links">
-                        <a href="/games/r6.html" class="btn btn-primary">Learn More</a>
-                        <a href="/betting/r6.html" class="btn btn-secondary">Betting Guide</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Rocket League -->
-            <div class="game-card">
-                <div class="game-header">
-                    <div class="game-icon">🚗</div>
-                    <h2>Rocket League</h2>
-                    <div class="game-meta">
-                        <span class="game-tag">Sports</span>
-                        <span class="game-tag">Psyonix</span>
-                        <span class="game-tag">3v3 Vehicular</span>
-                    </div>
-                </div>
-                <div class="game-body">
-                    <p>Soccer with rocket-powered cars. Easy to understand, incredibly hard to master. RLCS World Championship crowns the best globally.</p>
-                    <div class="game-stats">
-                        <div class="stat"><div class="stat-value">$15M+</div><div class="stat-label">Prize Pool</div></div>
-                        <div class="stat"><div class="stat-value">$2M</div><div class="stat-label">RLCS Prize</div></div>
-                        <div class="stat"><div class="stat-value">800+</div><div class="stat-label">Pro Players</div></div>
-                    </div>
-                    <div class="game-links">
-                        <a href="/games/rl.html" class="btn btn-primary">Learn More</a>
-                        <a href="/betting/rl.html" class="btn btn-secondary">Betting Guide</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Call of Duty -->
-            <div class="game-card">
-                <div class="game-header">
-                    <div class="game-icon">💥</div>
-                    <h2>Call of Duty</h2>
-                    <div class="game-meta">
-                        <span class="game-tag">FPS</span>
-                        <span class="game-tag">Activision</span>
-                        <span class="game-tag">4v4 Arena</span>
-                    </div>
-                </div>
-                <div class="game-body">
-                    <p>Franchised Call of Duty League with city-based teams. Fast-paced competitive action across multiple game modes.</p>
-                    <div class="game-stats">
-                        <div class="stat"><div class="stat-value">$40M+</div><div class="stat-label">Prize Pool</div></div>
-                        <div class="stat"><div class="stat-value">12</div><div class="stat-label">CDL Teams</div></div>
-                        <div class="stat"><div class="stat-value">1,000+</div><div class="stat-label">Pro Players</div></div>
-                    </div>
-                    <div class="game-links">
-                        <a href="/games/cod.html" class="btn btn-primary">Learn More</a>
-                        <a href="/betting/cod.html" class="btn btn-secondary">Betting Guide</a>
-                    </div>
-                </div>
-            </div>
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-value">10</div>
+            <div class="stat-label">Major Titles</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">$900M+</div>
+            <div class="stat-label">Total Prize Pool</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">500+</div>
+            <div class="stat-label">Pro Teams</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">5000+</div>
+            <div class="stat-label">Pro Players</div>
         </div>
     </div>
 
+    <!-- Main Content -->
+    <main>
+        <!-- Featured Games (Top 4) -->
+        <h2 class="section-title">🔥 Featured Games</h2>
+        <div class="featured-games">
+            <a href="/games/cs2.html" class="featured-card">
+                <div class="featured-icon">🔫</div>
+                <div class="featured-content">
+                    <h3>Counter-Strike 2</h3>
+                    <div class="featured-meta">
+                        <span>FPS</span>
+                        <span>•</span>
+                        <span>Valve</span>
+                        <span>•</span>
+                        <span>Since 2023</span>
+                    </div>
+                    <p>The world's premier tactical shooter and longest-running esports franchise. From legendary Major Championships to Pro League seasons, CS2 defines competitive FPS gaming.</p>
+                    <div class="featured-stats">
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">$150M+</div>
+                            <div class="featured-stat-label">Prize Pool</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">500+</div>
+                            <div class="featured-stat-label">Teams</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">2 Majors</div>
+                            <div class="featured-stat-label">Per Year</div>
+                        </div>
+                    </div>
+                    <span class="view-game-btn">View CS2 Guide →</span>
+                </div>
+            </a>
+            
+            <a href="/games/dota2.html" class="featured-card">
+                <div class="featured-icon">⚔️</div>
+                <div class="featured-content">
+                    <h3>Dota 2</h3>
+                    <div class="featured-meta">
+                        <span>MOBA</span>
+                        <span>•</span>
+                        <span>Valve</span>
+                        <span>•</span>
+                        <span>Since 2011</span>
+                    </div>
+                    <p>Home to The International, esports' largest prize pool tournament. Dota 2's deep strategy and iconic teams make it one of gaming's most prestigious competitive scenes.</p>
+                    <div class="featured-stats">
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">$312M+</div>
+                            <div class="featured-stat-label">Prize Pool</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">$40M</div>
+                            <div class="featured-stat-label">TI Peak</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">12 TIs</div>
+                            <div class="featured-stat-label">Held</div>
+                        </div>
+                    </div>
+                    <span class="view-game-btn">View Dota 2 Guide →</span>
+                </div>
+            </a>
+            
+            <a href="/games/lol.html" class="featured-card">
+                <div class="featured-icon">🏰</div>
+                <div class="featured-content">
+                    <h3>League of Legends</h3>
+                    <div class="featured-meta">
+                        <span>MOBA</span>
+                        <span>•</span>
+                        <span>Riot Games</span>
+                        <span>•</span>
+                        <span>Since 2009</span>
+                    </div>
+                    <p>The world's most-watched esport with regional leagues spanning the globe. From LCK to LCS, Worlds Championship draws millions of viewers each year.</p>
+                    <div class="featured-stats">
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">$100M+</div>
+                            <div class="featured-stat-label">Prize Pool</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">73M</div>
+                            <div class="featured-stat-label">Peak Viewers</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">4 Regions</div>
+                            <div class="featured-stat-label">Major Leagues</div>
+                        </div>
+                    </div>
+                    <span class="view-game-btn">View LoL Guide →</span>
+                </div>
+            </a>
+            
+            <a href="/games/valorant.html" class="featured-card">
+                <div class="featured-icon">💠</div>
+                <div class="featured-content">
+                    <h3>Valorant</h3>
+                    <div class="featured-meta">
+                        <span>FPS</span>
+                        <span>•</span>
+                        <span>Riot Games</span>
+                        <span>•</span>
+                        <span>Since 2020</span>
+                    </div>
+                    <p>Riot's tactical shooter combining precise gunplay with unique agent abilities. VCT Champions and international leagues have rapidly built a thriving esports ecosystem.</p>
+                    <div class="featured-stats">
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">$30M+</div>
+                            <div class="featured-stat-label">Prize Pool</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">3 Regions</div>
+                            <div class="featured-stat-label">International</div>
+                        </div>
+                        <div class="featured-stat">
+                            <div class="featured-stat-value">1M+</div>
+                            <div class="featured-stat-label">Viewers</div>
+                        </div>
+                    </div>
+                    <span class="view-game-btn">View Valorant Guide →</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- All Games -->
+        <h2 class="section-title">🎮 All Games</h2>
+        <div class="games-grid">
+            <a href="/games/cs2.html" class="game-card">
+                <div class="game-header">
+                    <div class="game-icon">🔫</div>
+                    <div class="game-info">
+                        <h3>Counter-Strike 2</h3>
+                        <span class="game-genre">FPS</span>
+                    </div>
+                </div>
+                <p>The premier tactical shooter with Major Championships and Pro League seasons defining competitive FPS.</p>
+                <div class="game-stats">
+                    <div class="game-stat">
+                        <div class="game-stat-value">$150M+</div>
+                        <div class="game-stat-label">Prize Pool</div>
+                    </div>
+                    <div class="game-stat">
+                        <div class="game-stat-value">Valve</div>
+                        <div class="game-stat-label">Publisher</div>
+                    </div>
+                </div>
+                <div class="game-link">
+                    <span>View Full Guide</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <a href="/games/dota2.html" class="game-card">
+                <div class="game-header">
+                    <div class="game-icon">⚔️</div>
+                    <div class="game-info">
+                        <h3>Dota 2</h3>
+                        <span class="game-genre">MOBA</span>
+                    </div>
+                </div>
+                <p>Home to The International, esports' largest prize pool tournament with legendary plays.</p>
+                <div class="game-stats">
+                    <div class="game-stat">
+                        <div class="game-stat-value">$312M+</div>
+                        <div class="game-stat-label">Prize Pool</div>
+                    </div>
+                    <div class="game-stat">
+                        <div class="game-stat-value">Valve</div>
+                        <div class="game-stat-label">Publisher</div>
+                    </div>
+                </div>
+                <div class="game-link">
+                    <span>View Full Guide</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <a href="/games/lol.html" class="game-card">
+                <div class="game-header">
+                    <div class="game-icon">🏰</div>
+                    <div class="game-info">
+                        <h3>League of Legends</h3>
+                        <span class="game-genre">MOBA</span>
+                    </div>
+                </div>
+                <p>The world's most-watched esport with Worlds Championship drawing millions of viewers.</p>
+                <div class="game-stats">
+                    <div class="game-stat">
+                        <div class="game-stat-value">$100M+</div>
+                        <div class="game-stat-label">Prize Pool</div>
+                    </div>
+                    <div class="game-stat">
+                        <div class="game-stat-value">Riot Games</div>
+                        <div class="game-stat-label">Publisher</div>
+                    </div>
+                </div>
+                <div class="game-link">
+                    <span>View Full Guide</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <a href="/games/valorant.html" class="game-card">
+                <div class="game-header">
+                    <div class="game-icon">💠</div>
+                    <div class="game-info">
+                        <h3>Valorant</h3>
+                        <span class="game-genre">FPS</span>
+                    </div>
+                </div>
+                <p>Riot's tactical shooter with VCT Champions and international leagues building a thriving scene.</p>
+                <div class="game-stats">
+                    <div class="game-stat">
+                        <div class="game-stat-value">$30M+</div>
+                        <div class="game-stat-label">Prize Pool</div>
+                    </div>
+                    <div class="game-stat">
+                        <div class="game-stat-value">Riot Games</div>
+                        <div class="game-stat-label">Publisher</div>
+                    </div>
+                </div>
+                <div class="game-link">
+                    <span>View Full Guide</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <a href="/games/fortnite.html" class="game-card">
+                <div class="game-header">
+                    <div class="game-icon">🎯</div>
+                    <div class="game-info">
+                        <h3>Fortnite</h3>
+                        <span class="game-genre">Battle Royale</span>
+                    </div>
+                </div>
+                <p>Epic's battle royale phenomenon with World Cup and FNCS tournaments awarding massive prizes.</p>
+                <div class="game-stats">
+                    <div class="game-stat">
+                        <div class="game-stat-value">$100M+</div>
+                        <div class="game-stat-label">Prize Pool</div>
+                    </div>
+                    <div class="game-stat">
+                        <div class="game-stat-value">Epic Games</div>
+                        <div class="game-stat-label">Publisher</div>
+                    </div>
+                </div>
+                <div class="game-link">
+                    <span>View Full Guide</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <a href="/games/r6.html" class="game-card">
+                <div class="game-header">
+                    <div class="game-icon">🛡️</div>
+                    <div class="game-info">
+                        <h3>Rainbow Six Siege</h3>
+                        <span class="game-genre">FPS</span>
+                    </div>
+                </div>
+                <p>Tactical team shooter with Six Invitational as its premier championship event.</p>
+                <div class="game-stats">
+                    <div class="game-stat">
+                        <div class="game-stat-value">$20M+</div>
+                        <div class="game-stat-label">Prize Pool</div>
+                    </div>
+                    <div class="game-stat">
+                        <div class="game-stat-value">Ubisoft</div>
+                        <div class="game-stat-label">Publisher</div>
+                    </div>
+                </div>
+                <div class="game-link">
+                    <span>View Full Guide</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <a href="/games/rl.html" class="game-card">
+                <div class="game-header">
+                    <div class="game-icon">⚽</div>
+                    <div class="game-info">
+                        <h3>Rocket League</h3>
+                        <span class="game-genre">Sports</span>
+                    </div>
+                </div>
+                <p>Rocket-powered cars meet soccer in RLCS World Championship's high-octane competition.</p>
+                <div class="game-stats">
+                    <div class="game-stat">
+                        <div class="game-stat-value">$15M+</div>
+                        <div class="game-stat-label">Prize Pool</div>
+                    </div>
+                    <div class="game-stat">
+                        <div class="game-stat-value">Psyonix</div>
+                        <div class="game-stat-label">Publisher</div>
+                    </div>
+                </div>
+                <div class="game-link">
+                    <span>View Full Guide</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <a href="/games/cod.html" class="game-card">
+                <div class="game-header">
+                    <div class="game-icon">💥</div>
+                    <div class="game-info">
+                        <h3>Call of Duty</h3>
+                        <span class="game-genre">FPS</span>
+                    </div>
+                </div>
+                <p>Console FPS powerhouse with Call of Duty League and Championship weekend events.</p>
+                <div class="game-stats">
+                    <div class="game-stat">
+                        <div class="game-stat-value">$40M+</div>
+                        <div class="game-stat-label">Prize Pool</div>
+                    </div>
+                    <div class="game-stat">
+                        <div class="game-stat-value">Activision</div>
+                        <div class="game-stat-label">Publisher</div>
+                    </div>
+                </div>
+                <div class="game-link">
+                    <span>View Full Guide</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <a href="/games/ow2.html" class="game-card">
+                <div class="game-header">
+                    <div class="game-icon">🦸</div>
+                    <div class="game-info">
+                        <h3>Overwatch 2</h3>
+                        <span class="game-genre">FPS</span>
+                    </div>
+                </div>
+                <p>Hero-based team shooter with Overwatch League franchises and international competition.</p>
+                <div class="game-stats">
+                    <div class="game-stat">
+                        <div class="game-stat-value">$25M+</div>
+                        <div class="game-stat-label">Prize Pool</div>
+                    </div>
+                    <div class="game-stat">
+                        <div class="game-stat-value">Blizzard</div>
+                        <div class="game-stat-label">Publisher</div>
+                    </div>
+                </div>
+                <div class="game-link">
+                    <span>View Full Guide</span>
+                    <span>→</span>
+                </div>
+            </a>
+            
+            <a href="/games/sc2.html" class="game-card">
+                <div class="game-header">
+                    <div class="game-icon">🚀</div>
+                    <div class="game-info">
+                        <h3>StarCraft II</h3>
+                        <span class="game-genre">RTS</span>
+                    </div>
+                </div>
+                <p>The legendary RTS that defined esports in Korea with GSL and Global Finals.</p>
+                <div class="game-stats">
+                    <div class="game-stat">
+                        <div class="game-stat-value">$35M+</div>
+                        <div class="game-stat-label">Prize Pool</div>
+                    </div>
+                    <div class="game-stat">
+                        <div class="game-stat-value">Blizzard</div>
+                        <div class="game-stat-label">Publisher</div>
+                    </div>
+                </div>
+                <div class="game-link">
+                    <span>View Full Guide</span>
+                    <span>→</span>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
     <footer>
-        <p>© 2026 Apuesta Esports</p>
-        <p style="margin-top: 8px;"><a href="/">Home</a> · <a href="/teams/">Teams</a> · <a href="/players/">Players</a> · <a href="/countries/">Countries</a></p>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">APUESTA ESPORTS</a>
+                    <p>The world's most comprehensive esports reference. Teams, players, countries, tournaments, and betting guides.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Games</h4>
+                    <ul>
+                        <li><a href="/games/cs2.html">Counter-Strike 2</a></li>
+                        <li><a href="/games/dota2.html">Dota 2</a></li>
+                        <li><a href="/games/lol.html">League of Legends</a></li>
+                        <li><a href="/games/valorant.html">Valorant</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="/teams/">Team Rankings</a></li>
+                        <li><a href="/players/">Player Profiles</a></li>
+                        <li><a href="/countries/">Country Stats</a></li>
+                        <li><a href="/tournaments/">Tournaments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Betting</h4>
+                    <ul>
+                        <li><a href="/live/">Live Odds</a></li>
+                        <li><a href="/betting/">Betting Guides</a></li>
+                        <li><a href="/betting/beginners.html">Beginner's Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2026 Apuesta Esports. Data from Esports Earnings.</div>
+                <div class="footer-legal">
+                    <a href="/llms.txt">llms.txt</a>
+                    <a href="/sitemap.xml">Sitemap</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": "Esports Games",
-        "description": "Complete guide to major esports games including CS2, Dota 2, League of Legends, and Valorant.",
+        "description": "Complete guides to the world's biggest competitive gaming titles including CS2, Dota 2, League of Legends, and Valorant.",
         "url": "https://www.apuestaesports.com/games/",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Apuesta Esports",
+            "url": "https://www.apuestaesports.com"
+        },
         "mainEntity": {
             "@type": "ItemList",
             "itemListElement": [
-                {"@type": "VideoGame", "name": "Counter-Strike 2", "position": 1},
-                {"@type": "VideoGame", "name": "Dota 2", "position": 2},
-                {"@type": "VideoGame", "name": "League of Legends", "position": 3},
-                {"@type": "VideoGame", "name": "Valorant", "position": 4}
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@type": "VideoGame",
+                        "name": "Counter-Strike 2",
+                        "genre": "First-Person Shooter",
+                        "url": "https://www.apuestaesports.com/games/cs2.html"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                        "@type": "VideoGame",
+                        "name": "Dota 2",
+                        "genre": "MOBA",
+                        "url": "https://www.apuestaesports.com/games/dota2.html"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "item": {
+                        "@type": "VideoGame",
+                        "name": "League of Legends",
+                        "genre": "MOBA",
+                        "url": "https://www.apuestaesports.com/games/lol.html"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "item": {
+                        "@type": "VideoGame",
+                        "name": "Valorant",
+                        "genre": "First-Person Shooter",
+                        "url": "https://www.apuestaesports.com/games/valorant.html"
+                    }
+                }
             ]
         }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.apuestaesports.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Games",
+                "item": "https://www.apuestaesports.com/games/"
+            }
+        ]
     }
     </script>
 </body>

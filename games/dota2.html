@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dota 2 Esports Guide - Teams, Players, The International & Betting | Apuesta Esports</title>
+    <meta name="description" content="Complete Dota 2 esports guide: history, top teams like Team Spirit and OG, star players including N0tail and ana, The International, DPC, and betting markets.">
+    <meta name="keywords" content="Dota 2, The International, TI, esports, Team Spirit, OG, N0tail, ana, DPC, Dota Pro Circuit, Dota 2 betting">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dota 2 Esports Guide - Teams, Players & Betting">
+    <meta property="og:description" content="Complete Dota 2 guide with top teams, star players, The International, and betting markets.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apuestaesports.com/games/dota2.html">
+    <meta property="og:image" content="https://www.apuestaesports.com/og-dota2.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dota 2 Esports Guide | Apuesta Esports">
+    <meta name="twitter:description" content="Complete Dota 2 guide: teams, players, tournaments, and betting.">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.apuestaesports.com/games/dota2.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #15151f;
+            --orange: #FF6B2F;
+            --purple: #8D52DA;
+            --yellow: #DFFD51;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+            --game-color: #C23C2A;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        a { color: inherit; text-decoration: none; }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 24px;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+        
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
+        }
+        
+        .game-hero {
+            padding: 120px 24px 60px;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(194, 60, 42, 0.2) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+        
+        .game-hero-content { max-width: 1400px; margin: 0 auto; }
+        
+        .breadcrumb {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .breadcrumb a:hover { color: var(--text-primary); }
+        
+        .game-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .game-icon-large { font-size: 5rem; margin-bottom: 16px; }
+        
+        .game-badge {
+            display: inline-block;
+            background: rgba(194, 60, 42, 0.2);
+            border: 1px solid var(--game-color);
+            color: var(--game-color);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .game-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        
+        .game-hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        
+        .game-meta-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .game-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .game-meta-item span:first-child { color: var(--text-muted); }
+        .game-meta-item span:last-child { font-weight: 600; }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .hero-stat {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .hero-stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--game-color);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 24px 100px;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        
+        .section { margin-bottom: 60px; }
+        
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .section-content p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        
+        .section-content p:last-child { margin-bottom: 0; }
+        
+        .section-content h3 {
+            font-size: 1.25rem;
+            margin: 24px 0 12px;
+        }
+        
+        .section-content h3:first-child { margin-top: 0; }
+        
+        .ranking-list { list-style: none; }
+        
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .ranking-item:last-child { border-bottom: none; }
+        
+        .rank {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+        
+        .rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+        .rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
+        .rank.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
+        
+        .ranking-info { flex: 1; }
+        .ranking-name { font-weight: 600; margin-bottom: 2px; }
+        .ranking-detail { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .ranking-value {
+            font-weight: 700;
+            color: var(--yellow);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .tournament-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .tournament-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+        
+        .tournament-item:hover { transform: translateX(4px); }
+        
+        .tournament-icon { font-size: 2rem; }
+        .tournament-info { flex: 1; }
+        .tournament-name { font-weight: 600; margin-bottom: 4px; }
+        .tournament-meta { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .tournament-prize {
+            font-weight: 700;
+            color: var(--yellow);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .betting-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        
+        .betting-card {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .betting-card h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--orange);
+        }
+        
+        .betting-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
+        .sidebar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+        
+        .sidebar-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+        
+        .quick-links { list-style: none; }
+        .quick-links li { margin-bottom: 12px; }
+        
+        .quick-links a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+        
+        .quick-links a:hover { color: var(--text-primary); }
+        
+        .related-games { list-style: none; }
+        .related-games li { margin-bottom: 12px; }
+        
+        .related-games a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        
+        .related-games a:hover { transform: translateX(4px); }
+        
+        .related-game-icon { font-size: 1.5rem; }
+        
+        .cta-box {
+            background: var(--gradient);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+        
+        .cta-box h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: var(--bg-primary);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        
+        .cta-btn:hover { transform: translateY(-2px); }
+        
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 60px 24px 30px;
+        }
+        
+        .footer-content { max-width: 1400px; margin: 0 auto; }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand { max-width: 300px; }
+        
+        .footer-brand .logo {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+        
+        .footer-brand p { color: var(--text-muted); font-size: 0.9rem; }
+        
+        .footer-links h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover { color: var(--text-primary); }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        .footer-legal a { margin-left: 24px; color: var(--text-muted); }
+        .footer-legal a:hover { color: var(--text-secondary); }
+        
+        @media (max-width: 1024px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .sidebar { flex-direction: row; flex-wrap: wrap; }
+            .sidebar-card { flex: 1; min-width: 250px; }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .game-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+            .hero-stats { grid-template-columns: 1fr; }
+            .betting-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-brand { grid-column: 1 / -1; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <ul class="nav-links">
+                <li><a href="/games/" class="active">Games</a></li>
+                <li><a href="/teams/">Teams</a></li>
+                <li><a href="/players/">Players</a></li>
+                <li><a href="/countries/">Countries</a></li>
+                <li><a href="/tournaments/">Tournaments</a></li>
+                <li><a href="/betting/">Betting</a></li>
+            </ul>
+            <a href="/live/" class="nav-cta">Live Odds →</a>
+        </div>
+    </nav>
+
+    <header class="game-hero">
+        <div class="game-hero-content">
+            <div class="breadcrumb">
+                <a href="/">Home</a>
+                <span>/</span>
+                <a href="/games/">Games</a>
+                <span>/</span>
+                <span>Dota 2</span>
+            </div>
+            
+            <div class="game-hero-grid">
+                <div class="game-hero-info">
+                    <div class="game-icon-large">⚔️</div>
+                    <span class="game-badge">MOBA • STRATEGY</span>
+                    <h1>Dota 2</h1>
+                    <p class="game-hero-desc">
+                        Home to The International, esports' largest prize pool tournament. Dota 2's deep strategy, complex hero interactions, and legendary teams make it one of gaming's most prestigious competitive scenes.
+                    </p>
+                    <div class="game-meta-list">
+                        <div class="game-meta-item">
+                            <span>Publisher:</span>
+                            <span>Valve</span>
+                        </div>
+                        <div class="game-meta-item">
+                            <span>Released:</span>
+                            <span>2013 (Beta 2011)</span>
+                        </div>
+                        <div class="game-meta-item">
+                            <span>Platform:</span>
+                            <span>PC</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">$312M+</div>
+                        <div class="hero-stat-label">Total Prize Pool</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">$40M</div>
+                        <div class="hero-stat-label">TI Peak Prize</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">12</div>
+                        <div class="hero-stat-label">TIs Held</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">124</div>
+                        <div class="hero-stat-label">Heroes</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">300+</div>
+                        <div class="hero-stat-label">Pro Teams</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">2M+</div>
+                        <div class="hero-stat-label">Peak Viewers</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="content-grid">
+            <div class="main-content">
+                <section class="section">
+                    <h2 class="section-title">📜 History & Evolution</h2>
+                    <div class="section-content">
+                        <p>Dota 2 traces its roots to Defense of the Ancients, a Warcraft III custom map created by modders including IceFrog. Valve hired IceFrog in 2009, leading to Dota 2's development and eventual release.</p>
+                        
+                        <h3>The International Era</h3>
+                        <p><strong>TI1 (2011)</strong> shocked the esports world with a $1.6 million prize pool—unprecedented at the time. Natus Vincere claimed the inaugural championship, establishing Dota 2 as a premier esport before the game even left beta.</p>
+                        
+                        <p><strong>The Compendium Revolution (2013+)</strong> introduced crowdfunded prize pools. TI4 reached $10.9 million, TI5 hit $18.4 million, and TI10 peaked at an astronomical $40 million—the largest esports prize pool ever.</p>
+                        
+                        <p><strong>Regional Leagues (2020+)</strong> restructured the scene with the Dota Pro Circuit (DPC), featuring regional leagues leading to Majors and ultimately TI qualification through points.</p>
+                        
+                        <h3>Legendary Moments</h3>
+                        <p>OG's back-to-back TI wins (TI8, TI9), Alliance's "million dollar dream coil" at TI3, and Team Spirit's Cinderella run at TI10 represent some of esports' most iconic moments. The "Echo Slamma Jamma" and Fountain Hook remain etched in gaming history.</p>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">🏆 Top Teams</h2>
+                    <div class="section-content">
+                        <ul class="ranking-list">
+                            <li class="ranking-item">
+                                <div class="rank gold">1</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">Team Spirit</div>
+                                    <div class="ranking-detail">🇷🇺 Russia • TI10 & TI12 Champion</div>
+                                </div>
+                                <div class="ranking-value">$25.6M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank silver">2</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">OG</div>
+                                    <div class="ranking-detail">🇪🇺 International • 2x TI Champion (TI8, TI9)</div>
+                                </div>
+                                <div class="ranking-value">$38.8M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank bronze">3</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">Team Liquid</div>
+                                    <div class="ranking-detail">🇪🇺 International • TI7 Champion</div>
+                                </div>
+                                <div class="ranking-value">$24.5M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">4</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">PSG.LGD</div>
+                                    <div class="ranking-detail">🇨🇳 China • Multiple TI Finals</div>
+                                </div>
+                                <div class="ranking-value">$16.2M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">5</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">Evil Geniuses</div>
+                                    <div class="ranking-detail">🇺🇸 North America • TI5 Champion</div>
+                                </div>
+                                <div class="ranking-value">$17.8M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">6</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">Tundra Esports</div>
+                                    <div class="ranking-detail">🇪🇺 International • TI11 Champion</div>
+                                </div>
+                                <div class="ranking-value">$12.4M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">7</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">Gaimin Gladiators</div>
+                                    <div class="ranking-detail">🇪🇺 International • Rising Power</div>
+                                </div>
+                                <div class="ranking-value">$4.8M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">8</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">BetBoom Team</div>
+                                    <div class="ranking-detail">🇷🇺 CIS • Major Contender</div>
+                                </div>
+                                <div class="ranking-value">$3.2M</div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">⭐ Top Players</h2>
+                    <div class="section-content">
+                        <ul class="ranking-list">
+                            <li class="ranking-item">
+                                <div class="rank gold">1</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">N0tail</div>
+                                    <div class="ranking-detail">🇩🇰 Denmark • 2x TI Winner • Position 5</div>
+                                </div>
+                                <div class="ranking-value">$7.2M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank silver">2</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">JerAx</div>
+                                    <div class="ranking-detail">🇫🇮 Finland • 2x TI Winner • Position 4</div>
+                                </div>
+                                <div class="ranking-value">$6.5M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank bronze">3</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">Miposhka</div>
+                                    <div class="ranking-detail">🇷🇺 Russia • Team Spirit • Position 5</div>
+                                </div>
+                                <div class="ranking-value">$6.2M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">4</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">ana</div>
+                                    <div class="ranking-detail">🇦🇺 Australia • 2x TI Winner • Carry</div>
+                                </div>
+                                <div class="ranking-value">$6.0M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">5</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">Ceb</div>
+                                    <div class="ranking-detail">🇫🇷 France • 2x TI Winner • Offlane</div>
+                                </div>
+                                <div class="ranking-value">$5.9M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">6</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">Yatoro</div>
+                                    <div class="ranking-detail">🇺🇦 Ukraine • Team Spirit • Carry</div>
+                                </div>
+                                <div class="ranking-value">$5.6M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">7</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">Collapse</div>
+                                    <div class="ranking-detail">🇷🇺 Russia • Team Spirit • Offlane</div>
+                                </div>
+                                <div class="ranking-value">$5.6M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">8</div>
+                                <div class="ranking-info">
+                                    <div class="ranking-name">Topson</div>
+                                    <div class="ranking-detail">🇫🇮 Finland • 2x TI Winner • Mid</div>
+                                </div>
+                                <div class="ranking-value">$5.8M</div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">🎯 Major Tournaments</h2>
+                    <div class="section-content">
+                        <div class="tournament-list">
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🏆</div>
+                                <div class="tournament-info">
+                                    <div class="tournament-name">The International</div>
+                                    <div class="tournament-meta">Valve • Annual • 20 teams • Largest esports prize</div>
+                                </div>
+                                <div class="tournament-prize">$15M-$40M</div>
+                            </div>
+                            <div class="tournament-item">
+                                <div class="tournament-icon">⚡</div>
+                                <div class="tournament-info">
+                                    <div class="tournament-name">DPC Major</div>
+                                    <div class="tournament-meta">Dota Pro Circuit • 3 per year • 16 teams</div>
+                                </div>
+                                <div class="tournament-prize">$500K</div>
+                            </div>
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🌍</div>
+                                <div class="tournament-info">
+                                    <div class="tournament-name">ESL One</div>
+                                    <div class="tournament-meta">ESL • Multiple events • Premier tournaments</div>
+                                </div>
+                                <div class="tournament-prize">$400K</div>
+                            </div>
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🎭</div>
+                                <div class="tournament-info">
+                                    <div class="tournament-name">DreamLeague</div>
+                                    <div class="tournament-meta">DreamHack • Multiple seasons • 16 teams</div>
+                                </div>
+                                <div class="tournament-prize">$500K</div>
+                            </div>
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🏟️</div>
+                                <div class="tournament-info">
+                                    <div class="tournament-name">Regional Leagues</div>
+                                    <div class="tournament-meta">DPC • 6 regions • Division I & II</div>
+                                </div>
+                                <div class="tournament-prize">$280K/region</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">💰 Betting Markets</h2>
+                    <div class="section-content">
+                        <p>Dota 2's strategic depth creates diverse betting opportunities. Long matches and complex team compositions offer numerous angles for informed bettors.</p>
+                        
+                        <div class="betting-grid">
+                            <div class="betting-card">
+                                <h4>Match Winner</h4>
+                                <p>Best-of-3 or best-of-5 series winner. Dota 2 matches can swing dramatically, making upsets common.</p>
+                            </div>
+                            <div class="betting-card">
+                                <h4>Map Handicap</h4>
+                                <p>Map spread betting for series. Underdogs often steal maps even in losses.</p>
+                            </div>
+                            <div class="betting-card">
+                                <h4>First Blood</h4>
+                                <p>Which team gets the first kill. Dependent on draft and early aggression strategies.</p>
+                            </div>
+                            <div class="betting-card">
+                                <h4>Total Kills</h4>
+                                <p>Over/under on total kills per game. Meta-dependent—some patches favor fights, others farming.</p>
+                            </div>
+                            <div class="betting-card">
+                                <h4>Game Duration</h4>
+                                <p>Over/under on match length. Varies wildly based on draft and team playstyles.</p>
+                            </div>
+                            <div class="betting-card">
+                                <h4>First Tower/Roshan</h4>
+                                <p>Which team takes first objective. Strong indicator of early game control.</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Betting Tips</h3>
+                        <p><strong>Draft Impact:</strong> Dota 2 drafts heavily influence outcomes. Some hero combinations counter others entirely. Watch drafts before live betting.</p>
+                        <p><strong>Patch Awareness:</strong> Meta shifts dramatically between patches. Teams that adapted quickly to new patches historically have advantages.</p>
+                        <p><strong>Regional Strength:</strong> Different regions have distinct playstyles. Chinese teams often excel at disciplined execution while CIS teams prefer aggressive tempo.</p>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Quick Links</h3>
+                    <ul class="quick-links">
+                        <li><a href="#history">📜 History</a></li>
+                        <li><a href="#teams">🏆 Top Teams</a></li>
+                        <li><a href="#players">⭐ Top Players</a></li>
+                        <li><a href="#tournaments">🎯 Tournaments</a></li>
+                        <li><a href="#betting">💰 Betting Markets</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Related Games</h3>
+                    <ul class="related-games">
+                        <li><a href="/games/lol.html">
+                            <span class="related-game-icon">🏰</span>
+                            <span>League of Legends</span>
+                        </a></li>
+                        <li><a href="/games/cs2.html">
+                            <span class="related-game-icon">🔫</span>
+                            <span>Counter-Strike 2</span>
+                        </a></li>
+                        <li><a href="/games/valorant.html">
+                            <span class="related-game-icon">💠</span>
+                            <span>Valorant</span>
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <div class="cta-box">
+                    <h3>Live Dota 2 Odds</h3>
+                    <p>Check real-time betting odds for upcoming Dota 2 matches.</p>
+                    <a href="/live/" class="cta-btn">View Live Odds →</a>
+                </div>
+                
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Key Stats</h3>
+                    <ul class="quick-links">
+                        <li><a href="/teams/?game=dota2">🏆 Dota 2 Team Rankings</a></li>
+                        <li><a href="/players/?game=dota2">⭐ Dota 2 Player Stats</a></li>
+                        <li><a href="/tournaments/?game=dota2">🎯 Upcoming Events</a></li>
+                        <li><a href="/betting/dota2.html">📖 Dota 2 Betting Guide</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">APUESTA ESPORTS</a>
+                    <p>The world's most comprehensive esports reference. Teams, players, countries, tournaments, and betting guides.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Games</h4>
+                    <ul>
+                        <li><a href="/games/cs2.html">Counter-Strike 2</a></li>
+                        <li><a href="/games/dota2.html">Dota 2</a></li>
+                        <li><a href="/games/lol.html">League of Legends</a></li>
+                        <li><a href="/games/valorant.html">Valorant</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="/teams/">Team Rankings</a></li>
+                        <li><a href="/players/">Player Profiles</a></li>
+                        <li><a href="/countries/">Country Stats</a></li>
+                        <li><a href="/tournaments/">Tournaments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Betting</h4>
+                    <ul>
+                        <li><a href="/live/">Live Odds</a></li>
+                        <li><a href="/betting/">Betting Guides</a></li>
+                        <li><a href="/betting/beginners.html">Beginner's Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2026 Apuesta Esports. Data from Esports Earnings.</div>
+                <div class="footer-legal">
+                    <a href="/llms.txt">llms.txt</a>
+                    <a href="/sitemap.xml">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Dota 2",
+        "alternateName": ["Defense of the Ancients 2", "Dota"],
+        "description": "Dota 2 is a MOBA featuring The International, esports' largest prize pool tournament with complex strategic gameplay.",
+        "genre": "MOBA",
+        "gamePlatform": "PC",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Valve Corporation"
+        },
+        "datePublished": "2013-07-09",
+        "url": "https://www.apuestaesports.com/games/dota2.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.apuestaesports.com/"},
+            {"@type": "ListItem", "position": 2, "name": "Games", "item": "https://www.apuestaesports.com/games/"},
+            {"@type": "ListItem", "position": 3, "name": "Dota 2", "item": "https://www.apuestaesports.com/games/dota2.html"}
+        ]
+    }
+    </script>
+</body>
+</html>

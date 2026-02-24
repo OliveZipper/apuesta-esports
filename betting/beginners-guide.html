@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beginner's Guide to Esports Betting - Apuesta Esports</title>
+    <meta name="description" content="Complete beginner's guide to esports betting. Learn how odds work, types of bets, bankroll management, research tips, and common mistakes to avoid.">
+    <meta name="keywords" content="esports betting guide, how to bet on esports, esports odds explained, beginner betting guide, bankroll management">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Beginner's Guide to Esports Betting - Apuesta Esports">
+    <meta property="og:description" content="Everything you need to know to start betting on esports. Learn odds, bet types, and smart strategies.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apuestaesports.com/betting/beginners-guide.html">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.apuestaesports.com/betting/beginners-guide.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #15151f;
+            --orange: #FF6B2F;
+            --purple: #8D52DA;
+            --yellow: #DFFD51;
+            --green: #22c55e;
+            --red: #ef4444;
+            --blue: #3b82f6;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 24px;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+        
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        /* Article Layout */
+        .article-header {
+            padding: 140px 24px 60px;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(141, 82, 218, 0.15) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+        
+        .article-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+        
+        .breadcrumb a {
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--orange);
+        }
+        
+        .article-header h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* Article Content */
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        
+        .article-content h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 48px 0 20px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .article-content h2:first-of-type {
+            margin-top: 0;
+            padding-top: 0;
+            border-top: none;
+        }
+        
+        .article-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+        
+        .article-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+        
+        .article-content ul,
+        .article-content ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+        
+        .article-content li {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+        
+        .article-content strong {
+            color: var(--text-primary);
+        }
+        
+        /* Info Boxes */
+        .info-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .info-box.tip {
+            border-color: rgba(34, 197, 94, 0.3);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+        }
+        
+        .info-box.warning {
+            border-color: rgba(239, 68, 68, 0.3);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+        }
+        
+        .info-box.example {
+            border-color: rgba(59, 130, 246, 0.3);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+        }
+        
+        .info-box-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .info-box.tip .info-box-header { color: var(--green); }
+        .info-box.warning .info-box-header { color: var(--red); }
+        .info-box.example .info-box-header { color: var(--blue); }
+        
+        .info-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+        
+        /* Odds Table */
+        .odds-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .odds-table th,
+        .odds-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .odds-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+        
+        .odds-table td {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-secondary);
+        }
+        
+        .odds-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .odds-table .highlight {
+            color: var(--yellow);
+        }
+        
+        /* Calculation Box */
+        .calc-box {
+            background: var(--bg-tertiary);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .calc-box .formula {
+            font-size: 1.1rem;
+            color: var(--yellow);
+            margin-bottom: 12px;
+        }
+        
+        .calc-box .example {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .calc-box .result {
+            color: var(--green);
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+        
+        .checklist-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .checklist-icon.do { background: rgba(34, 197, 94, 0.2); color: var(--green); }
+        .checklist-icon.dont { background: rgba(239, 68, 68, 0.2); color: var(--red); }
+        
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .toc h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        
+        .toc ol {
+            list-style: none;
+            padding-left: 0;
+            counter-reset: toc-counter;
+        }
+        
+        .toc li {
+            counter-increment: toc-counter;
+            margin-bottom: 8px;
+        }
+        
+        .toc a {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+        
+        .toc a::before {
+            content: counter(toc-counter) ".";
+            color: var(--orange);
+            font-weight: 600;
+        }
+        
+        .toc a:hover {
+            color: var(--text-primary);
+        }
+        
+        /* Responsible Gambling */
+        .responsible-gambling {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 48px;
+        }
+        
+        .responsible-gambling h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: var(--green);
+        }
+        
+        .responsible-gambling p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+        
+        .help-links {
+            margin-top: 16px;
+        }
+        
+        .help-links a {
+            color: var(--green);
+            text-decoration: underline;
+            margin-right: 24px;
+        }
+        
+        /* Next Article CTA */
+        .next-article {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            transition: border-color 0.2s;
+        }
+        
+        .next-article:hover {
+            border-color: var(--purple);
+        }
+        
+        .next-article-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .next-article-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .next-article-arrow {
+            font-size: 1.5rem;
+            color: var(--orange);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 40px 24px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .article-meta {
+                flex-wrap: wrap;
+            }
+            
+            .odds-table {
+                font-size: 0.85rem;
+            }
+            
+            .odds-table th,
+            .odds-table td {
+                padding: 12px;
+            }
+            
+            .next-article {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <ul class="nav-links">
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/teams/">Teams</a></li>
+                <li><a href="/players/">Players</a></li>
+                <li><a href="/countries/">Countries</a></li>
+                <li><a href="/tournaments/">Tournaments</a></li>
+                <li><a href="/betting/" class="active">Betting</a></li>
+            </ul>
+            <a href="/live/" class="nav-cta">Live Odds →</a>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header-content">
+            <div class="breadcrumb">
+                <a href="/">Home</a>
+                <span>›</span>
+                <a href="/betting/">Betting Guides</a>
+                <span>›</span>
+                <span>Beginner's Guide</span>
+            </div>
+            <h1>Complete Beginner's Guide to Esports Betting</h1>
+            <div class="article-meta">
+                <span>🎓 Beginner</span>
+                <span>📖 15 min read</span>
+                <span>📅 Updated Feb 2026</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <article class="article-content">
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h4>In This Guide</h4>
+            <ol>
+                <li><a href="#what-is-esports-betting">What is Esports Betting?</a></li>
+                <li><a href="#how-odds-work">How Odds Work</a></li>
+                <li><a href="#types-of-bets">Types of Bets</a></li>
+                <li><a href="#bankroll-management">Bankroll Management</a></li>
+                <li><a href="#research-tips">Research Tips</a></li>
+                <li><a href="#common-mistakes">Common Mistakes to Avoid</a></li>
+            </ol>
+        </div>
+
+        <h2 id="what-is-esports-betting">What is Esports Betting?</h2>
+        <p>
+            Esports betting is wagering money on the outcomes of professional video game competitions. 
+            Just like you might bet on football or basketball, you can bet on Counter-Strike 2, Dota 2, 
+            League of Legends, Valorant, and many other competitive games.
+        </p>
+        <p>
+            The esports betting market has exploded in recent years. Major tournaments like The International 
+            (Dota 2), CS2 Majors, and the League of Legends World Championship attract millions of viewers 
+            and bettors worldwide. The global esports betting market is now worth billions annually.
+        </p>
+        
+        <div class="info-box tip">
+            <div class="info-box-header">💡 Why Esports Betting?</div>
+            <p>
+                Unlike traditional sports, esports offers year-round action with matches happening daily. 
+                The digital nature means comprehensive statistics are available, and knowledgeable fans 
+                can leverage their game understanding for an edge.
+            </p>
+        </div>
+
+        <h3>Popular Games for Betting</h3>
+        <ul>
+            <li><strong>Counter-Strike 2 (CS2)</strong> – Tactical FPS with map-based betting opportunities</li>
+            <li><strong>Dota 2</strong> – Complex MOBA with the largest prize pools in esports</li>
+            <li><strong>League of Legends</strong> – World's most-watched esport with regional leagues</li>
+            <li><strong>Valorant</strong> – Fast-growing tactical shooter from Riot Games</li>
+            <li><strong>Fortnite</strong> – Battle royale with unique tournament formats</li>
+        </ul>
+
+        <h2 id="how-odds-work">How Odds Work</h2>
+        <p>
+            Understanding odds is fundamental to betting. Odds represent both the probability of an outcome 
+            and how much you'll win. There are three common formats: <strong>Decimal</strong>, <strong>Fractional</strong>, 
+            and <strong>American (Moneyline)</strong>.
+        </p>
+
+        <h3>Decimal Odds (Most Common in Esports)</h3>
+        <p>
+            Decimal odds show your total return for every $1 wagered, including your stake. 
+            They're the easiest to understand and most commonly used in esports betting.
+        </p>
+        
+        <div class="calc-box">
+            <div class="formula">Total Return = Stake × Decimal Odds</div>
+            <div class="example">Example: $100 bet at 1.75 odds</div>
+            <div class="result">= $100 × 1.75 = $175 (profit: $75)</div>
+        </div>
+
+        <table class="odds-table">
+            <thead>
+                <tr>
+                    <th>Decimal</th>
+                    <th>Fractional</th>
+                    <th>American</th>
+                    <th>Implied Probability</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="highlight">1.50</td>
+                    <td>1/2</td>
+                    <td>-200</td>
+                    <td>66.7%</td>
+                </tr>
+                <tr>
+                    <td class="highlight">2.00</td>
+                    <td>1/1 (evens)</td>
+                    <td>+100</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td class="highlight">2.50</td>
+                    <td>3/2</td>
+                    <td>+150</td>
+                    <td>40%</td>
+                </tr>
+                <tr>
+                    <td class="highlight">3.00</td>
+                    <td>2/1</td>
+                    <td>+200</td>
+                    <td>33.3%</td>
+                </tr>
+                <tr>
+                    <td class="highlight">5.00</td>
+                    <td>4/1</td>
+                    <td>+400</td>
+                    <td>20%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Understanding Implied Probability</h3>
+        <p>
+            Every set of odds implies a probability. If you think the true probability is higher than 
+            what the odds suggest, you have a <strong>value bet</strong>.
+        </p>
+        
+        <div class="calc-box">
+            <div class="formula">Implied Probability = 1 / Decimal Odds × 100</div>
+            <div class="example">Example: Odds of 2.50</div>
+            <div class="result">= 1/2.50 × 100 = 40% implied probability</div>
+        </div>
+
+        <div class="info-box example">
+            <div class="info-box-header">📊 Value Betting Example</div>
+            <p>
+                A sportsbook offers Team A at 2.50 odds (40% implied probability). Through your research, 
+                you estimate Team A has a 50% chance to win. Since 50% > 40%, this is a value bet. 
+                Over time, betting on positive expected value opportunities leads to profit.
+            </p>
+        </div>
+
+        <h2 id="types-of-bets">Types of Bets</h2>
+        
+        <h3>Match Winner (Moneyline)</h3>
+        <p>
+            The simplest bet: pick which team will win the match. No spreads or handicaps—just 
+            straight-up who wins. This is where most beginners start.
+        </p>
+
+        <h3>Map/Game Winner</h3>
+        <p>
+            In esports, matches are often best-of-3 or best-of-5. You can bet on individual 
+            map/game winners, which is useful when you think an underdog has a strong specific map.
+        </p>
+
+        <h3>Handicap (Spread) Betting</h3>
+        <p>
+            When one team is heavily favored, handicap betting evens the odds. A -1.5 map handicap 
+            means the favorite must win 2-0 for your bet to pay out. A +1.5 handicap means the 
+            underdog can lose 1-2 and you still win.
+        </p>
+
+        <h3>Over/Under (Totals)</h3>
+        <p>
+            Bet on whether the total maps, rounds, or in-game events exceed or fall short of a 
+            specified number. "Over 2.5 maps" wins if the match goes to 3 maps.
+        </p>
+
+        <h3>Prop Bets</h3>
+        <p>
+            Proposition bets cover specific in-game events: first blood, first tower, total kills, 
+            pistol round winners, and more. These require deeper game knowledge but offer edge opportunities.
+        </p>
+
+        <h3>Outright/Futures</h3>
+        <p>
+            Bet on tournament winners before or during an event. Higher risk but potentially 
+            massive returns if you identify an undervalued team early.
+        </p>
+
+        <h2 id="bankroll-management">Bankroll Management</h2>
+        <p>
+            Your <strong>bankroll</strong> is the total amount of money you've set aside for betting. 
+            Proper management is arguably more important than picking winners. Without it, even 
+            profitable bettors can go broke.
+        </p>
+
+        <h3>The Unit System</h3>
+        <p>
+            A "unit" is typically 1-2% of your total bankroll. Using units instead of dollar amounts 
+            keeps your bets proportional to your bankroll size and emotions in check.
+        </p>
+
+        <div class="info-box tip">
+            <div class="info-box-header">💡 Unit Size Recommendation</div>
+            <p>
+                <strong>Conservative:</strong> 1% of bankroll per bet (100 units)<br>
+                <strong>Standard:</strong> 2% of bankroll per bet (50 units)<br>
+                <strong>Aggressive:</strong> 3-5% of bankroll per bet (20-33 units)<br><br>
+                Start conservative. A $1,000 bankroll means $10-20 per bet maximum.
+            </p>
+        </div>
+
+        <h3>Key Bankroll Rules</h3>
+        <ul>
+            <li><strong>Never bet more than 5% on a single match</strong>, no matter how confident</li>
+            <li><strong>Never bet money you can't afford to lose</strong></li>
+            <li><strong>Track every bet</strong> – use a spreadsheet or betting tracker</li>
+            <li><strong>Review monthly</strong> – analyze what's working and what isn't</li>
+            <li><strong>Adjust unit size</strong> only after your bankroll changes significantly (±25%)</li>
+        </ul>
+
+        <h2 id="research-tips">Research Tips</h2>
+        <p>
+            Knowledge is your edge. The more you understand about the teams, players, and games, 
+            the better your predictions will be. Here's where to focus your research:
+        </p>
+
+        <h3>Team Form & Recent Results</h3>
+        <p>
+            Check the last 10-20 matches. Are they on an upswing or downswing? Did they recently 
+            change rosters? Teams often need time to gel after roster changes.
+        </p>
+
+        <h3>Head-to-Head History</h3>
+        <p>
+            Some teams consistently beat others regardless of overall rankings. Check the H2H 
+            record, especially recent meetings with current rosters.
+        </p>
+
+        <h3>Map Pool Analysis (For CS2/Valorant)</h3>
+        <p>
+            Teams have strong and weak maps. If you know both teams' map pools, you can predict 
+            the veto and identify maps where underdogs have real chances.
+        </p>
+
+        <h3>Meta & Patch Changes</h3>
+        <p>
+            New patches can dramatically shift team strengths. A team dominating the previous 
+            patch might struggle in a new meta. Watch for these transitions.
+        </p>
+
+        <h3>Tournament Context</h3>
+        <p>
+            Is this a must-win match? Are there financial or prestige incentives? Teams play 
+            differently in group stages vs. elimination rounds.
+        </p>
+
+        <div class="info-box tip">
+            <div class="info-box-header">💡 Research Sources</div>
+            <p>
+                <strong>HLTV.org</strong> – Essential for CS2 stats and rankings<br>
+                <strong>Liquipedia</strong> – Comprehensive wiki for all esports<br>
+                <strong>VLR.gg</strong> – Valorant stats and coverage<br>
+                <strong>Dotabuff/OpenDota</strong> – Dota 2 statistics<br>
+                <strong>Leaguepedia</strong> – LoL tournament info and team data
+            </p>
+        </div>
+
+        <h2 id="common-mistakes">Common Mistakes to Avoid</h2>
+        
+        <ul class="checklist">
+            <li>
+                <span class="checklist-icon dont">✗</span>
+                <div>
+                    <strong>Chasing losses</strong> – After a losing streak, resist the urge to make bigger bets to "win it back." Stick to your unit size and trust your process.
+                </div>
+            </li>
+            <li>
+                <span class="checklist-icon dont">✗</span>
+                <div>
+                    <strong>Betting on your favorite team</strong> – Fan loyalty clouds judgment. Either skip your team's matches or bet against them when the value is there.
+                </div>
+            </li>
+            <li>
+                <span class="checklist-icon dont">✗</span>
+                <div>
+                    <strong>Ignoring odds value</strong> – A team can be likely to win but still be a bad bet if the odds are too low. Always check if the implied probability is lower than your estimated probability.
+                </div>
+            </li>
+            <li>
+                <span class="checklist-icon dont">✗</span>
+                <div>
+                    <strong>Betting too many matches</strong> – Quality over quantity. It's okay to skip a day if there's no clear value. Forcing bets leads to losses.
+                </div>
+            </li>
+            <li>
+                <span class="checklist-icon dont">✗</span>
+                <div>
+                    <strong>Not tracking bets</strong> – Without records, you can't identify leaks in your strategy. Track every bet: date, match, odds, stake, and result.
+                </div>
+            </li>
+            <li>
+                <span class="checklist-icon dont">✗</span>
+                <div>
+                    <strong>Betting under the influence</strong> – Alcohol and gambling don't mix. Make all betting decisions with a clear head.
+                </div>
+            </li>
+        </ul>
+
+        <div class="info-box warning">
+            <div class="info-box-header">⚠️ The House Always Has an Edge</div>
+            <p>
+                Sportsbooks build a margin (the "vig" or "juice") into their odds. On a 50/50 bet, 
+                you might see both sides at 1.91 instead of 2.00. This means you need to win more 
+                than 50% of your bets just to break even. Long-term profitability requires finding 
+                consistent value—and even then, variance means losses are part of the game.
+            </p>
+        </div>
+
+        <!-- Responsible Gambling -->
+        <div class="responsible-gambling">
+            <h3>🛡️ Responsible Gambling Reminder</h3>
+            <p>
+                Esports betting should be entertainment, not a way to make money. Set limits, take breaks, 
+                and never bet more than you can afford to lose. If gambling stops being fun, it's time to stop.
+            </p>
+            <p>
+                Signs of problem gambling include chasing losses, betting with money meant for bills, 
+                lying about gambling, and feeling anxious when not betting. If you recognize these signs, 
+                seek help.
+            </p>
+            <div class="help-links">
+                <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware</a>
+                <a href="https://www.gamblersanonymous.org" target="_blank" rel="noopener">Gamblers Anonymous</a>
+            </div>
+        </div>
+
+        <!-- Next Article -->
+        <a href="/betting/cs2-betting.html" class="next-article">
+            <div>
+                <div class="next-article-label">Next Guide</div>
+                <div class="next-article-title">CS2 Betting Guide →</div>
+            </div>
+            <div class="next-article-arrow">→</div>
+        </a>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/betting/">All Guides</a>
+                <a href="/live/">Live Odds</a>
+            </div>
+            <div class="footer-copy">
+                © 2026 Apuesta Esports. Gamble responsibly. 18+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Complete Beginner's Guide to Esports Betting",
+        "description": "Everything you need to know to start betting on esports. Learn how odds work, types of bets, bankroll management, and common mistakes to avoid.",
+        "author": {
+            "@type": "Organization",
+            "name": "Apuesta Esports"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Apuesta Esports",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.apuestaesports.com/logo.png"
+            }
+        },
+        "datePublished": "2026-02-01",
+        "dateModified": "2026-02-24",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.apuestaesports.com/betting/beginners-guide.html"
+        }
+    }
+    </script>
+</body>
+</html>

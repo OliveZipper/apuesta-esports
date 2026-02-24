@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League of Legends Esports - LEC, LCK, Worlds, Betting Guide | Apuesta Esports</title>
+    <meta name="description" content="Complete League of Legends esports guide. World Championship, LCK, LEC, LPL, top teams like T1 and Gen.G, Faker, and LoL betting markets explained.">
+    <meta name="keywords" content="League of Legends, LoL esports, Worlds, LCK, LEC, LPL, T1, Faker, Gen.G, LoL betting">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="League of Legends Esports Guide | Apuesta Esports">
+    <meta property="og:description" content="Everything about LoL competitive scene. Teams, players, Worlds Championship, and betting guide.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.apuestaesports.com/games/lol.html">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.apuestaesports.com/games/lol.html">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏰</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #15151f;
+            --orange: #FF6B2F;
+            --purple: #8D52DA;
+            --yellow: #DFFD51;
+            --lol-gold: #C89B3C;
+            --lol-blue: #0397AB;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+            --gradient-lol: linear-gradient(135deg, var(--lol-gold) 0%, var(--lol-blue) 100%);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        a { color: inherit; text-decoration: none; }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 24px;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+        
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .game-hero {
+            padding: 120px 24px 60px;
+            background: 
+                radial-gradient(ellipse at 30% 0%, rgba(200, 155, 60, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 100%, rgba(3, 151, 171, 0.15) 0%, transparent 50%),
+                var(--bg-primary);
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; font-size: 0.9rem; color: var(--text-muted); }
+        .breadcrumb a:hover { color: var(--text-secondary); }
+        
+        .game-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(200, 155, 60, 0.15);
+            border: 1px solid rgba(200, 155, 60, 0.3);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--lol-gold);
+            margin-bottom: 20px;
+        }
+        
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+        
+        .hero-content h1 .gradient {
+            background: var(--gradient-lol);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-description { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 32px; max-width: 600px; }
+        .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+        .hero-stat { text-align: left; }
+        .hero-stat-value { font-size: 2rem; font-weight: 800; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        .hero-stat-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        .hero-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+        }
+        
+        .hero-card-icon { font-size: 5rem; margin-bottom: 20px; }
+        .hero-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+        .hero-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
+        
+        .hero-card-cta {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--gradient-lol);
+            border-radius: 10px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        
+        .hero-card-cta:hover { transform: translateY(-2px); }
+        
+        main { max-width: 1400px; margin: 0 auto; padding: 60px 24px 100px; }
+        section { margin-bottom: 80px; }
+        .section-header { margin-bottom: 32px; }
+        .section-header h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+        .section-header p { color: var(--text-secondary); }
+        
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .content-card h3 { font-size: 1.25rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+        .content-card p { color: var(--text-secondary); margin-bottom: 16px; }
+        .content-card ul { color: var(--text-secondary); margin-left: 20px; }
+        .content-card li { margin-bottom: 8px; }
+        
+        .leagues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .league-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .league-card:hover { transform: translateY(-4px); border-color: var(--lol-gold); }
+        .league-card h4 { font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .league-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 12px; }
+        .league-teams { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .teams-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+        
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .team-card:hover { transform: translateY(-4px); border-color: var(--purple); }
+        .team-logo { font-size: 2.5rem; margin-bottom: 12px; }
+        .team-card h4 { font-size: 1rem; margin-bottom: 4px; }
+        .team-card p { font-size: 0.85rem; color: var(--text-muted); }
+        .team-earnings { margin-top: 12px; font-size: 1rem; font-weight: 700; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        
+        .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        
+        .player-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .player-card:hover { transform: translateY(-4px); border-color: var(--purple); }
+        
+        .player-rank {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .player-rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+        .player-rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
+        .player-rank.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
+        
+        .player-info { flex: 1; }
+        .player-name { font-weight: 700; margin-bottom: 2px; }
+        .player-detail { font-size: 0.85rem; color: var(--text-muted); }
+        .player-earnings { font-weight: 700; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        
+        .tournaments-table { width: 100%; border-collapse: collapse; }
+        .tournaments-table th, .tournaments-table td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border); }
+        .tournaments-table th { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        .tournaments-table td { font-size: 0.95rem; }
+        .tournaments-table tr:hover { background: var(--bg-tertiary); }
+        .tournament-name { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+        .tournament-prize { color: var(--yellow); font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+        
+        .betting-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+        
+        .betting-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+        
+        .betting-card h4 { font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .betting-card p { color: var(--text-secondary); font-size: 0.95rem; }
+        
+        .betting-tip {
+            margin-top: 16px;
+            padding: 12px;
+            background: rgba(223, 253, 81, 0.1);
+            border: 1px solid rgba(223, 253, 81, 0.2);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--yellow);
+        }
+        
+        .worlds-highlight {
+            background: linear-gradient(135deg, rgba(200, 155, 60, 0.1), rgba(3, 151, 171, 0.1));
+            border: 1px solid rgba(200, 155, 60, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .worlds-highlight h3 { font-size: 1.5rem; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+        .worlds-highlight p { color: var(--text-secondary); margin-bottom: 16px; max-width: 800px; }
+        .worlds-stats { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 24px; }
+        .worlds-stat-value { font-size: 1.75rem; font-weight: 800; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        .worlds-stat-label { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .cta-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .cta-section h2 { font-size: 1.75rem; margin-bottom: 16px; }
+        .cta-section p { color: var(--text-secondary); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        
+        .btn { padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 1rem; transition: transform 0.2s; }
+        .btn-primary { background: var(--gradient-lol); color: white; }
+        .btn-secondary { background: var(--bg-tertiary); border: 1px solid var(--border); }
+        .btn:hover { transform: translateY(-2px); }
+        
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 40px 24px;
+            text-align: center;
+        }
+        
+        .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 20px; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
+        .footer-links a:hover { color: var(--text-primary); }
+        .footer-copyright { color: var(--text-muted); font-size: 0.85rem; }
+        
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; }
+            .hero-card { max-width: 400px; margin: 0 auto; }
+            .content-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .teams-grid { grid-template-columns: repeat(2, 1fr); }
+            .players-grid { grid-template-columns: 1fr; }
+            .tournaments-table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <ul class="nav-links">
+                <li><a href="/games/" class="active">Games</a></li>
+                <li><a href="/teams/">Teams</a></li>
+                <li><a href="/players/">Players</a></li>
+                <li><a href="/countries/">Countries</a></li>
+                <li><a href="/tournaments/">Tournaments</a></li>
+                <li><a href="/betting/">Betting</a></li>
+            </ul>
+            <a href="/live/" class="nav-cta">Live Odds →</a>
+        </div>
+    </nav>
+
+    <header class="game-hero">
+        <div class="hero-content">
+            <div>
+                <div class="breadcrumb">
+                    <a href="/">Home</a> / <a href="/games/">Games</a> / <span>League of Legends</span>
+                </div>
+                <div class="game-badge">🏰 Multiplayer Online Battle Arena</div>
+                <h1>League of <span class="gradient">Legends</span></h1>
+                <p class="hero-description">
+                    The world's most-watched esport with over 100 million monthly players. League of Legends 
+                    features regional leagues across the globe and culminates in the annual World Championship, 
+                    drawing massive viewership and passionate fan bases from every continent.
+                </p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">$100M+</div>
+                        <div class="hero-stat-label">Total Prize Pool</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">6M+</div>
+                        <div class="hero-stat-label">Peak Viewers</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">160+</div>
+                        <div class="hero-stat-label">Champions</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-card">
+                <div class="hero-card-icon">🏆</div>
+                <h3>World Championship</h3>
+                <p>The pinnacle of League of Legends esports with teams from every major region competing for the Summoner's Cup.</p>
+                <a href="/tournaments/" class="hero-card-cta">View Worlds →</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Worlds Highlight -->
+        <section>
+            <div class="worlds-highlight">
+                <h3>🏆 World Championship - The Biggest Event in Esports Viewership</h3>
+                <p>
+                    The League of Legends World Championship (Worlds) is the annual pinnacle of competitive LoL. 
+                    First held in 2011, it has grown to become the most-watched esports event globally, with 
+                    the 2022 finals reaching over 5 million peak concurrent viewers.
+                </p>
+                <p>
+                    Teams qualify through regional leagues (LCK, LPL, LEC, LCS, and emerging regions), competing 
+                    in a month-long tournament. South Korean and Chinese teams have dominated, with T1 (formerly SKT) 
+                    winning four titles and Faker becoming the most decorated player in LoL history.
+                </p>
+                <div class="worlds-stats">
+                    <div>
+                        <div class="worlds-stat-value">6M+</div>
+                        <div class="worlds-stat-label">Peak Viewers</div>
+                    </div>
+                    <div>
+                        <div class="worlds-stat-value">$2.2M</div>
+                        <div class="worlds-stat-label">Prize Pool</div>
+                    </div>
+                    <div>
+                        <div class="worlds-stat-value">24</div>
+                        <div class="worlds-stat-label">Teams</div>
+                    </div>
+                    <div>
+                        <div class="worlds-stat-value">13</div>
+                        <div class="worlds-stat-label">Years Running</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Regional Leagues -->
+        <section>
+            <div class="section-header">
+                <h2>Regional Leagues</h2>
+                <p>Professional leagues across the globe feeding into international competition</p>
+            </div>
+            <div class="leagues-grid">
+                <div class="league-card">
+                    <h4>🇰🇷 LCK (Korea)</h4>
+                    <p>The most competitive league, home to T1, Gen.G, and DRX. Known for mechanical excellence and strategic depth.</p>
+                    <div class="league-teams">10 Teams • 2 Splits/Year</div>
+                </div>
+                <div class="league-card">
+                    <h4>🇨🇳 LPL (China)</h4>
+                    <p>Largest league with aggressive playstyle. Teams like JDG, BLG, and Weibo Gaming compete for dominance.</p>
+                    <div class="league-teams">17 Teams • 2 Splits/Year</div>
+                </div>
+                <div class="league-card">
+                    <h4>🇪🇺 LEC (Europe)</h4>
+                    <p>Europe's premier league featuring G2 Esports, Fnatic, and MAD Lions. Known for innovative strategies.</p>
+                    <div class="league-teams">10 Teams • 2 Splits/Year</div>
+                </div>
+                <div class="league-card">
+                    <h4>🇺🇸 LCS (North America)</h4>
+                    <p>Home to Cloud9, Team Liquid, and 100 Thieves. Growing competitiveness with international imports.</p>
+                    <div class="league-teams">10 Teams • 2 Splits/Year</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section>
+            <div class="section-header">
+                <h2>About League of Legends</h2>
+                <p>The world's most popular competitive game</p>
+            </div>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>📖 History & Impact</h3>
+                    <p>
+                        League of Legends launched in 2009, developed by Riot Games. Inspired by the original Dota mod, 
+                        LoL streamlined the MOBA formula while maintaining strategic depth. It quickly became the most 
+                        played PC game globally, revolutionizing free-to-play gaming.
+                    </p>
+                    <p>
+                        Riot pioneered the franchised league model in esports, creating stable regional competitions 
+                        with salaried players. The LCK, LPL, LEC, and LCS form the four major regions, with teams 
+                        competing for slots at international events like MSI and Worlds.
+                    </p>
+                    <p>
+                        Iconic moments include Faker's rise to GOAT status with four World titles, the historic 
+                        rivalry between SKT and Samsung, and underdog runs like 2022's DRX championship.
+                    </p>
+                </div>
+                <div class="content-card">
+                    <h3>🎮 Gameplay</h3>
+                    <p><strong>Format:</strong> 5v5 MOBA</p>
+                    <p><strong>Objective:</strong> Destroy enemy Nexus</p>
+                    <p><strong>Duration:</strong> 25-40 minutes average</p>
+                    <ul>

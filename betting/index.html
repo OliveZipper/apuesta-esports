@@ -3,20 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esports Betting Guides - How to Bet on CS2, Dota 2, LoL, Valorant | Apuesta Esports</title>
-    <meta name="description" content="Complete esports betting guides. Learn how to bet on CS2, Dota 2, League of Legends, Valorant with strategies, market explanations, and expert tips.">
+    <title>Esports Betting Guides - Apuesta Esports</title>
+    <meta name="description" content="Complete esports betting guides for CS2, Dota 2, League of Legends, and more. Learn bet types, strategies, and responsible gambling practices.">
+    <meta name="keywords" content="esports betting guide, CS2 betting, Dota 2 betting, LoL betting, esports odds, match winner, handicap betting">
     
+    <!-- Open Graph -->
+    <meta property="og:title" content="Esports Betting Guides - Apuesta Esports">
+    <meta property="og:description" content="Master esports betting with our comprehensive guides. Learn strategies for CS2, Dota 2, LoL, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.apuestaesports.com/betting/">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.apuestaesports.com/betting/">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
             --bg-card: #15151f;
             --orange: #FF6B2F;
             --purple: #8D52DA;
             --yellow: #DFFD51;
+            --green: #22c55e;
+            --red: #ef4444;
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
             --text-muted: #606070;
@@ -24,95 +42,497 @@
             --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
-        a { color: inherit; text-decoration: none; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* Navigation */
         nav {
-            position: fixed; top: 0; left: 0; right: 0;
-            background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border); z-index: 1000; padding: 0 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 0 24px;
         }
+        
         .nav-container {
-            max-width: 1400px; margin: 0 auto;
-            display: flex; align-items: center; justify-content: space-between; height: 64px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
         }
+        
         .logo {
-            font-weight: 800; font-size: 1.25rem;
-            background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .nav-links { display: flex; gap: 32px; list-style: none; }
-        .nav-links a { color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; }
-        .nav-links a:hover { color: var(--text-primary); }
         
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+        
+        .nav-cta {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
+        }
+        
+        /* Hero */
         .hero {
-            padding: 140px 24px 80px; text-align: center;
-            background: radial-gradient(ellipse at 50% 0%, rgba(141, 82, 218, 0.15) 0%, transparent 50%), var(--bg-primary);
+            padding: 140px 24px 80px;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(141, 82, 218, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(255, 107, 47, 0.1) 0%, transparent 40%),
+                var(--bg-primary);
         }
-        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 16px; }
-        .hero p { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
         
-        .container { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
         
+        .hero-badge {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        
+        .hero-badge span {
+            color: var(--yellow);
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        h1 .gradient {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Content */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+        
+        /* Guide Cards */
         .guides-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
         }
         
         .guide-card {
-            background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
-            padding: 32px; transition: transform 0.2s, border-color 0.2s;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.2s, border-color 0.2s;
         }
-        .guide-card:hover { transform: translateY(-4px); border-color: var(--purple); }
-        .guide-icon { font-size: 3rem; margin-bottom: 16px; }
-        .guide-card h2 { font-size: 1.5rem; margin-bottom: 12px; }
-        .guide-card p { color: var(--text-secondary); margin-bottom: 20px; }
-        .guide-topics { list-style: none; }
-        .guide-topics li {
-            padding: 8px 0; border-bottom: 1px solid var(--border);
-            color: var(--text-secondary); font-size: 0.95rem;
+        
+        .guide-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--purple);
         }
-        .guide-topics li:last-child { border-bottom: none; }
-        .guide-topics li::before { content: "→ "; color: var(--orange); }
         
-        .section-title { font-size: 2rem; margin-bottom: 40px; text-align: center; }
+        .guide-card.featured {
+            border-color: var(--orange);
+            background: linear-gradient(135deg, rgba(255, 107, 47, 0.1) 0%, rgba(141, 82, 218, 0.1) 100%);
+        }
         
-        .markets-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;
+        .guide-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+        
+        .guide-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        
+        .guide-meta {
+            display: flex;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+        
+        .guide-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+        
+        .guide-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--orange);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        /* Bet Types Section */
+        .bet-types {
+            margin-bottom: 80px;
+        }
+        
+        .bet-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .bet-type-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+        
+        .bet-type-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .bet-type-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .bet-type-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .bet-type-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .bet-example {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+        
+        .bet-example-label {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        
+        .bet-example-value {
+            color: var(--yellow);
+        }
+        
+        /* Introduction Box */
+        .intro-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .intro-box h2 {
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+        }
+        
+        .intro-box p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 16px;
+        }
+        
+        .intro-box p:last-of-type {
+            margin-bottom: 0;
+        }
+        
+        /* Responsible Gambling */
+        .responsible-gambling {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 16px;
+            padding: 32px;
             margin-top: 60px;
         }
         
-        .market-card {
-            background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
-            padding: 24px;
+        .responsible-gambling h3 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            color: var(--green);
         }
-        .market-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--yellow); }
-        .market-card p { color: var(--text-secondary); font-size: 0.9rem; }
         
-        .cta-box {
-            background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px;
-            padding: 48px; text-align: center; margin-top: 60px;
+        .responsible-gambling p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
         }
-        .cta-box h2 { margin-bottom: 16px; }
-        .cta-box p { color: var(--text-secondary); margin-bottom: 24px; }
+        
+        .responsible-gambling ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+        }
+        
+        .responsible-gambling li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        .responsible-gambling li::before {
+            content: "✓";
+            color: var(--green);
+            font-weight: bold;
+        }
+        
+        .help-links {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(34, 197, 94, 0.2);
+        }
+        
+        .help-links a {
+            color: var(--green);
+            text-decoration: underline;
+            margin-right: 24px;
+        }
+        
+        /* Quick Links */
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 32px;
+        }
+        
+        .quick-link {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .quick-link:hover {
+            border-color: var(--purple);
+            background: var(--bg-card);
+        }
+        
+        /* CTA */
+        .cta-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .cta-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 12px;
+        }
+        
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+        
         .btn {
-            display: inline-block; padding: 14px 28px; border-radius: 10px;
-            font-weight: 600; background: var(--gradient); color: white;
-            transition: transform 0.2s;
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .btn:hover { transform: translateY(-2px); }
         
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
+        }
+        
+        /* Footer */
         footer {
-            background: var(--bg-secondary); border-top: 1px solid var(--border);
-            padding: 40px 24px; text-align: center; color: var(--text-muted);
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 40px 24px;
+            margin-top: 80px;
         }
         
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--text-secondary);
+        }
+        
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        
+        /* Mobile */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .guides-grid { grid-template-columns: 1fr; }
+            .nav-links {
+                display: none;
+            }
+            
+            .guides-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro-box {
+                padding: 24px;
+            }
+            
+            .responsible-gambling ul {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <a href="/" class="logo">APUESTA ESPORTS</a>
@@ -121,137 +541,273 @@
                 <li><a href="/teams/">Teams</a></li>
                 <li><a href="/players/">Players</a></li>
                 <li><a href="/countries/">Countries</a></li>
-                <li><a href="/betting/" style="color: var(--orange);">Betting</a></li>
+                <li><a href="/tournaments/">Tournaments</a></li>
+                <li><a href="/betting/" class="active">Betting</a></li>
             </ul>
+            <a href="/live/" class="nav-cta">Live Odds →</a>
         </div>
     </nav>
 
+    <!-- Hero -->
     <section class="hero">
-        <h1>Esports Betting Guides</h1>
-        <p>Everything you need to know about betting on competitive gaming. Strategies, markets, and expert insights.</p>
+        <div class="hero-content">
+            <div class="hero-badge">📚 <span>Educational Content</span></div>
+            <h1>Esports <span class="gradient">Betting Guides</span></h1>
+            <p class="hero-subtitle">
+                Master esports betting with our comprehensive guides. Learn bet types, understand odds, 
+                and develop winning strategies for CS2, Dota 2, League of Legends, and more.
+            </p>
+            <div class="quick-links">
+                <a href="/betting/beginners-guide.html" class="quick-link">🎓 Beginner's Guide</a>
+                <a href="/betting/cs2-betting.html" class="quick-link">🔫 CS2 Guide</a>
+                <a href="/betting/dota2-betting.html" class="quick-link">⚔️ Dota 2 Guide</a>
+                <a href="/betting/lol-betting.html" class="quick-link">🏰 LoL Guide</a>
+            </div>
+        </div>
     </section>
 
-    <div class="container">
+    <!-- Content -->
+    <div class="content">
+        <!-- Introduction -->
+        <div class="intro-box">
+            <h2>What is Esports Betting?</h2>
+            <p>
+                Esports betting allows you to wager on the outcomes of professional video game competitions. 
+                Just like traditional sports betting, you can bet on match winners, tournament champions, 
+                and various in-game events. The esports betting market has grown exponentially, with millions 
+                wagered on major tournaments like The International, CS2 Majors, and the League of Legends 
+                World Championship.
+            </p>
+            <p>
+                What makes esports betting unique is the depth of game-specific knowledge that can give you an edge. 
+                Understanding meta shifts, team dynamics, map pools, and player form can significantly improve 
+                your predictions. Our guides are designed to help you understand these nuances for each major esport.
+            </p>
+        </div>
+
+        <!-- Game-Specific Guides -->
+        <div class="section-header">
+            <h2>Game-Specific Guides</h2>
+            <p>Deep-dive into betting strategies for each major esport</p>
+        </div>
+        
         <div class="guides-grid">
-            <a href="/betting/beginners.html" class="guide-card">
-                <div class="guide-icon">📚</div>
-                <h2>Beginner's Guide</h2>
-                <p>New to esports betting? Start here with the fundamentals.</p>
-                <ul class="guide-topics">
-                    <li>How esports betting works</li>
-                    <li>Understanding odds formats</li>
-                    <li>Bankroll management</li>
-                    <li>Finding value bets</li>
-                </ul>
+            <a href="/betting/beginners-guide.html" class="guide-card featured">
+                <div class="guide-icon">🎓</div>
+                <h3>Complete Beginner's Guide</h3>
+                <div class="guide-meta">
+                    <span>15 min read</span>
+                    <span>•</span>
+                    <span>Essential</span>
+                </div>
+                <p>Start here if you're new to esports betting. Learn how odds work, different bet types, bankroll management, and how to avoid common mistakes.</p>
+                <span class="guide-link">Read Guide →</span>
             </a>
             
-            <a href="/betting/cs2.html" class="guide-card">
+            <a href="/betting/cs2-betting.html" class="guide-card">
                 <div class="guide-icon">🔫</div>
-                <h2>CS2 Betting</h2>
-                <p>Counter-Strike betting strategies and market analysis.</p>
-                <ul class="guide-topics">
-                    <li>Map veto analysis</li>
-                    <li>Round handicaps</li>
-                    <li>Pistol round betting</li>
-                    <li>Live betting strategies</li>
-                </ul>
+                <h3>CS2 Betting Guide</h3>
+                <div class="guide-meta">
+                    <span>12 min read</span>
+                    <span>•</span>
+                    <span>FPS</span>
+                </div>
+                <p>Master Counter-Strike betting. Learn about map veto strategy, economy impact, team playstyles, and which bet types work best for CS2.</p>
+                <span class="guide-link">Read Guide →</span>
             </a>
             
-            <a href="/betting/dota2.html" class="guide-card">
+            <a href="/betting/dota2-betting.html" class="guide-card">
                 <div class="guide-icon">⚔️</div>
-                <h2>Dota 2 Betting</h2>
-                <p>Master the complexities of Dota 2 wagering.</p>
-                <ul class="guide-topics">
-                    <li>Draft analysis</li>
-                    <li>First blood & first tower</li>
-                    <li>Game duration markets</li>
-                    <li>Tournament meta shifts</li>
-                </ul>
+                <h3>Dota 2 Betting Guide</h3>
+                <div class="guide-meta">
+                    <span>12 min read</span>
+                    <span>•</span>
+                    <span>MOBA</span>
+                </div>
+                <p>Navigate the complexities of Dota 2 betting. Understand draft importance, meta shifts, and how to leverage live betting opportunities.</p>
+                <span class="guide-link">Read Guide →</span>
             </a>
             
-            <a href="/betting/lol.html" class="guide-card">
+            <a href="/betting/lol-betting.html" class="guide-card">
                 <div class="guide-icon">🏰</div>
-                <h2>LoL Betting</h2>
-                <p>League of Legends betting from LCS to Worlds.</p>
-                <ul class="guide-topics">
-                    <li>Regional power rankings</li>
-                    <li>Kill totals & spreads</li>
-                    <li>Dragon & Baron markets</li>
-                    <li>Patch analysis</li>
-                </ul>
-            </a>
-            
-            <a href="/betting/valorant.html" class="guide-card">
-                <div class="guide-icon">💠</div>
-                <h2>Valorant Betting</h2>
-                <p>VCT and Valorant Champions betting strategies.</p>
-                <ul class="guide-topics">
-                    <li>Agent composition analysis</li>
-                    <li>Map pool tendencies</li>
-                    <li>Regional differences</li>
-                    <li>Roster change impacts</li>
-                </ul>
-            </a>
-            
-            <a href="/betting/advanced.html" class="guide-card">
-                <div class="guide-icon">🧠</div>
-                <h2>Advanced Strategies</h2>
-                <p>Take your esports betting to the next level.</p>
-                <ul class="guide-topics">
-                    <li>Expected value calculations</li>
-                    <li>Line movement analysis</li>
-                    <li>Arbitrage opportunities</li>
-                    <li>Model building basics</li>
-                </ul>
+                <h3>League of Legends Betting Guide</h3>
+                <div class="guide-meta">
+                    <span>12 min read</span>
+                    <span>•</span>
+                    <span>MOBA</span>
+                </div>
+                <p>Bet smarter on the world's most popular esport. Learn about patch impacts, regional differences, and key statistics to track.</p>
+                <span class="guide-link">Read Guide →</span>
             </a>
         </div>
 
-        <h2 class="section-title" style="margin-top: 80px;">Common Betting Markets</h2>
-        <div class="markets-grid">
-            <div class="market-card">
-                <h3>Match Winner</h3>
-                <p>The most straightforward bet - pick which team wins the match.</p>
+        <!-- Bet Types -->
+        <div class="bet-types">
+            <div class="section-header">
+                <h2>Common Bet Types Explained</h2>
+                <p>Understanding the different ways you can bet on esports matches</p>
             </div>
-            <div class="market-card">
-                <h3>Map Handicap</h3>
-                <p>Bet on a team to win with a map advantage or disadvantage applied.</p>
-            </div>
-            <div class="market-card">
-                <h3>Total Maps</h3>
-                <p>Predict whether a match goes over or under a certain number of maps.</p>
-            </div>
-            <div class="market-card">
-                <h3>First Blood</h3>
-                <p>Bet on which team scores the first kill in a game or map.</p>
-            </div>
-            <div class="market-card">
-                <h3>Round Handicap</h3>
-                <p>In CS2, bet on round differential with handicaps applied.</p>
-            </div>
-            <div class="market-card">
-                <h3>Correct Score</h3>
-                <p>Predict the exact map score of a match (2-0, 2-1, etc.).</p>
-            </div>
-            <div class="market-card">
-                <h3>Tournament Winner</h3>
-                <p>Outright bet on which team wins the entire tournament.</p>
-            </div>
-            <div class="market-card">
-                <h3>Player Props</h3>
-                <p>Bet on individual player performance metrics.</p>
+            
+            <div class="bet-types-grid">
+                <div class="bet-type-card">
+                    <div class="bet-type-header">
+                        <div class="bet-type-icon">🏆</div>
+                        <h4>Match Winner (Moneyline)</h4>
+                    </div>
+                    <p>The simplest bet type. Pick which team will win the match. No spreads, no handicaps—just straight-up who wins.</p>
+                    <div class="bet-example">
+                        <div class="bet-example-label">Example</div>
+                        <div class="bet-example-value">NAVI to beat G2 @ 1.75</div>
+                    </div>
+                </div>
+                
+                <div class="bet-type-card">
+                    <div class="bet-type-header">
+                        <div class="bet-type-icon">🗺️</div>
+                        <h4>Map Winner</h4>
+                    </div>
+                    <p>Bet on the winner of a specific map within a match. Useful when you like an underdog's chances on their best map.</p>
+                    <div class="bet-example">
+                        <div class="bet-example-label">Example</div>
+                        <div class="bet-example-value">Spirit to win Map 2 @ 2.10</div>
+                    </div>
+                </div>
+                
+                <div class="bet-type-card">
+                    <div class="bet-type-header">
+                        <div class="bet-type-icon">⚖️</div>
+                        <h4>Handicap (Spread)</h4>
+                    </div>
+                    <p>Give or take away maps/rounds from a team to even the odds. Great for matches with heavy favorites.</p>
+                    <div class="bet-example">
+                        <div class="bet-example-label">Example</div>
+                        <div class="bet-example-value">Underdog +1.5 maps @ 1.65</div>
+                    </div>
+                </div>
+                
+                <div class="bet-type-card">
+                    <div class="bet-type-header">
+                        <div class="bet-type-icon">📊</div>
+                        <h4>Totals (Over/Under)</h4>
+                    </div>
+                    <p>Bet on whether the total maps, rounds, or kills will be over or under a specified number.</p>
+                    <div class="bet-example">
+                        <div class="bet-example-label">Example</div>
+                        <div class="bet-example-value">Over 2.5 maps @ 1.85</div>
+                    </div>
+                </div>
+                
+                <div class="bet-type-card">
+                    <div class="bet-type-header">
+                        <div class="bet-type-icon">🎯</div>
+                        <h4>Prop Bets</h4>
+                    </div>
+                    <p>Wager on specific in-game events: first blood, first tower, total kills, ace rounds, and more.</p>
+                    <div class="bet-example">
+                        <div class="bet-example-label">Example</div>
+                        <div class="bet-example-value">First Blood - Team A @ 1.90</div>
+                    </div>
+                </div>
+                
+                <div class="bet-type-card">
+                    <div class="bet-type-header">
+                        <div class="bet-type-icon">🏅</div>
+                        <h4>Outright (Futures)</h4>
+                    </div>
+                    <p>Bet on tournament winners or season-long outcomes. Higher risk but potentially huge returns.</p>
+                    <div class="bet-example">
+                        <div class="bet-example-label">Example</div>
+                        <div class="bet-example-value">TI Winner - Team Spirit @ 8.00</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="cta-box">
-            <h2>Ready to Watch the Action?</h2>
-            <p>Check out our live odds map to see matches happening right now.</p>
-            <a href="/live/" class="btn">View Live Odds →</a>
+        <!-- Responsible Gambling -->
+        <div class="responsible-gambling">
+            <h3>🛡️ Responsible Gambling</h3>
+            <p>
+                Esports betting should be entertainment, not a source of income. The house always has an edge, 
+                and no amount of knowledge guarantees wins. Before you bet, make sure you understand the risks.
+            </p>
+            <ul>
+                <li>Only bet what you can afford to lose</li>
+                <li>Set a budget and stick to it</li>
+                <li>Never chase losses</li>
+                <li>Take breaks regularly</li>
+                <li>Don't bet under the influence</li>
+                <li>Keep betting fun, not stressful</li>
+            </ul>
+            <div class="help-links">
+                <strong style="color: var(--text-primary);">Need help?</strong>
+                <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware</a>
+                <a href="https://www.gamblersanonymous.org" target="_blank" rel="noopener">Gamblers Anonymous</a>
+                <a href="https://www.ncpgambling.org" target="_blank" rel="noopener">NCPG</a>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>Ready to Start?</h2>
+            <p>Begin with our beginner's guide, then dive into game-specific strategies.</p>
+            <a href="/betting/beginners-guide.html" class="btn btn-primary">Read Beginner's Guide →</a>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
-        <p>© 2026 Apuesta Esports. Bet responsibly.</p>
-        <p style="margin-top: 8px;"><a href="/">Home</a> · <a href="/games/">Games</a> · <a href="/teams/">Teams</a> · <a href="/players/">Players</a></p>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/games/">Games</a>
+                <a href="/teams/">Teams</a>
+                <a href="/betting/">Betting</a>
+                <a href="/live/">Live Odds</a>
+            </div>
+            <div class="footer-copy">
+                © 2026 Apuesta Esports. Gamble responsibly. 18+
+            </div>
+        </div>
     </footer>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Esports Betting Guides",
+        "description": "Complete esports betting guides for CS2, Dota 2, League of Legends, and more.",
+        "url": "https://www.apuestaesports.com/betting/",
+        "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "url": "https://www.apuestaesports.com/betting/beginners-guide.html",
+                    "name": "Beginner's Guide to Esports Betting"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "url": "https://www.apuestaesports.com/betting/cs2-betting.html",
+                    "name": "CS2 Betting Guide"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "url": "https://www.apuestaesports.com/betting/dota2-betting.html",
+                    "name": "Dota 2 Betting Guide"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "url": "https://www.apuestaesports.com/betting/lol-betting.html",
+                    "name": "League of Legends Betting Guide"
+                }
+            ]
+        }
+    }
+    </script>
 </body>
 </html>
