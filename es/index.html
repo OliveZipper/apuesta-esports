@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apuestas Esports - Guía Completa de Apuestas en Deportes Electrónicos | Apuesta Esports</title>
+    <meta name="description" content="La guía definitiva de apuestas en esports. Análisis de CS2, Dota 2, League of Legends, Valorant. Pronósticos, cuotas en vivo, y consejos de apuestas para hispanohablantes.">
+    <meta name="keywords" content="apuestas esports, apuestas deportes electrónicos, CS2, Dota 2, League of Legends, Valorant, pronósticos esports, cuotas esports">
+    
+    <meta property="og:title" content="Apuestas Esports - Guía Completa en Español">
+    <meta property="og:description" content="Guía completa de apuestas en esports para hispanohablantes. Pronósticos, cuotas, y análisis experto.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.apuestaesports.com/es/">
+    <meta property="og:locale" content="es_ES">
+    
+    <link rel="canonical" href="https://www.apuestaesports.com/es/">
+    <link rel="alternate" hreflang="en" href="https://www.apuestaesports.com/">
+    <link rel="alternate" hreflang="es" href="https://www.apuestaesports.com/es/">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #15151f;
+            --orange: #FF6B2F;
+            --purple: #8D52DA;
+            --yellow: #DFFD51;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+        
+        nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 1000; padding: 0 24px; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-weight: 800; font-size: 1.25rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-primary); }
+        .lang-switch { background: var(--bg-tertiary); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; }
+        .nav-cta { background: var(--gradient); color: white; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+        
+        .hero { padding: 140px 24px 80px; background: radial-gradient(ellipse at 50% 0%, rgba(255, 107, 47, 0.15) 0%, transparent 50%), var(--bg-primary); text-align: center; }
+        .hero-content { max-width: 900px; margin: 0 auto; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; margin-bottom: 24px; line-height: 1.1; }
+        .hero h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-subtitle { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary { background: var(--gradient); color: white; padding: 14px 28px; border-radius: 10px; font-weight: 700; font-size: 1rem; transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255, 107, 47, 0.3); }
+        .btn-secondary { background: transparent; border: 2px solid var(--orange); color: var(--text-primary); padding: 12px 26px; border-radius: 10px; font-weight: 600; }
+        
+        .stats-bar { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 24px; }
+        .stats-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 24px; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+        
+        .games { padding: 80px 24px; }
+        .games-content { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
+        .section-header p { color: var(--text-secondary); font-size: 1.1rem; }
+        
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+        .game-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: transform 0.2s, border-color 0.2s; }
+        .game-card:hover { transform: translateY(-4px); border-color: var(--orange); }
+        .game-icon { font-size: 3rem; margin-bottom: 16px; }
+        .game-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+        .game-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 16px; }
+        .game-meta { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); }
+        .game-prize { color: var(--yellow); font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+        
+        .guides { padding: 80px 24px; background: var(--bg-secondary); }
+        .guides-content { max-width: 1200px; margin: 0 auto; }
+        .guides-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .guide-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
+        .guide-card h3 { font-size: 1.2rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .guide-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 16px; }
+        .guide-link { color: var(--orange); font-weight: 600; }
+        
+        .teams { padding: 80px 24px; }
+        .teams-content { max-width: 1200px; margin: 0 auto; }
+        .teams-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .team-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; transition: transform 0.2s; }
+        .team-card:hover { transform: scale(1.03); }
+        .team-rank { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; }
+        .team-name { font-weight: 700; margin-bottom: 4px; }
+        .team-earnings { color: var(--yellow); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+        
+        .cta-section { padding: 80px 24px; background: linear-gradient(135deg, rgba(255, 107, 47, 0.1), rgba(141, 82, 218, 0.1)); }
+        .cta-content { max-width: 800px; margin: 0 auto; text-align: center; }
+        .cta-content h2 { font-size: 2rem; margin-bottom: 16px; }
+        .cta-content p { color: var(--text-secondary); margin-bottom: 32px; }
+        
+        footer { background: var(--bg-primary); border-top: 1px solid var(--border); padding: 40px 24px; }
+        .footer-content { max-width: 1200px; margin: 0 auto; }
+        .footer-top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 40px; }
+        .footer-section h4 { font-size: 1rem; margin-bottom: 16px; color: var(--text-primary); }
+        .footer-section ul { list-style: none; }
+        .footer-section li { margin-bottom: 8px; }
+        .footer-section a { color: var(--text-muted); font-size: 0.9rem; transition: color 0.2s; }
+        .footer-section a:hover { color: var(--text-primary); }
+        .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-disclaimer { font-size: 0.8rem; color: var(--text-muted); max-width: 500px; }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .stats-container { flex-direction: column; gap: 16px; }
+        }
+    </style>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Apuesta Esports",
+        "alternateName": "Apuestas Esports en Español",
+        "url": "https://www.apuestaesports.com/es/",
+        "inLanguage": "es",
+        "description": "Guía completa de apuestas en deportes electrónicos"
+    }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/es/" class="logo">🎮 Apuesta Esports</a>
+            <ul class="nav-links">
+                <li><a href="/es/juegos/">Juegos</a></li>
+                <li><a href="/es/equipos/">Equipos</a></li>
+                <li><a href="/es/jugadores/">Jugadores</a></li>
+                <li><a href="/es/apuestas/">Guía de Apuestas</a></li>
+                <li><a href="/live/">Cuotas en Vivo</a></li>
+            </ul>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <a href="/" class="lang-switch">🇬🇧 EN</a>
+                <a href="https://www.cloudbet.com/es/esports" class="nav-cta" target="_blank">Apostar →</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Tu Guía de <span>Apuestas Esports</span></h1>
+            <p class="hero-subtitle">
+                Análisis experto, pronósticos y cuotas en tiempo real para CS2, Dota 2, League of Legends, Valorant y más. 
+                La referencia definitiva para apostadores hispanohablantes.
+            </p>
+            <div class="hero-cta">
+                <a href="/es/apuestas/guia-principiantes.html" class="btn-primary">Guía para Principiantes →</a>
+                <a href="/live/" class="btn-secondary">🔴 Cuotas en Vivo</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-value">$1.8B+</div>
+                <div class="stat-label">Premios Totales en Esports</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">50,000+</div>
+                <div class="stat-label">Jugadores Profesionales</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">10+</div>
+                <div class="stat-label">Juegos Cubiertos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">Cuotas Actualizadas</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="games">
+        <div class="games-content">
+            <div class="section-header">
+                <h2>🎮 Juegos Principales</h2>
+                <p>Los títulos de esports más populares para apostar</p>
+            </div>
+            <div class="games-grid">
+                <a href="/games/cs2.html" class="game-card">
+                    <div class="game-icon">🔫</div>
+                    <h3>Counter-Strike 2</h3>
+                    <p>El rey de los shooters tácticos. Majors, ligas tier-1, y la escena competitiva más establecida.</p>
+                    <div class="game-meta">
+                        <span>FPS Táctico</span>
+                        <span class="game-prize">$150M+ premios</span>
+                    </div>
+                </a>
+                <a href="/games/dota2.html" class="game-card">
+                    <div class="game-icon">⚔️</div>
+                    <h3>Dota 2</h3>
+                    <p>El MOBA con los mayores premios. The International ofrece más de $40M en premios.</p>
+                    <div class="game-meta">
+                        <span>MOBA</span>
+                        <span class="game-prize">$312M+ premios</span>
+                    </div>
+                </a>
+                <a href="/games/lol.html" class="game-card">
+                    <div class="game-icon">🏆</div>
+                    <h3>League of Legends</h3>
+                    <p>El esport más visto del mundo. Worlds, MSI, y ligas regionales durante todo el año.</p>
+                    <div class="game-meta">
+                        <span>MOBA</span>
+                        <span class="game-prize">$100M+ premios</span>
+                    </div>
+                </a>
+                <a href="/games/valorant.html" class="game-card">
+                    <div class="game-icon">💠</div>
+                    <h3>Valorant</h3>
+                    <p>El shooter táctico de Riot Games. VCT Champions, Masters, y ligas regionales franquiciadas.</p>
+                    <div class="game-meta">
+                        <span>FPS Táctico</span>
+                        <span class="game-prize">$30M+ premios</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="guides">
+        <div class="guides-content">
+            <div class="section-header">
+                <h2>📚 Guías de Apuestas</h2>
+                <p>Aprende a apostar de forma inteligente en esports</p>
+            </div>
+            <div class="guides-grid">
+                <div class="guide-card">
+                    <h3>🎓 Guía para Principiantes</h3>
+                    <p>Todo lo que necesitas saber para empezar a apostar en esports. Tipos de apuestas, cómo funcionan las cuotas, y consejos básicos.</p>
+                    <a href="/es/apuestas/guia-principiantes.html" class="guide-link">Leer guía →</a>
+                </div>
+                <div class="guide-card">
+                    <h3>💰 Gestión del Bankroll</h3>
+                    <p>Estrategias para administrar tu presupuesto de apuestas y minimizar riesgos. La clave para apostar a largo plazo.</p>
+                    <a href="/es/apuestas/bankroll.html" class="guide-link">Aprender →</a>
+                </div>
+                <div class="guide-card">
+                    <h3>📊 Análisis de Cuotas</h3>
+                    <p>Cómo leer e interpretar las cuotas. Encuentra valor y toma decisiones informadas.</p>
+                    <a href="/es/apuestas/cuotas.html" class="guide-link">Descubrir →</a>
+                </div>
+                <div class="guide-card">
+                    <h3>₿ Apuestas con Crypto</h3>
+                    <p>Ventajas de apostar con Bitcoin y criptomonedas. Depósitos rápidos, retiros instantáneos, sin límites.</p>
+                    <a href="/es/apuestas/crypto.html" class="guide-link">Explorar →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="teams">
+        <div class="teams-content">
+            <div class="section-header">
+                <h2>🏆 Equipos Top por Ganancias</h2>
+                <p>Las organizaciones más exitosas en la historia de los esports</p>
+            </div>
+            <div class="teams-grid">
+                <a href="/teams/team-liquid.html" class="team-card">
+                    <div class="team-rank">#1 Mundial</div>
+                    <div class="team-name">🐴 Team Liquid</div>
+                    <div class="team-earnings">$56.4M</div>
+                </a>
+                <a href="/teams/og.html" class="team-card">
+                    <div class="team-rank">#2 Mundial</div>
+                    <div class="team-name">🌸 OG</div>
+                    <div class="team-earnings">$38.8M</div>
+                </a>
+                <a href="/teams/team-spirit.html" class="team-card">
+                    <div class="team-rank">#3 Mundial</div>
+                    <div class="team-name">🐉 Team Spirit</div>
+                    <div class="team-earnings">$35.6M</div>
+                </a>
+                <a href="/teams/natus-vincere.html" class="team-card">
+                    <div class="team-rank">#5 Mundial</div>
+                    <div class="team-name">🦅 Natus Vincere</div>
+                    <div class="team-earnings">$24.4M</div>
+                </a>
+                <a href="/teams/faze-clan.html" class="team-card">
+                    <div class="team-rank">#7 Mundial</div>
+                    <div class="team-name">🎯 FaZe Clan</div>
+                    <div class="team-earnings">$21.5M</div>
+                </a>
+                <a href="/teams/fnatic.html" class="team-card">
+                    <div class="team-rank">#6 Mundial</div>
+                    <div class="team-name">🦊 Fnatic</div>
+                    <div class="team-earnings">$22.3M</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>🎁 ¿Listo para Empezar?</h2>
+            <p>Únete a miles de apostadores en la mejor plataforma de apuestas con criptomonedas. ¡Bono de bienvenida hasta 5 BTC!</p>
+            <a href="https://www.cloudbet.com/es/esports" class="btn-primary" target="_blank">Crear Cuenta Gratis →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h4>Juegos</h4>
+                    <ul>
+                        <li><a href="/games/cs2.html">Counter-Strike 2</a></li>
+                        <li><a href="/games/dota2.html">Dota 2</a></li>
+                        <li><a href="/games/lol.html">League of Legends</a></li>
+                        <li><a href="/games/valorant.html">Valorant</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Guías</h4>
+                    <ul>
+                        <li><a href="/es/apuestas/guia-principiantes.html">Guía Principiantes</a></li>
+                        <li><a href="/es/apuestas/bankroll.html">Gestión Bankroll</a></li>
+                        <li><a href="/es/apuestas/crypto.html">Apuestas Crypto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="/teams/">Equipos</a></li>
+                        <li><a href="/players/">Jugadores</a></li>
+                        <li><a href="/tournaments/">Torneos</a></li>
+                        <li><a href="/live/">Cuotas en Vivo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Idiomas</h4>
+                    <ul>
+                        <li><a href="/">🇬🇧 English</a></li>
+                        <li><a href="/es/">🇪🇸 Español</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-disclaimer">
+                    18+ | Juega responsablemente. Las apuestas conllevan riesgos. 
+                    Solo apuesta lo que puedas permitirte perder. Si tienes problemas con el juego, 
+                    visita <a href="https://www.jugarbien.es" style="color: var(--orange);">jugarbien.es</a>
+                </p>
+                <p style="color: var(--text-muted); font-size: 0.8rem;">© 2026 Apuesta Esports</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
