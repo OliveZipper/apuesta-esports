@@ -618,15 +618,15 @@
                 if (compData.categories) {
                     compData.categories.forEach(cat => {
                         if (cat.competitions) {
-                            cat.competitions.slice(0, 5).forEach(c => competitions.push(c.key));
+                            cat.competitions.forEach(c => competitions.push(c.key));
                         }
                     });
                 }
 
                 if (competitions.length === 0) return [];
 
-                // Fetch events from competitions
-                const eventPromises = competitions.slice(0, 8).map(async (compKey) => {
+                // Fetch events from ALL competitions
+                const eventPromises = competitions.map(async (compKey) => {
                     try {
                         const url = `${CONFIG.CORS_PROXY}${encodeURIComponent(CONFIG.CLOUDBET_API_BASE + '/odds/competitions/' + compKey)}`;
                         const res = await fetch(url, { headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY } });
