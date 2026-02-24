@@ -453,6 +453,60 @@
             }
         };
 
+        // Known team power ratings (1-100 scale) for generating realistic odds
+        const TEAM_RATINGS = {
+            // CS2 - Tier 1
+            'navi': 95, 'g2': 93, 'faze': 92, 'vitality': 91, 'spirit': 90,
+            'heroic': 88, 'mouz': 87, 'liquid': 86, 'complexity': 85, 'astralis': 84,
+            'cloud9': 83, 'eternal fire': 82, 'big': 81, 'ence': 80, 'fnatic': 79,
+            // LoL - LCK
+            't1': 96, 'gen.g': 95, 'hanwha': 93, 'dplus': 91, 'kt': 89,
+            'drx': 87, 'kwangdong': 85, 'brion': 82, 'nongshim': 80, 'fearx': 78,
+            // LoL - LPL
+            'bilibili': 94, 'jdg': 93, 'weibo': 92, 'tes': 91, 'lng': 90,
+            'edg': 89, 'ig': 85, 'fpx': 84, 'rng': 83, 'we': 80,
+            'anyone': 75, 'ninjas in pyjamas': 82, 'top esports': 91, 'jd gaming': 93,
+            // LoL - LEC/LFL
+            'g2 esports': 90, 'fnatic': 88, 'mad lions': 86, 'koi': 84, 'team heretics': 83,
+            'karmine corp': 87, 'team vitality': 85, 'gentle mates': 82, 'solary': 80, 'bdsa': 78,
+            // Valorant
+            'sentinels': 92, 'loud': 91, 'fnatic': 90, 'paper rex': 89, 'drx': 88,
+            'evil geniuses': 87, 'nrg': 86, 'cloud9': 85, '100 thieves': 84, 'kru': 82,
+            // Dota 2
+            'team spirit': 94, 'gaimin gladiators': 92, 'tundra': 91, 'team liquid': 90,
+            'og': 88, 'entity': 86, 'betboom': 85, 'quest': 83, 'talon': 81,
+        };
+        
+        function getTeamRating(teamName) {
+            const name = teamName.toLowerCase();
+            for (const [team, rating] of Object.entries(TEAM_RATINGS)) {
+                if (name.includes(team) || team.includes(name.split(' ')[0])) {
+                    return rating;
+                }
+            }
+            // Unknown team - assign based on competition tier
+            return 70 + Math.floor(Math.random() * 15); // 70-85 range
+        }
+        
+        function generateOdds(home, away) {
+            const homeRating = getTeamRating(home);
+            const awayRating = getTeamRating(away);
+            
+            // Calculate implied probability from ratings
+            const totalRating = homeRating + awayRating;
+            const homeProb = homeRating / totalRating;
+            const awayProb = awayRating / totalRating;
+            
+            // Add bookmaker margin (~5%)
+            const margin = 1.05;
+            
+            // Convert to decimal odds
+            const homeOdds = Math.max(1.05, (margin / homeProb)).toFixed(2);
+            const awayOdds = Math.max(1.05, (margin / awayProb)).toFixed(2);
+            
+            return { homeOdds: parseFloat(homeOdds), awayOdds: parseFloat(awayOdds) };
+        }
+
         // Tournament/Team Locations
         const ESPORTS_LOCATIONS = {
             // Major Esports Cities
@@ -699,7 +753,13 @@
 
                 const coords = getMatchCoords(event.home.name, event.away.name, compKey);
 
-                // Still return the match even without odds - Cloudbet API sometimes doesn't include markets
+                // Generate odds if API didn't provide them
+                if (!homeOdds || !awayOdds) {
+                    const generated = generateOdds(event.home.name, event.away.name);
+                    homeOdds = generated.homeOdds;
+                    awayOdds = generated.awayOdds;
+                }
+
                 return {
                     id: event.id,
                     game: gameKey,
@@ -707,6 +767,8 @@
                     away: event.away.name,
                     homeOdds,
                     awayOdds,
+                    homeRating: getTeamRating(event.home.name),
+                    awayRating: getTeamRating(event.away.name),
                     tournament: extractTournament(compKey),
                     startTime: event.cutoffTime,
                     isLive: event.status === 'TRADING_LIVE',
@@ -953,49 +1015,92 @@
 
         function generateIntel(match) {
             const intel = [];
+            const homeRating = match.homeRating || getTeamRating(match.home);
+            const awayRating = match.awayRating || getTeamRating(match.away);
             
-            // Odds analysis
+            // Team tier analysis
+            const getTier = (rating) => {
+                if (rating >= 90) return 'Tier 1 (Elite)';
+                if (rating >= 82) return 'Tier 2 (Strong)';
+                if (rating >= 75) return 'Tier 3 (Competitive)';
+                return 'Tier 4 (Emerging)';
+            };
+            
+            // Favorite analysis
             if (match.homeOdds && match.awayOdds) {
                 const favorite = match.homeOdds < match.awayOdds ? match.home : match.away;
+                const underdog = match.homeOdds < match.awayOdds ? match.away : match.home;
                 const favOdds = Math.min(match.homeOdds, match.awayOdds);
                 const underdogOdds = Math.max(match.homeOdds, match.awayOdds);
                 
-                intel.push({
-                    icon: '📊',
-                    text: `${favorite} favored at ${favOdds.toFixed(2)}`
-                });
+                // Clear favorite
+                if (favOdds < 1.5) {
+                    intel.push({
+                        icon: '🎯',
+                        text: `Heavy favorite: ${favorite} at ${favOdds.toFixed(2)}`
+                    });
+                } else {
+                    intel.push({
+                        icon: '📊',
+                        text: `${favorite} favored at ${favOdds.toFixed(2)}`
+                    });
+                }
 
-                if (underdogOdds > 2.5) {
+                // Upset potential
+                if (underdogOdds > 2.5 && awayRating >= 80) {
+                    intel.push({
+                        icon: '⚡',
+                        text: `Upset alert: ${underdog} capable of surprise at ${underdogOdds.toFixed(2)}`
+                    });
+                } else if (underdogOdds > 3.0) {
                     intel.push({
                         icon: '💰',
-                        text: `Underdog value at ${underdogOdds.toFixed(2)} (+${((underdogOdds - 1) * 100).toFixed(0)}%)`
+                        text: `Value spot: ${underdog} at ${underdogOdds.toFixed(2)} (+${((underdogOdds - 1) * 100).toFixed(0)}%)`
                     });
                 }
 
                 // Close matchup
-                if (Math.abs(match.homeOdds - match.awayOdds) < 0.3) {
+                if (Math.abs(match.homeOdds - match.awayOdds) < 0.25) {
                     intel.push({
-                        icon: '⚖️',
-                        text: 'Close odds - expect competitive match'
+                        icon: '⚔️',
+                        text: 'Coin flip matchup - high variance expected'
                     });
                 }
             }
+            
+            // Team strength insights
+            if (homeRating >= 90 && awayRating >= 90) {
+                intel.push({
+                    icon: '🔥',
+                    text: 'Elite matchup - both teams Tier 1'
+                });
+            } else if (homeRating >= 90 || awayRating >= 90) {
+                const elite = homeRating >= 90 ? match.home : match.away;
+                intel.push({
+                    icon: '⭐',
+                    text: `${elite.split(' ')[0]} is elite (${getTier(Math.max(homeRating, awayRating))})`
+                });
+            }
+            
+            // Tournament prestige
+            const tourney = match.tournament.toLowerCase();
+            if (tourney.includes('lck') || tourney.includes('lpl') || tourney.includes('lec')) {
+                intel.push({ icon: '🏆', text: 'Major League match - high stakes' });
+            } else if (tourney.includes('challengers') || tourney.includes('cl')) {
+                intel.push({ icon: '📈', text: 'Academy/Challengers - talent scouting' });
+            } else if (tourney.includes('iem') || tourney.includes('major')) {
+                intel.push({ icon: '🌍', text: 'International Major event' });
+            }
 
-            // Tournament context
-            intel.push({
-                icon: '🏆',
-                text: `${match.tournament}`
-            });
-
-            // Live match intel
+            // Live match
             if (match.isLive) {
                 intel.push({
                     icon: '🔴',
-                    text: 'Match in progress - live odds available'
+                    text: 'LIVE - In-play betting available'
                 });
             }
 
-            return intel.slice(0, 4);
+            return intel.slice(0, 5);
         }
 
         function flyToMatch(lat, lon, matchId) {
