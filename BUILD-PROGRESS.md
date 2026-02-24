@@ -1,36 +1,49 @@
 # Build Progress - Apuesta Esports
 
 ## Status: IN PROGRESS
-Last updated: 2026-02-24 14:15 UTC
+Last updated: 2026-02-24 14:05 UTC
 
 ## Completed ✅
-- [x] Homepage (index.html)
-- [x] Live odds (live/index.html)
-- [x] Betting index (betting/index.html)
-- [x] Games index (games/index.html)
-- [x] CS2 page (games/cs2.html)
-- [x] Dota 2 page (games/dota2.html)
-- [x] LoL page (games/lol.html)
-- [x] Valorant page (games/valorant.html)
-- [x] Teams index (teams/index.html)
-- [x] Players index (players/index.html)
-- [x] Countries index (countries/index.html)
-- [x] SEO files (sitemap, robots, llms.txt)
+- [x] Backup existing pages to /archive
+- [x] Create data files (countries.json, teams.json, players.json, games.json)
+- [x] Create site structure (folders)
+- [x] Homepage (index.html) - DEPLOYED ✅
+- [x] **Games Section - DEPLOYED ✅**
+  - [x] Games index (/games/index.html) - 10 games with descriptions
+  - [x] CS2 page (/games/cs2.html) - History, teams, players, tournaments, betting
+  - [x] Dota 2 page (/games/dota2.html) - History, teams, players, TI, betting
+  - [x] LoL page (/games/lol.html) - History, teams, players, Worlds, betting
+  - [x] Valorant page (/games/valorant.html) - History, teams, players, VCT, betting
 
-## Team Pages (4 created)
-- [x] team-liquid, og, team-spirit, navi
+## In Progress
+- [ ] Teams section (teams/*.html)
+- [ ] Players section (players/*.html)
 
-## Player Pages (4 created)
-- [x] n0tail, jerax, miposhka, ana
+## Not Started
+- [ ] Other game pages (fortnite, r6, rl, cod, ow2, sc2)
+- [ ] Teams index (teams/index.html)
+- [ ] Top 20 team pages
+- [ ] Players index (players/index.html)
+- [ ] Top 20 player pages
+- [ ] Countries index (countries/index.html)
+- [ ] Top 20 country pages
+- [ ] Betting guide index (betting/index.html)
+- [ ] Game-specific betting guides
+- [ ] Live dashboard (live/index.html) - use existing map
+- [ ] sitemap.xml
+- [ ] robots.txt
+- [ ] llms.txt update
 
-## Country Pages (4 created)
-- [x] china, usa, korea, russia
+## Deployment
+- **Production URL:** https://www.apuestaesports.com
+- **Vercel Project:** apuesta-esports
+- **Last Deploy:** 2026-02-24 14:05 UTC
 
-## Still Needed
-- [ ] More team pages (6+ more)
-- [ ] More player pages (6+ more)
-- [ ] More country pages (6+ more)
-- [ ] Individual betting guides
-- [ ] Fortnite, R6, Rocket League game pages
-
-## Site: https://www.apuestaesports.com
+## Games Section Summary
+Created 5 comprehensive game pages with:
+- Consistent dark theme matching homepage
+- SEO meta tags (title, description, keywords, OG, Twitter)
+- JSON-LD structured data (VideoGame, BreadcrumbList)
+- Internal linking between pages
+- Mobile-responsive design
+- Sections: History, Top Teams (8), Top Players (8), Major Tournaments (5), Betting Markets (6 types + tips)

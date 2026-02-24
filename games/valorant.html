@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valorant Esports - VCT, Teams, Betting Guide | Apuesta Esports</title>
-    <meta name="description" content="Complete Valorant esports guide. VCT Champions, VCT Masters, top teams like Sentinels and Fnatic, TenZ, and Valorant betting markets explained.">
-    <meta name="keywords" content="Valorant, VCT, VCT Champions, Sentinels, Fnatic, LOUD, TenZ, Valorant betting, Valorant esports">
+    <title>Valorant Esports Guide - Teams, Players, VCT Champions & Betting | Apuesta Esports</title>
+    <meta name="description" content="Complete Valorant esports guide: history, top teams like Sentinels and LOUD, star players including TenZ and Aspas, VCT Champions, Masters, and betting markets.">
+    <meta name="keywords" content="Valorant, VCT, Valorant Champions Tour, esports, Sentinels, LOUD, TenZ, Aspas, VCT Champions, Valorant betting">
     
-    <meta property="og:title" content="Valorant Esports Guide | Apuesta Esports">
-    <meta property="og:description" content="Everything about Valorant competitive scene. Teams, players, VCT, and betting guide.">
+    <meta property="og:title" content="Valorant Esports Guide - Teams, Players & Betting">
+    <meta property="og:description" content="Complete Valorant guide with top teams, star players, VCT Champions, and betting markets.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.apuestaesports.com/games/valorant.html">
+    <meta property="og:image" content="https://www.apuestaesports.com/og-valorant.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Valorant Esports Guide | Apuesta Esports">
+    <meta name="twitter:description" content="Complete Valorant guide: teams, players, tournaments, and betting.">
     
     <link rel="canonical" href="https://www.apuestaesports.com/games/valorant.html">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💠</text></svg>">
@@ -28,14 +33,12 @@
             --orange: #FF6B2F;
             --purple: #8D52DA;
             --yellow: #DFFD51;
-            --val-red: #FF4655;
-            --val-teal: #0F1923;
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
             --text-muted: #606070;
             --border: #2a2a3a;
             --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
-            --gradient-val: linear-gradient(135deg, var(--val-red) 0%, var(--purple) 100%);
+            --game-color: #FF4655;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -48,106 +51,98 @@
         .nav-links { display: flex; gap: 32px; list-style: none; }
         .nav-links a { color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
         .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
-        .nav-cta { background: var(--gradient); color: white; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+        .nav-cta { background: var(--gradient); color: white; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; transition: transform 0.2s, box-shadow 0.2s; }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3); }
         
-        .game-hero { padding: 120px 24px 60px; background: radial-gradient(ellipse at 30% 0%, rgba(255, 70, 85, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 100%, rgba(141, 82, 218, 0.15) 0%, transparent 50%), var(--bg-primary); }
-        .hero-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 400px; gap: 60px; align-items: center; }
-        .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; font-size: 0.9rem; color: var(--text-muted); }
-        .breadcrumb a:hover { color: var(--text-secondary); }
-        .game-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(255, 70, 85, 0.15); border: 1px solid rgba(255, 70, 85, 0.3); border-radius: 100px; font-size: 0.85rem; color: var(--val-red); margin-bottom: 20px; }
-        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 16px; line-height: 1.1; }
-        .hero-content h1 .gradient { background: var(--gradient-val); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-description { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 32px; max-width: 600px; }
-        .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
-        .hero-stat { text-align: left; }
-        .hero-stat-value { font-size: 2rem; font-weight: 800; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
-        .hero-stat-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        
-        .hero-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; text-align: center; }
-        .hero-card-icon { font-size: 5rem; margin-bottom: 20px; }
-        .hero-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
-        .hero-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
-        .hero-card-cta { display: inline-block; padding: 12px 24px; background: var(--gradient-val); border-radius: 10px; font-weight: 600; transition: transform 0.2s; }
-        .hero-card-cta:hover { transform: translateY(-2px); }
+        .game-hero { padding: 120px 24px 60px; background: radial-gradient(ellipse at 50% 0%, rgba(255, 70, 85, 0.2) 0%, transparent 50%), var(--bg-primary); }
+        .game-hero-content { max-width: 1400px; margin: 0 auto; }
+        .breadcrumb { display: flex; gap: 8px; margin-bottom: 24px; font-size: 0.9rem; color: var(--text-muted); }
+        .breadcrumb a:hover { color: var(--text-primary); }
+        .game-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .game-icon-large { font-size: 5rem; margin-bottom: 16px; }
+        .game-badge { display: inline-block; background: rgba(255, 70, 85, 0.2); border: 1px solid var(--game-color); color: var(--game-color); padding: 6px 14px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+        .game-hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 16px; }
+        .game-hero-desc { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.7; }
+        .game-meta-list { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 32px; }
+        .game-meta-item { display: flex; align-items: center; gap: 8px; }
+        .game-meta-item span:first-child { color: var(--text-muted); }
+        .game-meta-item span:last-child { font-weight: 600; }
+        .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .hero-stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; }
+        .hero-stat-value { font-size: 2rem; font-weight: 800; color: var(--game-color); font-family: 'JetBrains Mono', monospace; }
+        .hero-stat-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
         
         main { max-width: 1400px; margin: 0 auto; padding: 60px 24px 100px; }
-        section { margin-bottom: 80px; }
-        .section-header { margin-bottom: 32px; }
-        .section-header h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
-        .section-header p { color: var(--text-secondary); }
-        
         .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
-        .content-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
-        .content-card h3 { font-size: 1.25rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-        .content-card p { color: var(--text-secondary); margin-bottom: 16px; }
-        .content-card ul { color: var(--text-secondary); margin-left: 20px; }
-        .content-card li { margin-bottom: 8px; }
+        .section { margin-bottom: 60px; }
+        .section-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+        .section-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
+        .section-content p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; }
+        .section-content p:last-child { margin-bottom: 0; }
+        .section-content h3 { font-size: 1.25rem; margin: 24px 0 12px; }
+        .section-content h3:first-child { margin-top: 0; }
         
-        .vct-highlight { background: linear-gradient(135deg, rgba(255, 70, 85, 0.1), rgba(141, 82, 218, 0.1)); border: 1px solid rgba(255, 70, 85, 0.3); border-radius: 20px; padding: 40px; margin-bottom: 40px; }
-        .vct-highlight h3 { font-size: 1.5rem; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
-        .vct-highlight p { color: var(--text-secondary); margin-bottom: 16px; max-width: 800px; }
-        .vct-stats { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 24px; }
-        .vct-stat-value { font-size: 1.75rem; font-weight: 800; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
-        .vct-stat-label { font-size: 0.85rem; color: var(--text-muted); }
+        .ranking-list { list-style: none; }
+        .ranking-item { display: flex; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border); }
+        .ranking-item:last-child { border-bottom: none; }
+        .rank { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--bg-tertiary); border-radius: 8px; font-weight: 700; font-size: 0.9rem; margin-right: 16px; flex-shrink: 0; }
+        .rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+        .rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
+        .rank.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
+        .ranking-info { flex: 1; }
+        .ranking-name { font-weight: 600; margin-bottom: 2px; }
+        .ranking-detail { font-size: 0.85rem; color: var(--text-muted); }
+        .ranking-value { font-weight: 700; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
         
-        .agents-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
-        .agent-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; transition: transform 0.2s, border-color 0.2s; }
-        .agent-card:hover { transform: translateY(-4px); border-color: var(--val-red); }
-        .agent-icon { font-size: 2rem; margin-bottom: 8px; }
-        .agent-card h4 { font-size: 0.9rem; margin-bottom: 4px; }
-        .agent-card p { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
+        .tournament-list { display: flex; flex-direction: column; gap: 16px; }
+        .tournament-item { display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--bg-tertiary); border-radius: 12px; transition: transform 0.2s; }
+        .tournament-item:hover { transform: translateX(4px); }
+        .tournament-icon { font-size: 2rem; }
+        .tournament-info { flex: 1; }
+        .tournament-name { font-weight: 600; margin-bottom: 4px; }
+        .tournament-meta { font-size: 0.85rem; color: var(--text-muted); }
+        .tournament-prize { font-weight: 700; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
         
-        .teams-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
-        .team-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; transition: transform 0.2s, border-color 0.2s; }
-        .team-card:hover { transform: translateY(-4px); border-color: var(--purple); }
-        .team-logo { font-size: 2.5rem; margin-bottom: 12px; }
-        .team-card h4 { font-size: 1rem; margin-bottom: 4px; }
-        .team-card p { font-size: 0.85rem; color: var(--text-muted); }
-        .team-earnings { margin-top: 12px; font-size: 1rem; font-weight: 700; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        .betting-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .betting-card { background: var(--bg-tertiary); border-radius: 12px; padding: 20px; }
+        .betting-card h4 { font-size: 1rem; margin-bottom: 8px; color: var(--orange); }
+        .betting-card p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0; }
         
-        .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .player-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; transition: transform 0.2s, border-color 0.2s; }
-        .player-card:hover { transform: translateY(-4px); border-color: var(--purple); }
-        .player-rank { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: var(--bg-tertiary); border-radius: 10px; font-weight: 700; font-size: 1.1rem; }
-        .player-rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
-        .player-rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
-        .player-rank.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
-        .player-info { flex: 1; }
-        .player-name { font-weight: 700; margin-bottom: 2px; }
-        .player-detail { font-size: 0.85rem; color: var(--text-muted); }
-        .player-earnings { font-weight: 700; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        .sidebar { display: flex; flex-direction: column; gap: 24px; }
+        .sidebar-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+        .sidebar-title { font-size: 1rem; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+        .quick-links { list-style: none; }
+        .quick-links li { margin-bottom: 12px; }
+        .quick-links a { display: flex; align-items: center; gap: 8px; color: var(--text-secondary); transition: color 0.2s; }
+        .quick-links a:hover { color: var(--text-primary); }
+        .related-games { list-style: none; }
+        .related-games li { margin-bottom: 12px; }
+        .related-games a { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-tertiary); border-radius: 8px; transition: transform 0.2s; }
+        .related-games a:hover { transform: translateX(4px); }
+        .related-game-icon { font-size: 1.5rem; }
+        .cta-box { background: var(--gradient); border-radius: 16px; padding: 32px; text-align: center; }
+        .cta-box h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 20px; font-size: 0.95rem; }
+        .cta-btn { display: inline-block; background: white; color: var(--bg-primary); padding: 12px 24px; border-radius: 8px; font-weight: 600; transition: transform 0.2s; }
+        .cta-btn:hover { transform: translateY(-2px); }
         
-        .tournaments-table { width: 100%; border-collapse: collapse; }
-        .tournaments-table th, .tournaments-table td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border); }
-        .tournaments-table th { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
-        .tournaments-table td { font-size: 0.95rem; }
-        .tournaments-table tr:hover { background: var(--bg-tertiary); }
-        .tournament-name { display: flex; align-items: center; gap: 10px; font-weight: 600; }
-        .tournament-prize { color: var(--yellow); font-family: 'JetBrains Mono', monospace; font-weight: 600; }
-        
-        .betting-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
-        .betting-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
-        .betting-card h4 { font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-        .betting-card p { color: var(--text-secondary); font-size: 0.95rem; }
-        .betting-tip { margin-top: 16px; padding: 12px; background: rgba(223, 253, 81, 0.1); border: 1px solid rgba(223, 253, 81, 0.2); border-radius: 8px; font-size: 0.9rem; color: var(--yellow); }
-        
-        .cta-section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 24px; padding: 60px 40px; text-align: center; margin-top: 60px; }
-        .cta-section h2 { font-size: 1.75rem; margin-bottom: 16px; }
-        .cta-section p { color: var(--text-secondary); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-        .btn { padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 1rem; transition: transform 0.2s; }
-        .btn-primary { background: var(--gradient-val); color: white; }
-        .btn-secondary { background: var(--bg-tertiary); border: 1px solid var(--border); }
-        .btn:hover { transform: translateY(-2px); }
-        
-        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; }
-        .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 20px; flex-wrap: wrap; }
-        .footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 60px 24px 30px; }
+        .footer-content { max-width: 1400px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-brand { max-width: 300px; }
+        .footer-brand .logo { font-size: 1.5rem; margin-bottom: 16px; display: inline-block; }
+        .footer-brand p { color: var(--text-muted); font-size: 0.9rem; }
+        .footer-links h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 16px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: var(--text-secondary); font-size: 0.95rem; transition: color 0.2s; }
         .footer-links a:hover { color: var(--text-primary); }
-        .footer-copyright { color: var(--text-muted); font-size: 0.85rem; }
+        .footer-bottom { border-top: 1px solid var(--border); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.85rem; }
+        .footer-legal a { margin-left: 24px; color: var(--text-muted); }
+        .footer-legal a:hover { color: var(--text-secondary); }
         
-        @media (max-width: 1024px) { .hero-content { grid-template-columns: 1fr; } .hero-card { max-width: 400px; margin: 0 auto; } .content-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { .nav-links { display: none; } .teams-grid { grid-template-columns: repeat(2, 1fr); } .players-grid { grid-template-columns: 1fr; } .tournaments-table { display: block; overflow-x: auto; } .agents-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 1024px) { .content-grid { grid-template-columns: 1fr; } .sidebar { flex-direction: row; flex-wrap: wrap; } .sidebar-card { flex: 1; min-width: 250px; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .game-hero-grid { grid-template-columns: 1fr; gap: 40px; } .hero-stats { grid-template-columns: 1fr; } .betting-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } .footer-bottom { flex-direction: column; gap: 16px; text-align: center; } }
     </style>
 </head>
 <body>
@@ -167,392 +162,275 @@
     </nav>
 
     <header class="game-hero">
-        <div class="hero-content">
-            <div>
-                <div class="breadcrumb">
-                    <a href="/">Home</a> / <a href="/games/">Games</a> / <span>Valorant</span>
-                </div>
-                <div class="game-badge">💠 Tactical First-Person Shooter</div>
-                <h1><span class="gradient">Valorant</span></h1>
-                <p class="hero-description">
-                    Riot Games' tactical shooter combining precise gunplay with unique agent abilities. 
-                    Since launching in 2020, Valorant has rapidly grown into one of the biggest esports 
-                    with the VALORANT Champions Tour (VCT) featuring teams from every region.
-                </p>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">$30M+</div>
-                        <div class="hero-stat-label">Total Prize Pool</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">1.5M+</div>
-                        <div class="hero-stat-label">Peak Viewers</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">20+</div>
-                        <div class="hero-stat-label">Agents</div>
-                    </div>
-                </div>
+        <div class="game-hero-content">
+            <div class="breadcrumb">
+                <a href="/">Home</a><span>/</span><a href="/games/">Games</a><span>/</span><span>Valorant</span>
             </div>
-            <div class="hero-card">
-                <div class="hero-card-icon">🏆</div>
-                <h3>VCT Champions</h3>
-                <p>The pinnacle of Valorant esports where the best teams from all regions compete for the world title.</p>
-                <a href="/tournaments/" class="hero-card-cta">View VCT →</a>
+            
+            <div class="game-hero-grid">
+                <div class="game-hero-info">
+                    <div class="game-icon-large">💠</div>
+                    <span class="game-badge">FPS • TACTICAL SHOOTER</span>
+                    <h1>Valorant</h1>
+                    <p class="game-hero-desc">
+                        Riot Games' tactical shooter combining precise gunplay with unique agent abilities. VCT Champions and international leagues have rapidly built a thriving esports ecosystem since the game's 2020 launch.
+                    </p>
+                    <div class="game-meta-list">
+                        <div class="game-meta-item"><span>Publisher:</span><span>Riot Games</span></div>
+                        <div class="game-meta-item"><span>Released:</span><span>2020</span></div>
+                        <div class="game-meta-item"><span>Platform:</span><span>PC</span></div>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat"><div class="hero-stat-value">$30M+</div><div class="hero-stat-label">Total Prize Pool</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">1.5M+</div><div class="hero-stat-label">Peak Viewers</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">3</div><div class="hero-stat-label">Champions Events</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">25</div><div class="hero-stat-label">Agents</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">3</div><div class="hero-stat-label">International Leagues</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">30</div><div class="hero-stat-label">Partner Teams</div></div>
+                </div>
             </div>
         </div>
     </header>
 
     <main>
-        <section>
-            <div class="vct-highlight">
-                <h3>🏆 VALORANT Champions Tour - The Global Circuit</h3>
-                <p>
-                    The VCT is Valorant's official esports ecosystem, featuring partnered teams across three international 
-                    leagues: Americas, EMEA, and Pacific. Teams compete in regional splits throughout the year, qualifying 
-                    for international events like Masters and Champions.
-                </p>
-                <p>
-                    VCT Champions is the world championship, held annually with teams from all regions competing for the 
-                    title. LOUD (Brazil) won Champions 2022, while Evil Geniuses (NA) took the 2023 crown, showcasing 
-                    the global nature of competitive Valorant.
-                </p>
-                <div class="vct-stats">
-                    <div>
-                        <div class="vct-stat-value">$1M+</div>
-                        <div class="vct-stat-label">Champions Prize</div>
+        <div class="content-grid">
+            <div class="main-content">
+                <section class="section">
+                    <h2 class="section-title">📜 History & Evolution</h2>
+                    <div class="section-content">
+                        <p>Valorant launched in June 2020, combining Counter-Strike's tactical shooting with hero abilities inspired by Riot's League of Legends. The game attracted former CS pros and built its esports scene at remarkable speed.</p>
+                        
+                        <h3>Rapid Growth</h3>
+                        <p><strong>First Strike (2020)</strong> served as regional championships before the full VCT launch. Sentinels dominated North America while Vision Strikers swept Korea.</p>
+                        
+                        <p><strong>VCT 2021</strong> introduced the full Champions Tour with Challengers, Masters, and Champions events. Sentinels won Masters Reykjavik, cementing North American dominance early on.</p>
+                        
+                        <p><strong>Global Parity (2022-2023)</strong> saw international competition intensify. LOUD won Champions 2022 for Brazil, Fnatic and Paper Rex challenged the top teams, and EMEA emerged as a powerhouse region.</p>
+                        
+                        <h3>Franchising Era</h3>
+                        <p><strong>Partnership Leagues (2023+)</strong> brought three international leagues: Americas, Pacific, and EMEA. 30 partnered teams compete for slots at Masters and Champions events. The structure mirrors League of Legends' model.</p>
+                        
+                        <h3>The Agent Meta</h3>
+                        <p>Valorant's unique agents create strategic depth beyond pure aim. Controllers like Viper and Omen, Duelists like Jett and Raze, Sentinels like Killjoy and Cypher, and Initiators like Sova and Breach each fill crucial roles. Team compositions and agent proficiency significantly impact match outcomes.</p>
                     </div>
-                    <div>
-                        <div class="vct-stat-value">16</div>
-                        <div class="vct-stat-label">Teams at Champions</div>
-                    </div>
-                    <div>
-                        <div class="vct-stat-value">30</div>
-                        <div class="vct-stat-label">Partnered Teams</div>
-                    </div>
-                    <div>
-                        <div class="vct-stat-value">3</div>
-                        <div class="vct-stat-label">Global Leagues</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                </section>
 
-        <section>
-            <div class="section-header">
-                <h2>About Valorant</h2>
-                <p>Tactical precision meets unique abilities</p>
+                <section class="section">
+                    <h2 class="section-title">🏆 Top Teams</h2>
+                    <div class="section-content">
+                        <ul class="ranking-list">
+                            <li class="ranking-item">
+                                <div class="rank gold">1</div>
+                                <div class="ranking-info"><div class="ranking-name">Sentinels</div><div class="ranking-detail">🇺🇸 Americas • Masters Reykjavik 2021 Champion</div></div>
+                                <div class="ranking-value">$1.8M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank silver">2</div>
+                                <div class="ranking-info"><div class="ranking-name">LOUD</div><div class="ranking-detail">🇧🇷 Americas • Champions 2022 Winner</div></div>
+                                <div class="ranking-value">$1.6M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank bronze">3</div>
+                                <div class="ranking-info"><div class="ranking-name">Fnatic</div><div class="ranking-detail">🇪🇺 EMEA • Masters Tokyo 2023 Champion</div></div>
+                                <div class="ranking-value">$1.4M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">4</div>
+                                <div class="ranking-info"><div class="ranking-name">Paper Rex</div><div class="ranking-detail">🇸🇬 Pacific • Aggressive Playstyle</div></div>
+                                <div class="ranking-value">$980K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">5</div>
+                                <div class="ranking-info"><div class="ranking-name">DRX</div><div class="ranking-detail">🇰🇷 Pacific • Champions 2022 Finalist</div></div>
+                                <div class="ranking-value">$920K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">6</div>
+                                <div class="ranking-info"><div class="ranking-name">Evil Geniuses</div><div class="ranking-detail">🇺🇸 Americas • Champions 2023 Winner</div></div>
+                                <div class="ranking-value">$850K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">7</div>
+                                <div class="ranking-info"><div class="ranking-name">Team Liquid</div><div class="ranking-detail">🇪🇺 EMEA • Consistent Contender</div></div>
+                                <div class="ranking-value">$720K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">8</div>
+                                <div class="ranking-info"><div class="ranking-name">NRG</div><div class="ranking-detail">🇺🇸 Americas • Rising Power</div></div>
+                                <div class="ranking-value">$680K</div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">⭐ Top Players</h2>
+                    <div class="section-content">
+                        <ul class="ranking-list">
+                            <li class="ranking-item">
+                                <div class="rank gold">1</div>
+                                <div class="ranking-info"><div class="ranking-name">TenZ</div><div class="ranking-detail">🇨🇦 Canada • Sentinels • Duelist</div></div>
+                                <div class="ranking-value">$320K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank silver">2</div>
+                                <div class="ranking-info"><div class="ranking-name">aspas</div><div class="ranking-detail">🇧🇷 Brazil • LOUD • Duelist</div></div>
+                                <div class="ranking-value">$290K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank bronze">3</div>
+                                <div class="ranking-info"><div class="ranking-name">yay</div><div class="ranking-detail">🇺🇸 United States • Chamber Specialist</div></div>
+                                <div class="ranking-value">$275K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">4</div>
+                                <div class="ranking-info"><div class="ranking-name">Derke</div><div class="ranking-detail">🇫🇮 Finland • Fnatic • Duelist</div></div>
+                                <div class="ranking-value">$260K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">5</div>
+                                <div class="ranking-info"><div class="ranking-name">f0rsakeN</div><div class="ranking-detail">🇮🇩 Indonesia • Paper Rex • Flex</div></div>
+                                <div class="ranking-value">$240K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">6</div>
+                                <div class="ranking-info"><div class="ranking-name">Sacy</div><div class="ranking-detail">🇧🇷 Brazil • Sentinels • Initiator</div></div>
+                                <div class="ranking-value">$230K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">7</div>
+                                <div class="ranking-info"><div class="ranking-name">Less</div><div class="ranking-detail">🇧🇷 Brazil • LOUD • Sentinel</div></div>
+                                <div class="ranking-value">$220K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">8</div>
+                                <div class="ranking-info"><div class="ranking-name">Chronicle</div><div class="ranking-detail">🇷🇺 Russia • Fnatic • IGL</div></div>
+                                <div class="ranking-value">$210K</div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">🎯 Major Tournaments</h2>
+                    <div class="section-content">
+                        <div class="tournament-list">
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🏆</div>
+                                <div class="tournament-info"><div class="tournament-name">VCT Champions</div><div class="tournament-meta">Riot Games • Annual • August • 16 teams</div></div>
+                                <div class="tournament-prize">$2.25M</div>
+                            </div>
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🌍</div>
+                                <div class="tournament-info"><div class="tournament-name">VCT Masters</div><div class="tournament-meta">Riot Games • 2-3 per year • 12 teams</div></div>
+                                <div class="tournament-prize">$1M</div>
+                            </div>
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🌎</div>
+                                <div class="tournament-info"><div class="tournament-name">VCT Americas</div><div class="tournament-meta">International League • 10 teams • Regular season</div></div>
+                                <div class="tournament-prize">$500K</div>
+                            </div>
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🌏</div>
+                                <div class="tournament-info"><div class="tournament-name">VCT Pacific</div><div class="tournament-meta">International League • 10 teams • Regular season</div></div>
+                                <div class="tournament-prize">$500K</div>
+                            </div>
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🌍</div>
+                                <div class="tournament-info"><div class="tournament-name">VCT EMEA</div><div class="tournament-meta">International League • 10 teams • Regular season</div></div>
+                                <div class="tournament-prize">$500K</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">💰 Betting Markets</h2>
+                    <div class="section-content">
+                        <p>Valorant betting has grown rapidly with the VCT ecosystem. The game's tactical nature and agent-based gameplay create interesting betting angles.</p>
+                        
+                        <div class="betting-grid">
+                            <div class="betting-card"><h4>Match Winner</h4><p>Best-of-3 or best-of-5 series winner. Regional strength varies—Americas and EMEA teams currently lead.</p></div>
+                            <div class="betting-card"><h4>Map Handicap</h4><p>Map spread betting for series. Dominant teams often sweep in regular season matches.</p></div>
+                            <div class="betting-card"><h4>Total Rounds</h4><p>Over/under on rounds played. Standard at 24.5 for single maps with variations.</p></div>
+                            <div class="betting-card"><h4>Map Winner</h4><p>Individual map outcomes. Teams have clear map preferences and pocket picks.</p></div>
+                            <div class="betting-card"><h4>First Blood</h4><p>First kill of map or round. Duelists and aggressive teams have advantages here.</p></div>
+                            <div class="betting-card"><h4>Pistol Round</h4><p>Which team wins pistol rounds. Critical economy rounds that set pace for halves.</p></div>
+                        </div>
+                        
+                        <h3>Betting Tips</h3>
+                        <p><strong>Agent Meta:</strong> Certain agents dominate specific maps. Teams with flexible agent pools adapt better to bans and counters.</p>
+                        <p><strong>Map Pool:</strong> Teams specialize on certain maps. Check head-to-head records on specific maps before betting map spreads.</p>
+                        <p><strong>Regional Form:</strong> International events reset expectations. Teams that dominate regionally may struggle against different playstyles.</p>
+                    </div>
+                </section>
             </div>
-            <div class="content-grid">
-                <div class="content-card">
-                    <h3>📖 History & Growth</h3>
-                    <p>
-                        Valorant launched in June 2020, developed by Riot Games as their entry into the tactical shooter 
-                        genre. Combining the precise gunplay of Counter-Strike with unique agent abilities similar to 
-                        Overwatch, it quickly attracted millions of players and CS professionals.
-                    </p>
-                    <p>
-                        The game's esports scene started with community tournaments before Riot launched the official 
-                        VCT in 2021. The franchised league system began in 2023, with 30 partnered teams across 
-                        Americas, EMEA, and Pacific regions receiving guaranteed spots and revenue sharing.
-                    </p>
-                    <p>
-                        Notable storylines include Sentinels' early dominance with TenZ, LOUD's rise as Brazil's 
-                        first FPS world champions, and Fnatic's consistent international success.
-                    </p>
-                </div>
-                <div class="content-card">
-                    <h3>🎮 Gameplay</h3>
-                    <p><strong>Format:</strong> 5v5 tactical shooter</p>
-                    <p><strong>Objective:</strong> Plant/defuse spike or eliminate</p>
-                    <p><strong>Rounds:</strong> First to 13 (MR12)</p>
-                    <ul>
-                        <li>20+ unique agents with abilities</li>
-                        <li>Economy system for weapons</li>
-                        <li>Four agent roles: Duelist, Controller, Initiator, Sentinel</li>
-                        <li>7 competitive maps</li>
-                        <li>Precise gunplay with utility usage</li>
+
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Quick Links</h3>
+                    <ul class="quick-links">
+                        <li><a href="#history">📜 History</a></li>
+                        <li><a href="#teams">🏆 Top Teams</a></li>
+                        <li><a href="#players">⭐ Top Players</a></li>
+                        <li><a href="#tournaments">🎯 Tournaments</a></li>
+                        <li><a href="#betting">💰 Betting Markets</a></li>
                     </ul>
                 </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header">
-                <h2>Agent Roles</h2>
-                <p>Understanding agent classes for betting insights</p>
-            </div>
-            <div class="agents-grid">
-                <div class="agent-card">
-                    <div class="agent-icon">⚔️</div>
-                    <h4>Jett</h4>
-                    <p>Duelist</p>
+                
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Related Games</h3>
+                    <ul class="related-games">
+                        <li><a href="/games/cs2.html"><span class="related-game-icon">🔫</span><span>Counter-Strike 2</span></a></li>
+                        <li><a href="/games/lol.html"><span class="related-game-icon">🏰</span><span>League of Legends</span></a></li>
+                        <li><a href="/games/r6.html"><span class="related-game-icon">🛡️</span><span>Rainbow Six Siege</span></a></li>
+                    </ul>
                 </div>
-                <div class="agent-card">
-                    <div class="agent-icon">🔥</div>
-                    <h4>Raze</h4>
-                    <p>Duelist</p>
+                
+                <div class="cta-box">
+                    <h3>Live Valorant Odds</h3>
+                    <p>Check real-time betting odds for upcoming Valorant matches.</p>
+                    <a href="/live/" class="cta-btn">View Live Odds →</a>
                 </div>
-                <div class="agent-card">
-                    <div class="agent-icon">💨</div>
-                    <h4>Omen</h4>
-                    <p>Controller</p>
+                
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Key Stats</h3>
+                    <ul class="quick-links">
+                        <li><a href="/teams/?game=valorant">🏆 Valorant Team Rankings</a></li>
+                        <li><a href="/players/?game=valorant">⭐ Valorant Player Stats</a></li>
+                        <li><a href="/tournaments/?game=valorant">🎯 Upcoming Events</a></li>
+                        <li><a href="/betting/valorant.html">📖 Valorant Betting Guide</a></li>
+                    </ul>
                 </div>
-                <div class="agent-card">
-                    <div class="agent-icon">🌫️</div>
-                    <h4>Viper</h4>
-                    <p>Controller</p>
-                </div>
-                <div class="agent-card">
-                    <div class="agent-icon">👁️</div>
-                    <h4>Sova</h4>
-                    <p>Initiator</p>
-                </div>
-                <div class="agent-card">
-                    <div class="agent-icon">⚡</div>
-                    <h4>Breach</h4>
-                    <p>Initiator</p>
-                </div>
-                <div class="agent-card">
-                    <div class="agent-icon">🛡️</div>
-                    <h4>Killjoy</h4>
-                    <p>Sentinel</p>
-                </div>
-                <div class="agent-card">
-                    <div class="agent-icon">🔒</div>
-                    <h4>Cypher</h4>
-                    <p>Sentinel</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header">
-                <h2>Top Valorant Teams</h2>
-                <p>Leading organizations in the VCT</p>
-            </div>
-            <div class="teams-grid">
-                <div class="team-card">
-                    <div class="team-logo">📢</div>
-                    <h4>LOUD</h4>
-                    <p>🇧🇷 Brazil • Americas</p>
-                    <div class="team-earnings">$1.2M</div>
-                </div>
-                <div class="team-card">
-                    <div class="team-logo">🦊</div>
-                    <h4>Fnatic</h4>
-                    <p>🇪🇺 Europe • EMEA</p>
-                    <div class="team-earnings">$980K</div>
-                </div>
-                <div class="team-card">
-                    <div class="team-logo">👹</div>
-                    <h4>Evil Geniuses</h4>
-                    <p>🇺🇸 USA • Americas</p>
-                    <div class="team-earnings">$920K</div>
-                </div>
-                <div class="team-card">
-                    <div class="team-logo">🔴</div>
-                    <h4>Sentinels</h4>
-                    <p>🇺🇸 USA • Americas</p>
-                    <div class="team-earnings">$850K</div>
-                </div>
-                <div class="team-card">
-                    <div class="team-logo">📄</div>
-                    <h4>Paper Rex</h4>
-                    <p>🇸🇬 Singapore • Pacific</p>
-                    <div class="team-earnings">$780K</div>
-                </div>
-                <div class="team-card">
-                    <div class="team-logo">🐉</div>
-                    <h4>DRX</h4>
-                    <p>🇰🇷 South Korea • Pacific</p>
-                    <div class="team-earnings">$720K</div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header">
-                <h2>Top Valorant Players</h2>
-                <p>Star players dominating the VCT</p>
-            </div>
-            <div class="players-grid">
-                <div class="player-card">
-                    <div class="player-rank gold">1</div>
-                    <div class="player-info">
-                        <div class="player-name">aspas</div>
-                        <div class="player-detail">🇧🇷 Brazil • LOUD • Duelist</div>
-                    </div>
-                    <div class="player-earnings">$320K</div>
-                </div>
-                <div class="player-card">
-                    <div class="player-rank silver">2</div>
-                    <div class="player-info">
-                        <div class="player-name">TenZ</div>
-                        <div class="player-detail">🇨🇦 Canada • Sentinels • Duelist</div>
-                    </div>
-                    <div class="player-earnings">$280K</div>
-                </div>
-                <div class="player-card">
-                    <div class="player-rank bronze">3</div>
-                    <div class="player-info">
-                        <div class="player-name">Derke</div>
-                        <div class="player-detail">🇫🇮 Finland • Fnatic • Duelist</div>
-                    </div>
-                    <div class="player-earnings">$250K</div>
-                </div>
-                <div class="player-card">
-                    <div class="player-rank">4</div>
-                    <div class="player-info">
-                        <div class="player-name">yay</div>
-                        <div class="player-detail">🇺🇸 USA • Cloud9 • Duelist</div>
-                    </div>
-                    <div class="player-earnings">$230K</div>
-                </div>
-                <div class="player-card">
-                    <div class="player-rank">5</div>
-                    <div class="player-info">
-                        <div class="player-name">Demon1</div>
-                        <div class="player-detail">🇺🇸 USA • Evil Geniuses • Duelist</div>
-                    </div>
-                    <div class="player-earnings">$210K</div>
-                </div>
-                <div class="player-card">
-                    <div class="player-rank">6</div>
-                    <div class="player-info">
-                        <div class="player-name">f0rsakeN</div>
-                        <div class="player-detail">🇮🇩 Indonesia • Paper Rex • Flex</div>
-                    </div>
-                    <div class="player-earnings">$195K</div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header">
-                <h2>VCT Tournament Structure</h2>
-                <p>The competitive calendar</p>
-            </div>
-            <div class="content-card">
-                <table class="tournaments-table">
-                    <thead>
-                        <tr>
-                            <th>Event</th>
-                            <th>Prize Pool</th>
-                            <th>Teams</th>
-                            <th>Frequency</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="tournament-name">🏆 VCT Champions</span></td>
-                            <td class="tournament-prize">$1,000,000</td>
-                            <td>16 Teams</td>
-                            <td>Annual</td>
-                        </tr>
-                        <tr>
-                            <td><span class="tournament-name">🌍 VCT Masters</span></td>
-                            <td class="tournament-prize">$700,000</td>
-                            <td>12 Teams</td>
-                            <td>2x per year</td>
-                        </tr>
-                        <tr>
-                            <td><span class="tournament-name">🌎 VCT Americas</span></td>
-                            <td class="tournament-prize">$250,000</td>
-                            <td>10 Teams</td>
-                            <td>Seasonal</td>
-                        </tr>
-                        <tr>
-                            <td><span class="tournament-name">🌍 VCT EMEA</span></td>
-                            <td class="tournament-prize">$250,000</td>
-                            <td>10 Teams</td>
-                            <td>Seasonal</td>
-                        </tr>
-                        <tr>
-                            <td><span class="tournament-name">🌏 VCT Pacific</span></td>
-                            <td class="tournament-prize">$250,000</td>
-                            <td>10 Teams</td>
-                            <td>Seasonal</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header">
-                <h2>Valorant Betting Guide</h2>
-                <p>Popular markets and betting strategies</p>
-            </div>
-            <div class="betting-grid">
-                <div class="betting-card">
-                    <h4>🎯 Match Winner</h4>
-                    <p>Bet on which team wins the series. VCT matches are typically best-of-3, with playoffs often best-of-5.</p>
-                    <div class="betting-tip">💡 Tip: Check regional form—teams from same league know each other well.</div>
-                </div>
-                <div class="betting-card">
-                    <h4>🗺️ Map Winner</h4>
-                    <p>Individual map outcomes. Teams have strong and weak maps—map veto is crucial.</p>
-                    <div class="betting-tip">💡 Tip: Some teams dominate specific maps (e.g., Paper Rex on Lotus).</div>
-                </div>
-                <div class="betting-card">
-                    <h4>📊 Map Handicap</h4>
-                    <p>Round handicaps like -4.5 or +5.5 on individual maps for better odds.</p>
-                    <div class="betting-tip">💡 Tip: Overtime maps are common—consider under/over 24.5 rounds.</div>
-                </div>
-                <div class="betting-card">
-                    <h4">🩸 First Blood</h4>
-                    <p>Which team gets the first kill on a map. Depends on duelist skill and team aggression.</p>
-                    <div class="betting-tip">💡 Tip: Star duelists like aspas and Derke often secure first bloods.</div>
-                </div>
-                <div class="betting-card">
-                    <h4>💣 Pistol Rounds</h4>
-                    <p>Winner of the first round of each half. Crucial for economy and momentum.</p>
-                    <div class="betting-tip">💡 Tip: Some teams are pistol round specialists—check the stats!</div>
-                </div>
-                <div class="betting-card">
-                    <h4>🏅 Tournament Outright</h4>
-                    <p>Pick the Champions or Masters winner before the event begins.</p>
-                    <div class="betting-tip">💡 Tip: International events are open—upsets are common in Valorant.</div>
-                </div>
-            </div>
-        </section>
-
-        <div class="cta-section">
-            <h2>Ready to Bet on Valorant?</h2>
-            <p>Check live odds for upcoming VCT matches and international events.</p>
-            <div class="cta-buttons">
-                <a href="/live/" class="btn btn-primary">Live Valorant Odds →</a>
-                <a href="/betting/" class="btn btn-secondary">Betting Guides</a>
-            </div>
+            </aside>
         </div>
     </main>
 
     <footer>
-        <div class="footer-links">
-            <a href="/">Home</a>
-            <a href="/games/">Games</a>
-            <a href="/games/cs2.html">CS2</a>
-            <a href="/games/dota2.html">Dota 2</a>
-            <a href="/games/lol.html">League of Legends</a>
-            <a href="/betting/">Betting</a>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">APUESTA ESPORTS</a>
+                    <p>The world's most comprehensive esports reference. Teams, players, countries, tournaments, and betting guides.</p>
+                </div>
+                <div class="footer-links"><h4>Games</h4><ul><li><a href="/games/cs2.html">Counter-Strike 2</a></li><li><a href="/games/dota2.html">Dota 2</a></li><li><a href="/games/lol.html">League of Legends</a></li><li><a href="/games/valorant.html">Valorant</a></li></ul></div>
+                <div class="footer-links"><h4>Resources</h4><ul><li><a href="/teams/">Team Rankings</a></li><li><a href="/players/">Player Profiles</a></li><li><a href="/countries/">Country Stats</a></li><li><a href="/tournaments/">Tournaments</a></li></ul></div>
+                <div class="footer-links"><h4>Betting</h4><ul><li><a href="/live/">Live Odds</a></li><li><a href="/betting/">Betting Guides</a></li><li><a href="/betting/beginners.html">Beginner's Guide</a></li></ul></div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2026 Apuesta Esports. Data from Esports Earnings.</div>
+                <div class="footer-legal"><a href="/llms.txt">llms.txt</a><a href="/sitemap.xml">Sitemap</a></div>
+            </div>
         </div>
-        <p class="footer-copyright">© 2026 Apuesta Esports. Data from Esports Earnings.</p>
     </footer>
 
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "VideoGame",
-        "name": "Valorant",
-        "description": "Free-to-play tactical first-person shooter developed by Riot Games, combining precise gunplay with unique agent abilities.",
-        "genre": "First-Person Shooter",
-        "gamePlatform": ["PC"],
-        "publisher": {
-            "@type": "Organization",
-            "name": "Riot Games"
-        }
-    }
+    {"@context":"https://schema.org","@type":"VideoGame","name":"Valorant","description":"Valorant is Riot Games' tactical shooter combining precise gunplay with unique agent abilities and the VCT Champions Tour esports ecosystem.","genre":"First-Person Shooter","gamePlatform":"PC","publisher":{"@type":"Organization","name":"Riot Games"},"datePublished":"2020-06-02","url":"https://www.apuestaesports.com/games/valorant.html"}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.apuestaesports.com/"},{"@type":"ListItem","position":2,"name":"Games","item":"https://www.apuestaesports.com/games/"},{"@type":"ListItem","position":3,"name":"Valorant","item":"https://www.apuestaesports.com/games/valorant.html"}]}
     </script>
 </body>
 </html>

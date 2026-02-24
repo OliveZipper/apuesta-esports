@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>League of Legends Esports - LEC, LCK, Worlds, Betting Guide | Apuesta Esports</title>
-    <meta name="description" content="Complete League of Legends esports guide. World Championship, LCK, LEC, LPL, top teams like T1 and Gen.G, Faker, and LoL betting markets explained.">
-    <meta name="keywords" content="League of Legends, LoL esports, Worlds, LCK, LEC, LPL, T1, Faker, Gen.G, LoL betting">
+    <title>League of Legends (LoL) Esports Guide - Teams, Players, Worlds & Betting | Apuesta Esports</title>
+    <meta name="description" content="Complete League of Legends esports guide: history, top teams like T1 and Gen.G, star players including Faker and Chovy, Worlds Championship, LCK, LEC, and betting markets.">
+    <meta name="keywords" content="League of Legends, LoL esports, Worlds, T1, Gen.G, Faker, LCK, LCS, LEC, League of Legends betting, LoL Worlds">
     
-    <meta property="og:title" content="League of Legends Esports Guide | Apuesta Esports">
-    <meta property="og:description" content="Everything about LoL competitive scene. Teams, players, Worlds Championship, and betting guide.">
+    <meta property="og:title" content="League of Legends Esports Guide - Teams, Players & Betting">
+    <meta property="og:description" content="Complete LoL guide with top teams, star players, Worlds Championship, and betting markets.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.apuestaesports.com/games/lol.html">
+    <meta property="og:image" content="https://www.apuestaesports.com/og-lol.png">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="LoL Esports Guide | Apuesta Esports">
+    <meta name="twitter:description" content="Complete LoL guide: teams, players, tournaments, and betting.">
     
     <link rel="canonical" href="https://www.apuestaesports.com/games/lol.html">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏰</text></svg>">
@@ -28,14 +33,12 @@
             --orange: #FF6B2F;
             --purple: #8D52DA;
             --yellow: #DFFD51;
-            --lol-gold: #C89B3C;
-            --lol-blue: #0397AB;
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
             --text-muted: #606070;
             --border: #2a2a3a;
             --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
-            --gradient-lol: linear-gradient(135deg, var(--lol-gold) 0%, var(--lol-blue) 100%);
+            --game-color: #C89B3C;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -48,106 +51,98 @@
         .nav-links { display: flex; gap: 32px; list-style: none; }
         .nav-links a { color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
         .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
-        .nav-cta { background: var(--gradient); color: white; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+        .nav-cta { background: var(--gradient); color: white; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; transition: transform 0.2s, box-shadow 0.2s; }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3); }
         
-        .game-hero { padding: 120px 24px 60px; background: radial-gradient(ellipse at 30% 0%, rgba(200, 155, 60, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 100%, rgba(3, 151, 171, 0.15) 0%, transparent 50%), var(--bg-primary); }
-        .hero-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 400px; gap: 60px; align-items: center; }
-        .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; font-size: 0.9rem; color: var(--text-muted); }
-        .breadcrumb a:hover { color: var(--text-secondary); }
-        .game-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(200, 155, 60, 0.15); border: 1px solid rgba(200, 155, 60, 0.3); border-radius: 100px; font-size: 0.85rem; color: var(--lol-gold); margin-bottom: 20px; }
-        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 16px; line-height: 1.1; }
-        .hero-content h1 .gradient { background: var(--gradient-lol); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .hero-description { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 32px; max-width: 600px; }
-        .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
-        .hero-stat { text-align: left; }
-        .hero-stat-value { font-size: 2rem; font-weight: 800; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
-        .hero-stat-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        
-        .hero-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; text-align: center; }
-        .hero-card-icon { font-size: 5rem; margin-bottom: 20px; }
-        .hero-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
-        .hero-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 20px; }
-        .hero-card-cta { display: inline-block; padding: 12px 24px; background: var(--gradient-lol); border-radius: 10px; font-weight: 600; transition: transform 0.2s; }
-        .hero-card-cta:hover { transform: translateY(-2px); }
+        .game-hero { padding: 120px 24px 60px; background: radial-gradient(ellipse at 50% 0%, rgba(200, 155, 60, 0.2) 0%, transparent 50%), var(--bg-primary); }
+        .game-hero-content { max-width: 1400px; margin: 0 auto; }
+        .breadcrumb { display: flex; gap: 8px; margin-bottom: 24px; font-size: 0.9rem; color: var(--text-muted); }
+        .breadcrumb a:hover { color: var(--text-primary); }
+        .game-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .game-icon-large { font-size: 5rem; margin-bottom: 16px; }
+        .game-badge { display: inline-block; background: rgba(200, 155, 60, 0.2); border: 1px solid var(--game-color); color: var(--game-color); padding: 6px 14px; border-radius: 100px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+        .game-hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 16px; }
+        .game-hero-desc { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.7; }
+        .game-meta-list { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 32px; }
+        .game-meta-item { display: flex; align-items: center; gap: 8px; }
+        .game-meta-item span:first-child { color: var(--text-muted); }
+        .game-meta-item span:last-child { font-weight: 600; }
+        .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .hero-stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; }
+        .hero-stat-value { font-size: 2rem; font-weight: 800; color: var(--game-color); font-family: 'JetBrains Mono', monospace; }
+        .hero-stat-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
         
         main { max-width: 1400px; margin: 0 auto; padding: 60px 24px 100px; }
-        section { margin-bottom: 80px; }
-        .section-header { margin-bottom: 32px; }
-        .section-header h2 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
-        .section-header p { color: var(--text-secondary); }
-        
         .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
-        .content-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
-        .content-card h3 { font-size: 1.25rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-        .content-card p { color: var(--text-secondary); margin-bottom: 16px; }
-        .content-card ul { color: var(--text-secondary); margin-left: 20px; }
-        .content-card li { margin-bottom: 8px; }
+        .section { margin-bottom: 60px; }
+        .section-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+        .section-content { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; }
+        .section-content p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; }
+        .section-content p:last-child { margin-bottom: 0; }
+        .section-content h3 { font-size: 1.25rem; margin: 24px 0 12px; }
+        .section-content h3:first-child { margin-top: 0; }
         
-        .leagues-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .league-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; transition: transform 0.2s, border-color 0.2s; }
-        .league-card:hover { transform: translateY(-4px); border-color: var(--lol-gold); }
-        .league-card h4 { font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-        .league-card p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 12px; }
-        .league-teams { font-size: 0.85rem; color: var(--text-muted); }
+        .ranking-list { list-style: none; }
+        .ranking-item { display: flex; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border); }
+        .ranking-item:last-child { border-bottom: none; }
+        .rank { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--bg-tertiary); border-radius: 8px; font-weight: 700; font-size: 0.9rem; margin-right: 16px; flex-shrink: 0; }
+        .rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+        .rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
+        .rank.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
+        .ranking-info { flex: 1; }
+        .ranking-name { font-weight: 600; margin-bottom: 2px; }
+        .ranking-detail { font-size: 0.85rem; color: var(--text-muted); }
+        .ranking-value { font-weight: 700; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
         
-        .teams-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
-        .team-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; transition: transform 0.2s, border-color 0.2s; }
-        .team-card:hover { transform: translateY(-4px); border-color: var(--purple); }
-        .team-logo { font-size: 2.5rem; margin-bottom: 12px; }
-        .team-card h4 { font-size: 1rem; margin-bottom: 4px; }
-        .team-card p { font-size: 0.85rem; color: var(--text-muted); }
-        .team-earnings { margin-top: 12px; font-size: 1rem; font-weight: 700; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        .tournament-list { display: flex; flex-direction: column; gap: 16px; }
+        .tournament-item { display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--bg-tertiary); border-radius: 12px; transition: transform 0.2s; }
+        .tournament-item:hover { transform: translateX(4px); }
+        .tournament-icon { font-size: 2rem; }
+        .tournament-info { flex: 1; }
+        .tournament-name { font-weight: 600; margin-bottom: 4px; }
+        .tournament-meta { font-size: 0.85rem; color: var(--text-muted); }
+        .tournament-prize { font-weight: 700; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
         
-        .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-        .player-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; align-items: center; gap: 16px; transition: transform 0.2s, border-color 0.2s; }
-        .player-card:hover { transform: translateY(-4px); border-color: var(--purple); }
-        .player-rank { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: var(--bg-tertiary); border-radius: 10px; font-weight: 700; font-size: 1.1rem; }
-        .player-rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
-        .player-rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
-        .player-rank.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
-        .player-info { flex: 1; }
-        .player-name { font-weight: 700; margin-bottom: 2px; }
-        .player-detail { font-size: 0.85rem; color: var(--text-muted); }
-        .player-earnings { font-weight: 700; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        .betting-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .betting-card { background: var(--bg-tertiary); border-radius: 12px; padding: 20px; }
+        .betting-card h4 { font-size: 1rem; margin-bottom: 8px; color: var(--orange); }
+        .betting-card p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0; }
         
-        .tournaments-table { width: 100%; border-collapse: collapse; }
-        .tournaments-table th, .tournaments-table td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border); }
-        .tournaments-table th { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
-        .tournaments-table td { font-size: 0.95rem; }
-        .tournaments-table tr:hover { background: var(--bg-tertiary); }
-        .tournament-name { display: flex; align-items: center; gap: 10px; font-weight: 600; }
-        .tournament-prize { color: var(--yellow); font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+        .sidebar { display: flex; flex-direction: column; gap: 24px; }
+        .sidebar-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+        .sidebar-title { font-size: 1rem; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+        .quick-links { list-style: none; }
+        .quick-links li { margin-bottom: 12px; }
+        .quick-links a { display: flex; align-items: center; gap: 8px; color: var(--text-secondary); transition: color 0.2s; }
+        .quick-links a:hover { color: var(--text-primary); }
+        .related-games { list-style: none; }
+        .related-games li { margin-bottom: 12px; }
+        .related-games a { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-tertiary); border-radius: 8px; transition: transform 0.2s; }
+        .related-games a:hover { transform: translateX(4px); }
+        .related-game-icon { font-size: 1.5rem; }
+        .cta-box { background: var(--gradient); border-radius: 16px; padding: 32px; text-align: center; }
+        .cta-box h3 { font-size: 1.25rem; margin-bottom: 12px; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 20px; font-size: 0.95rem; }
+        .cta-btn { display: inline-block; background: white; color: var(--bg-primary); padding: 12px 24px; border-radius: 8px; font-weight: 600; transition: transform 0.2s; }
+        .cta-btn:hover { transform: translateY(-2px); }
         
-        .betting-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
-        .betting-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
-        .betting-card h4 { font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-        .betting-card p { color: var(--text-secondary); font-size: 0.95rem; }
-        .betting-tip { margin-top: 16px; padding: 12px; background: rgba(223, 253, 81, 0.1); border: 1px solid rgba(223, 253, 81, 0.2); border-radius: 8px; font-size: 0.9rem; color: var(--yellow); }
-        
-        .worlds-highlight { background: linear-gradient(135deg, rgba(200, 155, 60, 0.1), rgba(3, 151, 171, 0.1)); border: 1px solid rgba(200, 155, 60, 0.3); border-radius: 20px; padding: 40px; margin-bottom: 40px; }
-        .worlds-highlight h3 { font-size: 1.5rem; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
-        .worlds-highlight p { color: var(--text-secondary); margin-bottom: 16px; max-width: 800px; }
-        .worlds-stats { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 24px; }
-        .worlds-stat-value { font-size: 1.75rem; font-weight: 800; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
-        .worlds-stat-label { font-size: 0.85rem; color: var(--text-muted); }
-        
-        .cta-section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 24px; padding: 60px 40px; text-align: center; margin-top: 60px; }
-        .cta-section h2 { font-size: 1.75rem; margin-bottom: 16px; }
-        .cta-section p { color: var(--text-secondary); margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-        .btn { padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 1rem; transition: transform 0.2s; }
-        .btn-primary { background: var(--gradient-lol); color: white; }
-        .btn-secondary { background: var(--bg-tertiary); border: 1px solid var(--border); }
-        .btn:hover { transform: translateY(-2px); }
-        
-        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 40px 24px; text-align: center; }
-        .footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 20px; flex-wrap: wrap; }
-        .footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 60px 24px 30px; }
+        .footer-content { max-width: 1400px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-brand { max-width: 300px; }
+        .footer-brand .logo { font-size: 1.5rem; margin-bottom: 16px; display: inline-block; }
+        .footer-brand p { color: var(--text-muted); font-size: 0.9rem; }
+        .footer-links h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 16px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: var(--text-secondary); font-size: 0.95rem; transition: color 0.2s; }
         .footer-links a:hover { color: var(--text-primary); }
-        .footer-copyright { color: var(--text-muted); font-size: 0.85rem; }
+        .footer-bottom { border-top: 1px solid var(--border); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.85rem; }
+        .footer-legal a { margin-left: 24px; color: var(--text-muted); }
+        .footer-legal a:hover { color: var(--text-secondary); }
         
-        @media (max-width: 1024px) { .hero-content { grid-template-columns: 1fr; } .hero-card { max-width: 400px; margin: 0 auto; } .content-grid { grid-template-columns: 1fr; } }
-        @media (max-width: 768px) { .nav-links { display: none; } .teams-grid { grid-template-columns: repeat(2, 1fr); } .players-grid { grid-template-columns: 1fr; } .tournaments-table { display: block; overflow-x: auto; } }
+        @media (max-width: 1024px) { .content-grid { grid-template-columns: 1fr; } .sidebar { flex-direction: row; flex-wrap: wrap; } .sidebar-card { flex: 1; min-width: 250px; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .game-hero-grid { grid-template-columns: 1fr; gap: 40px; } .hero-stats { grid-template-columns: 1fr; } .betting-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } .footer-bottom { flex-direction: column; gap: 16px; text-align: center; } }
     </style>
 </head>
 <body>
@@ -167,373 +162,275 @@
     </nav>
 
     <header class="game-hero">
-        <div class="hero-content">
-            <div>
-                <div class="breadcrumb">
-                    <a href="/">Home</a> / <a href="/games/">Games</a> / <span>League of Legends</span>
-                </div>
-                <div class="game-badge">🏰 Multiplayer Online Battle Arena</div>
-                <h1>League of <span class="gradient">Legends</span></h1>
-                <p class="hero-description">
-                    The world's most-watched esport with over 100 million monthly players. League of Legends 
-                    features regional leagues across the globe and culminates in the annual World Championship, 
-                    drawing massive viewership and passionate fan bases from every continent.
-                </p>
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">$100M+</div>
-                        <div class="hero-stat-label">Total Prize Pool</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">6M+</div>
-                        <div class="hero-stat-label">Peak Viewers</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">160+</div>
-                        <div class="hero-stat-label">Champions</div>
-                    </div>
-                </div>
+        <div class="game-hero-content">
+            <div class="breadcrumb">
+                <a href="/">Home</a><span>/</span><a href="/games/">Games</a><span>/</span><span>League of Legends</span>
             </div>
-            <div class="hero-card">
-                <div class="hero-card-icon">🏆</div>
-                <h3>World Championship</h3>
-                <p>The pinnacle of League of Legends esports with teams from every major region competing for the Summoner's Cup.</p>
-                <a href="/tournaments/" class="hero-card-cta">View Worlds →</a>
+            
+            <div class="game-hero-grid">
+                <div class="game-hero-info">
+                    <div class="game-icon-large">🏰</div>
+                    <span class="game-badge">MOBA • STRATEGY</span>
+                    <h1>League of Legends</h1>
+                    <p class="game-hero-desc">
+                        The world's most-watched esport with regional leagues spanning the globe. From LCK to LCS, Worlds Championship draws millions of viewers each year with iconic plays and legendary players like Faker.
+                    </p>
+                    <div class="game-meta-list">
+                        <div class="game-meta-item"><span>Publisher:</span><span>Riot Games</span></div>
+                        <div class="game-meta-item"><span>Released:</span><span>2009</span></div>
+                        <div class="game-meta-item"><span>Platform:</span><span>PC</span></div>
+                    </div>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat"><div class="hero-stat-value">$100M+</div><div class="hero-stat-label">Total Prize Pool</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">73M</div><div class="hero-stat-label">Peak Viewers (Worlds)</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">13</div><div class="hero-stat-label">Worlds Held</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">167</div><div class="hero-stat-label">Champions</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">4</div><div class="hero-stat-label">Major Regions</div></div>
+                    <div class="hero-stat"><div class="hero-stat-value">12</div><div class="hero-stat-label">Regional Leagues</div></div>
+                </div>
             </div>
         </div>
     </header>
 
     <main>
-        <section>
-            <div class="worlds-highlight">
-                <h3>🏆 World Championship - Esports' Most Watched Event</h3>
-                <p>
-                    The League of Legends World Championship (Worlds) is the annual pinnacle of competitive LoL. 
-                    First held in 2011, it has grown to become the most-watched esports event globally, with 
-                    the 2022 finals reaching over 5 million peak concurrent viewers.
-                </p>
-                <p>
-                    Teams qualify through regional leagues (LCK, LPL, LEC, LCS, and emerging regions), competing 
-                    in a month-long tournament. South Korean and Chinese teams have dominated, with T1 (formerly SKT) 
-                    winning four titles and Faker becoming the most decorated player in LoL history.
-                </p>
-                <div class="worlds-stats">
-                    <div>
-                        <div class="worlds-stat-value">6M+</div>
-                        <div class="worlds-stat-label">Peak Viewers</div>
+        <div class="content-grid">
+            <div class="main-content">
+                <section class="section">
+                    <h2 class="section-title">📜 History & Evolution</h2>
+                    <div class="section-content">
+                        <p>League of Legends launched in 2009 and quickly became the world's most popular PC game. Riot Games built a franchised esports ecosystem unmatched in scale, with regional leagues feeding into international tournaments.</p>
+                        
+                        <h3>The Franchised Era</h3>
+                        <p><strong>Early Days (2010-2012)</strong> saw grassroots tournaments and the first World Championships. Season 1 Worlds featured an $100,000 prize pool—modest by today's standards but groundbreaking then.</p>
+                        
+                        <p><strong>LCS Revolution (2013+)</strong> introduced salaried leagues in North America and Europe. Teams received stability, players got contracts, and viewership exploded. Korea's OGN (later LCK) set the competitive standard.</p>
+                        
+                        <p><strong>Global Franchising (2017+)</strong> brought permanent partnership leagues. LCS, LEC, LCK, and LPL became the four major regions with multi-million dollar buy-ins and long-term investments.</p>
+                        
+                        <h3>Korean Dominance</h3>
+                        <p>South Korean teams won Worlds from 2013-2017 with SKT T1 (now T1) claiming three titles. The LCK's infrastructure, training culture, and individual talent established Korea as the premier region. T1's Faker became esports' most recognizable face.</p>
+                        
+                        <h3>Regional Rise</h3>
+                        <p>China's LPL emerged as a powerhouse, with teams like Invictus Gaming, FunPlus Phoenix, and EDward Gaming winning Worlds. The region combines Korean coaching with aggressive playstyles and massive investment.</p>
                     </div>
-                    <div>
-                        <div class="worlds-stat-value">$2.2M</div>
-                        <div class="worlds-stat-label">Prize Pool</div>
-                    </div>
-                    <div>
-                        <div class="worlds-stat-value">24</div>
-                        <div class="worlds-stat-label">Teams</div>
-                    </div>
-                    <div>
-                        <div class="worlds-stat-value">13</div>
-                        <div class="worlds-stat-label">Years Running</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                </section>
 
-        <section>
-            <div class="section-header">
-                <h2>Regional Leagues</h2>
-                <p>Professional leagues across the globe feeding into international competition</p>
-            </div>
-            <div class="leagues-grid">
-                <div class="league-card">
-                    <h4>🇰🇷 LCK (Korea)</h4>
-                    <p>The most competitive league, home to T1, Gen.G, and DRX. Known for mechanical excellence and strategic depth.</p>
-                    <div class="league-teams">10 Teams • 2 Splits/Year</div>
-                </div>
-                <div class="league-card">
-                    <h4>🇨🇳 LPL (China)</h4>
-                    <p>Largest league with aggressive playstyle. Teams like JDG, BLG, and Weibo Gaming compete for dominance.</p>
-                    <div class="league-teams">17 Teams • 2 Splits/Year</div>
-                </div>
-                <div class="league-card">
-                    <h4>🇪🇺 LEC (Europe)</h4>
-                    <p>Europe's premier league featuring G2 Esports, Fnatic, and MAD Lions. Known for innovative strategies.</p>
-                    <div class="league-teams">10 Teams • 2 Splits/Year</div>
-                </div>
-                <div class="league-card">
-                    <h4>🇺🇸 LCS (North America)</h4>
-                    <p>Home to Cloud9, Team Liquid, and 100 Thieves. Growing competitiveness with international imports.</p>
-                    <div class="league-teams">10 Teams • 2 Splits/Year</div>
-                </div>
-            </div>
-        </section>
+                <section class="section">
+                    <h2 class="section-title">🏆 Top Teams</h2>
+                    <div class="section-content">
+                        <ul class="ranking-list">
+                            <li class="ranking-item">
+                                <div class="rank gold">1</div>
+                                <div class="ranking-info"><div class="ranking-name">T1</div><div class="ranking-detail">🇰🇷 South Korea • 4x Worlds Champion • Faker's team</div></div>
+                                <div class="ranking-value">$8.2M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank silver">2</div>
+                                <div class="ranking-info"><div class="ranking-name">Gen.G</div><div class="ranking-detail">🇰🇷 South Korea • 2022 Worlds Champion</div></div>
+                                <div class="ranking-value">$6.1M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank bronze">3</div>
+                                <div class="ranking-info"><div class="ranking-name">JD Gaming</div><div class="ranking-detail">🇨🇳 China • 2023 Worlds Champion</div></div>
+                                <div class="ranking-value">$4.8M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">4</div>
+                                <div class="ranking-info"><div class="ranking-name">DRX</div><div class="ranking-detail">🇰🇷 South Korea • 2022 Worlds Champion</div></div>
+                                <div class="ranking-value">$3.9M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">5</div>
+                                <div class="ranking-info"><div class="ranking-name">EDward Gaming</div><div class="ranking-detail">🇨🇳 China • 2021 Worlds Champion</div></div>
+                                <div class="ranking-value">$5.2M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">6</div>
+                                <div class="ranking-info"><div class="ranking-name">FunPlus Phoenix</div><div class="ranking-detail">🇨🇳 China • 2019 Worlds Champion</div></div>
+                                <div class="ranking-value">$3.4M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">7</div>
+                                <div class="ranking-info"><div class="ranking-name">G2 Esports</div><div class="ranking-detail">🇪🇺 Europe • Multiple MSI wins</div></div>
+                                <div class="ranking-value">$2.8M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">8</div>
+                                <div class="ranking-info"><div class="ranking-name">Bilibili Gaming</div><div class="ranking-detail">🇨🇳 China • 2024 Worlds Finalist</div></div>
+                                <div class="ranking-value">$2.1M</div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
 
-        <section>
-            <div class="section-header">
-                <h2>About League of Legends</h2>
-                <p>The world's most popular competitive game</p>
+                <section class="section">
+                    <h2 class="section-title">⭐ Top Players</h2>
+                    <div class="section-content">
+                        <ul class="ranking-list">
+                            <li class="ranking-item">
+                                <div class="rank gold">1</div>
+                                <div class="ranking-info"><div class="ranking-name">Faker</div><div class="ranking-detail">🇰🇷 South Korea • T1 • Mid • GOAT</div></div>
+                                <div class="ranking-value">$1.7M</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank silver">2</div>
+                                <div class="ranking-info"><div class="ranking-name">Ruler</div><div class="ranking-detail">🇰🇷 South Korea • Gen.G • ADC</div></div>
+                                <div class="ranking-value">$890K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank bronze">3</div>
+                                <div class="ranking-info"><div class="ranking-name">Chovy</div><div class="ranking-detail">🇰🇷 South Korea • Gen.G • Mid</div></div>
+                                <div class="ranking-value">$780K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">4</div>
+                                <div class="ranking-info"><div class="ranking-name">Gumayusi</div><div class="ranking-detail">🇰🇷 South Korea • T1 • ADC</div></div>
+                                <div class="ranking-value">$680K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">5</div>
+                                <div class="ranking-info"><div class="ranking-name">Zeus</div><div class="ranking-detail">🇰🇷 South Korea • T1 • Top</div></div>
+                                <div class="ranking-value">$620K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">6</div>
+                                <div class="ranking-info"><div class="ranking-name">Keria</div><div class="ranking-detail">🇰🇷 South Korea • T1 • Support</div></div>
+                                <div class="ranking-value">$590K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">7</div>
+                                <div class="ranking-info"><div class="ranking-name">369</div><div class="ranking-detail">🇨🇳 China • JD Gaming • Top</div></div>
+                                <div class="ranking-value">$540K</div>
+                            </li>
+                            <li class="ranking-item">
+                                <div class="rank">8</div>
+                                <div class="ranking-info"><div class="ranking-name">Viper</div><div class="ranking-detail">🇰🇷 South Korea • Hanwha Life • ADC</div></div>
+                                <div class="ranking-value">$720K</div>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">🎯 Major Tournaments</h2>
+                    <div class="section-content">
+                        <div class="tournament-list">
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🏆</div>
+                                <div class="tournament-info"><div class="tournament-name">World Championship</div><div class="tournament-meta">Riot Games • Annual • Oct-Nov • 22 teams</div></div>
+                                <div class="tournament-prize">$2.2M</div>
+                            </div>
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🌏</div>
+                                <div class="tournament-info"><div class="tournament-name">Mid-Season Invitational (MSI)</div><div class="tournament-meta">Riot Games • Annual • May • 13 teams</div></div>
+                                <div class="tournament-prize">$500K</div>
+                            </div>
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🇰🇷</div>
+                                <div class="tournament-info"><div class="tournament-name">LCK (Korea)</div><div class="tournament-meta">Regional • Spring/Summer splits • 10 teams</div></div>
+                                <div class="tournament-prize">$700K</div>
+                            </div>
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🇨🇳</div>
+                                <div class="tournament-info"><div class="tournament-name">LPL (China)</div><div class="tournament-meta">Regional • Spring/Summer splits • 17 teams</div></div>
+                                <div class="tournament-prize">$500K</div>
+                            </div>
+                            <div class="tournament-item">
+                                <div class="tournament-icon">🇪🇺</div>
+                                <div class="tournament-info"><div class="tournament-name">LEC (Europe)</div><div class="tournament-meta">Regional • Spring/Summer splits • 10 teams</div></div>
+                                <div class="tournament-prize">$400K</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="section-title">💰 Betting Markets</h2>
+                    <div class="section-content">
+                        <p>League of Legends is one of the most popular esports for betting, with extensive market coverage and consistent scheduling throughout the year.</p>
+                        
+                        <div class="betting-grid">
+                            <div class="betting-card"><h4>Match Winner</h4><p>Best-of-3 or best-of-5 series winner. Korean and Chinese teams typically favored internationally.</p></div>
+                            <div class="betting-card"><h4>Map Handicap</h4><p>Map spread betting. Strong teams often sweep weaker opponents in regional play.</p></div>
+                            <div class="betting-card"><h4>First Blood</h4><p>Which team gets first kill. Heavily influenced by jungle matchups and early game strategies.</p></div>
+                            <div class="betting-card"><h4>First Tower</h4><p>Which team destroys first tower. Strong indicator of early game control and lane priority.</p></div>
+                            <div class="betting-card"><h4>First Dragon/Baron</h4><p>Objective-based betting. Dragon stacking is crucial in current meta.</p></div>
+                            <div class="betting-card"><h4>Total Kills</h4><p>Over/under on combined kills. Varies by team playstyle—some teams play slow, others force fights.</p></div>
+                        </div>
+                        
+                        <h3>Betting Tips</h3>
+                        <p><strong>Regional Strength:</strong> LCK and LPL teams are significantly stronger than Western teams at international events. Adjust expectations accordingly.</p>
+                        <p><strong>Patch Timing:</strong> Major patches before tournaments can upset established hierarchies. Teams that adapt quickly gain edges.</p>
+                        <p><strong>Player Form:</strong> Star players can carry games. Track individual performance across multiple matches before betting.</p>
+                    </div>
+                </section>
             </div>
-            <div class="content-grid">
-                <div class="content-card">
-                    <h3>📖 History & Impact</h3>
-                    <p>
-                        League of Legends launched in 2009, developed by Riot Games. Inspired by the original Dota mod, 
-                        LoL streamlined the MOBA formula while maintaining strategic depth. It quickly became the most 
-                        played PC game globally, revolutionizing free-to-play gaming.
-                    </p>
-                    <p>
-                        Riot pioneered the franchised league model in esports, creating stable regional competitions 
-                        with salaried players. The LCK, LPL, LEC, and LCS form the four major regions, with teams 
-                        competing for slots at international events like MSI and Worlds.
-                    </p>
-                    <p>
-                        Iconic moments include Faker's rise to GOAT status with four World titles, the historic 
-                        rivalry between SKT and Samsung, and underdog runs like 2022's DRX championship.
-                    </p>
-                </div>
-                <div class="content-card">
-                    <h3>🎮 Gameplay</h3>
-                    <p><strong>Format:</strong> 5v5 MOBA</p>
-                    <p><strong>Objective:</strong> Destroy enemy Nexus</p>
-                    <p><strong>Duration:</strong> 25-40 minutes average</p>
-                    <ul>
-                        <li>160+ unique champions</li>
-                        <li>Three lanes + jungle</li>
-                        <li>Dragon & Baron objectives</li>
-                        <li>Role-based team compositions</li>
-                        <li>Regular champion updates</li>
+
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Quick Links</h3>
+                    <ul class="quick-links">
+                        <li><a href="#history">📜 History</a></li>
+                        <li><a href="#teams">🏆 Top Teams</a></li>
+                        <li><a href="#players">⭐ Top Players</a></li>
+                        <li><a href="#tournaments">🎯 Tournaments</a></li>
+                        <li><a href="#betting">💰 Betting Markets</a></li>
                     </ul>
                 </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header">
-                <h2>Top LoL Teams</h2>
-                <p>The world's most successful organizations</p>
-            </div>
-            <div class="teams-grid">
-                <div class="team-card">
-                    <div class="team-logo">🔴</div>
-                    <h4>T1</h4>
-                    <p>🇰🇷 South Korea</p>
-                    <div class="team-earnings">$8.2M</div>
+                
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Related Games</h3>
+                    <ul class="related-games">
+                        <li><a href="/games/dota2.html"><span class="related-game-icon">⚔️</span><span>Dota 2</span></a></li>
+                        <li><a href="/games/valorant.html"><span class="related-game-icon">💠</span><span>Valorant</span></a></li>
+                        <li><a href="/games/cs2.html"><span class="related-game-icon">🔫</span><span>Counter-Strike 2</span></a></li>
+                    </ul>
                 </div>
-                <div class="team-card">
-                    <div class="team-logo">⚡</div>
-                    <h4>Gen.G</h4>
-                    <p>🇰🇷 South Korea</p>
-                    <div class="team-earnings">$4.1M</div>
+                
+                <div class="cta-box">
+                    <h3>Live LoL Odds</h3>
+                    <p>Check real-time betting odds for upcoming League of Legends matches.</p>
+                    <a href="/live/" class="cta-btn">View Live Odds →</a>
                 </div>
-                <div class="team-card">
-                    <div class="team-logo">🐉</div>
-                    <h4>JD Gaming</h4>
-                    <p>🇨🇳 China</p>
-                    <div class="team-earnings">$3.8M</div>
+                
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">Key Stats</h3>
+                    <ul class="quick-links">
+                        <li><a href="/teams/?game=lol">🏆 LoL Team Rankings</a></li>
+                        <li><a href="/players/?game=lol">⭐ LoL Player Stats</a></li>
+                        <li><a href="/tournaments/?game=lol">🎯 Upcoming Events</a></li>
+                        <li><a href="/betting/lol.html">📖 LoL Betting Guide</a></li>
+                    </ul>
                 </div>
-                <div class="team-card">
-                    <div class="team-logo">🌐</div>
-                    <h4>G2 Esports</h4>
-                    <p>🇪🇺 Europe</p>
-                    <div class="team-earnings">$3.5M</div>
-                </div>
-                <div class="team-card">
-                    <div class="team-logo">🦊</div>
-                    <h4>Fnatic</h4>
-                    <p>🇪🇺 Europe</p>
-                    <div class="team-earnings">$2.8M</div>
-                </div>
-                <div class="team-card">
-                    <div class="team-logo">☁️</div>
-                    <h4>Cloud9</h4>
-                    <p>🇺🇸 North America</p>
-                    <div class="team-earnings">$2.4M</div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header">
-                <h2>Top LoL Players</h2>
-                <p>Legendary players and highest earners</p>
-            </div>
-            <div class="players-grid">
-                <div class="player-card">
-                    <div class="player-rank gold">1</div>
-                    <div class="player-info">
-                        <div class="player-name">Faker</div>
-                        <div class="player-detail">🇰🇷 South Korea • T1 • Mid</div>
-                    </div>
-                    <div class="player-earnings">$1.5M</div>
-                </div>
-                <div class="player-card">
-                    <div class="player-rank silver">2</div>
-                    <div class="player-info">
-                        <div class="player-name">Deft</div>
-                        <div class="player-detail">🇰🇷 South Korea • DRX • ADC</div>
-                    </div>
-                    <div class="player-earnings">$980K</div>
-                </div>
-                <div class="player-card">
-                    <div class="player-rank bronze">3</div>
-                    <div class="player-info">
-                        <div class="player-name">Keria</div>
-                        <div class="player-detail">🇰🇷 South Korea • T1 • Support</div>
-                    </div>
-                    <div class="player-earnings">$850K</div>
-                </div>
-                <div class="player-card">
-                    <div class="player-rank">4</div>
-                    <div class="player-info">
-                        <div class="player-name">Caps</div>
-                        <div class="player-detail">🇩🇰 Denmark • G2 • Mid</div>
-                    </div>
-                    <div class="player-earnings">$720K</div>
-                </div>
-                <div class="player-card">
-                    <div class="player-rank">5</div>
-                    <div class="player-info">
-                        <div class="player-name">Ruler</div>
-                        <div class="player-detail">🇰🇷 South Korea • JDG • ADC</div>
-                    </div>
-                    <div class="player-earnings">$680K</div>
-                </div>
-                <div class="player-card">
-                    <div class="player-rank">6</div>
-                    <div class="player-info">
-                        <div class="player-name">Zeus</div>
-                        <div class="player-detail">🇰🇷 South Korea • T1 • Top</div>
-                    </div>
-                    <div class="player-earnings">$620K</div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header">
-                <h2>Major Tournaments</h2>
-                <p>Premier LoL competitive events</p>
-            </div>
-            <div class="content-card">
-                <table class="tournaments-table">
-                    <thead>
-                        <tr>
-                            <th>Tournament</th>
-                            <th>Prize Pool</th>
-                            <th>Teams</th>
-                            <th>Frequency</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="tournament-name">🏆 World Championship</span></td>
-                            <td class="tournament-prize">$2,225,000</td>
-                            <td>24 Teams</td>
-                            <td>Annual</td>
-                        </tr>
-                        <tr>
-                            <td><span class="tournament-name">🌍 Mid-Season Invitational</span></td>
-                            <td class="tournament-prize">$250,000</td>
-                            <td>13 Teams</td>
-                            <td>Annual</td>
-                        </tr>
-                        <tr>
-                            <td><span class="tournament-name">🇰🇷 LCK</span></td>
-                            <td class="tournament-prize">$400,000</td>
-                            <td>10 Teams</td>
-                            <td>2x per year</td>
-                        </tr>
-                        <tr>
-                            <td><span class="tournament-name">🇨🇳 LPL</span></td>
-                            <td class="tournament-prize">$600,000</td>
-                            <td>17 Teams</td>
-                            <td>2x per year</td>
-                        </tr>
-                        <tr>
-                            <td><span class="tournament-name">🇪🇺 LEC</span></td>
-                            <td class="tournament-prize">$200,000</td>
-                            <td>10 Teams</td>
-                            <td>2x per year</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header">
-                <h2>LoL Betting Guide</h2>
-                <p>Popular markets and betting strategies</p>
-            </div>
-            <div class="betting-grid">
-                <div class="betting-card">
-                    <h4>🎯 Match Winner</h4>
-                    <p>Bet on which team wins the series. Regional matches are Bo3, playoffs and Worlds knockouts are Bo5.</p>
-                    <div class="betting-tip">💡 Tip: LCK/LPL teams are favorites at international events—check regional form.</div>
-                </div>
-                <div class="betting-card">
-                    <h4>🗺️ Game Winner</h4>
-                    <p>Individual game outcomes within a series. Great for hedging or when you expect a split.</p>
-                    <div class="betting-tip">💡 Tip: Blue side has a historical win rate advantage due to draft.</div>
-                </div>
-                <div class="betting-card">
-                    <h4>🩸 First Blood</h4>
-                    <p>Which team gets the first kill. Some teams are known for aggressive early invades.</p>
-                    <div class="betting-tip">💡 Tip: Check team jungle pathing tendencies and early game stats.</div>
-                </div>
-                <div class="betting-card">
-                    <h4>🐉 First Dragon/Baron</h4>
-                    <p>Objective-focused bets. Teams prioritize these differently based on meta and composition.</p>
-                    <div class="betting-tip">💡 Tip: Some teams (especially Chinese) prioritize early dragons heavily.</div>
-                </div>
-                <div class="betting-card">
-                    <h4>🗼 First Tower</h4>
-                    <p>Which team takes the first tower. Indicates early game strength and lane dominance.</p>
-                    <div class="betting-tip">💡 Tip: Check lane matchups and jungle proximity for this market.</div>
-                </div>
-                <div class="betting-card">
-                    <h4>🏅 Tournament Outright</h4>
-                    <p>Pick the Worlds or MSI champion before the tournament begins.</p>
-                    <div class="betting-tip">💡 Tip: Korean and Chinese teams have won every Worlds since 2013.</div>
-                </div>
-            </div>
-        </section>
-
-        <div class="cta-section">
-            <h2>Ready to Bet on League of Legends?</h2>
-            <p>Check live odds for upcoming LoL matches across all regions.</p>
-            <div class="cta-buttons">
-                <a href="/live/" class="btn btn-primary">Live LoL Odds →</a>
-                <a href="/betting/" class="btn btn-secondary">Betting Guides</a>
-            </div>
+            </aside>
         </div>
     </main>
 
     <footer>
-        <div class="footer-links">
-            <a href="/">Home</a>
-            <a href="/games/">Games</a>
-            <a href="/games/cs2.html">CS2</a>
-            <a href="/games/dota2.html">Dota 2</a>
-            <a href="/games/valorant.html">Valorant</a>
-            <a href="/betting/">Betting</a>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">APUESTA ESPORTS</a>
+                    <p>The world's most comprehensive esports reference. Teams, players, countries, tournaments, and betting guides.</p>
+                </div>
+                <div class="footer-links"><h4>Games</h4><ul><li><a href="/games/cs2.html">Counter-Strike 2</a></li><li><a href="/games/dota2.html">Dota 2</a></li><li><a href="/games/lol.html">League of Legends</a></li><li><a href="/games/valorant.html">Valorant</a></li></ul></div>
+                <div class="footer-links"><h4>Resources</h4><ul><li><a href="/teams/">Team Rankings</a></li><li><a href="/players/">Player Profiles</a></li><li><a href="/countries/">Country Stats</a></li><li><a href="/tournaments/">Tournaments</a></li></ul></div>
+                <div class="footer-links"><h4>Betting</h4><ul><li><a href="/live/">Live Odds</a></li><li><a href="/betting/">Betting Guides</a></li><li><a href="/betting/beginners.html">Beginner's Guide</a></li></ul></div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2026 Apuesta Esports. Data from Esports Earnings.</div>
+                <div class="footer-legal"><a href="/llms.txt">llms.txt</a><a href="/sitemap.xml">Sitemap</a></div>
+            </div>
         </div>
-        <p class="footer-copyright">© 2026 Apuesta Esports. Data from Esports Earnings.</p>
     </footer>
 
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "VideoGame",
-        "name": "League of Legends",
-        "alternateName": "LoL",
-        "description": "Free-to-play multiplayer online battle arena game developed by Riot Games. The world's most watched esport.",
-        "genre": "MOBA",
-        "gamePlatform": ["PC", "Mac"],
-        "publisher": {
-            "@type": "Organization",
-            "name": "Riot Games"
-        }
-    }
+    {"@context":"https://schema.org","@type":"VideoGame","name":"League of Legends","alternateName":["LoL"],"description":"League of Legends is the world's most-watched esport with regional leagues and the annual Worlds Championship.","genre":"MOBA","gamePlatform":"PC","publisher":{"@type":"Organization","name":"Riot Games"},"datePublished":"2009-10-27","url":"https://www.apuestaesports.com/games/lol.html"}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.apuestaesports.com/"},{"@type":"ListItem","position":2,"name":"Games","item":"https://www.apuestaesports.com/games/"},{"@type":"ListItem","position":3,"name":"League of Legends","item":"https://www.apuestaesports.com/games/lol.html"}]}
     </script>
 </body>
 </html>
