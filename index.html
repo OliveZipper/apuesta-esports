@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esports Monitor Global | Inteligencia de Apuestas en Tiempo Real</title>
+    <title>Esports Monitor Global | Real-Time Betting Intelligence</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
@@ -198,29 +198,45 @@
         /* Navigation Tabs */
         .nav-tabs {
             display: flex;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
+            gap: 0.4rem;
+            padding: 0.75rem 1rem;
             background: var(--bg-secondary);
             overflow-x: auto;
             max-width: 1800px;
             margin: 0 auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-primary) var(--bg-tertiary);
+        }
+        
+        .nav-tabs::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .nav-tabs::-webkit-scrollbar-track {
+            background: var(--bg-tertiary);
+        }
+        
+        .nav-tabs::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 3px;
         }
 
         .nav-tab {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
+            gap: 0.3rem;
+            padding: 0.5rem 0.8rem;
             background: var(--bg-tertiary);
             border: 1px solid transparent;
-            border-radius: 8px;
+            border-radius: 6px;
             color: var(--text-secondary);
             font-family: 'Rajdhani', sans-serif;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .nav-tab:hover {
@@ -979,7 +995,7 @@
                 <div class="logo-icon">🎮</div>
                 <div>
                     <div class="logo-text">ESPORTS MONITOR</div>
-                    <div class="logo-subtitle">Inteligencia Global de Apuestas</div>
+                    <div class="logo-subtitle">Global Betting Intelligence</div>
                 </div>
             </div>
             <div style="display: flex; align-items: center; gap: 1.5rem;">
@@ -1008,16 +1024,16 @@
                 <span class="value" id="last-update">--</span>
             </div>
         </div>
-        <nav class="nav-tabs">
+        <nav class="nav-tabs" id="game-tabs">
             <button class="nav-tab active" data-tab="all">
                 <span class="game-icon">🌐</span>
-                <span>Todos</span>
+                <span>All</span>
                 <span class="match-count" id="all-count">--</span>
             </button>
             <button class="nav-tab" data-tab="csgo">
                 <span class="game-icon">🔫</span>
                 <span>CS2</span>
-                <span class="match-count" id="cs2-count">--</span>
+                <span class="match-count" id="csgo-count">--</span>
             </button>
             <button class="nav-tab" data-tab="dota2">
                 <span class="game-icon">🛡️</span>
@@ -1034,6 +1050,41 @@
                 <span>Valorant</span>
                 <span class="match-count" id="valorant-count">--</span>
             </button>
+            <button class="nav-tab" data-tab="cod">
+                <span class="game-icon">💥</span>
+                <span>CoD</span>
+                <span class="match-count" id="cod-count">--</span>
+            </button>
+            <button class="nav-tab" data-tab="overwatch">
+                <span class="game-icon">🦸</span>
+                <span>Overwatch</span>
+                <span class="match-count" id="overwatch-count">--</span>
+            </button>
+            <button class="nav-tab" data-tab="r6">
+                <span class="game-icon">🔒</span>
+                <span>R6</span>
+                <span class="match-count" id="r6-count">--</span>
+            </button>
+            <button class="nav-tab" data-tab="rocket">
+                <span class="game-icon">🚀</span>
+                <span>Rocket</span>
+                <span class="match-count" id="rocket-count">--</span>
+            </button>
+            <button class="nav-tab" data-tab="fifa">
+                <span class="game-icon">⚽</span>
+                <span>EA FC</span>
+                <span class="match-count" id="fifa-count">--</span>
+            </button>
+            <button class="nav-tab" data-tab="starcraft">
+                <span class="game-icon">👾</span>
+                <span>SC2</span>
+                <span class="match-count" id="starcraft-count">--</span>
+            </button>
+            <button class="nav-tab" data-tab="wildrift">
+                <span class="game-icon">📱</span>
+                <span>Wild Rift</span>
+                <span class="match-count" id="wildrift-count">--</span>
+            </button>
         </nav>
     </header>
 
@@ -1045,9 +1096,9 @@
                     <div class="card-header">
                         <div class="card-title">
                             <span class="icon">🗺️</span>
-                            Mapa de Eventos Globales
+                            Global Events Map
                         </div>
-                        <span class="card-badge">EN TIEMPO REAL</span>
+                        <span class="card-badge">REAL-TIME</span>
                     </div>
                     <div class="card-body" style="padding: 0;">
                         <div class="world-map-container">
@@ -1149,7 +1200,7 @@
                     <div class="card-header">
                         <div class="card-title">
                             <span class="icon">⚡</span>
-                            Partidas en Vivo
+                            Live Matches
                         </div>
                         <span class="card-badge" id="refresh-indicator">
                             <span class="loading-spinner" id="loading-spinner" style="display: none;"></span>
@@ -1168,7 +1219,7 @@
                     <div class="card-header">
                         <div class="card-title">
                             <span class="icon">🏆</span>
-                            Próximos Torneos Importantes
+                            Upcoming Major Events
                         </div>
                         <span class="card-badge">2025-2026</span>
                     </div>
@@ -1281,18 +1332,34 @@
             CLOUDBET_API_KEY: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IkhKcDkyNnF3ZXBjNnF3LU9rMk4zV05pXzBrRFd6cEdwTzAxNlRJUjdRWDAiLCJ0eXAiOiJKV1QifQ.eyJhY2Nlc3NfdGllciI6InRyYWRpbmciLCJleHAiOjIwNTc4ODUxNTYsImlhdCI6MTc0MjUyNTE1NiwianRpIjoiOGViYTkxZmQtOGQ1OC00ODEwLWFmYmMtYzZhYjI2OTJmYTZmIiwic3ViIjoiZmRlOGNkOTktODEzOS00ODU4LTllNjItMjVhMThiZTc4MGZhIiwidGVuYW50IjoiY2xvdWRiZXQiLCJ1dWlkIjoiZmRlOGNkOTktODEzOS00ODU4LTllNjItMjVhMThiZTc4MGZhIn0.R7fV53rePJAGL_qrGfkPo4OnAoevvLzsIHlIVLIJm9OXH9-2Y5lAkDFz2_pV0ibUDXFNhA-23c8DhA4EIsSANCxger6HHLVYqj11fxIze2Ix8-e9f9BhwGLtRjkpTwC29tFy_MvY92y7ueeVF6fIADQ5VneDGpj5cYw9KKxZwXSLJUrR48maPB783ivoFdlWFtehhxiKezitP8ZihIGVf6YzBnYdo_456FBfCOiTgvmaOP8l9W_J9W5AkWfsnlCFYMYKhs6pwtUkOPsiD-R4QZidP1BKcRGPDnIE38saJC2nMOIzD0WnltlrrP-YvY5JvzvLv256qyNAC_HZJ74bkQ',
             CORS_PROXY: 'https://corsproxy.io/?',
             REFRESH_INTERVAL: 45000, // 45 seconds
-            ESPORTS_KEYS: {
-                csgo: 'esports-counter-strike',
-                dota2: 'esports-dota-2',
-                lol: 'esports-league-of-legends',
-                valorant: 'esports-valorant'
+            // Esports sport keys (to fetch all competitions for each)
+            ESPORTS_SPORTS: {
+                csgo: { sport: 'counter-strike', name: 'CS2', icon: '🔫' },
+                dota2: { sport: 'dota-2', name: 'Dota 2', icon: '🛡️' },
+                lol: { sport: 'league-of-legends', name: 'League of Legends', icon: '⚔️' },
+                valorant: { sport: 'esport-valorant', name: 'Valorant', icon: '🎯' },
+                cod: { sport: 'call-of-duty', name: 'Call of Duty', icon: '💥' },
+                overwatch: { sport: 'overwatch', name: 'Overwatch', icon: '🦸' },
+                r6: { sport: 'rainbow-six', name: 'Rainbow Six', icon: '🔒' },
+                rocket: { sport: 'rocket-league', name: 'Rocket League', icon: '🚀' },
+                starcraft: { sport: 'starcraft', name: 'StarCraft', icon: '👾' },
+                wildrift: { sport: 'wild-rift', name: 'Wild Rift', icon: '📱' },
+                fifa: { sport: 'esport-fifa', name: 'EA FC / FIFA', icon: '⚽' },
+                aov: { sport: 'esport-arena-of-valor', name: 'Arena of Valor', icon: '🏟️' },
+                kog: { sport: 'esport-king-of-glory', name: 'King of Glory', icon: '👑' },
+                freefire: { sport: 'esport-free-fire', name: 'Free Fire', icon: '🔥' },
+                brawl: { sport: 'esport-brawl-stars', name: 'Brawl Stars', icon: '⭐' },
+                warcraft: { sport: 'esport-warcraft', name: 'Warcraft', icon: '⚔️' },
+                aoe: { sport: 'esport-aoe', name: 'Age of Empires', icon: '🏰' },
+                nba2k: { sport: 'esport-nba2k', name: 'NBA 2K', icon: '🏀' },
+                madden: { sport: 'esport-madden', name: 'Madden', icon: '🏈' }
             }
         };
 
         // State
         let currentTab = 'all';
         let allMatches = [];
-        let matchCounts = { csgo: 0, dota2: 0, lol: 0, valorant: 0, all: 0 };
+        let matchCounts = {};
 
         // Utility functions
         function formatOdds(decimal) {
@@ -1302,55 +1369,97 @@
 
         function formatTime(isoString) {
             const date = new Date(isoString);
-            return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+            return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
         }
 
         function getGameIcon(game) {
-            const icons = {
-                csgo: '🔫',
-                dota2: '🛡️',
-                lol: '⚔️',
-                valorant: '🎯'
-            };
-            return icons[game] || '🎮';
+            return CONFIG.ESPORTS_SPORTS[game]?.icon || '🎮';
         }
 
         function getGameName(game) {
-            const names = {
-                csgo: 'CS2',
-                dota2: 'Dota 2',
-                lol: 'League of Legends',
-                valorant: 'Valorant'
-            };
-            return names[game] || game;
+            return CONFIG.ESPORTS_SPORTS[game]?.name || game;
         }
 
         // Update clock
         function updateClock() {
             const now = new Date();
             document.getElementById('current-time').textContent = 
-                now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'UTC' }) + ' UTC';
+                now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'UTC' }) + ' UTC';
         }
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Fetch esports odds from Cloudbet API
-        async function fetchEsportsOdds(gameKey) {
+        // Fetch all competitions for an esport
+        async function fetchEsportCompetitions(sportKey) {
             try {
-                const url = `${CONFIG.CORS_PROXY}${encodeURIComponent(CONFIG.CLOUDBET_API_BASE + '/odds/competitions/' + CONFIG.ESPORTS_KEYS[gameKey])}`;
+                const url = `${CONFIG.CORS_PROXY}${encodeURIComponent(CONFIG.CLOUDBET_API_BASE + '/odds/sports/' + sportKey)}`;
                 const response = await fetch(url, {
-                    headers: {
-                        'X-API-Key': CONFIG.CLOUDBET_API_KEY,
-                        'Accept': 'application/json'
+                    headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY }
+                });
+                
+                if (!response.ok) return [];
+                
+                const data = await response.json();
+                const competitions = [];
+                
+                // Extract all competition keys from categories
+                if (data.categories) {
+                    data.categories.forEach(cat => {
+                        if (cat.competitions) {
+                            cat.competitions.forEach(comp => {
+                                competitions.push(comp.key);
+                            });
+                        }
+                    });
+                }
+                
+                return competitions;
+            } catch (error) {
+                console.warn(`Error fetching competitions for ${sportKey}:`, error.message);
+                return [];
+            }
+        }
+
+        // Fetch events from a specific competition
+        async function fetchCompetitionEvents(competitionKey) {
+            try {
+                const url = `${CONFIG.CORS_PROXY}${encodeURIComponent(CONFIG.CLOUDBET_API_BASE + '/odds/competitions/' + competitionKey)}`;
+                const response = await fetch(url, {
+                    headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY }
+                });
+                
+                if (!response.ok) return null;
+                return await response.json();
+            } catch (error) {
+                return null;
+            }
+        }
+
+        // Fetch all esports odds for a game
+        async function fetchEsportsOdds(gameKey) {
+            const sportConfig = CONFIG.ESPORTS_SPORTS[gameKey];
+            if (!sportConfig) return null;
+            
+            try {
+                // Get all competitions for this esport
+                const competitions = await fetchEsportCompetitions(sportConfig.sport);
+                
+                if (competitions.length === 0) return null;
+                
+                // Fetch events from up to 10 competitions (to avoid too many requests)
+                const competitionsToFetch = competitions.slice(0, 10);
+                const fetchPromises = competitionsToFetch.map(compKey => fetchCompetitionEvents(compKey));
+                const results = await Promise.all(fetchPromises);
+                
+                // Combine all events
+                const allEvents = [];
+                results.forEach(data => {
+                    if (data?.events) {
+                        allEvents.push(...data.events);
                     }
                 });
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                
-                const data = await response.json();
-                return data;
+                return { events: allEvents };
             } catch (error) {
                 console.error(`Error fetching ${gameKey} odds:`, error);
                 return null;
@@ -1362,12 +1471,27 @@
             if (!data || !data.events) return [];
             
             return data.events.map(event => {
+                if (!event.home?.name || !event.away?.name) return null;
+                
                 const markets = event.markets || {};
-                const winnerMarket = markets['winner'] || markets['match_winner'] || {};
-                const selections = winnerMarket.selections || [];
+                // Try different market keys for winner odds
+                const winnerMarket = markets['winner'] || markets['match_winner'] || 
+                                     markets['moneyline'] || {};
+                const submarket = winnerMarket.submarkets?.['period=ft'] || 
+                                  winnerMarket.submarkets?.['default'] ||
+                                  (winnerMarket.submarkets ? Object.values(winnerMarket.submarkets)[0] : null);
+                const selections = submarket?.selections || winnerMarket.selections || [];
                 
                 let team1Odds = null, team2Odds = null;
-                if (selections.length >= 2) {
+                
+                // Try to find odds by outcome type
+                const homeOdds = selections.find(s => s.outcome === 'home' || s.outcome === 'team1');
+                const awayOdds = selections.find(s => s.outcome === 'away' || s.outcome === 'team2');
+                
+                if (homeOdds && awayOdds) {
+                    team1Odds = homeOdds.price;
+                    team2Odds = awayOdds.price;
+                } else if (selections.length >= 2) {
                     team1Odds = selections[0]?.price;
                     team2Odds = selections[1]?.price;
                 }
@@ -1375,16 +1499,16 @@
                 return {
                     id: event.id,
                     game: gameKey,
-                    tournament: event.competition?.name || 'Torneo',
-                    team1: event.home?.name || selections[0]?.name || 'Equipo 1',
-                    team2: event.away?.name || selections[1]?.name || 'Equipo 2',
+                    tournament: event.competition?.name || 'Tournament',
+                    team1: event.home?.name || 'Team 1',
+                    team2: event.away?.name || 'Team 2',
                     team1Odds: team1Odds,
                     team2Odds: team2Odds,
                     startTime: event.cutoffTime,
                     status: event.status || 'upcoming',
                     isLive: event.status === 'TRADING_LIVE'
                 };
-            });
+            }).filter(Boolean);
         }
 
         // Render a single match card
@@ -1426,42 +1550,67 @@
         // Load all matches
         async function loadAllMatches() {
             document.getElementById('loading-spinner').style.display = 'inline-block';
-            document.getElementById('refresh-text').textContent = 'ACTUALIZANDO...';
+            document.getElementById('refresh-text').textContent = 'LOADING...';
             
             allMatches = [];
-            matchCounts = { csgo: 0, dota2: 0, lol: 0, valorant: 0, all: 0 };
+            matchCounts = { all: 0 };
             
-            const games = ['csgo', 'dota2', 'lol', 'valorant'];
+            // Initialize counts for all games
+            const games = Object.keys(CONFIG.ESPORTS_SPORTS);
+            games.forEach(g => matchCounts[g] = 0);
             
-            for (const game of games) {
+            // Fetch all esports in parallel (with limit)
+            const fetchPromises = games.map(async (game) => {
                 const data = await fetchEsportsOdds(game);
                 if (data) {
                     const matches = parseMatches(data, game);
-                    allMatches = allMatches.concat(matches);
-                    matchCounts[game] = matches.length;
+                    return { game, matches };
                 }
-            }
+                return { game, matches: [] };
+            });
+            
+            const results = await Promise.all(fetchPromises);
+            
+            results.forEach(({ game, matches }) => {
+                allMatches = allMatches.concat(matches);
+                matchCounts[game] = matches.length;
+            });
             
             matchCounts.all = allMatches.length;
             
-            // Update counts
-            document.getElementById('all-count').textContent = matchCounts.all;
-            document.getElementById('cs2-count').textContent = matchCounts.csgo;
-            document.getElementById('dota2-count').textContent = matchCounts.dota2;
-            document.getElementById('lol-count').textContent = matchCounts.lol;
-            document.getElementById('valorant-count').textContent = matchCounts.valorant;
-            document.getElementById('live-match-count').textContent = allMatches.filter(m => m.isLive).length;
-            document.getElementById('stat-live').textContent = allMatches.filter(m => m.isLive).length;
-            document.getElementById('stat-today').textContent = allMatches.length;
+            // Update main counts (for the 4 main tabs)
+            const el = (id) => document.getElementById(id);
+            if (el('all-count')) el('all-count').textContent = matchCounts.all;
+            if (el('cs2-count')) el('cs2-count').textContent = matchCounts.csgo || 0;
+            if (el('dota2-count')) el('dota2-count').textContent = matchCounts.dota2 || 0;
+            if (el('lol-count')) el('lol-count').textContent = matchCounts.lol || 0;
+            if (el('valorant-count')) el('valorant-count').textContent = matchCounts.valorant || 0;
+            if (el('live-match-count')) el('live-match-count').textContent = allMatches.filter(m => m.isLive).length;
+            if (el('stat-live')) el('stat-live').textContent = allMatches.filter(m => m.isLive).length;
+            if (el('stat-today')) el('stat-today').textContent = allMatches.length;
+            
+            // Update other game counts dynamically
+            updateGameCounts();
             
             // Update last refresh time
-            document.getElementById('last-update').textContent = 
-                new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+            if (el('last-update')) {
+                el('last-update').textContent = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+            }
             
             document.getElementById('loading-spinner').style.display = 'none';
             document.getElementById('refresh-text').textContent = 'AUTO-REFRESH';
             
+            console.log(`Loaded ${allMatches.length} esports matches across ${games.length} games`);
             renderMatches();
+        }
+        
+        // Update game counts in the UI
+        function updateGameCounts() {
+            // Find games with matches and update any count displays
+            Object.entries(matchCounts).forEach(([game, count]) => {
+                const countEl = document.getElementById(`${game}-count`);
+                if (countEl) countEl.textContent = count;
+            });
         }
 
         // Render matches based on current tab
@@ -1485,8 +1634,8 @@
                 container.innerHTML = `
                     <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
                         <div style="font-size: 3rem; margin-bottom: 1rem;">🎮</div>
-                        <p>No hay partidas disponibles en este momento</p>
-                        <p style="font-size: 0.8rem; margin-top: 0.5rem;">Las cuotas se actualizan automáticamente cada 45 segundos</p>
+                        <p>No matches available at the moment</p>
+                        <p style="font-size: 0.8rem; margin-top: 0.5rem;">Odds refresh automatically every 45 seconds</p>
                     </div>
                 `;
             } else {
