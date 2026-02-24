@@ -435,7 +435,7 @@
             MAP_STYLE: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
             CLOUDBET_API_BASE: 'https://sports-api.cloudbet.com/pub/v2',
             CLOUDBET_API_KEY: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IkhKcDkyNnF3ZXBjNnF3LU9rMk4zV05pXzBrRFd6cEdwTzAxNlRJUjdRWDAiLCJ0eXAiOiJKV1QifQ.eyJhY2Nlc3NfdGllciI6InRyYWRpbmciLCJleHAiOjIwNTc4ODUxNTYsImlhdCI6MTc0MjUyNTE1NiwianRpIjoiOGViYTkxZmQtOGQ1OC00ODEwLWFmYmMtYzZhYjI2OTJmYTZmIiwic3ViIjoiZmRlOGNkOTktODEzOS00ODU4LTllNjItMjVhMThiZTc4MGZhIiwidGVuYW50IjoiY2xvdWRiZXQiLCJ1dWlkIjoiZmRlOGNkOTktODEzOS00ODU4LTllNjItMjVhMThiZTc4MGZhIn0.R7fV53rePJAGL_qrGfkPo4OnAoevvLzsIHlIVLIJm9OXH9-2Y5lAkDFz2_pV0ibUDXFNhA-23c8DhA4EIsSANCxger6HHLVYqj11fxIze2Ix8-e9f9BhwGLtRjkpTwC29tFy_MvY92y7ueeVF6fIADQ5VneDGpj5cYw9KKxZwXSLJUrR48maPB783ivoFdlWFtehhxiKezitP8ZihIGVf6YzBnYdo_456FBfCOiTgvmaOP8l9W_J9W5AkWfsnlCFYMYKhs6pwtUkOPsiD-R4QZidP1BKcRGPDnIE38saJC2nMOIzD0WnltlrrP-YvY5JvzvLv256qyNAC_HZJ74bkQ',
-            CORS_PROXY: 'https://corsproxy.io/?',
+            // No CORS proxy needed - Cloudbet allows CORS from apuestaesports.com
             ESPORTS: {
                 'csgo': { sport: 'counter-strike', name: 'CS2', icon: '🔫' },
                 'dota2': { sport: 'dota-2', name: 'Dota 2', icon: '🛡️' },
@@ -608,9 +608,11 @@
 
         async function fetchGameMatches(gameKey, sportKey) {
             try {
-                // First get competitions for this sport
-                const compUrl = `${CONFIG.CORS_PROXY}${encodeURIComponent(CONFIG.CLOUDBET_API_BASE + '/odds/sports/' + sportKey)}`;
-                const compRes = await fetch(compUrl, { headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY } });
+                // Fetch competitions for this sport (direct - CORS allowed)
+                const compUrl = `${CONFIG.CLOUDBET_API_BASE}/odds/sports/${sportKey}`;
+                const compRes = await fetch(compUrl, { 
+                    headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY }
+                });
                 if (!compRes.ok) {
                     console.warn(`${gameKey}: Failed to fetch sports/${sportKey} - ${compRes.status}`);
                     return [];
@@ -632,14 +634,19 @@
                 // Fetch events from ALL competitions
                 const eventPromises = competitions.map(async (compKey) => {
                     try {
-                        const url = `${CONFIG.CORS_PROXY}${encodeURIComponent(CONFIG.CLOUDBET_API_BASE + '/odds/competitions/' + compKey)}`;
-                        const res = await fetch(url, { headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY } });
+                        const url = `${CONFIG.CLOUDBET_API_BASE}/odds/competitions/${compKey}`;
+                        const res = await fetch(url, { 
+                            headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY }
+                        });
                         if (!res.ok) return [];
                         const data = await res.json();
                         const events = parseEvents(data.events || [], gameKey, compKey);
                         if (events.length > 0) console.log(`  ${compKey}: ${events.length} events`);
                         return events;
-                    } catch { return []; }
+                    } catch (e) { 
+                        console.warn(`  ${compKey}: Error - ${e.message}`);
+                        return []; 
+                    }
                 });
 
                 const results = await Promise.all(eventPromises);
