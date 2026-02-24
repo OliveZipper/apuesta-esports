@@ -1554,14 +1554,26 @@
         // ============================================================================
         // GET COORDINATES FOR MATCH
         // ============================================================================
+        // Hash function for deterministic offsets
+        function hashTeam(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash = hash & hash;
+            }
+            return Math.abs(hash);
+        }
+
         function getMatchCoordinates(match) {
             const homeTeam = match.home || match.team1 || '';
             const awayTeam = match.away || match.team2 || '';
             const competition = match.competition || '';
 
-            // Try to find stadium from team names
+            // Try to find stadium from team names (check both exact and partial match)
             for (const [team, stadium] of Object.entries(TEAM_LOCATIONS)) {
-                if (homeTeam.toLowerCase().includes(team.toLowerCase())) {
+                if (homeTeam.toLowerCase().includes(team.toLowerCase()) || 
+                    team.toLowerCase().includes(homeTeam.toLowerCase().replace(/ fc| afc| sc$/i, ''))) {
                     const coords = STADIUMS[stadium];
                     if (coords) return coords;
                 }
@@ -1574,31 +1586,81 @@
                 }
             }
 
-            // Regional fallbacks based on competition name
-            if (competition.includes('Premier') || competition.includes('England') || competition.includes('FA Cup')) {
-                return [51.5 + (Math.random() - 0.5) * 2, -0.1 + (Math.random() - 0.5) * 2];
+            // Deterministic offset based on team name (not random!)
+            const hash = hashTeam(homeTeam);
+            const latOffset = ((hash % 200) - 100) / 100 * 1.5;
+            const lonOffset = (((hash >> 8) % 200) - 100) / 100 * 2;
+
+            // Regional fallbacks with DETERMINISTIC positions
+            if (competition.includes('Premier') || competition.includes('England') || competition.includes('FA Cup') || competition.includes('EFL')) {
+                return [52.5 + latOffset, -1.5 + lonOffset]; // England center
             }
-            if (competition.includes('La Liga') || competition.includes('Spain') || competition.includes('Copa del Rey')) {
-                return [40.4 + (Math.random() - 0.5) * 4, -3.7 + (Math.random() - 0.5) * 4];
+            if (competition.includes('La Liga') || competition.includes('Spain') || competition.includes('Spanish') || competition.includes('Copa del Rey')) {
+                return [40.0 + latOffset, -3.5 + lonOffset]; // Spain center
             }
-            if (competition.includes('Bundesliga') || competition.includes('Germany') || competition.includes('DFB')) {
-                return [50.1 + (Math.random() - 0.5) * 3, 8.7 + (Math.random() - 0.5) * 4];
+            if (competition.includes('Bundesliga') || competition.includes('Germany') || competition.includes('German') || competition.includes('DFB')) {
+                return [51.0 + latOffset, 10.0 + lonOffset]; // Germany center
             }
-            if (competition.includes('Serie A') || competition.includes('Italy') || competition.includes('Coppa')) {
-                return [42.5 + (Math.random() - 0.5) * 4, 12.5 + (Math.random() - 0.5) * 3];
+            if (competition.includes('Serie') || competition.includes('Italy') || competition.includes('Italian') || competition.includes('Coppa')) {
+                return [42.5 + latOffset, 12.5 + lonOffset]; // Italy center
             }
-            if (competition.includes('Ligue 1') || competition.includes('France')) {
-                return [46.2 + (Math.random() - 0.5) * 4, 2.2 + (Math.random() - 0.5) * 4];
+            if (competition.includes('Ligue') || competition.includes('France') || competition.includes('French')) {
+                return [46.5 + latOffset, 2.5 + lonOffset]; // France center
+            }
+            if (competition.includes('Eredivisie') || competition.includes('Dutch') || competition.includes('Netherlands')) {
+                return [52.2 + latOffset, 5.3 + lonOffset]; // Netherlands center
+            }
+            if (competition.includes('Primeira') || competition.includes('Portugal') || competition.includes('Portuguese')) {
+                return [39.5 + latOffset, -8.0 + lonOffset]; // Portugal center
+            }
+            if (competition.includes('Belgian') || competition.includes('Belgium')) {
+                return [50.8 + latOffset, 4.4 + lonOffset]; // Belgium center
+            }
+            if (competition.includes('Scottish') || competition.includes('Scotland')) {
+                return [55.9 + latOffset, -3.2 + lonOffset]; // Scotland center
+            }
+            if (competition.includes('Turkish') || competition.includes('Süper') || competition.includes('Turkey')) {
+                return [39.9 + latOffset, 32.9 + lonOffset]; // Turkey center
+            }
+            if (competition.includes('Greek') || competition.includes('Greece')) {
+                return [38.0 + latOffset, 23.7 + lonOffset]; // Greece center
+            }
+            if (competition.includes('Austrian') || competition.includes('Austria')) {
+                return [47.5 + latOffset, 14.5 + lonOffset]; // Austria center
             }
             if (competition.includes('Champions') || competition.includes('Europa') || competition.includes('UEFA')) {
-                return [48.8 + (Math.random() - 0.5) * 10, 2.3 + (Math.random() - 0.5) * 20];
+                return [48.8 + latOffset * 3, 2.3 + lonOffset * 5]; // Europe wide
             }
-            if (competition.includes('NBA') || competition.includes('NFL') || competition.includes('NHL') || competition.includes('MLB') || competition.includes('MLS')) {
-                return [39.8 + (Math.random() - 0.5) * 15, -98.6 + (Math.random() - 0.5) * 30];
+            if (competition.includes('NBA') || competition.includes('NHL')) {
+                return [39.0 + latOffset * 5, -95.0 + lonOffset * 10]; // USA
+            }
+            if (competition.includes('MLS') || competition.includes('USA')) {
+                return [39.0 + latOffset * 5, -95.0 + lonOffset * 10]; // USA
+            }
+            if (competition.includes('Liga MX') || competition.includes('Mexico')) {
+                return [23.6 + latOffset * 3, -102.5 + lonOffset * 5]; // Mexico
+            }
+            if (competition.includes('Argentina')) {
+                return [-34.6 + latOffset * 3, -58.4 + lonOffset * 3]; // Argentina
+            }
+            if (competition.includes('Brazil') || competition.includes('Série')) {
+                return [-15.8 + latOffset * 5, -47.9 + lonOffset * 8]; // Brazil
+            }
+            if (competition.includes('J-League') || competition.includes('Japan')) {
+                return [35.7 + latOffset * 2, 139.7 + lonOffset * 3]; // Japan
+            }
+            if (competition.includes('AFL') || competition.includes('Australia')) {
+                return [-33.9 + latOffset * 3, 151.2 + lonOffset * 5]; // Australia
+            }
+            if (competition.includes('India') || competition.includes('ISL')) {
+                return [20.6 + latOffset * 4, 78.9 + lonOffset * 5]; // India
+            }
+            if (competition.includes('Saudi')) {
+                return [24.7 + latOffset * 2, 46.7 + lonOffset * 3]; // Saudi Arabia
             }
 
-            // Default: random location in Europe/Americas
-            return [40 + (Math.random() - 0.5) * 40, 0 + (Math.random() - 0.5) * 80];
+            // Default: Europe center with deterministic offset
+            return [48.0 + latOffset * 3, 10.0 + lonOffset * 5];
         }
 
         // ============================================================================
