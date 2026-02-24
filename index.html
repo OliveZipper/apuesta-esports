@@ -659,8 +659,11 @@
                 const markets = event.markets || {};
                 let homeOdds = null, awayOdds = null;
 
-                // Try to find odds
-                for (const mkt of Object.values(markets)) {
+                // Try to find odds in various market structures
+                const marketKeys = Object.keys(markets);
+                for (const key of marketKeys) {
+                    const mkt = markets[key];
+                    // Try submarkets first
                     if (mkt.submarkets) {
                         const sub = Object.values(mkt.submarkets)[0];
                         if (sub?.selections?.length >= 2) {
@@ -671,12 +674,25 @@
                                 awayOdds = away.price;
                                 break;
                             }
+                            // Fallback to first two selections
+                            if (!homeOdds && sub.selections.length >= 2) {
+                                homeOdds = sub.selections[0].price;
+                                awayOdds = sub.selections[1].price;
+                                break;
+                            }
                         }
+                    }
+                    // Try direct selections
+                    if (mkt.selections?.length >= 2) {
+                        homeOdds = mkt.selections[0].price;
+                        awayOdds = mkt.selections[1].price;
+                        break;
                     }
                 }
 
                 const coords = getMatchCoords(event.home.name, event.away.name, compKey);
 
+                // Still return the match even without odds - Cloudbet API sometimes doesn't include markets
                 return {
                     id: event.id,
                     game: gameKey,
