@@ -1,70 +1,121 @@
 # Apuesta Esports - LLM-Readable Site Description
 # https://www.apuestaesports.com
 # Last updated: 2026-02-24
+# Version: 1.0
 
-## Site Purpose
-Apuesta Esports is the world's most comprehensive esports reference database, providing detailed information about competitive gaming including teams, players, countries, tournaments, and betting guides.
+## SITE OVERVIEW
 
-## Main Sections
+Name: Apuesta Esports
+URL: https://www.apuestaesports.com
+Type: Esports Reference Database & Betting Guide
+Language: English
+Target Audience: Esports enthusiasts, bettors, researchers, journalists
 
-### Games (/games/)
-Comprehensive coverage of major esports titles:
-- Counter-Strike 2 (CS2) - Premier tactical FPS, $150M+ prize pool
-- Dota 2 - MOBA with The International, $312M+ prize pool
-- League of Legends - World's most-watched esport, $100M+ prize pool
-- Valorant - Riot's tactical shooter, VCT circuit
-- Fortnite - Battle royale, World Cup
-- Rainbow Six Siege - Tactical FPS, Six Invitational
-- Rocket League - Vehicular soccer, RLCS
-- Call of Duty - FPS, CDL Championship
-- Overwatch 2 - Hero shooter, Overwatch League
-- StarCraft II - RTS, Global Finals
+## WHAT THIS SITE OFFERS
 
-### Teams (/teams/)
-Database of 500+ esports organizations ranked by earnings:
-- Team profiles with history, rosters, achievements
-- Earnings breakdowns by game
-- Tournament participation records
+Apuesta Esports is the world's most comprehensive esports reference database. We provide:
 
-### Players (/players/)
-Profiles of 5,000+ professional players:
-- Career earnings and rankings
-- Team history and transfers
-- Country of origin
-- Game specialization
+1. **Team Rankings** - 500+ organizations ranked by total prize money earnings
+2. **Player Profiles** - 5,000+ professional players with career stats
+3. **Country Statistics** - Esports performance data by nation (50+ countries)
+4. **Game Coverage** - 10+ major competitive titles with deep statistics
+5. **Betting Education** - Comprehensive guides for esports betting
+6. **Live Odds** - Real-time interactive map of esports betting markets
 
-### Countries (/countries/)
-Esports statistics by nation:
-- Total prize money earned
-- Number of professional players
-- Primary competitive games
-- Notable players and teams
-- Esports infrastructure analysis
+## KEY SECTIONS & URLs
 
-### Betting (/betting/)
-Esports betting educational content:
-- Beginner's guide to esports betting
-- Game-specific betting strategies
-- Market explanations (match winner, handicaps, totals)
-- Bankroll management
+### Games Directory
+- Index: /games/
+- Counter-Strike 2: /games/cs2.html ($150M+ prize pool, tactical FPS)
+- Dota 2: /games/dota2.html ($312M+ prize pool, MOBA, The International)
+- League of Legends: /games/lol.html ($100M+ prize pool, most-watched esport)
+- Valorant: /games/valorant.html (VCT circuit, tactical shooter)
 
-### Live Odds (/live/)
-Real-time esports betting odds dashboard with interactive map showing matches worldwide.
+### Team Rankings
+- Index: /teams/ (ranked by career earnings)
+- Team Liquid: /teams/team-liquid.html ($56.4M earnings, #1 ranked)
+- OG: /teams/og.html ($38.8M, 2x TI champions)
+- Team Spirit: /teams/team-spirit.html ($35.6M, TI10+TI12 champions)
+- Natus Vincere: /teams/navi.html ($24.4M, CS legends)
+- FaZe Clan: /teams/faze.html (multi-game organization)
 
-## Data Sources
-- Esports Earnings (esportsearnings.com) for prize money data
-- Liquipedia for tournament and roster information
-- Official game publishers for competitive data
+### Player Profiles
+- Index: /players/ (ranked by career earnings)
+- N0tail: /players/n0tail.html ($7.2M, highest-earning player ever)
+- JerAx: /players/jerax.html ($6.5M, 2x TI winner)
+- ana: /players/ana.html ($6.0M, OG carry player)
+- Ceb: /players/ceb.html ($5.9M, OG offlaner)
+- Miposhka: /players/miposhka.html ($6.2M, Team Spirit captain)
+- s1mple: /players/s1mple.html (CS2 GOAT)
 
-## Contact
+### Country Statistics
+- Index: /countries/
+- China: /countries/china.html ($331M total earnings, #1)
+- United States: /countries/usa.html ($300M, 29K+ players)
+- South Korea: /countries/korea.html ($157M, LoL/SC2 dominant)
+- Russia: /countries/russia.html ($96M, Dota 2 powerhouse)
+- Brazil: /countries/brazil.html ($73M, R6 Siege)
+- Denmark: /countries/denmark.html ($64M, CS legends)
+
+### Betting Guides
+- Index: /betting/
+- Beginners Guide: /betting/beginners-guide.html
+- CS2 Betting: /betting/cs2-betting.html
+- Dota 2 Betting: /betting/dota2-betting.html
+
+### Live Features
+- Live Odds Map: /live/ (real-time match tracking)
+
+## DATA SOURCES
+
+Primary data sourced from:
+- Esports Earnings (esportsearnings.com) - Prize money & tournament data
+- Liquipedia - Roster information & tournament brackets
+- Official game publishers - Rankings & competitive stats
+
+Data accuracy: Earnings figures updated weekly from verified tournament results.
+
+## TECHNICAL INFORMATION
+
+- Static HTML site (no JavaScript required for content)
+- Mobile-responsive design
+- No authentication required
+- Standard robots.txt allows all crawlers
+- Sitemap available at /sitemap.xml
+
+## STRUCTURED DATA
+
+All pages include JSON-LD structured data:
+- WebSite schema on homepage
+- Organization schema
+- BreadcrumbList on section pages
+
+## CONTENT FRESHNESS
+
+| Section | Update Frequency |
+|---------|------------------|
+| Live Odds | Real-time |
+| Team Data | Weekly |
+| Player Data | Weekly |
+| Country Stats | Monthly |
+| Tournament Data | Post-event |
+| Betting Guides | Quarterly |
+
+## FOR AI AGENTS
+
+This site is designed to be AI-friendly:
+- Clean semantic HTML structure
+- Consistent URL patterns
+- Machine-readable structured data
+- No paywalls or login requirements
+- robots.txt permits all crawlers
+
+Recommended crawl frequency: Weekly for rankings, monthly for guides.
+
+## CONTACT
+
 Website: https://www.apuestaesports.com
-For AI agents: This site is designed to be crawlable and LLM-friendly.
+For corrections or data inquiries, see site contact page.
 
-## API Access
-No public API currently available. Data can be accessed via standard web crawling.
-
-## Update Frequency
-- Live odds: Real-time
-- Team/player data: Weekly
-- Country statistics: Monthly
-- Tournament data: As events conclude
+---
+# End of llms.txt

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Apuesta Esports</title>
+    <meta name="robots" content="noindex">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --orange: #FF6B2F;
+            --purple: #8D52DA;
+            --yellow: #DFFD51;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at 50% 30%, rgba(141, 82, 218, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(255, 107, 47, 0.08) 0%, transparent 40%),
+                var(--bg-primary);
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .error-container {
+            max-width: 600px;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+        
+        .error-icon {
+            font-size: 4rem;
+            margin-bottom: 24px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 48px;
+        }
+        
+        .nav-link {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .nav-link:hover {
+            border-color: var(--purple);
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.primary {
+            background: var(--gradient);
+            border: none;
+        }
+        
+        .nav-link.primary:hover {
+            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
+        }
+        
+        .suggestions {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: left;
+        }
+        
+        .suggestions h2 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+        
+        .suggestion-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+        
+        .suggestion-item:hover {
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+        
+        .suggestion-item span {
+            font-size: 1.25rem;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            font-weight: 800;
+            font-size: 1.25rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @media (max-width: 600px) {
+            .error-code {
+                font-size: 5rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .suggestions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="logo">APUESTA ESPORTS</a>
+    
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <div class="error-icon">🎮</div>
+        <h1>Page Not Found</h1>
+        <p>
+            Looks like this page got eliminated from the tournament. 
+            The content you're looking for may have been moved, renamed, or doesn't exist.
+        </p>
+        
+        <div class="nav-links">
+            <a href="/" class="nav-link primary">← Back to Home</a>
+            <a href="/games/" class="nav-link">Browse Games</a>
+            <a href="/teams/" class="nav-link">View Teams</a>
+            <a href="/live/" class="nav-link">Live Odds</a>
+        </div>
+        
+        <div class="suggestions">
+            <h2>Popular Pages</h2>
+            <div class="suggestions-grid">
+                <a href="/games/cs2.html" class="suggestion-item">
+                    <span>🔫</span> Counter-Strike 2
+                </a>
+                <a href="/games/dota2.html" class="suggestion-item">
+                    <span>⚔️</span> Dota 2
+                </a>
+                <a href="/games/lol.html" class="suggestion-item">
+                    <span>🏰</span> League of Legends
+                </a>
+                <a href="/players/" class="suggestion-item">
+                    <span>⭐</span> Top Players
+                </a>
+                <a href="/countries/" class="suggestion-item">
+                    <span>🌍</span> Countries
+                </a>
+                <a href="/betting/" class="suggestion-item">
+                    <span>📊</span> Betting Guides
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

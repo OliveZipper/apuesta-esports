@@ -110,10 +110,7 @@
                 var(--bg-primary);
         }
         
-        .article-header-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        .article-header-content { max-width: 800px; margin: 0 auto; }
         
         .breadcrumb {
             display: flex;
@@ -168,23 +165,11 @@
             border-top: 1px solid var(--border);
         }
         
-        .article-content h2:first-of-type {
-            margin-top: 0;
-            padding-top: 0;
-            border-top: none;
-        }
+        .article-content h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
         
-        .article-content h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin: 32px 0 16px;
-        }
+        .article-content h3 { font-size: 1.3rem; font-weight: 600; margin: 32px 0 16px; }
         
-        .article-content p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            margin-bottom: 20px;
-        }
+        .article-content p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 20px; }
         
         .article-content ul, .article-content ol {
             color: var(--text-secondary);
@@ -192,11 +177,7 @@
             padding-left: 24px;
         }
         
-        .article-content li {
-            margin-bottom: 10px;
-            font-size: 1.05rem;
-        }
-        
+        .article-content li { margin-bottom: 10px; font-size: 1.05rem; }
         .article-content strong { color: var(--text-primary); }
         
         .info-box {
@@ -222,18 +203,10 @@
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
         }
         
-        .info-box-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        
+        .info-box-header { display: flex; align-items: center; gap: 10px; font-weight: 600; margin-bottom: 12px; }
         .info-box.tip .info-box-header { color: var(--green); }
         .info-box.warning .info-box-header { color: var(--red); }
         .info-box.example .info-box-header { color: var(--blue); }
-        
         .info-box p { margin-bottom: 0; font-size: 0.95rem; }
         
         .toc {
@@ -252,33 +225,12 @@
             margin-bottom: 16px;
         }
         
-        .toc ol {
-            list-style: none;
-            padding-left: 0;
-            counter-reset: toc-counter;
-        }
-        
-        .toc li {
-            counter-increment: toc-counter;
-            margin-bottom: 8px;
-        }
-        
-        .toc a {
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .toc a::before {
-            content: counter(toc-counter) ".";
-            color: var(--purple);
-            font-weight: 600;
-        }
-        
+        .toc ol { list-style: none; padding-left: 0; counter-reset: toc-counter; }
+        .toc li { counter-increment: toc-counter; margin-bottom: 8px; }
+        .toc a { color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
+        .toc a::before { content: counter(toc-counter) "."; color: var(--purple); font-weight: 600; }
         .toc a:hover { color: var(--text-primary); }
         
-        /* Role Cards */
         .role-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -311,13 +263,7 @@
             letter-spacing: 0.5px;
         }
         
-        /* Tournament Format */
-        .format-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin: 24px 0;
-        }
+        .format-list { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
         
         .format-item {
             background: var(--bg-secondary);
@@ -329,22 +275,10 @@
             gap: 16px;
         }
         
-        .format-icon {
-            font-size: 1.5rem;
-        }
+        .format-icon { font-size: 1.5rem; }
+        .format-item h5 { font-size: 1rem; margin-bottom: 2px; }
+        .format-item p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0; }
         
-        .format-item h5 {
-            font-size: 1rem;
-            margin-bottom: 2px;
-        }
-        
-        .format-item p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 0;
-        }
-        
-        /* Live Betting Section */
         .live-bet-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -367,11 +301,7 @@
             gap: 8px;
         }
         
-        .live-bet-card p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 0;
-        }
+        .live-bet-card p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0; }
         
         .timing-badge {
             font-size: 0.7rem;
@@ -399,12 +329,7 @@
         }
         
         .responsible-gambling p { color: var(--text-secondary); margin-bottom: 16px; }
-        
-        .help-links a {
-            color: var(--green);
-            text-decoration: underline;
-            margin-right: 24px;
-        }
+        .help-links a { color: var(--green); text-decoration: underline; margin-right: 24px; }
         
         .next-article {
             background: var(--bg-secondary);
@@ -420,15 +345,7 @@
         }
         
         .next-article:hover { border-color: var(--purple); }
-        
-        .next-article-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-        
+        .next-article-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
         .next-article-title { font-size: 1.25rem; font-weight: 600; }
         .next-article-arrow { font-size: 1.5rem; color: var(--orange); }
         
@@ -673,3 +590,104 @@
             <p>
                 <strong>Group stages</strong> often have more upsets—teams are still finding form.<br>
                 <strong>Lower bracket</strong> teams are often undervalued—elimination pressure creates focus.<br>
+                <strong>BO1s</strong> are high variance—avoid heavy betting on single-game matches.
+            </p>
+        </div>
+
+        <h2 id="live-betting">Live Betting Opportunities</h2>
+        <p>
+            Dota 2's comeback mechanics make it one of the best esports for live betting. Games that look 
+            decided can flip with one teamfight, and odds often overcorrect to early-game leads.
+        </p>
+
+        <div class="live-bet-grid">
+            <div class="live-bet-card">
+                <h5>Post-Draft <span class="timing-badge">0:00</span></h5>
+                <p>If you spot a draft mismatch, live odds immediately after draft often offer value before the market adjusts.</p>
+            </div>
+            <div class="live-bet-card">
+                <h5>After Laning <span class="timing-badge">10-15 min</span></h5>
+                <p>Laning phase results are known. If the late-game team survived, their odds improve. Look for overcorrections.</p>
+            </div>
+            <div class="live-bet-card">
+                <h5>Net Worth Swings <span class="timing-badge">20-35 min</span></h5>
+                <p>A won teamfight can swing 10k+ gold. If the market overreacts, bet against the momentum.</p>
+            </div>
+            <div class="live-bet-card">
+                <h5>High Ground Defense <span class="timing-badge">30+ min</span></h5>
+                <p>Teams often fail first high ground push. If attacker's odds spike too high, defender may have value.</p>
+            </div>
+        </div>
+
+        <h3>Key Live Betting Signals</h3>
+        <ul>
+            <li><strong>Buyback availability</strong> – Teams without buybacks are vulnerable to game-ending pushes</li>
+            <li><strong>Roshan timer</strong> – Aegis provides a massive advantage; team with Rosh control has edge</li>
+            <li><strong>Item timings</strong> – Key items (BKB, Blink, etc.) unlock hero potential; watch for power spikes</li>
+            <li><strong>Cooldown tracking</strong> – Big ultimates like Ravage or Black Hole have long cooldowns; teams are vulnerable without them</li>
+        </ul>
+
+        <div class="info-box tip">
+            <div class="info-box-header">💡 Live Betting Strategy</div>
+            <p>
+                The best live betting opportunities come from understanding timing windows. If an early-game 
+                team has a 5k lead at 25 minutes but the enemy carry just completed their first big item, the 
+                game is closer than the net worth suggests. Look for these mismatches between gold lead and 
+                actual game state.
+            </p>
+        </div>
+
+        <h3>Stats Resources for Dota 2</h3>
+        <ul>
+            <li><strong>Dotabuff</strong> – Player and hero statistics, match history</li>
+            <li><strong>OpenDota</strong> – Advanced statistics, draft analysis, public match data</li>
+            <li><strong>Liquipedia</strong> – Tournament info, team rosters, head-to-head records</li>
+            <li><strong>datdota</strong> – Pro match statistics, tournament data</li>
+        </ul>
+
+        <div class="responsible-gambling">
+            <h3>🛡️ Responsible Gambling Reminder</h3>
+            <p>
+                Dota 2 games can last 60+ minutes with dramatic swings. It's easy to get emotionally invested, 
+                especially during live betting. Set limits before you start, take breaks, and never chase losses. 
+                If betting stops being fun, stop betting.
+            </p>
+            <div class="help-links">
+                <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware</a>
+                <a href="https://www.gamblersanonymous.org" target="_blank" rel="noopener">Gamblers Anonymous</a>
+            </div>
+        </div>
+
+        <a href="/betting/lol-betting.html" class="next-article">
+            <div>
+                <div class="next-article-label">Next Guide</div>
+                <div class="next-article-title">League of Legends Betting Guide →</div>
+            </div>
+            <div class="next-article-arrow">→</div>
+        </a>
+    </article>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/betting/">All Guides</a>
+                <a href="/live/">Live Odds</a>
+            </div>
+            <div class="footer-copy">© 2026 Apuesta Esports. Gamble responsibly. 18+</div>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Dota 2 Betting Guide - Esports Betting Strategies",
+        "description": "Complete Dota 2 betting guide. Learn draft importance, meta shifts, team compositions, tournament formats, and live betting opportunities.",
+        "author": {"@type": "Organization", "name": "Apuesta Esports"},
+        "datePublished": "2026-02-01",
+        "dateModified": "2026-02-24"
+    }
+    </script>
+</body>
+</html>

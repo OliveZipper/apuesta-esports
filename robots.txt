@@ -4,8 +4,8 @@
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemap location
 Sitemap: https://www.apuestaesports.com/sitemap.xml
 
-# LLM-friendly content
-# See /llms.txt for AI-readable site description
+# LLM/AI Agent Information
+# See /llms.txt for comprehensive AI-readable site description
