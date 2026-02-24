@@ -952,6 +952,13 @@
             font-size: 0.75rem;
             color: var(--text-muted);
         }
+        .rich-popup .weather-indoor {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
         
         .rich-popup .popup-intel {
             padding: 12px 16px;
@@ -2165,6 +2172,40 @@
         }
 
         // ============================================================================
+        // INDOOR/OUTDOOR DETECTION
+        // ============================================================================
+        const INDOOR_SPORTS = ['nba', 'nhl', 'basketball', 'ice hockey', 'hockey', 'volleyball', 'handball', 'futsal'];
+        const INDOOR_VENUES = [
+            'arena', 'center', 'centre', 'dome', 'garden', 'forum', 'coliseum', 'fieldhouse', 
+            'pavilion', 'palace', 'hall', 'indoor', 'o2', 'msg', 'staples', 'barclays',
+            'td garden', 'united center', 'madison square', 'crypto.com', 'chase center'
+        ];
+        
+        function isIndoorEvent(match) {
+            const sport = (match.sport || '').toLowerCase();
+            const venue = (match.venue || '').toLowerCase();
+            const competition = (match.competition || '').toLowerCase();
+            const key = (match.competitionKey || '').toLowerCase();
+            
+            // Check if sport is inherently indoor
+            if (INDOOR_SPORTS.some(s => sport.includes(s) || key.includes(s) || competition.includes(s))) {
+                return true;
+            }
+            
+            // Check venue name for indoor indicators
+            if (INDOOR_VENUES.some(v => venue.includes(v))) {
+                return true;
+            }
+            
+            // NBA, NHL are always indoor
+            if (key === 'nba' || key === 'nhl') {
+                return true;
+            }
+            
+            return false;
+        }
+
+        // ============================================================================
         // WEATHER CACHE
         // ============================================================================
         const weatherCache = new Map();
@@ -2324,7 +2365,10 @@
                     ${match.drawOdds ? `<div class="popup-draw">Draw: ${formatOdds(match.drawOdds)}</div>` : ''}
                     
                     <div class="popup-weather" id="weather-${popupId}">
-                        <span class="weather-loading">⏳ Loading weather...</span>
+                        ${isIndoorEvent(match) 
+                            ? '<div class="weather-indoor">🏟️ <strong>Indoor Event</strong> — weather not a factor</div>'
+                            : '<span class="weather-loading">⏳ Loading weather...</span>'
+                        }
                     </div>
                     
                     <div class="popup-intel">
@@ -2346,8 +2390,10 @@
 
             const popup = new maplibregl.Popup({ offset: 15, maxWidth: '360px' }).setHTML(html);
             
-            // Fetch weather when popup opens
+            // Fetch weather when popup opens (skip for indoor events)
             popup.on('open', async () => {
+                if (isIndoorEvent(match)) return; // Skip weather for indoor events
+                
                 if (match.coords) {
                     const matchDateStr = matchDate.toISOString().split('T')[0];
                     const weather = await fetchWeather(match.coords[0], match.coords[1], matchDateStr);
