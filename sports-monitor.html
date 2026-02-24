@@ -1691,8 +1691,42 @@
             const awayTeam = match.away || match.team2 || '';
             const competition = match.competition || '';
             const venue = match.venue || '';
+            const city = match.city || '';
+            const state = match.state || '';
 
-            // 1. FIRST: Try venue name directly (most precise)
+            // City coordinates for neutral venue games
+            const CITY_COORDS = {
+                // US Cities
+                "New York": [40.7128, -74.0060], "Los Angeles": [34.0522, -118.2437],
+                "Chicago": [41.8781, -87.6298], "Houston": [29.7604, -95.3698],
+                "Phoenix": [33.4484, -112.0740], "Philadelphia": [39.9526, -75.1652],
+                "San Antonio": [29.4241, -98.4936], "San Diego": [32.7157, -117.1611],
+                "Dallas": [32.7767, -96.7970], "San Jose": [37.3382, -121.8863],
+                "Austin": [30.2672, -97.7431], "Jacksonville": [30.3322, -81.6557],
+                "San Francisco": [37.7749, -122.4194], "Indianapolis": [39.7684, -86.1581],
+                "Seattle": [47.6062, -122.3321], "Denver": [39.7392, -104.9903],
+                "Boston": [42.3601, -71.0589], "Detroit": [42.3314, -83.0458],
+                "Memphis": [35.1495, -90.0490], "Portland": [45.5152, -122.6784],
+                "Oklahoma City": [35.4676, -97.5164], "Las Vegas": [36.1699, -115.1398],
+                "Milwaukee": [43.0389, -87.9065], "Miami": [25.7617, -80.1918],
+                "Atlanta": [33.7490, -84.3880], "Sacramento": [38.5816, -121.4944],
+                "Cleveland": [41.4993, -81.6944], "Minneapolis": [44.9778, -93.2650],
+                "New Orleans": [29.9511, -90.0715], "Tampa": [27.9506, -82.4572],
+                "Salt Lake City": [40.7608, -111.8910], "Charlotte": [35.2271, -80.8431],
+                "Orlando": [28.5383, -81.3792], "Pittsburgh": [40.4406, -79.9959],
+                "Baltimore": [39.2904, -76.6122], "Toronto": [43.6532, -79.3832],
+                "Montreal": [45.5017, -73.5673], "Vancouver": [49.2827, -123.1207],
+                // International
+                "London": [51.5074, -0.1278], "Paris": [48.8566, 2.3522],
+                "Berlin": [52.5200, 13.4050], "Madrid": [40.4168, -3.7038],
+                "Rome": [41.9028, 12.4964], "Tokyo": [35.6762, 139.6503],
+                "Sydney": [-33.8688, 151.2093], "Melbourne": [-37.8136, 144.9631],
+                "Mexico City": [19.4326, -99.1332], "São Paulo": [-23.5505, -46.6333],
+                "Buenos Aires": [-34.6037, -58.3816], "Mumbai": [19.0760, 72.8777],
+                "Dubai": [25.2048, 55.2708], "Singapore": [1.3521, 103.8198]
+            };
+
+            // 1. FIRST: Try venue name directly (most precise for neutral venues)
             if (venue) {
                 // Check exact venue match
                 if (STADIUMS[venue]) return STADIUMS[venue];
@@ -1706,7 +1740,17 @@
                 }
             }
 
-            // 2. Try to find stadium from team names
+            // 2. Try city from venue address (for away/neutral venues)
+            if (city) {
+                for (const [cityName, coords] of Object.entries(CITY_COORDS)) {
+                    if (city.toLowerCase() === cityName.toLowerCase() ||
+                        city.toLowerCase().includes(cityName.toLowerCase())) {
+                        return coords;
+                    }
+                }
+            }
+
+            // 3. Try to find stadium from team names
             for (const [team, stadium] of Object.entries(TEAM_LOCATIONS)) {
                 // Match team name (handle suffixes like FC, AFC, SC)
                 const cleanHome = homeTeam.toLowerCase().replace(/ fc$| afc$| sc$| united$| city$/i, '').trim();
@@ -1932,7 +1976,9 @@
                     home: home,
                     away: away,
                     competition: leagueConfig.name,
-                    venue: venue?.fullName
+                    venue: venue?.fullName,
+                    city: venue?.address?.city,
+                    state: venue?.address?.state
                 });
                 
                 return {
