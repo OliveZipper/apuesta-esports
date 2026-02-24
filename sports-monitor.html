@@ -1367,6 +1367,43 @@
             "Johan Cruyff Arena": [52.3142, 4.9419],
             "Estádio do Dragão": [41.1617, -8.5833],
             
+            // AUSTRALIA - AFL & A-League
+            "Melbourne Cricket Ground": [-37.8200, 144.9834],
+            "MCG": [-37.8200, 144.9834],
+            "Marvel Stadium": [-37.8165, 144.9475],
+            "Docklands Stadium": [-37.8165, 144.9475],
+            "AAMI Park": [-37.8253, 144.9836],
+            "Sydney Cricket Ground": [-33.8917, 151.2247],
+            "SCG": [-33.8917, 151.2247],
+            "Accor Stadium": [-33.8471, 151.0634],
+            "Stadium Australia": [-33.8471, 151.0634],
+            "Optus Stadium": [-31.9512, 115.8891],
+            "Perth Stadium": [-31.9512, 115.8891],
+            "Adelaide Oval": [-34.9156, 138.5961],
+            "The Gabba": [-27.4858, 153.0381],
+            "Brisbane Cricket Ground": [-27.4858, 153.0381],
+            "GMHBA Stadium": [-38.1581, 144.3547],
+            "Kardinia Park": [-38.1581, 144.3547],
+            "Metricon Stadium": [-28.0067, 153.4311],
+            "Giants Stadium": [-33.8447, 151.0678],
+            "GIANTS Stadium": [-33.8447, 151.0678],
+            "Blundstone Arena": [-42.8736, 147.3747],
+            "Bellerive Oval": [-42.8736, 147.3747],
+            "TIO Stadium": [-12.4283, 130.8456],
+            "UTAS Stadium": [-41.4361, 147.1331],
+            "York Park": [-41.4361, 147.1331],
+            "Mars Stadium": [-37.5547, 143.8472],
+            "Eureka Stadium": [-37.5547, 143.8472],
+            "Whitten Oval": [-37.7994, 144.8872],
+            "IKON Park": [-37.7850, 144.9808],
+            "Princes Park": [-37.7850, 144.9808],
+            "Henson Park": [-33.9058, 151.1561],
+            "Brighton Homes Arena": [-27.5528, 153.0669],
+            "David Grays Arena": [-32.0411, 115.7469],
+            "Fremantle Oval": [-32.0556, 115.7519],
+            "Mineral Resources Park": [-31.8117, 115.8867],
+            "Lathlain Park": [-31.9661, 115.9081],
+            
             // USA - NBA/NFL/MLB/NHL Cities
             "Madison Square Garden": [40.7505, -73.9934],
             "Barclays Center": [40.6826, -73.9754],
@@ -1530,6 +1567,45 @@
             "Livingston": "Tony Macaroni Arena",
             "St Johnstone": "McDiarmid Park",
             
+            // AFL (Australian Football League)
+            "Carlton": "IKON Park",
+            "Carlton Blues": "IKON Park",
+            "Collingwood": "Marvel Stadium",
+            "Collingwood Magpies": "Marvel Stadium",
+            "Essendon": "Marvel Stadium",
+            "Essendon Bombers": "Marvel Stadium",
+            "Geelong": "GMHBA Stadium",
+            "Geelong Cats": "GMHBA Stadium",
+            "Hawthorn": "Marvel Stadium",
+            "Hawthorn Hawks": "Marvel Stadium",
+            "Melbourne": "Melbourne Cricket Ground",
+            "Melbourne Demons": "Melbourne Cricket Ground",
+            "North Melbourne": "Marvel Stadium",
+            "North Melbourne Kangaroos": "Marvel Stadium",
+            "Richmond": "Melbourne Cricket Ground",
+            "Richmond Tigers": "Melbourne Cricket Ground",
+            "St Kilda": "Marvel Stadium",
+            "St Kilda Saints": "Marvel Stadium",
+            "Western Bulldogs": "Marvel Stadium",
+            "Footscray": "Whitten Oval",
+            "Adelaide": "Adelaide Oval",
+            "Adelaide Crows": "Adelaide Oval",
+            "Brisbane": "The Gabba",
+            "Brisbane Lions": "The Gabba",
+            "Fremantle": "Optus Stadium",
+            "Fremantle Dockers": "Optus Stadium",
+            "Gold Coast": "Metricon Stadium",
+            "Gold Coast SUNS": "Metricon Stadium",
+            "GWS": "Giants Stadium",
+            "GWS GIANTS": "Giants Stadium",
+            "Greater Western Sydney": "Giants Stadium",
+            "Port Adelaide": "Adelaide Oval",
+            "Port Adelaide Power": "Adelaide Oval",
+            "Sydney": "Sydney Cricket Ground",
+            "Sydney Swans": "Sydney Cricket Ground",
+            "West Coast": "Optus Stadium",
+            "West Coast Eagles": "Optus Stadium",
+            
             // NBA (use full team names to avoid conflicts)
             "Los Angeles Lakers": "Staples Center",
             "LA Lakers": "Staples Center",
@@ -1614,17 +1690,36 @@
             const homeTeam = match.home || match.team1 || '';
             const awayTeam = match.away || match.team2 || '';
             const competition = match.competition || '';
+            const venue = match.venue || '';
 
-            // Try to find stadium from team names (check both exact and partial match)
+            // 1. FIRST: Try venue name directly (most precise)
+            if (venue) {
+                // Check exact venue match
+                if (STADIUMS[venue]) return STADIUMS[venue];
+                
+                // Check partial venue match
+                for (const [stadium, coords] of Object.entries(STADIUMS)) {
+                    if (venue.toLowerCase().includes(stadium.toLowerCase()) ||
+                        stadium.toLowerCase().includes(venue.toLowerCase())) {
+                        return coords;
+                    }
+                }
+            }
+
+            // 2. Try to find stadium from team names
             for (const [team, stadium] of Object.entries(TEAM_LOCATIONS)) {
-                if (homeTeam.toLowerCase().includes(team.toLowerCase()) || 
-                    team.toLowerCase().includes(homeTeam.toLowerCase().replace(/ fc| afc| sc$/i, ''))) {
+                // Match team name (handle suffixes like FC, AFC, SC)
+                const cleanHome = homeTeam.toLowerCase().replace(/ fc$| afc$| sc$| united$| city$/i, '').trim();
+                const cleanTeam = team.toLowerCase();
+                if (homeTeam.toLowerCase().includes(cleanTeam) || 
+                    cleanTeam.includes(cleanHome) ||
+                    cleanHome.includes(cleanTeam)) {
                     const coords = STADIUMS[stadium];
                     if (coords) return coords;
                 }
             }
 
-            // Try direct stadium match
+            // 3. Try direct stadium match in team/competition name
             for (const [stadium, coords] of Object.entries(STADIUMS)) {
                 if (homeTeam.includes(stadium) || competition.includes(stadium)) {
                     return coords;
