@@ -982,9 +982,12 @@
                     <div class="logo-subtitle">Inteligencia Global de Apuestas</div>
                 </div>
             </div>
-            <div class="live-indicator">
-                <span class="live-dot"></span>
-                <span id="current-time">00:00:00 UTC</span>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <a href="sports-monitor.html" style="color: var(--text-secondary); text-decoration: none; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s;" onmouseover="this.style.color='var(--accent-primary)'" onmouseout="this.style.color='var(--text-secondary)'">🌍 Sports Monitor</a>
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    <span id="current-time">00:00:00 UTC</span>
+                </div>
             </div>
         </div>
         <div class="status-bar">
@@ -1049,51 +1052,93 @@
                     <div class="card-body" style="padding: 0;">
                         <div class="world-map-container">
                             <svg class="world-map" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice">
-                                <!-- Simplified world map paths -->
                                 <defs>
                                     <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                         <stop offset="0%" style="stop-color:#1a1a25;stop-opacity:1" />
                                         <stop offset="100%" style="stop-color:#12121a;stop-opacity:1" />
                                     </linearGradient>
+                                    <filter id="continentGlow">
+                                        <feGaussianBlur stdDeviation="1.5" result="blur"/>
+                                        <feMerge>
+                                            <feMergeNode in="blur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
                                 </defs>
                                 <rect fill="url(#mapGradient)" width="1000" height="500"/>
-                                <!-- Americas -->
-                                <path d="M150,100 Q200,80 220,120 L240,200 Q230,280 200,350 L150,400 Q100,350 90,280 L100,180 Q120,120 150,100" fill="#2a2a35" stroke="#00f5ff" stroke-width="0.5" opacity="0.6"/>
-                                <!-- Europe -->
-                                <path d="M450,80 Q520,70 550,100 L560,150 Q540,180 500,190 L450,180 Q430,150 450,80" fill="#2a2a35" stroke="#bf00ff" stroke-width="0.5" opacity="0.6"/>
-                                <!-- Asia -->
-                                <path d="M600,80 Q750,60 850,120 L880,200 Q850,300 750,320 L650,280 Q580,200 600,80" fill="#2a2a35" stroke="#ff00aa" stroke-width="0.5" opacity="0.6"/>
-                                <!-- Oceania -->
-                                <path d="M800,350 Q850,340 870,370 L860,420 Q830,440 800,430 L790,380 Q790,360 800,350" fill="#2a2a35" stroke="#00ff88" stroke-width="0.5" opacity="0.6"/>
+                                
+                                <!-- World Map Continents - Natural Earth Simplified -->
+                                <g fill="#2a2a3a" stroke-width="0.6" opacity="0.75" filter="url(#continentGlow)">
+                                    
+                                    <!-- North America -->
+                                    <path stroke="#00f5ff" d="M120,85 L140,72 L165,68 L195,72 L225,78 L255,88 L270,105 L278,125 L275,145 L265,165 L250,185 L235,200 L218,212 L195,218 L175,225 L160,235 L148,248 L142,262 L155,272 L175,268 L198,258 L215,250 L230,255 L245,270 L255,290 L262,310 L265,332 L260,355 L248,372 L230,378 L210,375 L188,365 L168,350 L152,332 L140,310 L132,285 L128,258 L118,232 L105,208 L95,182 L90,155 L92,128 L100,105 L108,92 Z"/>
+                                    
+                                    <!-- Greenland -->
+                                    <path stroke="#00f5ff" d="M320,45 L355,38 L385,42 L410,55 L420,75 L415,98 L400,118 L375,130 L345,135 L315,128 L295,112 L285,92 L290,70 L305,52 Z"/>
+                                    
+                                    <!-- South America -->
+                                    <path stroke="#00ff88" d="M215,320 L235,308 L258,305 L278,312 L292,328 L302,350 L308,375 L310,402 L305,428 L295,452 L278,470 L255,480 L232,478 L212,468 L198,450 L188,425 L185,398 L188,370 L195,345 L205,328 Z"/>
+                                    
+                                    <!-- Europe -->
+                                    <path stroke="#bf00ff" d="M435,72 L458,65 L485,62 L512,68 L535,78 L555,92 L568,108 L575,128 L572,148 L562,165 L545,178 L522,188 L495,192 L468,188 L445,178 L428,162 L418,142 L415,120 L422,98 L430,82 Z
+                                        M450,195 L470,202 L485,215 L478,232 L458,240 L438,235 L428,218 L435,202 Z"/>
+                                    
+                                    <!-- Africa -->
+                                    <path stroke="#ffd700" d="M438,215 L468,208 L498,212 L528,225 L552,245 L572,272 L585,302 L592,335 L590,368 L580,400 L562,428 L535,450 L502,462 L468,465 L435,458 L408,442 L388,418 L375,388 L370,355 L372,322 L382,290 L398,262 L418,238 Z"/>
+                                    
+                                    <!-- Asia -->
+                                    <path stroke="#ff00aa" d="M575,58 L618,48 L665,45 L715,52 L768,62 L820,78 L865,98 L898,125 L918,158 L925,195 L920,232 L905,268 L880,298 L845,322 L805,338 L760,348 L712,352 L665,348 L620,338 L582,320 L555,295 L538,265 L530,232 L532,198 L545,165 L562,135 L575,108 L578,82 Z
+                                        M665,350 L695,358 L728,372 L755,392 L772,418 L775,445 L762,468 L738,482 L708,488 L678,482 L652,468 L635,445 L632,418 L642,392 L658,372 Z"/>
+                                    
+                                    <!-- Australia -->
+                                    <path stroke="#00f5ff" d="M772,368 L808,362 L845,368 L878,382 L902,402 L918,428 L922,458 L912,485 L888,502 L855,512 L820,515 L785,508 L755,492 L735,468 L728,440 L732,412 L748,388 Z"/>
+                                    
+                                    <!-- New Zealand -->
+                                    <path stroke="#00f5ff" d="M935,458 L948,465 L955,482 L950,498 L938,508 L925,502 L920,485 L928,468 Z"/>
+                                    
+                                    <!-- Japan -->
+                                    <path stroke="#ff00aa" d="M868,145 L882,152 L890,168 L885,185 L872,195 L858,188 L852,172 L860,158 Z"/>
+                                    
+                                    <!-- UK/Ireland -->
+                                    <path stroke="#bf00ff" d="M428,95 L442,88 L455,92 L462,105 L458,120 L445,128 L430,125 L422,112 Z
+                                        M415,102 L425,98 L428,108 L422,115 L412,112 Z"/>
+                                    
+                                </g>
+                                
                                 <!-- Grid lines -->
-                                <g stroke="#00f5ff" stroke-width="0.2" opacity="0.3">
+                                <g stroke="#00f5ff" stroke-width="0.25" opacity="0.25">
                                     <line x1="0" y1="250" x2="1000" y2="250"/>
                                     <line x1="500" y1="0" x2="500" y2="500"/>
                                     <line x1="0" y1="125" x2="1000" y2="125"/>
                                     <line x1="0" y1="375" x2="1000" y2="375"/>
                                     <line x1="250" y1="0" x2="250" y2="500"/>
                                     <line x1="750" y1="0" x2="750" y2="500"/>
+                                    <!-- Equator label -->
+                                    <text x="15" y="254" fill="#00f5ff" font-size="8" font-family="Share Tech Mono">EQUATOR</text>
                                 </g>
                             </svg>
                             <div class="map-overlay"></div>
-                            <!-- Region markers -->
-                            <div class="region-marker hot" style="top: 35%; left: 18%;" title="América del Norte">
+                            <!-- Region markers - positioned on improved map -->
+                            <div class="region-marker hot" style="top: 32%; left: 17%;" title="América del Norte">
                                 <span class="region-label">NA</span>
                             </div>
-                            <div class="region-marker" style="top: 55%; left: 22%;" title="América del Sur">
+                            <div class="region-marker" style="top: 72%; left: 26%;" title="América del Sur">
                                 <span class="region-label">SA</span>
                             </div>
-                            <div class="region-marker hot" style="top: 28%; left: 48%;" title="Europa">
+                            <div class="region-marker hot" style="top: 24%; left: 49%;" title="Europa">
                                 <span class="region-label">EU</span>
                             </div>
-                            <div class="region-marker" style="top: 35%; left: 58%;" title="CIS">
+                            <div class="region-marker" style="top: 30%; left: 62%;" title="CIS">
                                 <span class="region-label">CIS</span>
                             </div>
-                            <div class="region-marker hot" style="top: 38%; left: 78%;" title="Asia">
+                            <div class="region-marker hot" style="top: 35%; left: 80%;" title="Asia Oriental">
                                 <span class="region-label">ASIA</span>
                             </div>
-                            <div class="region-marker" style="top: 65%; left: 82%;" title="Oceanía">
+                            <div class="region-marker" style="top: 82%; left: 85%;" title="Oceanía">
                                 <span class="region-label">OCE</span>
+                            </div>
+                            <div class="region-marker" style="top: 62%; left: 50%;" title="África">
+                                <span class="region-label">AF</span>
                             </div>
                         </div>
                     </div>
