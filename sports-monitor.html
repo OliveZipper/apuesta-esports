@@ -1259,6 +1259,30 @@
                 'afl': { sport: 'australian-football', league: 'afl', name: 'AFL', flag: '🏉', country: 'Australia' },
                 // Europe (additional)
                 'europa-league': { sport: 'soccer', league: 'uefa.europa', name: 'UEFA Europa League', flag: '🏆', country: 'Europe' }
+            },
+            // Cloudbet API (real odds)
+            CLOUDBET_API_BASE: 'https://sports-api.cloudbet.com/pub/v2',
+            CLOUDBET_API_KEY: 'eyJhbGciOiJSUzI1NiIsImtpZCI6IkhKcDkyNnF3ZXBjNnF3LU9rMk4zV05pXzBrRFd6cEdwTzAxNlRJUjdRWDAiLCJ0eXAiOiJKV1QifQ.eyJhY2Nlc3NfdGllciI6InRyYWRpbmciLCJleHAiOjIwNTc4ODUxNTYsImlhdCI6MTc0MjUyNTE1NiwianRpIjoiOGViYTkxZmQtOGQ1OC00ODEwLWFmYmMtYzZhYjI2OTJmYTZmIiwic3ViIjoiZmRlOGNkOTktODEzOS00ODU4LTllNjItMjVhMThiZTc4MGZhIiwidGVuYW50IjoiY2xvdWRiZXQiLCJ1dWlkIjoiZmRlOGNkOTktODEzOS00ODU4LTllNjItMjVhMThiZTc4MGZhIn0.R7fV53rePJAGL_qrGfkPo4OnAoevvLzsIHlIVLIJm9OXH9-2Y5lAkDFz2_pV0ibUDXFNhA-23c8DhA4EIsSANCxger6HHLVYqj11fxIze2Ix8-e9f9BhwGLtRjkpTwC29tFy_MvY92y7ueeVF6fIADQ5VneDGpj5cYw9KKxZwXSLJUrR48maPB783ivoFdlWFtehhxiKezitP8ZihIGVf6YzBnYdo_456FBfCOiTgvmaOP8l9W_J9W5AkWfsnlCFYMYKhs6pwtUkOPsiD-R4QZidP1BKcRGPDnIE38saJC2nMOIzD0WnltlrrP-YvY5JvzvLv256qyNAC_HZJ74bkQ',
+            CORS_PROXY: 'https://corsproxy.io/?',
+            // Map our league keys to Cloudbet competition keys
+            CLOUDBET_LEAGUES: {
+                'premier-league': 'soccer-england-premier-league',
+                'la-liga': 'soccer-spain-la-liga',
+                'bundesliga': 'soccer-germany-bundesliga',
+                'serie-a': 'soccer-italy-serie-a',
+                'ligue-1': 'soccer-france-ligue-1',
+                'ucl': 'soccer-international-clubs-uefa-champions-league',
+                'uel': 'soccer-international-clubs-uefa-europa-league',
+                'eredivisie': 'soccer-netherlands-eredivisie',
+                'primeira-liga': 'soccer-portugal-primeira-liga',
+                'belgian-pro': 'soccer-belgium-first-division-a',
+                'scottish-prem': 'soccer-scotland-premiership',
+                'mls': 'soccer-usa-major-league-soccer',
+                'liga-mx': 'soccer-mexico-primera-division-clausura',
+                'arg-liga': 'soccer-argentina-primera-division',
+                'brazil-serie-a': 'soccer-brazil-serie-a',
+                'nba': 'basketball-usa-nba',
+                'nhl': 'ice-hockey-usa-nhl'
             }
         };
 
@@ -1664,6 +1688,7 @@
         let map = null;
         let markers = [];
         let allMatches = [];
+        let cloudbetOdds = {}; // Store Cloudbet odds by team name key
         let activeLeague = 'all';
         let activeLayers = { live: true, upcoming: true, weather: false, movement: true };
 
@@ -1913,15 +1938,19 @@
         // FETCH MATCHES FROM OpenFootball (GitHub-hosted JSON, no API key)
         // ============================================================================
         async function fetchAllMatches() {
-            console.log('Fetching matches from OpenFootball...');
+            console.log('Fetching matches...');
             document.getElementById('match-grid').innerHTML = `
                 <div class="loading-container">
                     <div class="loading-spinner"></div>
-                    <div>Loading fixtures from OpenFootball...</div>
+                    <div>Loading fixtures and odds...</div>
                 </div>
             `;
 
             allMatches = [];
+            cloudbetOdds = {};
+            
+            // Fetch Cloudbet odds first (so they're available when processing matches)
+            await fetchCloudbetOdds();
             const leagueKeys = Object.keys(CONFIG.LEAGUE_FILES);
             
             // Fetch all leagues in parallel
@@ -2120,6 +2149,98 @@
         }
 
         // ============================================================================
+        // CLOUDBET ODDS FETCHING
+        // ============================================================================
+        async function fetchCloudbetOdds() {
+            console.log('Fetching Cloudbet odds...');
+            const leagues = Object.entries(CONFIG.CLOUDBET_LEAGUES);
+            let totalOdds = 0;
+            
+            const fetchPromises = leagues.map(async ([ourKey, cloudbetKey]) => {
+                try {
+                    const url = `${CONFIG.CORS_PROXY}${encodeURIComponent(CONFIG.CLOUDBET_API_BASE + '/odds/competitions/' + cloudbetKey)}`;
+                    const response = await fetch(url, {
+                        headers: { 'X-API-Key': CONFIG.CLOUDBET_API_KEY }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.events && Array.isArray(data.events)) {
+                            return parseCloudbetOdds(data.events);
+                        }
+                    }
+                } catch (e) {
+                    console.warn(`Failed to fetch Cloudbet odds for ${ourKey}:`, e.message);
+                }
+                return {};
+            });
+
+            const results = await Promise.all(fetchPromises);
+            results.forEach(oddsMap => {
+                Object.assign(cloudbetOdds, oddsMap);
+                totalOdds += Object.keys(oddsMap).length;
+            });
+            
+            console.log(`Loaded ${totalOdds} Cloudbet odds`);
+        }
+
+        function parseCloudbetOdds(events) {
+            const oddsMap = {};
+            
+            events.forEach(event => {
+                if (!event.home?.name || !event.away?.name) return;
+                
+                // Get match_odds market
+                const matchOdds = event.markets?.['soccer.match_odds'] || 
+                                  event.markets?.['basketball.match_odds'] ||
+                                  event.markets?.['ice-hockey.match_odds'] ||
+                                  event.markets?.['winner'];
+                                  
+                if (!matchOdds?.submarkets) return;
+                
+                // Get full-time selections
+                const submarket = matchOdds.submarkets['period=ft'] || 
+                                  matchOdds.submarkets['default'] ||
+                                  Object.values(matchOdds.submarkets)[0];
+                                  
+                if (!submarket?.selections) return;
+                
+                const selections = submarket.selections;
+                const homeOdds = selections.find(s => s.outcome === 'home')?.price;
+                const awayOdds = selections.find(s => s.outcome === 'away')?.price;
+                const drawOdds = selections.find(s => s.outcome === 'draw')?.price;
+                
+                if (!homeOdds || !awayOdds) return;
+                
+                // Create lookup key from team names (normalized)
+                const key = makeOddsKey(event.home.name, event.away.name);
+                
+                oddsMap[key] = {
+                    homeOdds: homeOdds,
+                    awayOdds: awayOdds,
+                    drawOdds: drawOdds || null,
+                    source: 'cloudbet'
+                };
+            });
+            
+            return oddsMap;
+        }
+
+        function makeOddsKey(home, away) {
+            // Normalize team names for matching
+            const normalize = (name) => name.toLowerCase()
+                .replace(/\s*(fc|afc|cf|sc|ac|as|ssc|1\.)?\s*/gi, '')
+                .replace(/[^a-z0-9]/g, '')
+                .trim();
+            return `${normalize(home)}_${normalize(away)}`;
+        }
+
+        function getCloudbetOdds(home, away) {
+            const key = makeOddsKey(home, away);
+            return cloudbetOdds[key] || null;
+        }
+
+        // ============================================================================
         // CLEAN TEAM NAME (remove FC, AFC, etc.)
         // ============================================================================
         function cleanTeamName(name) {
@@ -2132,10 +2253,21 @@
         }
 
         // ============================================================================
-        // GENERATE DISPLAY ODDS (cosmetic)
+        // GET ODDS (Cloudbet first, fallback to generated)
         // ============================================================================
         function generateDisplayOdds(home, away, seed) {
-            // Create deterministic "random" based on team names
+            // Try Cloudbet odds first
+            const cloudbet = getCloudbetOdds(home, away);
+            if (cloudbet) {
+                return {
+                    homeOdds: cloudbet.homeOdds,
+                    drawOdds: cloudbet.drawOdds,
+                    awayOdds: cloudbet.awayOdds,
+                    source: 'cloudbet'
+                };
+            }
+            
+            // Fallback to deterministic generated odds
             const hashStr = home + away + seed;
             let hash = 0;
             for (let i = 0; i < hashStr.length; i++) {
@@ -2156,7 +2288,8 @@
             return {
                 homeOdds: parseFloat(homeOdds),
                 drawOdds: parseFloat(drawOdds),
-                awayOdds: parseFloat(awayOdds)
+                awayOdds: parseFloat(awayOdds),
+                source: 'generated'
             };
         }
 
