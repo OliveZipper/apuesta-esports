@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtus.pro - Esports Team Profile | $21.2M Prize Earnings | Apuesta Esports</title>
+    <meta name="description" content="Virtus.pro esports profile: Legendary CIS organization with Major championships. History, roster, achievements across Dota 2 and CS2.">
+    <meta name="keywords" content="Virtus.pro, VP, Dota 2, CS2, Counter-Strike, Major, CIS, Russia, esports">
+    
+    <meta property="og:title" content="Virtus.pro - CIS Legends | Apuesta Esports">
+    <meta property="og:description" content="Virtus.pro profile with $21.2M in prize earnings - legendary CIS esports organization.">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://www.apuestaesports.com/teams/virtus-pro.html">
+    
+    <link rel="canonical" href="https://www.apuestaesports.com/teams/virtus-pro.html">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --bg-card: #15151f;
+            --orange: #FF6B2F;
+            --purple: #8D52DA;
+            --yellow: #DFFD51;
+            --team-color: #FF6600;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+            --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        a { color: inherit; text-decoration: none; }
+        
+        nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); z-index: 1000; padding: 0 24px; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .logo { font-weight: 800; font-size: 1.25rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; }
+        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+        .nav-cta { background: var(--gradient); color: white; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; }
+        
+        .team-header { padding: 120px 24px 60px; background: radial-gradient(ellipse at 30% 20%, rgba(255, 102, 0, 0.15) 0%, transparent 50%), var(--bg-primary); }
+        .team-header-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; gap: 40px; align-items: center; }
+        .team-logo-large { width: 160px; height: 160px; background: linear-gradient(135deg, var(--team-color) 0%, #CC5200 100%); border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 5rem; box-shadow: 0 20px 60px rgba(255, 102, 0, 0.3); }
+        .team-info h1 { font-size: 3rem; font-weight: 800; margin-bottom: 8px; }
+        .team-meta { display: flex; gap: 24px; color: var(--text-secondary); margin-bottom: 16px; }
+        .team-tags { display: flex; gap: 8px; }
+        .team-tag { padding: 6px 14px; background: var(--bg-tertiary); border-radius: 6px; font-size: 0.85rem; font-weight: 500; }
+        .team-stats-header { text-align: right; }
+        .team-rank-badge { background: var(--bg-tertiary); color: var(--text-primary); padding: 8px 20px; border-radius: 8px; font-weight: 800; font-size: 1.25rem; display: inline-block; margin-bottom: 16px; }
+        .team-earnings-large { font-size: 2.5rem; font-weight: 800; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        .team-earnings-label { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        
+        main { max-width: 1400px; margin: 0 auto; padding: 60px 24px 100px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 40px; }
+        .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; }
+        .stat-card-value { font-size: 2rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-card-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+        
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        .section { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; margin-bottom: 32px; }
+        .section h2 { font-size: 1.5rem; margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .section p { color: var(--text-secondary); margin-bottom: 16px; }
+        
+        .roster-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+        .roster-player { background: var(--bg-tertiary); border-radius: 12px; padding: 20px; text-align: center; }
+        .player-avatar { width: 64px; height: 64px; background: var(--bg-primary); border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .player-name { font-weight: 700; margin-bottom: 4px; }
+        .player-role { font-size: 0.85rem; color: var(--text-muted); }
+        .player-country { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; }
+        
+        .achievements-list { list-style: none; }
+        .achievement-item { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+        .achievement-item:last-child { border-bottom: none; }
+        .achievement-medal { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+        .achievement-medal.gold { background: linear-gradient(135deg, #FFD700, #FFA500); }
+        .achievement-medal.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); }
+        .achievement-info { flex: 1; }
+        .achievement-title { font-weight: 600; }
+        .achievement-event { font-size: 0.85rem; color: var(--text-muted); }
+        .achievement-prize { font-weight: 700; color: var(--yellow); font-family: 'JetBrains Mono', monospace; }
+        
+        .match-card { background: var(--bg-tertiary); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+        .match-event { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; }
+        .match-teams { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+        .match-team-name { font-weight: 600; font-size: 1.1rem; }
+        .match-team-name.winner { color: var(--yellow); }
+        .match-score { font-size: 1.5rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+        .match-details { font-size: 0.85rem; color: var(--text-secondary); }
+        
+        .earnings-bar { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+        .earnings-game { width: 100px; font-size: 0.9rem; }
+        .earnings-bar-track { flex: 1; height: 24px; background: var(--bg-tertiary); border-radius: 4px; overflow: hidden; }
+        .earnings-bar-fill { height: 100%; background: var(--gradient); border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 0.8rem; font-weight: 600; }
+        
+        .sidebar { position: sticky; top: 100px; }
+        .social-links { display: flex; gap: 12px; margin-top: 20px; }
+        .social-link { padding: 12px 20px; background: var(--bg-tertiary); border-radius: 8px; font-size: 0.9rem; }
+        
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 60px 24px 30px; }
+        .footer-content { max-width: 1400px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 40px; margin-bottom: 40px; }
+        .footer-brand { max-width: 300px; }
+        .footer-brand .logo { font-size: 1.5rem; margin-bottom: 16px; display: inline-block; }
+        .footer-brand p { color: var(--text-muted); font-size: 0.9rem; }
+        .footer-links h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 16px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links a { color: var(--text-secondary); font-size: 0.95rem; }
+        .footer-bottom { border-top: 1px solid var(--border); padding-top: 30px; display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; }
+        
+        @media (max-width: 1024px) {
+            .team-header-content { grid-template-columns: 1fr; text-align: center; }
+            .team-logo-large { margin: 0 auto; }
+            .team-meta, .team-tags { justify-content: center; }
+            .team-stats-header { text-align: center; }
+            .content-grid { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .team-info h1 { font-size: 2rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .footer-brand { grid-column: 1 / -1; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <ul class="nav-links">
+                <li><a href="/games/">Games</a></li>
+                <li><a href="/teams/" class="active">Teams</a></li>
+                <li><a href="/players/">Players</a></li>
+                <li><a href="/countries/">Countries</a></li>
+                <li><a href="/tournaments/">Tournaments</a></li>
+                <li><a href="/betting/">Betting</a></li>
+            </ul>
+            <a href="/live/" class="nav-cta">Live Odds →</a>
+        </div>
+    </nav>
+
+    <header class="team-header">
+        <div class="team-header-content">
+            <div class="team-logo-large">🐻</div>
+            <div class="team-info">
+                <h1>Virtus.pro</h1>
+                <div class="team-meta">
+                    <span>🇷🇺 Russia</span>
+                    <span>Founded 2003</span>
+                    <span>736 Tournaments</span>
+                </div>
+                <div class="team-tags">
+                    <span class="team-tag">Dota 2</span>
+                    <span class="team-tag">CS2</span>
+                </div>
+            </div>
+            <div class="team-stats-header">
+                <div class="team-rank-badge">#8 WORLDWIDE</div>
+                <div class="team-earnings-large">$21.2M</div>
+                <div class="team-earnings-label">Total Earnings</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-value">736</div>
+                <div class="stat-card-label">Tournaments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-value">1</div>
+                <div class="stat-card-label">CS Major Win</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-value">3</div>
+                <div class="stat-card-label">TI Top 3</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-value">21</div>
+                <div class="stat-card-label">Years Active</div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <section class="section">
+                    <h2><span>📜</span> History</h2>
+                    <p>Virtus.pro is a Russian esports organization founded in 2003, making it one of the oldest esports teams still in operation. The organization has been a pillar of CIS esports for over two decades, fielding competitive rosters across multiple titles.</p>
+                    <p>In Counter-Strike, VP's Polish roster (known as the "Virtus.Plow") was legendary in the early CS:GO era. Featuring players like Snax, pasha, byali, TaZ, and NEO, they won EMS One Katowice 2014 and were known for their ability to defeat any team on their day.</p>
+                    <p>Virtus.pro's Dota 2 division has consistently been among the best in the world. Their roster featuring players like No[o]ne, Ramzes666, and Solo achieved multiple top placements at The International and won several Majors.</p>
+                    <p>Despite geopolitical challenges, VP continues to develop talent and maintain competitive rosters. The organization's iconic bear logo and orange branding remain instantly recognizable in the esports world.</p>
+                </section>
+
+                <section class="section">
+                    <h2><span>👥</span> Legendary CS:GO Polish Roster</h2>
+                    <div class="roster-grid">
+                        <div class="roster-player">
+                            <div class="player-avatar">👑</div>
+                            <div class="player-name">Snax</div>
+                            <div class="player-role">Lurker</div>
+                            <div class="player-country">🇵🇱 Poland</div>
+                        </div>
+                        <div class="roster-player">
+                            <div class="player-avatar">💪</div>
+                            <div class="player-name">pasha</div>
+                            <div class="player-role">AWPer</div>
+                            <div class="player-country">🇵🇱 Poland</div>
+                        </div>
+                        <div class="roster-player">
+                            <div class="player-avatar">🔫</div>
+                            <div class="player-name">byali</div>
+                            <div class="player-role">Entry</div>
+                            <div class="player-country">🇵🇱 Poland</div>
+                        </div>
+                        <div class="roster-player">
+                            <div class="player-avatar">🧠</div>
+                            <div class="player-name">TaZ</div>
+                            <div class="player-role">IGL</div>
+                            <div class="player-country">🇵🇱 Poland</div>
+                        </div>
+                        <div class="roster-player">
+                            <div class="player-avatar">🎯</div>
+                            <div class="player-name">NEO</div>
+                            <div class="player-role">Support</div>
+                            <div class="player-country">🇵🇱 Poland</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2><span>🏆</span> Major Achievements</h2>
+                    <ul class="achievements-list">
+                        <li class="achievement-item">
+                            <div class="achievement-medal gold">🥇</div>
+                            <div class="achievement-info">
+                                <div class="achievement-title">EMS One Katowice 2014</div>
+                                <div class="achievement-event">CS:GO Major • Katowice, Poland • March 2014</div>
+                            </div>
+                            <div class="achievement-prize">$100K</div>
+                        </li>
+                        <li class="achievement-item">
+                            <div class="achievement-medal silver">🥈</div>
+                            <div class="achievement-info">
+                                <div class="achievement-title">The International 2018</div>
+                                <div class="achievement-event">Dota 2 • Vancouver, Canada • August 2018</div>
+                            </div>
+                            <div class="achievement-prize">$4.0M</div>
+                        </li>
+                        <li class="achievement-item">
+                            <div class="achievement-medal gold">🥇</div>
+                            <div class="achievement-info">
+                                <div class="achievement-title">EPICENTER Major 2019</div>
+                                <div class="achievement-event">Dota 2 • Moscow, Russia • June 2019</div>
+                            </div>
+                            <div class="achievement-prize">$350K</div>
+                        </li>
+                        <li class="achievement-item">
+                            <div class="achievement-medal gold">🥇</div>
+                            <div class="achievement-info">
+                                <div class="achievement-title">DreamLeague Season 11</div>
+                                <div class="achievement-event">Dota 2 • Stockholm, Sweden • March 2019</div>
+                            </div>
+                            <div class="achievement-prize">$350K</div>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="section">
+                    <h2><span>🎮</span> Notable Matches</h2>
+                    <div class="match-card">
+                        <div class="match-event">EMS One Katowice 2014 Grand Final • March 16, 2014</div>
+                        <div class="match-teams">
+                            <div class="match-team">
+                                <div class="match-team-name winner">Virtus.pro</div>
+                            </div>
+                            <div class="match-score">2 - 0</div>
+                            <div class="match-team">
+                                <div class="match-team-name">NiP</div>
+                            </div>
+                        </div>
+                        <div class="match-details">VP's first and only CS:GO Major championship, defeating the legendary NiP in Poland.</div>
+                    </div>
+                    <div class="match-card">
+                        <div class="match-event">TI8 Upper Bracket Final • August 24, 2018</div>
+                        <div class="match-teams">
+                            <div class="match-team">
+                                <div class="match-team-name">PSG.LGD</div>
+                            </div>
+                            <div class="match-score">2 - 1</div>
+                            <div class="match-team">
+                                <div class="match-team-name">Virtus.pro</div>
+                            </div>
+                        </div>
+                        <div class="match-details">Close series in VP's run to the TI8 grand finals – their best International finish.</div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="sidebar">
+                <div class="section">
+                    <h2><span>💰</span> Earnings by Game</h2>
+                    <div class="earnings-chart">
+                        <div class="earnings-bar">
+                            <div class="earnings-game">Dota 2</div>
+                            <div class="earnings-bar-track">
+                                <div class="earnings-bar-fill" style="width: 70%;">$14.8M</div>
+                            </div>
+                        </div>
+                        <div class="earnings-bar">
+                            <div class="earnings-game">CS2/CS:GO</div>
+                            <div class="earnings-bar-track">
+                                <div class="earnings-bar-fill" style="width: 25%;">$5.3M</div>
+                            </div>
+                        </div>
+                        <div class="earnings-bar">
+                            <div class="earnings-game">Other</div>
+                            <div class="earnings-bar-track">
+                                <div class="earnings-bar-fill" style="width: 5%;">$1.1M</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><span>📊</span> Quick Facts</h2>
+                    <p><strong>Founded:</strong> 2003 (Russia)</p>
+                    <p><strong>Headquarters:</strong> Moscow, Russia</p>
+                    <p><strong>Owner:</strong> ESforce Holding</p>
+                    <p><strong>Nickname:</strong> "Virtus.Plow" (CS)</p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/virtaboruspro" class="social-link">𝕏 Twitter</a>
+                        <a href="https://virtus.pro" class="social-link">🌐 Website</a>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><span>🔗</span> Similar Teams</h2>
+                    <p><a href="/teams/team-spirit.html" style="color: var(--orange);">Team Spirit</a> - $35.6M</p>
+                    <p><a href="/teams/natus-vincere.html" style="color: var(--orange);">Natus Vincere</a> - $24.4M</p>
+                    <p><a href="/teams/team-secret.html" style="color: var(--orange);">Team Secret</a> - $21.1M</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">APUESTA ESPORTS</a>
+                    <p>The world's most comprehensive esports reference.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Games</h4>
+                    <ul>
+                        <li><a href="/games/cs2.html">Counter-Strike 2</a></li>
+                        <li><a href="/games/dota2.html">Dota 2</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="/teams/">Team Rankings</a></li>
+                        <li><a href="/players/">Player Profiles</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Betting</h4>
+                    <ul>
+                        <li><a href="/live/">Live Odds</a></li>
+                        <li><a href="/betting/">Betting Guides</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© 2026 Apuesta Esports. Data from Esports Earnings.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SportsTeam",
+        "name": "Virtus.pro",
+        "url": "https://www.apuestaesports.com/teams/virtus-pro.html",
+        "sport": "Esports",
+        "foundingDate": "2003",
+        "description": "Virtus.pro is a Russian esports organization, CS:GO Major champions with $21.2M in prize earnings."
+    }
+    </script>
+</body>
+</html>

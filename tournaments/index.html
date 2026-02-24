@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneos de Esports 2026 | Calendario y Resultados | Apuesta Esports</title>
+    <meta name="description" content="Calendario completo de torneos de esports 2026. The International, LoL Worlds, CS2 Majors, VCT Champions y más. Premios, fechas y equipos.">
+    <meta name="keywords" content="torneos esports, calendario esports, The International 2026, LoL Worlds, CS2 Major, VCT Champions">
+    <link rel="canonical" href="https://www.apuestaesports.com/tournaments/">
+    
+    <meta property="og:title" content="Torneos de Esports 2026 | Calendario Completo">
+    <meta property="og:description" content="Todos los torneos de esports del año. Majors, Worlds, TI y más con fechas, premios y equipos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.apuestaesports.com/tournaments/">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "Torneos de Esports 2026",
+        "description": "Calendario completo de los mejores torneos de esports del mundo",
+        "numberOfItems": 20,
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "The International 2026", "url": "https://www.apuestaesports.com/tournaments/the-international-2026.html"},
+            {"@type": "ListItem", "position": 2, "name": "LoL Worlds 2026", "url": "https://www.apuestaesports.com/tournaments/lol-worlds-2026.html"},
+            {"@type": "ListItem", "position": 3, "name": "CS2 Major Copenhagen 2026", "url": "https://www.apuestaesports.com/tournaments/cs2-major-copenhagen-2026.html"},
+            {"@type": "ListItem", "position": 4, "name": "VCT Champions 2026", "url": "https://www.apuestaesports.com/tournaments/vct-champions-2026.html"}
+        ]
+    }
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --accent-orange: #FF6B2F;
+            --accent-purple: #8D52DA;
+            --accent-lime: #DFFD51;
+            --border-color: #2a2a3a;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-orange);
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Filters */
+        .filters {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-orange);
+            color: white;
+            border-color: var(--accent-orange);
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .section-title .icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Tournament Grid */
+        .tournaments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .tournament-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        
+        .tournament-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-orange);
+        }
+        
+        .tournament-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(255,107,47,0.1) 0%, rgba(141,82,218,0.1) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .tournament-game {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent-purple);
+            color: white;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .tournament-game.cs2 { background: #F5A623; }
+        .tournament-game.dota2 { background: #C23C2A; }
+        .tournament-game.lol { background: #0BC6E3; }
+        .tournament-game.valorant { background: #FD4556; }
+        .tournament-game.fortnite { background: #9D4DFF; }
+        .tournament-game.cod { background: #4CAF50; }
+        
+        .tournament-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tournament-name a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .tournament-name a:hover {
+            color: var(--accent-orange);
+        }
+        
+        .tournament-meta {
+            display: flex;
+            gap: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .tournament-body {
+            padding: 1.5rem;
+        }
+        
+        .tournament-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-lime);
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+        
+        .tournament-status {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .status-upcoming {
+            background: rgba(223, 253, 81, 0.2);
+            color: var(--accent-lime);
+        }
+        
+        .status-live {
+            background: rgba(255, 107, 47, 0.2);
+            color: var(--accent-orange);
+            animation: pulse 2s infinite;
+        }
+        
+        .status-completed {
+            background: rgba(160, 160, 176, 0.2);
+            color: var(--text-secondary);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Calendar View */
+        .calendar-section {
+            margin-top: 3rem;
+        }
+        
+        .month-header {
+            font-size: 1.5rem;
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .calendar-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        
+        .calendar-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        
+        .calendar-item:hover {
+            border-color: var(--accent-purple);
+        }
+        
+        .calendar-date {
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .calendar-date .day {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+        }
+        
+        .calendar-date .month {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+        
+        .calendar-info {
+            flex: 1;
+        }
+        
+        .calendar-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .calendar-info h4 a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .calendar-info h4 a:hover {
+            color: var(--accent-orange);
+        }
+        
+        .calendar-info p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .calendar-prize {
+            font-weight: 600;
+            color: var(--accent-lime);
+        }
+        
+        /* Prize Pool Rankings */
+        .prize-ranking {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .prize-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .prize-item:last-child {
+            border-bottom: none;
+        }
+        
+        .prize-rank {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-purple);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .prize-rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); }
+        .prize-rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); }
+        .prize-rank.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); }
+        
+        .prize-info {
+            flex: 1;
+        }
+        
+        .prize-info h4 {
+            font-size: 1rem;
+        }
+        
+        .prize-info p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .prize-amount {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-lime);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h4 {
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent-orange);
+        }
+        
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .tournaments-grid { grid-template-columns: 1fr; }
+            .tournament-stats { grid-template-columns: repeat(3, 1fr); }
+            .calendar-item { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">🎮 Apuesta Esports</a>
+            <ul class="nav-links">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/games/">Juegos</a></li>
+                <li><a href="/teams/">Equipos</a></li>
+                <li><a href="/players/">Jugadores</a></li>
+                <li><a href="/tournaments/" class="active">Torneos</a></li>
+                <li><a href="/countries/">Países</a></li>
+                <li><a href="/betting/">Apuestas</a></li>
+                <li><a href="/live/">En Vivo</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>🏆 Torneos de Esports 2026</h1>
+        <p>Calendario completo de los torneos más importantes del mundo. Majors, Worlds, The International y más con fechas, premios y equipos participantes.</p>
+    </section>
+
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="dota2">Dota 2</button>
+        <button class="filter-btn" data-filter="cs2">CS2</button>
+        <button class="filter-btn" data-filter="lol">LoL</button>
+        <button class="filter-btn" data-filter="valorant">Valorant</button>
+        <button class="filter-btn" data-filter="fortnite">Fortnite</button>
+        <button class="filter-btn" data-filter="cod">Call of Duty</button>
+    </div>
+
+    <main>
+        <section>
+            <h2 class="section-title"><span class="icon">🔴</span> Torneos Destacados 2026</h2>
+            
+            <div class="tournaments-grid">
+                <!-- The International 2026 -->
+                <article class="tournament-card" data-game="dota2">
+                    <div class="tournament-header">
+                        <span class="tournament-game dota2">Dota 2</span>
+                        <h3 class="tournament-name"><a href="/tournaments/the-international-2026.html">The International 2026</a></h3>
+                        <div class="tournament-meta">
+                            <span>📍 Seattle, USA</span>
+                            <span>📅 Agosto 2026</span>
+                        </div>
+                    </div>
+                    <div class="tournament-body">
+                        <div class="tournament-stats">
+                            <div class="stat">
+                                <div class="stat-value">$40M+</div>
+                                <div class="stat-label">Premio</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">20</div>
+                                <div class="stat-label">Equipos</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">2</div>
+                                <div class="stat-label">Semanas</div>
+                            </div>
+                        </div>
+                        <span class="tournament-status status-upcoming">⏳ Próximo</span>
+                    </div>
+                </article>
+
+                <!-- LoL Worlds 2026 -->
+                <article class="tournament-card" data-game="lol">
+                    <div class="tournament-header">
+                        <span class="tournament-game lol">League of Legends</span>
+                        <h3 class="tournament-name"><a href="/tournaments/lol-worlds-2026.html">LoL World Championship 2026</a></h3>
+                        <div class="tournament-meta">
+                            <span>📍 Londres, UK</span>
+                            <span>📅 Octubre 2026</span>
+                        </div>
+                    </div>
+                    <div class="tournament-body">
+                        <div class="tournament-stats">
+                            <div class="stat">
+                                <div class="stat-value">$2.5M</div>
+                                <div class="stat-label">Premio</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">24</div>
+                                <div class="stat-label">Equipos</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">1M+</div>
+                                <div class="stat-label">Viewers</div>
+                            </div>
+                        </div>
+                        <span class="tournament-status status-upcoming">⏳ Próximo</span>
+                    </div>
+                </article>
+
+                <!-- CS2 Major Copenhagen -->
+                <article class="tournament-card" data-game="cs2">
+                    <div class="tournament-header">
+                        <span class="tournament-game cs2">Counter-Strike 2</span>
+                        <h3 class="tournament-name"><a href="/tournaments/cs2-major-copenhagen-2026.html">CS2 Major Copenhagen 2026</a></h3>
+                        <div class="tournament-meta">
+                            <span>📍 Copenhague, DK</span>
+                            <span>📅 Marzo 2026</span>
+                        </div>
+                    </div>
+                    <div class="tournament-body">
+                        <div class="tournament-stats">
+                            <div class="stat">
+                                <div class="stat-value">$1.25M</div>
+                                <div class="stat-label">Premio</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">24</div>
+                                <div class="stat-label">Equipos</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">Major</div>
+                                <div class="stat-label">Tier</div>
+                            </div>
+                        </div>
+                        <span class="tournament-status status-live">🔴 EN VIVO</span>
+                    </div>
+                </article>
+
+                <!-- VCT Champions -->
+                <article class="tournament-card" data-game="valorant">
+                    <div class="tournament-header">
+                        <span class="tournament-game valorant">Valorant</span>
+                        <h3 class="tournament-name"><a href="/tournaments/vct-champions-2026.html">VCT Champions 2026</a></h3>
+                        <div class="tournament-meta">
+                            <span>📍 Seoul, Corea</span>
+                            <span>📅 Agosto 2026</span>
+                        </div>
+                    </div>
+                    <div class="tournament-body">
+                        <div class="tournament-stats">
+                            <div class="stat">
+                                <div class="stat-value">$2.5M</div>
+                                <div class="stat-label">Premio</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">16</div>
+                                <div class="stat-label">Equipos</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">World</div>
+                                <div class="stat-label">Tier</div>
+                            </div>
+                        </div>
+                        <span class="tournament-status status-upcoming">⏳ Próximo</span>
+                    </div>
+                </article>
+
+                <!-- Fortnite FNCS -->
+                <article class="tournament-card" data-game="fortnite">
+                    <div class="tournament-header">
+                        <span class="tournament-game fortnite">Fortnite</span>
+                        <h3 class="tournament-name"><a href="/tournaments/fncs-global-2026.html">FNCS Global Championship 2026</a></h3>
+                        <div class="tournament-meta">
+                            <span>📍 Los Angeles, USA</span>
+                            <span>📅 Julio 2026</span>
+                        </div>
+                    </div>
+                    <div class="tournament-body">
+                        <div class="tournament-stats">
+                            <div class="stat">
+                                <div class="stat-value">$10M</div>
+                                <div class="stat-label">Premio</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">200</div>
+                                <div class="stat-label">Players</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">5</div>
+                                <div class="stat-label">Días</div>
+                            </div>
+                        </div>
+                        <span class="tournament-status status-upcoming">⏳ Próximo</span>
+                    </div>
+                </article>
+
+                <!-- CoD League Championship -->
+                <article class="tournament-card" data-game="cod">
+                    <div class="tournament-header">
+                        <span class="tournament-game cod">Call of Duty</span>
+                        <h3 class="tournament-name"><a href="/tournaments/cdl-championship-2026.html">CDL Championship 2026</a></h3>
+                        <div class="tournament-meta">
+                            <span>📍 Texas, USA</span>
+                            <span>📅 Agosto 2026</span>
+                        </div>
+                    </div>
+                    <div class="tournament-body">
+                        <div class="tournament-stats">
+                            <div class="stat">
+                                <div class="stat-value">$2.5M</div>
+                                <div class="stat-label">Premio</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">Equipos</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">4</div>
+                                <div class="stat-label">Días</div>
+                            </div>
+                        </div>
+                        <span class="tournament-status status-upcoming">⏳ Próximo</span>
+                    </div>
+                </article>
+
+                <!-- IEM Katowice -->
+                <article class="tournament-card" data-game="cs2">
+                    <div class="tournament-header">
+                        <span class="tournament-game cs2">Counter-Strike 2</span>
+                        <h3 class="tournament-name"><a href="/tournaments/iem-katowice-2026.html">IEM Katowice 2026</a></h3>
+                        <div class="tournament-meta">
+                            <span>📍 Katowice, Polonia</span>
+                            <span>📅 Febrero 2026</span>
+                        </div>
+                    </div>
+                    <div class="tournament-body">
+                        <div class="tournament-stats">
+                            <div class="stat">
+                                <div class="stat-value">$1M</div>
+                                <div class="stat-label">Premio</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">24</div>
+                                <div class="stat-label">Equipos</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">S-Tier</div>
+                                <div class="stat-label">Tier</div>
+                            </div>
+                        </div>
+                        <span class="tournament-status status-completed">✅ Completado</span>
+                    </div>
+                </article>
+
+                <!-- MSI 2026 -->
+                <article class="tournament-card" data-game="lol">
+                    <div class="tournament-header">
+                        <span class="tournament-game lol">League of Legends</span>
+                        <h3 class="tournament-name"><a href="/tournaments/msi-2026.html">Mid-Season Invitational 2026</a></h3>
+                        <div class="tournament-meta">
+                            <span>📍 Shanghai, China</span>
+                            <span>📅 Mayo 2026</span>
+                        </div>
+                    </div>
+                    <div class="tournament-body">
+                        <div class="tournament-stats">
+                            <div class="stat">
+                                <div class="stat-value">$500K</div>
+                                <div class="stat-label">Premio</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">14</div>
+                                <div class="stat-label">Equipos</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">Semanas</div>
+                            </div>
+                        </div>
+                        <span class="tournament-status status-upcoming">⏳ Próximo</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Calendar Section -->
+        <section class="calendar-section">
+            <h2 class="section-title"><span class="icon">📅</span> Calendario 2026</h2>
+            
+            <h3 class="month-header">Febrero 2026</h3>
+            <div class="calendar-list">
+                <div class="calendar-item" data-game="cs2">
+                    <div class="calendar-date">
+                        <div class="day">01</div>
+                        <div class="month">FEB</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4><a href="/tournaments/iem-katowice-2026.html">IEM Katowice 2026</a></h4>
+                        <p>Counter-Strike 2 • Katowice, Polonia</p>
+                    </div>
+                    <span class="calendar-prize">$1,000,000</span>
+                </div>
+                <div class="calendar-item" data-game="lol">
+                    <div class="calendar-date">
+                        <div class="day">14</div>
+                        <div class="month">FEB</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4><a href="#">LEC Winter Split Finals</a></h4>
+                        <p>League of Legends • Berlín, Alemania</p>
+                    </div>
+                    <span class="calendar-prize">$200,000</span>
+                </div>
+            </div>
+
+            <h3 class="month-header">Marzo 2026</h3>
+            <div class="calendar-list">
+                <div class="calendar-item" data-game="cs2">
+                    <div class="calendar-date">
+                        <div class="day">09</div>
+                        <div class="month">MAR</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4><a href="/tournaments/cs2-major-copenhagen-2026.html">CS2 Major Copenhagen 2026</a></h4>
+                        <p>Counter-Strike 2 • Copenhague, Dinamarca</p>
+                    </div>
+                    <span class="calendar-prize">$1,250,000</span>
+                </div>
+                <div class="calendar-item" data-game="valorant">
+                    <div class="calendar-date">
+                        <div class="day">22</div>
+                        <div class="month">MAR</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4><a href="#">VCT Masters Madrid</a></h4>
+                        <p>Valorant • Madrid, España</p>
+                    </div>
+                    <span class="calendar-prize">$1,000,000</span>
+                </div>
+            </div>
+
+            <h3 class="month-header">Mayo 2026</h3>
+            <div class="calendar-list">
+                <div class="calendar-item" data-game="lol">
+                    <div class="calendar-date">
+                        <div class="day">01</div>
+                        <div class="month">MAY</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4><a href="/tournaments/msi-2026.html">MSI 2026</a></h4>
+                        <p>League of Legends • Shanghai, China</p>
+                    </div>
+                    <span class="calendar-prize">$500,000</span>
+                </div>
+            </div>
+
+            <h3 class="month-header">Julio 2026</h3>
+            <div class="calendar-list">
+                <div class="calendar-item" data-game="fortnite">
+                    <div class="calendar-date">
+                        <div class="day">12</div>
+                        <div class="month">JUL</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4><a href="/tournaments/fncs-global-2026.html">FNCS Global Championship 2026</a></h4>
+                        <p>Fortnite • Los Angeles, USA</p>
+                    </div>
+                    <span class="calendar-prize">$10,000,000</span>
+                </div>
+            </div>
+
+            <h3 class="month-header">Agosto 2026</h3>
+            <div class="calendar-list">
+                <div class="calendar-item" data-game="dota2">
+                    <div class="calendar-date">
+                        <div class="day">08</div>
+                        <div class="month">AGO</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4><a href="/tournaments/the-international-2026.html">The International 2026</a></h4>
+                        <p>Dota 2 • Seattle, USA</p>
+                    </div>
+                    <span class="calendar-prize">$40,000,000+</span>
+                </div>
+                <div class="calendar-item" data-game="valorant">
+                    <div class="calendar-date">
+                        <div class="day">21</div>
+                        <div class="month">AGO</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4><a href="/tournaments/vct-champions-2026.html">VCT Champions 2026</a></h4>
+                        <p>Valorant • Seoul, Corea del Sur</p>
+                    </div>
+                    <span class="calendar-prize">$2,500,000</span>
+                </div>
+                <div class="calendar-item" data-game="cod">
+                    <div class="calendar-date">
+                        <div class="day">28</div>
+                        <div class="month">AGO</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4><a href="/tournaments/cdl-championship-2026.html">CDL Championship 2026</a></h4>
+                        <p>Call of Duty • Texas, USA</p>
+                    </div>
+                    <span class="calendar-prize">$2,500,000</span>
+                </div>
+            </div>
+
+            <h3 class="month-header">Octubre 2026</h3>
+            <div class="calendar-list">
+                <div class="calendar-item" data-game="lol">
+                    <div class="calendar-date">
+                        <div class="day">02</div>
+                        <div class="month">OCT</div>
+                    </div>
+                    <div class="calendar-info">
+                        <h4><a href="/tournaments/lol-worlds-2026.html">LoL Worlds 2026</a></h4>
+                        <p>League of Legends • Londres, UK</p>
+                    </div>
+                    <span class="calendar-prize">$2,500,000</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Biggest Prize Pools -->
+        <section>
+            <h2 class="section-title"><span class="icon">💰</span> Mayores Premios en Esports (Histórico)</h2>
+            
+            <div class="prize-ranking">
+                <div class="prize-item">
+                    <span class="prize-rank gold">1</span>
+                    <div class="prize-info">
+                        <h4>The International 2024</h4>
+                        <p>Dota 2 • Copenhague, Dinamarca</p>
+                    </div>
+                    <span class="prize-amount">$40,018,195</span>
+                </div>
+                <div class="prize-item">
+                    <span class="prize-rank silver">2</span>
+                    <div class="prize-info">
+                        <h4>The International 2021</h4>
+                        <p>Dota 2 • Bucarest, Rumania</p>
+                    </div>
+                    <span class="prize-amount">$40,018,400</span>
+                </div>
+                <div class="prize-item">
+                    <span class="prize-rank bronze">3</span>
+                    <div class="prize-info">
+                        <h4>The International 2019</h4>
+                        <p>Dota 2 • Shanghai, China</p>
+                    </div>
+                    <span class="prize-amount">$34,330,068</span>
+                </div>
+                <div class="prize-item">
+                    <span class="prize-rank">4</span>
+                    <div class="prize-info">
+                        <h4>Fortnite World Cup 2019</h4>
+                        <p>Fortnite • New York, USA</p>
+                    </div>
+                    <span class="prize-amount">$30,000,000</span>
+                </div>
+                <div class="prize-item">
+                    <span class="prize-rank">5</span>
+                    <div class="prize-info">
+                        <h4>The International 2018</h4>
+                        <p>Dota 2 • Vancouver, Canadá</p>
+                    </div>
+                    <span class="prize-amount">$25,532,177</span>
+                </div>
+                <div class="prize-item">
+                    <span class="prize-rank">6</span>
+                    <div class="prize-info">
+                        <h4>PGL CS2 Major Copenhagen 2024</h4>
+                        <p>Counter-Strike 2 • Copenhague, Dinamarca</p>
+                    </div>
+                    <span class="prize-amount">$1,250,000</span>
+                </div>
+                <div class="prize-item">
+                    <span class="prize-rank">7</span>
+                    <div class="prize-info">
+                        <h4>VCT Champions 2024</h4>
+                        <p>Valorant • Seoul, Corea del Sur</p>
+                    </div>
+                    <span class="prize-amount">$2,250,000</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Juegos</h4>
+                <ul>
+                    <li><a href="/games/cs2.html">Counter-Strike 2</a></li>
+                    <li><a href="/games/dota2.html">Dota 2</a></li>
+                    <li><a href="/games/lol.html">League of Legends</a></li>
+                    <li><a href="/games/valorant.html">Valorant</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Torneos</h4>
+                <ul>
+                    <li><a href="/tournaments/the-international-2026.html">The International</a></li>
+                    <li><a href="/tournaments/lol-worlds-2026.html">LoL Worlds</a></li>
+                    <li><a href="/tournaments/cs2-major-copenhagen-2026.html">CS2 Major</a></li>
+                    <li><a href="/tournaments/vct-champions-2026.html">VCT Champions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Recursos</h4>
+                <ul>
+                    <li><a href="/teams/">Equipos</a></li>
+                    <li><a href="/players/">Jugadores</a></li>
+                    <li><a href="/countries/">Países</a></li>
+                    <li><a href="/betting/">Guías de Apuestas</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Apuestas</h4>
+                <ul>
+                    <li><a href="/betting/beginners-guide.html">Guía para Principiantes</a></li>
+                    <li><a href="/betting/cs2-betting.html">Apuestas CS2</a></li>
+                    <li><a href="/betting/dota2-betting.html">Apuestas Dota 2</a></li>
+                    <li><a href="/live/">Odds en Vivo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Apuesta Esports. Juega responsablemente. 18+</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+                
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filter tournament cards
+                document.querySelectorAll('.tournament-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.game === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Filter calendar items
+                document.querySelectorAll('.calendar-item').forEach(item => {
+                    if (filter === 'all' || item.dataset.game === filter) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
