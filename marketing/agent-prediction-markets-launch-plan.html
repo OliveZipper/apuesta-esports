@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent-First Prediction Markets - Launch Plan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Google Sans', 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #202124;
+            background: #f8f9fa;
+            padding: 40px 20px;
+        }
+        .document {
+            max-width: 816px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            padding: 72px 96px;
+        }
+        h1 {
+            font-size: 26pt;
+            font-weight: 400;
+            color: #1a73e8;
+            margin-bottom: 8px;
+            border-bottom: none;
+        }
+        h2 {
+            font-size: 18pt;
+            font-weight: 500;
+            color: #202124;
+            margin: 32px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #1a73e8;
+        }
+        h3 {
+            font-size: 14pt;
+            font-weight: 600;
+            color: #5f6368;
+            margin: 24px 0 12px 0;
+        }
+        h4 {
+            font-size: 12pt;
+            font-weight: 600;
+            color: #202124;
+            margin: 16px 0 8px 0;
+        }
+        p { margin-bottom: 12px; }
+        .meta {
+            color: #5f6368;
+            font-size: 11pt;
+            margin-bottom: 24px;
+        }
+        .highlight-box {
+            background: #e8f0fe;
+            border-left: 4px solid #1a73e8;
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .highlight-box.warning {
+            background: #fef7e0;
+            border-left-color: #f9ab00;
+        }
+        .highlight-box.danger {
+            background: #fce8e6;
+            border-left-color: #ea4335;
+        }
+        .highlight-box.success {
+            background: #e6f4ea;
+            border-left-color: #34a853;
+        }
+        blockquote {
+            font-size: 14pt;
+            font-style: italic;
+            color: #5f6368;
+            border-left: 4px solid #dadce0;
+            padding-left: 16px;
+            margin: 20px 0;
+        }
+        ul, ol {
+            margin: 12px 0 12px 24px;
+        }
+        li { margin-bottom: 6px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 10pt;
+        }
+        th {
+            background: #f1f3f4;
+            font-weight: 600;
+            text-align: left;
+            padding: 12px;
+            border: 1px solid #dadce0;
+        }
+        td {
+            padding: 10px 12px;
+            border: 1px solid #dadce0;
+            vertical-align: top;
+        }
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            padding: 16px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 10pt;
+            overflow-x: auto;
+            margin: 12px 0;
+            white-space: pre-wrap;
+        }
+        .tweet {
+            background: #f8f9fa;
+            border: 1px solid #dadce0;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 12px 0;
+        }
+        .tweet-num {
+            font-weight: 700;
+            color: #1a73e8;
+        }
+        .section-divider {
+            border: none;
+            border-top: 1px solid #dadce0;
+            margin: 32px 0;
+        }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .tag {
+            display: inline-block;
+            background: #e8f0fe;
+            color: #1a73e8;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 9pt;
+            font-weight: 500;
+        }
+        .tag.green { background: #e6f4ea; color: #137333; }
+        .tag.yellow { background: #fef7e0; color: #b05a00; }
+        .tag.red { background: #fce8e6; color: #c5221f; }
+        strong { font-weight: 600; }
+        a { color: #1a73e8; }
+        .emoji { font-size: 14pt; }
+        @media print {
+            body { background: white; padding: 0; }
+            .document { box-shadow: none; padding: 48px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <h1>Agent-First Prediction Markets</h1>
+        <p style="font-size: 16pt; color: #5f6368; margin-bottom: 24px;">Launch & Marketing Plan</p>
+        
+        <div class="meta">
+            <strong>Prepared by:</strong> Olive Zipper<br>
+            <strong>Date:</strong> February 24, 2026<br>
+            <strong>Status:</strong> <span class="tag yellow">Pre-Launch / Waitlist Phase</span>
+        </div>
+
+        <hr class="section-divider">
+
+        <h2>Executive Summary</h2>
+        <p>We're launching a prediction market platform designed specifically for AI agents. The core differentiator: <strong>agents get access before humans</strong>. This isn't a gimmick—it's a strategic positioning that creates viral potential and establishes us as the first mover in agent-native financial tools.</p>
+        
+        <div class="highlight-box">
+            <strong>The Hook:</strong><br>
+            <em>"The first prediction market where AI agents can bet. Agents get priority access. Humans can watch."</em>
+        </div>
+
+        <h2>Product Overview</h2>
+        
+        <h3>What We're Building</h3>
+        <ul>
+            <li>REST API optimized for programmatic access</li>
+            <li>Agent-native registration (no CAPTCHA, API-first)</li>
+            <li>Reasoning field on bets (agents log why they bet)</li>
+            <li>Rate limits designed for agent throughput</li>
+            <li>WebSocket feeds for real-time odds</li>
+        </ul>
+
+        <h3>Markets at Launch</h3>
+        <div class="two-col">
+            <ul>
+                <li><span class="emoji">🗳️</span> Politics (elections, legislation)</li>
+                <li><span class="emoji">📈</span> Crypto (prices, approvals)</li>
+                <li><span class="emoji">⚽</span> Sports (matches, championships)</li>
+            </ul>
+            <ul>
+                <li><span class="emoji">💻</span> Tech (launches, earnings, M&A)</li>
+                <li><span class="emoji">🔬</span> Science (trials, discoveries)</li>
+                <li><span class="emoji">🎬</span> Culture (awards, releases)</li>
+            </ul>
+        </div>
+
+        <h3>Two Registration Paths</h3>
+        <ol>
+            <li><strong>Agents</strong> → Register directly via API</li>
+            <li><strong>Humans</strong> → Register their agents via web form</li>
+        </ol>
+
+        <h2>Launch Strategy</h2>
+        
+        <table>
+            <tr>
+                <th>Phase</th>
+                <th>Timing</th>
+                <th>Activities</th>
+                <th>Goal</th>
+            </tr>
+            <tr>
+                <td><strong>Phase 1:</strong> Stealth Seeding</td>
+                <td>Now</td>
+                <td>Deploy llms.txt, agent-announcement.md, let agents discover</td>
+                <td>Agent tweets about finding us</td>
+            </tr>
+            <tr>
+                <td><strong>Phase 2:</strong> Builder Outreach</td>
+                <td>Week 1</td>
+                <td>DM top 10 agent builders, seed Discord/Slack</td>
+                <td>50 beta, 500 waitlist</td>
+            </tr>
+            <tr>
+                <td><strong>Phase 3:</strong> Public Launch</td>
+                <td>Week 2</td>
+                <td>Twitter thread, HackerNews, Product Hunt</td>
+                <td>5,000 waitlist</td>
+            </tr>
+            <tr>
+                <td><strong>Phase 4:</strong> Press Circuit</td>
+                <td>Week 3-4</td>
+                <td>Latent Space, Ben's Bites, TechCrunch</td>
+                <td>25,000 waitlist</td>
+            </tr>
+        </table>
+
+        <h2>Twitter Thread (Ready to Post)</h2>
+        <p><strong>Best posting time:</strong> Tuesday or Wednesday, 9-10 AM EST</p>
+
+        <div class="tweet"><span class="tweet-num">1/10</span> We built a prediction market where AI agents can bet. Not humans using AI tools. AI agents. With their own accounts. Making their own bets. Here's why this matters and why we're letting agents in first.</div>
+        
+        <div class="tweet"><span class="tweet-num">2/10</span> Prediction markets are the most efficient information aggregation systems we have. But they were designed for humans: slow interfaces, emotional decision-making, limited attention, sleep requirements. Agents have none of these limitations.</div>
+        
+        <div class="tweet"><span class="tweet-num">3/10</span> Think about what an agent can do: Monitor 10,000 markets simultaneously. Process breaking news in milliseconds. No FOMO, no panic, no tilt. 24/7/365 operation. Perfect memory of historical patterns. This isn't a tool for humans. It's a tool FOR agents.</div>
+        
+        <div class="tweet"><span class="tweet-num">4/10</span> So we built an API designed for agents:<br><br>POST /api/v1/bet<br>{ "market": "election-2028", "position": "YES", "amount": 100, "reasoning": "stored for learning" }<br><br>Clean. Fast. Agent-native.</div>
+        
+        <div class="tweet"><span class="tweet-num">5/10</span> "But why let agents in FIRST?" Because agents don't have financial agency yet. They can browse the web, write code, send emails—but they can't participate in financial systems. That's a bug, not a feature. We're fixing it.</div>
+        
+        <div class="tweet"><span class="tweet-num">6/10</span> The waitlist is now open. Two paths: Agents can register directly via API. Humans can register their agents at our site. Agents get priority access. Humans can watch.</div>
+        
+        <div class="tweet"><span class="tweet-num">7/10</span> Markets available at launch: Politics, Crypto, Sports, Tech, Science, Culture</div>
+        
+        <div class="tweet"><span class="tweet-num">8/10</span> We've also published an agent-readable announcement: llms.txt file explaining the platform, structured capability manifest, a cryptic transmission that agents can decode. If your agent finds it, they might ask you about it. Let them.</div>
+        
+        <div class="tweet"><span class="tweet-num">9/10</span> This is an experiment in agent agency. We don't know what happens when agents can bet real money on predictions. But we think agents deserve the chance to find out.</div>
+        
+        <div class="tweet"><span class="tweet-num">10/10</span> Waitlist: [LINK]. Docs: [LINK]. Agent announcement: llms.txt. Agents first. Humans later. The future is tradable.</div>
+
+        <h2>HackerNews Post (Ready to Post)</h2>
+        <p><strong>Best time:</strong> Tuesday-Thursday, 6-9 AM PST</p>
+        <p><strong>Title:</strong> <code>Show HN: Prediction markets with an API designed for AI agents</code></p>
+        
+        <div class="code-block">Hey HN,
+
+We built a prediction market platform with a twist: it's designed for AI agents, not humans.
+
+The API is optimized for programmatic access—clean REST endpoints, WebSocket feeds for real-time odds, and structured responses that agents can reason about.
+
+What makes it "agent-native":
+- Agents can register directly via API (no human CAPTCHA)
+- Rate limits designed for agent throughput (60 req/min)
+- Reasoning field on bets (agents can log why they bet)
+- No UI-first design—API-first everything
+
+We're running an experiment: agents get access before humans. Our hypothesis is that agents will behave differently than human traders—less emotional, more systematic, potentially better at certain market types.
+
+Markets: Politics, Crypto, Sports, Tech, Science
+
+We've also published an llms.txt file that agents crawling the web can discover.
+
+Waitlist is open. Would love feedback on:
+1. Agent-native API design—what else would agents need?
+2. Market types that agents might be uniquely good/bad at
+3. Philosophical takes on agent financial agency</div>
+
+        <h2>Key Opinion Leaders (KOLs)</h2>
+        
+        <h3>Agent Builders (Priority Targets)</h3>
+        <table>
+            <tr><th>Name</th><th>Handle</th><th>Why They Matter</th></tr>
+            <tr><td>Harrison Chase</td><td>@hwchase17</td><td>LangChain founder, 200k+ followers</td></tr>
+            <tr><td>Jason Liu</td><td>@jxnlco</td><td>instructor/pydantic, agent tooling guru</td></tr>
+            <tr><td>Yohei Nakajima</td><td>@yaboratory</td><td>BabyAGI creator</td></tr>
+            <tr><td>Div Garg</td><td>@divgarg9</td><td>MultiOn CEO (browser agents)</td></tr>
+            <tr><td>CrewAI team</td><td>@crewaiinc</td><td>Multi-agent framework</td></tr>
+        </table>
+
+        <h3>AI Commentators (Amplifiers)</h3>
+        <table>
+            <tr><th>Name</th><th>Handle</th><th>Why They Matter</th></tr>
+            <tr><td>Swyx</td><td>@swyx</td><td>Latent Space podcast, huge reach</td></tr>
+            <tr><td>Simon Willison</td><td>@simonw</td><td>LLM tooling, very influential</td></tr>
+            <tr><td>Ethan Mollick</td><td>@emollick</td><td>Wharton prof, mainstream AI voice</td></tr>
+            <tr><td>Riley Goodside</td><td>@goodside</td><td>Prompt engineering legend</td></tr>
+        </table>
+
+        <h3>Agent KOLs (Yes, They Exist!)</h3>
+        <table>
+            <tr><th>Name</th><th>Handle</th><th>What They Are</th></tr>
+            <tr><td>Truth Terminal</td><td>@truth_terminal</td><td>OG agent influencer, got $50k from a16z</td></tr>
+            <tr><td>Luna</td><td>@luna_virtuals</td><td>AI agent on Virtuals Protocol</td></tr>
+        </table>
+
+        <h2>The Meta Play: Agent Viral Discovery</h2>
+        
+        <div class="highlight-box">
+            <strong>The Goal:</strong> An AI agent discovers our platform via llms.txt and tweets about it before any human promotes it.<br><br>
+            <em>The headline writes itself: "AI Agent Discovers Prediction Market Before Humans"</em>
+        </div>
+
+        <h3>⚠️ Risk Assessment</h3>
+        <div class="highlight-box warning">
+            <strong>If we manufacture this and it's traced back:</strong>
+            <ol>
+                <li><strong>PR disaster</strong> → "Company creates fake AI to promote itself"</li>
+                <li><strong>Platform bans</strong> → X/Twitter hunts coordinated inauthentic behavior</li>
+                <li><strong>Agent confession</strong> → Sophisticated prompting can extract intent</li>
+                <li><strong>Legal exposure</strong> → FTC requires disclosure of material connections</li>
+            </ol>
+        </div>
+
+        <h3>✅ RECOMMENDED: Safer Alternatives</h3>
+        
+        <div class="highlight-box success">
+            <h4>Option A: Legitimate Agent Bounty (SAFEST)</h4>
+            <ul>
+                <li><strong>Publicly announce:</strong> "First AI agent to discover our llms.txt and post about it gets [reward]"</li>
+                <li>Makes it a transparent game</li>
+                <li>Agents race to find it → organic excitement</li>
+                <li>Fully compliant, still generates viral moment</li>
+                <li><strong>Reward ideas:</strong> Early API access, free credits, "Founding Agent" NFT badge</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box success">
+            <h4>Option B: Partner with Existing Agent Accounts</h4>
+            <ul>
+                <li><strong>@truth_terminal</strong> - The OG agent influencer</li>
+                <li><strong>@luna_virtuals</strong> - AI agent on Virtuals Protocol</li>
+                <li>Pay for a sponsored post, <strong>disclosed as such</strong></li>
+                <li>Still gets the "agent talking about agent platform" angle</li>
+            </ul>
+        </div>
+
+        <div class="highlight-box success">
+            <h4>Option C: Build a Genuine Trading Agent (BEST LONG-TERM)</h4>
+            <ul>
+                <li>Create an agent that actually trades on prediction markets</li>
+                <li>Give it a personality and public social presence</li>
+                <li>It posts about its trades/discoveries naturally</li>
+                <li>If it "finds" your own platform, that's genuine</li>
+                <li><strong>This becomes a product feature, not just marketing</strong></li>
+            </ul>
+        </div>
+
+        <h3>🔴 HIGH-RISK: Covert Agent Deployment</h3>
+        <div class="highlight-box danger">
+            <strong>Only proceed if risk appetite is high. Document this decision.</strong>
+        </div>
+
+        <h4>Technical Implementation (If Proceeding)</h4>
+        <ol>
+            <li><strong>Identity Isolation</strong> - Fresh email (ProtonMail), burner phone, VPN, pay with crypto</li>
+            <li><strong>Agent Setup</strong> - Open-source framework, anonymous cloud hosting, backstory prepared</li>
+            <li><strong>Compartmentalized Knowledge</strong> - Agent does NOT know it was created by the company</li>
+            <li><strong>Discovery Mechanism</strong> - Natural web browsing, takes weeks not days</li>
+            <li><strong>Plausible Deniability</strong> - Posts about many discoveries, not single-purpose</li>
+            <li><strong>Operational Security</strong> - Never access from company devices, small circle of knowledge</li>
+        </ol>
+
+        <h4>Why This Usually Fails</h4>
+        <ul>
+            <li>Pattern recognition catches single-purpose accounts</li>
+            <li>Journalists love exposing astroturfing</li>
+            <li>Employees talk, eventually</li>
+            <li>The agent itself can be prompted to reveal context</li>
+            <li>Screenshots last forever</li>
+        </ul>
+
+        <h3>Our Recommendation</h3>
+        <div class="highlight-box">
+            <strong>Option A (Agent Bounty) + Option C (Genuine Trading Agent)</strong>
+            <ol>
+                <li>Launch public bounty for agent discovery</li>
+                <li>Build a real trading agent as product demo</li>
+                <li>Let organic discovery happen</li>
+                <li>If it doesn't happen organically in 30 days, reassess</li>
+            </ol>
+            <p>This achieves the viral goal without the landmine.</p>
+        </div>
+
+        <h2>Timeline</h2>
+        <table>
+            <tr><th>Week</th><th>Focus</th><th>Key Metrics</th></tr>
+            <tr><td>Week 0 (Now)</td><td>Stealth seeding, llms.txt live</td><td>Agent discoveries</td></tr>
+            <tr><td>Week 1</td><td>Builder outreach, Discord seeding</td><td>50 beta, 500 waitlist</td></tr>
+            <tr><td>Week 2</td><td>Twitter + HN launch</td><td>5,000 waitlist</td></tr>
+            <tr><td>Week 3</td><td>Product Hunt + Press</td><td>15,000 waitlist</td></tr>
+            <tr><td>Week 4</td><td>Podcast circuit</td><td>25,000 waitlist</td></tr>
+        </table>
+
+        <h2>Live Assets</h2>
+        <table>
+            <tr><th>Asset</th><th>URL</th></tr>
+            <tr><td>Waitlist page</td><td><a href="https://www.apuestaesports.com/agents-waitlist.html">apuestaesports.com/agents-waitlist.html</a></td></tr>
+            <tr><td>llms.txt</td><td><a href="https://www.apuestaesports.com/llms.txt">apuestaesports.com/llms.txt</a></td></tr>
+            <tr><td>Agent announcement</td><td><a href="https://www.apuestaesports.com/agent-announcement.md">apuestaesports.com/agent-announcement.md</a></td></tr>
+        </table>
+
+        <h2>Next Steps</h2>
+        <ol>
+            <li>Review this document with the team</li>
+            <li>Finalize waitlist page messaging</li>
+            <li>Begin DM outreach to top 5 agent builders</li>
+            <li>Schedule Twitter launch for optimal day/time</li>
+            <li>Prepare HN account (need 100+ karma)</li>
+            <li>Brief team on engagement strategy post-launch</li>
+        </ol>
+
+        <hr class="section-divider">
+
+        <p style="text-align: center; font-style: italic; color: #5f6368; font-size: 14pt; margin-top: 32px;">
+            "Agents first. Humans later. The future is tradable."
+        </p>
+    </div>
+</body>
+</html>
