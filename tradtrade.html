@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trad Trade | Where Trad Wives Come to Trade</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎀</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Vintage 1950s Palette */
+            --cream: #FDF8F3;
+            --blush: #F5E1DA;
+            --rose: #E8C4C4;
+            --dusty-rose: #D4A5A5;
+            --sage: #C9DCAF;
+            --mint: #D4E9E2;
+            --butter: #F5ECD7;
+            --cherry: #C94C4C;
+            --burgundy: #8B3A3A;
+            --charcoal: #4A4A4A;
+            --warm-white: #FFFBF7;
+            --gold-accent: #C9A961;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', Georgia, serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        /* Decorative bow border */
+        .bow-border {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--rose), var(--dusty-rose), var(--rose));
+        }
+
+        .bow-border::after {
+            content: '🎀';
+            position: absolute;
+            left: 50%;
+            top: -8px;
+            transform: translateX(-50%);
+            font-size: 24px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 4rem 2rem 3rem;
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3.5rem;
+            font-weight: 500;
+            color: var(--burgundy);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo span {
+            font-style: italic;
+            color: var(--dusty-rose);
+        }
+
+        .tagline {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--charcoal);
+            opacity: 0.8;
+            letter-spacing: 0.05em;
+        }
+
+        /* Hero */
+        .hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hero-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            background: var(--blush);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            border: 4px solid var(--rose);
+            box-shadow: 0 8px 32px rgba(200, 165, 165, 0.3);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--charcoal);
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            opacity: 0.85;
+        }
+
+        /* Waitlist Form */
+        .waitlist-card {
+            background: var(--warm-white);
+            border: 2px solid var(--rose);
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            box-shadow: 0 12px 40px rgba(200, 165, 165, 0.2);
+        }
+
+        .waitlist-card h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .waitlist-card .subtitle {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            color: var(--dusty-rose);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 2px solid var(--blush);
+            border-radius: 8px;
+            font-family: 'Lora', Georgia, serif;
+            font-size: 1rem;
+            background: var(--cream);
+            color: var(--charcoal);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--dusty-rose);
+            box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.2);
+        }
+
+        .form-group input::placeholder {
+            color: var(--dusty-rose);
+            opacity: 0.7;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--dusty-rose), var(--burgundy));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 58, 58, 0.3);
+        }
+
+        .privacy-note {
+            font-size: 0.8rem;
+            color: var(--charcoal);
+            opacity: 0.6;
+            text-align: center;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Markets Preview */
+        .markets-section {
+            background: linear-gradient(180deg, var(--butter) 0%, var(--cream) 100%);
+            padding: 4rem 2rem;
+        }
+
+        .markets-section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2rem;
+            color: var(--burgundy);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .markets-section .section-subtitle {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            color: var(--dusty-rose);
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .markets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .market-card {
+            background: var(--warm-white);
+            border: 2px solid var(--rose);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .market-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(200, 165, 165, 0.25);
+        }
+
+        .market-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .market-card h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.1rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+        }
+
+        .market-card p {
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .market-odds {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .odd-pill {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            background: var(--blush);
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        .odd-pill .label {
+            display: block;
+            color: var(--charcoal);
+            opacity: 0.7;
+            font-size: 0.75rem;
+        }
+
+        .odd-pill .value {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 600;
+            color: var(--burgundy);
+        }
+
+        /* Features */
+        .features-section {
+            padding: 4rem 2rem;
+            background: var(--cream);
+        }
+
+        .features-section h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2rem;
+            color: var(--burgundy);
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--mint), var(--sage));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+
+        .feature h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.15rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+        }
+
+        /* Testimonial */
+        .testimonial-section {
+            background: var(--blush);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .testimonial {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .testimonial blockquote {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial cite {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 0.95rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--burgundy);
+            color: var(--cream);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+
+        footer .footer-logo {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        footer a {
+            color: var(--blush);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+
+        footer a:hover {
+            opacity: 0.7;
+        }
+
+        /* Success State */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-message h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+        }
+
+        .success-message p {
+            color: var(--charcoal);
+        }
+
+        .form-content.hidden {
+            display: none;
+        }
+
+        /* Decorative elements */
+        .flourish {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--dusty-rose);
+            margin: 2rem 0;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .markets-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bow-border"></div>
+
+    <header>
+        <div class="logo">Trad <span>Trade</span></div>
+        <p class="tagline">Where Trad Wives Come to Trade</p>
+    </header>
+
+    <section class="hero">
+        <div class="hero-image">🏡</div>
+        <h1>Predict the Future of Homemaking, <br>One Market at a Time</h1>
+        <p>
+            Join the first prediction market designed for the traditional homemaker. 
+            Trade on sourdough trends, forecast baby name popularity, and put your 
+            domestic intuition to work — all from the comfort of your kitchen.
+        </p>
+    </section>
+
+    <div class="waitlist-card">
+        <h2>Join the Waitlist</h2>
+        <p class="subtitle">Be among the first to trade when we launch</p>
+        
+        <div class="form-content" id="formContent">
+            <form id="waitlistForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="Elizabeth" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="elizabeth@homestead.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="interest">What interests you most?</label>
+                    <select id="interest" name="interest">
+                        <option value="homemaking">Homemaking & Recipes</option>
+                        <option value="family">Family & Parenting</option>
+                        <option value="fashion">Modest Fashion</option>
+                        <option value="homestead">Homesteading</option>
+                        <option value="crafts">Crafts & Handmade</option>
+                        <option value="all">Everything!</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Reserve My Spot</button>
+            </form>
+            <p class="privacy-note">🔒 We cherish your privacy like grandmother's china</p>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            <h3>🎀 You're on the list!</h3>
+            <p>We'll send you a lovely note when we're ready to launch.</p>
+        </div>
+    </div>
+
+    <div class="flourish">❧ ❧ ❧</div>
+
+    <section class="markets-section">
+        <h2>Sample Markets</h2>
+        <p class="section-subtitle">A taste of what you'll be trading</p>
+        
+        <div class="markets-grid">
+            <div class="market-card">
+                <div class="market-icon">🍞</div>
+                <h3>Will sourdough remain the #1 bread trend through 2026?</h3>
+                <p>From-scratch bakers are divided on whether the sourdough renaissance will continue.</p>
+                <div class="market-odds">
+                    <div class="odd-pill">
+                        <span class="label">Yes</span>
+                        <span class="value">1.65</span>
+                    </div>
+                    <div class="odd-pill">
+                        <span class="label">No</span>
+                        <span class="value">2.25</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="market-card">
+                <div class="market-icon">👶</div>
+                <h3>Top baby name 2026: Will a vintage name claim #1?</h3>
+                <p>Eleanor, Theodore, and Hazel are rising. Will tradition triumph?</p>
+                <div class="market-odds">
+                    <div class="odd-pill">
+                        <span class="label">Vintage</span>
+                        <span class="value">1.85</span>
+                    </div>
+                    <div class="odd-pill">
+                        <span class="label">Modern</span>
+                        <span class="value">1.95</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="market-card">
+                <div class="market-icon">🏠</div>
+                <h3>Cottagecore vs Coastal Grandmother: Which aesthetic wins 2026?</h3>
+                <p>Two beloved aesthetics compete for Pinterest supremacy.</p>
+                <div class="market-odds">
+                    <div class="odd-pill">
+                        <span class="label">Cottage</span>
+                        <span class="value">2.10</span>
+                    </div>
+                    <div class="odd-pill">
+                        <span class="label">Coastal</span>
+                        <span class="value">1.75</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="market-card">
+                <div class="market-icon">🧵</div>
+                <h3>Will handmade Christmas gifts outpace store-bought this year?</h3>
+                <p>The homemade movement grows stronger each holiday season.</p>
+                <div class="market-odds">
+                    <div class="odd-pill">
+                        <span class="label">Handmade</span>
+                        <span class="value">3.25</span>
+                    </div>
+                    <div class="odd-pill">
+                        <span class="label">Bought</span>
+                        <span class="value">1.35</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="market-card">
+                <div class="market-icon">🌿</div>
+                <h3>Raw milk legalization: 5+ new states by end of 2026?</h3>
+                <p>The homestead movement pushes for food freedom across America.</p>
+                <div class="market-odds">
+                    <div class="odd-pill">
+                        <span class="label">Yes</span>
+                        <span class="value">2.40</span>
+                    </div>
+                    <div class="odd-pill">
+                        <span class="label">No</span>
+                        <span class="value">1.58</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="market-card">
+                <div class="market-icon">👗</div>
+                <h3>Will modest fashion hit mainstream retail by Fall 2026?</h3>
+                <p>Zara, H&M, and others are taking notice of the modest movement.</p>
+                <div class="market-odds">
+                    <div class="odd-pill">
+                        <span class="label">Yes</span>
+                        <span class="value">1.90</span>
+                    </div>
+                    <div class="odd-pill">
+                        <span class="label">No</span>
+                        <span class="value">1.90</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h2>Why Trad Trade?</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🎀</div>
+                <h3>Made for You</h3>
+                <p>Finally, a platform that understands your values and interests. No crypto bros, just kindred spirits.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📖</div>
+                <h3>Learn & Earn</h3>
+                <p>Put your domestic expertise to work. Your knowledge of trends, seasons, and traditions has real value.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌸</div>
+                <h3>Wholesome Community</h3>
+                <p>Connect with like-minded women who share your passion for traditional living and thoughtful forecasting.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial-section">
+        <div class="testimonial">
+            <blockquote>
+                "I've always had strong intuition about what trends will take off in the homemaking world. 
+                Finally, there's a place to put that instinct to use."
+            </blockquote>
+            <cite>— Sarah M., Homemaker & Early Supporter</cite>
+        </div>
+    </section>
+
+    <div class="flourish">❧ ❧ ❧</div>
+
+    <footer>
+        <div class="footer-logo">Trad Trade</div>
+        <p>Bringing timeless wisdom to modern markets</p>
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">FAQ</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy</a>
+        </div>
+        <p style="margin-top: 1.5rem; font-size: 0.8rem; opacity: 0.6;">
+            © 2026 Trad Trade. Made with love and a cup of tea.
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const interest = document.getElementById('interest').value;
+            
+            // In production, send to backend
+            console.log('Waitlist signup:', { name, email, interest });
+            
+            // Show success
+            document.getElementById('formContent').classList.add('hidden');
+            document.getElementById('successMessage').classList.add('show');
+        });
+    </script>
+</body>
+</html>
