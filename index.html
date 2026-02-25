@@ -1,31 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apuesta Esports - The World's Most Comprehensive Esports Reference</title>
-    <meta name="description" content="Complete esports database with team rankings, player profiles, country statistics, tournament coverage, and betting guides for CS2, Dota 2, League of Legends, Valorant and more.">
-    <meta name="keywords" content="esports, competitive gaming, CS2, Dota 2, League of Legends, Valorant, esports betting, team rankings, player stats">
+    <title>Apuesta Esports - La Referencia Definitiva de Esports y Apuestas</title>
+    <meta name="description" content="La guía más completa de esports en español. Streams en vivo, noticias, cuotas, análisis de CS2, Dota 2, League of Legends, Valorant. Pronósticos y apuestas.">
+    <meta name="keywords" content="apuestas esports, esports en vivo, CS2, Dota 2, League of Legends, Valorant, pronósticos, cuotas, streams, twitch">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="Apuesta Esports - Complete Esports Database">
-    <meta property="og:description" content="The world's most comprehensive esports reference. Teams, players, countries, tournaments, and betting guides.">
+    <meta property="og:title" content="Apuesta Esports - Esports en Vivo y Apuestas">
+    <meta property="og:description" content="Streams en vivo, noticias, cuotas y análisis experto de esports en español.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.apuestaesports.com">
+    <meta property="og:locale" content="es_ES">
     <meta property="og:image" content="https://www.apuestaesports.com/og-image.png">
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Apuesta Esports - Complete Esports Database">
-    <meta name="twitter:description" content="The world's most comprehensive esports reference.">
-    
-    <!-- Favicon -->
+    <link rel="canonical" href="https://www.apuestaesports.com/">
+    <link rel="alternate" hreflang="es" href="https://www.apuestaesports.com/">
+    <link rel="alternate" hreflang="en" href="https://www.apuestaesports.com/en/">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Twitter Widget -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     
     <style>
         :root {
@@ -36,6 +35,8 @@
             --orange: #FF6B2F;
             --purple: #8D52DA;
             --yellow: #DFFD51;
+            --green: #00ff88;
+            --red: #ff4757;
             --text-primary: #ffffff;
             --text-secondary: #a0a0b0;
             --text-muted: #606070;
@@ -43,11 +44,7 @@
             --gradient: linear-gradient(135deg, var(--orange) 0%, var(--purple) 100%);
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -56,10 +53,7 @@
             line-height: 1.6;
         }
         
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+        a { color: inherit; text-decoration: none; }
         
         /* Navigation */
         nav {
@@ -94,7 +88,7 @@
         
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 28px;
             list-style: none;
         }
         
@@ -105,8 +99,35 @@
             transition: color 0.2s;
         }
         
-        .nav-links a:hover {
-            color: var(--text-primary);
+        .nav-links a:hover { color: var(--text-primary); }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .lang-switch {
+            display: flex;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .lang-switch a {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        
+        .lang-switch a.active {
+            background: var(--orange);
+            color: white;
+        }
+        
+        .lang-switch a:not(.active):hover {
+            background: var(--bg-card);
         }
         
         .nav-cta {
@@ -116,55 +137,56 @@
             border-radius: 8px;
             font-weight: 600;
             font-size: 0.9rem;
-            transition: transform 0.2s, box-shadow 0.2s;
         }
         
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--green);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
         
         /* Hero */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 24px 80px;
+            padding: 120px 24px 60px;
             background: 
-                radial-gradient(ellipse at 50% 0%, rgba(141, 82, 218, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 50%, rgba(255, 107, 47, 0.1) 0%, transparent 40%),
+                radial-gradient(ellipse at 30% 0%, rgba(255, 107, 47, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 100%, rgba(141, 82, 218, 0.1) 0%, transparent 50%),
                 var(--bg-primary);
         }
         
-        .hero-content {
-            max-width: 900px;
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 48px;
+            align-items: start;
         }
         
-        .hero-badge {
-            display: inline-block;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            padding: 8px 16px;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-        }
-        
-        .hero-badge span {
-            color: var(--yellow);
-        }
-        
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 800;
+            margin-bottom: 20px;
             line-height: 1.1;
-            margin-bottom: 24px;
         }
         
-        h1 .gradient {
+        .hero-content h1 span {
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -172,417 +194,555 @@
         }
         
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
+            margin-bottom: 32px;
             max-width: 600px;
-            margin: 0 auto 40px;
         }
         
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 48px;
-            margin-top: 60px;
-            flex-wrap: wrap;
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        /* Sections */
-        section {
-            padding: 100px 24px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-        
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* Games Grid */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
-        
-        .game-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-        
-        .game-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--purple);
-        }
-        
-        .game-icon {
-            font-size: 3rem;
-            margin-bottom: 16px;
-        }
-        
-        .game-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-        }
-        
-        .game-meta {
+        .hero-cta {
             display: flex;
             gap: 16px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
         }
         
-        .game-meta span {
-            display: flex;
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 8px;
         }
         
-        .game-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 107, 47, 0.3);
         }
         
-        /* Rankings Table */
-        .rankings-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--orange);
+            color: var(--text-primary);
+            padding: 12px 26px;
+            border-radius: 10px;
+            font-weight: 600;
         }
         
-        .ranking-card {
+        /* Live Stream Widget */
+        .hero-stream {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
             overflow: hidden;
         }
         
-        .ranking-header {
-            padding: 24px;
+        .stream-header {
+            padding: 12px 16px;
+            background: var(--bg-tertiary);
             border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
-        .ranking-header h3 {
-            font-size: 1.25rem;
+        .stream-header h3 {
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        .view-all {
+        .stream-embed {
+            aspect-ratio: 16/9;
+            background: #000;
+        }
+        
+        .stream-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .stream-info {
+            padding: 12px 16px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Live Stats Bar */
+        .live-stats {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 24px;
+            overflow: hidden;
+        }
+        
+        .stats-scroll {
+            display: flex;
+            gap: 48px;
+            animation: scroll 30s linear infinite;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+        }
+        
+        .stat-icon { font-size: 1.5rem; }
+        
+        .stat-content {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        
+        /* Main Content Grid */
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 48px 24px;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 32px;
+        }
+        
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .section-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-header a {
             color: var(--orange);
             font-size: 0.9rem;
             font-weight: 500;
         }
         
-        .ranking-list {
-            list-style: none;
+        /* Live Matches */
+        .live-matches {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
         }
         
-        .ranking-item {
+        .match-card {
             display: flex;
             align-items: center;
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--border);
-            transition: background 0.2s;
-        }
-        
-        .ranking-item:last-child {
-            border-bottom: none;
-        }
-        
-        .ranking-item:hover {
+            justify-content: space-between;
+            padding: 16px;
             background: var(--bg-tertiary);
+            border-radius: 12px;
+            margin-bottom: 12px;
         }
         
-        .rank {
-            width: 32px;
-            height: 32px;
+        .match-card:last-child { margin-bottom: 0; }
+        
+        .match-teams {
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: var(--bg-tertiary);
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-right: 16px;
-        }
-        
-        .rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
-        .rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
-        .rank.bronze { background: linear-gradient(135deg, #CD7F32, #A0522D); color: #fff; }
-        
-        .ranking-info {
-            flex: 1;
-        }
-        
-        .ranking-name {
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-        
-        .ranking-detail {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        
-        .ranking-value {
-            font-weight: 700;
-            color: var(--yellow);
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        /* Countries Section */
-        .countries-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 16px;
         }
         
-        .country-card {
+        .team {
+            text-align: center;
+            min-width: 80px;
+        }
+        
+        .team-logo {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+        
+        .team-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .match-vs {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+        
+        .match-info {
+            text-align: right;
+        }
+        
+        .match-game {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        
+        .match-odds {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .odd {
+            background: var(--bg-primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .odd.favorite { color: var(--green); }
+        .odd.underdog { color: var(--orange); }
+        
+        .match-live {
+            background: var(--red);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        /* Games Grid */
+        .games-section {
+            margin-bottom: 32px;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        
+        .game-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--orange);
+        }
+        
+        .game-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .game-icon img { width: 48px; height: 48px; object-fit: contain; }
+        .team-logo img { width: 40px; height: 40px; object-fit: contain; }
+        .team-logo-sm img { width: 28px; height: 28px; object-fit: contain; border-radius: 4px; }
+        .stat-icon img { width: 32px; height: 32px; object-fit: contain; }
+        .game-card h3 { font-size: 1rem; margin-bottom: 6px; }
+        .game-card p { font-size: 0.8rem; color: var(--text-muted); }
+        .game-prize {
+            margin-top: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--yellow);
+        }
+        
+        /* News/Updates */
+        .news-section {
+            margin-bottom: 32px;
+        }
+        
+        .news-grid {
+            display: grid;
+            gap: 16px;
+        }
+        
+        .news-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 20px;
             display: flex;
-            align-items: center;
             gap: 16px;
-            transition: transform 0.2s, border-color 0.2s;
+            transition: border-color 0.2s;
         }
         
-        .country-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--purple);
-        }
+        .news-card:hover { border-color: var(--purple); }
         
-        .country-flag {
+        .news-image {
+            width: 100px;
+            height: 70px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2rem;
+            flex-shrink: 0;
         }
         
-        .country-info h4 {
-            font-weight: 600;
-            margin-bottom: 4px;
+        .news-content h4 {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            line-height: 1.3;
         }
         
-        .country-info p {
-            font-size: 0.85rem;
+        .news-meta {
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
         
-        .country-earnings {
-            margin-left: auto;
-            font-weight: 700;
-            color: var(--yellow);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-        }
+        /* Sidebar */
+        .sidebar { display: flex; flex-direction: column; gap: 24px; }
         
-        /* CTA Section */
-        .cta-section {
-            background: var(--bg-secondary);
+        /* Twitter Feed */
+        .twitter-feed {
+            background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 80px 40px;
-            text-align: center;
-            margin: 100px auto;
-            max-width: 1000px;
+            border-radius: 16px;
+            overflow: hidden;
         }
         
-        .cta-section h2 {
+        .twitter-header {
+            padding: 16px;
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .twitter-header h3 {
+            font-size: 1rem;
+        }
+        
+        .twitter-content {
+            height: 500px;
+            overflow-y: auto;
+        }
+        
+        /* Top Teams */
+        .top-teams {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+        
+        .team-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .team-row:last-child { border-bottom: none; }
+        
+        .team-rank {
+            width: 24px;
+            height: 24px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .team-rank.gold { background: linear-gradient(135deg, #FFD700, #FFA500); color: #000; }
+        .team-rank.silver { background: linear-gradient(135deg, #C0C0C0, #A0A0A0); color: #000; }
+        .team-rank.bronze { background: linear-gradient(135deg, #CD7F32, #8B4513); color: #fff; }
+        
+        .team-info { flex: 1; }
+        .team-info h4 { font-size: 0.9rem; margin-bottom: 2px; }
+        .team-info p { font-size: 0.75rem; color: var(--text-muted); }
+        
+        .team-earnings {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--yellow);
+        }
+        
+        /* Betting Section */
+        .betting-section {
+            background: var(--bg-secondary);
+            padding: 60px 24px;
+            margin-top: 48px;
+        }
+        
+        .betting-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .betting-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .betting-header h2 {
             font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        
+        .betting-header p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .betting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .betting-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform 0.2s;
+        }
+        
+        .betting-card:hover { transform: translateY(-4px); }
+        
+        .betting-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+        
+        .betting-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
             margin-bottom: 16px;
         }
         
-        .cta-section p {
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 14px 28px;
-            border-radius: 10px;
+        .betting-link {
+            color: var(--orange);
             font-weight: 600;
-            font-size: 1rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(255, 107, 47, 0.3);
-        }
-        
-        .btn-secondary {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-        }
-        
-        .btn-secondary:hover {
-            border-color: var(--purple);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
         
         /* Footer */
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border);
-            padding: 60px 24px 30px;
+            padding: 48px 24px 24px;
         }
         
-        .footer-content {
-            max-width: 1400px;
+        .footer-container {
+            max-width: 1200px;
             margin: 0 auto;
         }
         
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
         
-        .footer-brand {
-            max-width: 300px;
-        }
-        
-        .footer-brand .logo {
-            font-size: 1.5rem;
-            margin-bottom: 16px;
-            display: inline-block;
-        }
-        
-        .footer-brand p {
-            color: var(--text-muted);
+        .footer-col h4 {
             font-size: 0.9rem;
-        }
-        
-        .footer-links h4 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
             margin-bottom: 16px;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-        
-        .footer-links a:hover {
             color: var(--text-primary);
         }
         
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .footer-col a:hover { color: var(--orange); }
+        
         .footer-bottom {
             border-top: 1px solid var(--border);
-            padding-top: 30px;
+            padding-top: 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .footer-bottom p {
             color: var(--text-muted);
             font-size: 0.85rem;
         }
         
-        .footer-legal a {
-            margin-left: 24px;
-            color: var(--text-muted);
+        .footer-social {
+            display: flex;
+            gap: 16px;
         }
         
-        .footer-legal a:hover {
+        .footer-social a {
             color: var(--text-secondary);
+            font-size: 1.25rem;
+            transition: color 0.2s;
         }
         
-        /* Mobile */
+        .footer-social a:hover { color: var(--orange); }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container { grid-template-columns: 1fr; }
+            .hero-stream { max-width: 500px; }
+            .main-content { grid-template-columns: 1fr; }
+            .sidebar { order: -1; }
+        }
+        
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero-stats {
-                gap: 24px;
-            }
-            
-            .stat-value {
-                font-size: 2rem;
-            }
-            
-            .rankings-section {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .footer-brand {
-                grid-column: 1 / -1;
-            }
-            
-            .footer-bottom {
-                flex-direction: column;
-                gap: 16px;
-                text-align: center;
-            }
+            .nav-links { display: none; }
+            .hero { padding: 100px 16px 40px; }
+            .hero-content h1 { font-size: 2rem; }
+            .games-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -590,333 +750,422 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="/" class="logo">APUESTA ESPORTS</a>
+            <a href="/" class="logo">Apuesta Esports</a>
+            
             <ul class="nav-links">
-                <li><a href="/games/">Games</a></li>
-                <li><a href="/teams/">Teams</a></li>
-                <li><a href="/players/">Players</a></li>
-                <li><a href="/countries/">Countries</a></li>
-                <li><a href="/tournaments/">Tournaments</a></li>
-                <li><a href="/betting/">Betting</a></li>
+                <li><a href="/live/"><span style="color:var(--red);">●</span> En Vivo</a></li>
+                <li><a href="/games/">Juegos</a></li>
+                <li><a href="/teams/">Equipos</a></li>
+                <li><a href="/tournaments/">Torneos</a></li>
+                <li><a href="/betting/">Apuestas</a></li>
+                <li><a href="/agents/">Agentes IA</a></li>
             </ul>
-            <a href="/live/" class="nav-cta">Live Odds →</a>
+            
+            <div class="nav-right">
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    <span id="live-count">12</span> en vivo
+                </div>
+                <div class="lang-switch">
+                    <a href="/" class="active">ES</a>
+                    <a href="/en/">EN</a>
+                </div>
+                <a href="https://cloudbet.com/es/?af_token=YOUR_TOKEN" class="nav-cta" target="_blank">Apostar Ahora</a>
+            </div>
         </div>
     </nav>
-
+    
     <!-- Hero -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                🏆 <span>$2B+</span> in tracked prize money
-            </div>
-            <h1>
-                The World's Most<br>
-                <span class="gradient">Comprehensive Esports</span><br>
-                Reference
-            </h1>
-            <p class="hero-subtitle">
-                Complete database of teams, players, countries, tournaments, and betting guides. 
-                Everything you need to follow and bet on competitive gaming.
-            </p>
-            <div class="cta-buttons">
-                <a href="/games/" class="btn btn-primary">Explore Games</a>
-                <a href="/live/" class="btn btn-secondary">Live Odds Map</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-value">10+</div>
-                    <div class="stat-label">Major Games</div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Tu Portal de <span>Esports</span> en Español</h1>
+                <p class="hero-subtitle">
+                    Streams en vivo, cuotas actualizadas, análisis experto y todo lo que necesitas para apostar en CS2, Dota 2, League of Legends, Valorant y más.
+                </p>
+                <div class="hero-cta">
+                    <a href="/live/" class="btn-primary">
+                        <span style="color:#ff4757;">●</span> Ver Partidos en Vivo
+                    </a>
+                    <a href="/betting/guia-principiantes.html" class="btn-secondary">
+                        Guía de Apuestas
+                    </a>
                 </div>
-                <div class="stat">
-                    <div class="stat-value">500+</div>
-                    <div class="stat-label">Teams</div>
+                
+                <!-- Quick Stats -->
+                <div style="display: flex; gap: 32px; margin-top: 40px;">
+                    <div>
+                        <div style="font-size: 1.8rem; font-weight: 800; font-family: 'JetBrains Mono'; color: var(--orange);">500+</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">Equipos</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.8rem; font-weight: 800; font-family: 'JetBrains Mono'; color: var(--purple);">5,000+</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">Jugadores</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.8rem; font-weight: 800; font-family: 'JetBrains Mono'; color: var(--yellow);">$500M+</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">En Premios</div>
+                    </div>
                 </div>
-                <div class="stat">
-                    <div class="stat-value">5,000+</div>
-                    <div class="stat-label">Players</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-value">50+</div>
-                    <div class="stat-label">Countries</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Games Section -->
-    <section id="games">
-        <div class="section-header">
-            <h2>Featured Games</h2>
-            <p>Comprehensive coverage of the world's biggest competitive titles</p>
-        </div>
-        <div class="games-grid">
-            <a href="/games/cs2.html" class="game-card">
-                <div class="game-icon">🔫</div>
-                <h3>Counter-Strike 2</h3>
-                <div class="game-meta">
-                    <span>FPS</span>
-                    <span>•</span>
-                    <span>$150M+ prize pool</span>
-                </div>
-                <p>The world's premier tactical shooter. Major Championships, Pro League, and more.</p>
-            </a>
-            <a href="/games/dota2.html" class="game-card">
-                <div class="game-icon">⚔️</div>
-                <h3>Dota 2</h3>
-                <div class="game-meta">
-                    <span>MOBA</span>
-                    <span>•</span>
-                    <span>$312M+ prize pool</span>
-                </div>
-                <p>Home to The International, esports' largest prize pool tournament.</p>
-            </a>
-            <a href="/games/lol.html" class="game-card">
-                <div class="game-icon">🏰</div>
-                <h3>League of Legends</h3>
-                <div class="game-meta">
-                    <span>MOBA</span>
-                    <span>•</span>
-                    <span>$100M+ prize pool</span>
-                </div>
-                <p>The world's most-watched esport. Worlds Championship draws millions.</p>
-            </a>
-            <a href="/games/valorant.html" class="game-card">
-                <div class="game-icon">💠</div>
-                <h3>Valorant</h3>
-                <div class="game-meta">
-                    <span>FPS</span>
-                    <span>•</span>
-                    <span>$30M+ prize pool</span>
-                </div>
-                <p>Riot's tactical shooter. VCT Champions and international leagues.</p>
-            </a>
-            <a href="/games/fortnite.html" class="game-card">
-                <div class="game-icon">🎯</div>
-                <h3>Fortnite</h3>
-                <div class="game-meta">
-                    <span>Battle Royale</span>
-                    <span>•</span>
-                    <span>$100M+ prize pool</span>
-                </div>
-                <p>Epic's battle royale phenomenon. World Cup and FNCS tournaments.</p>
-            </a>
-            <a href="/games/" class="game-card">
-                <div class="game-icon">➕</div>
-                <h3>More Games</h3>
-                <div class="game-meta">
-                    <span>R6, Rocket League, CoD...</span>
-                </div>
-                <p>Rainbow Six Siege, Rocket League, Call of Duty, Overwatch 2, and more.</p>
-            </a>
-        </div>
-    </section>
-
-    <!-- Rankings Section -->
-    <section id="rankings">
-        <div class="section-header">
-            <h2>Global Rankings</h2>
-            <p>Top teams and players by career earnings</p>
-        </div>
-        <div class="rankings-section">
-            <!-- Top Teams -->
-            <div class="ranking-card">
-                <div class="ranking-header">
-                    <h3>🏆 Top Teams</h3>
-                    <a href="/teams/" class="view-all">View All →</a>
-                </div>
-                <ul class="ranking-list">
-                    <li class="ranking-item">
-                        <div class="rank gold">1</div>
-                        <div class="ranking-info">
-                            <div class="ranking-name">Team Liquid</div>
-                            <div class="ranking-detail">2,982 tournaments</div>
-                        </div>
-                        <div class="ranking-value">$56.4M</div>
-                    </li>
-                    <li class="ranking-item">
-                        <div class="rank silver">2</div>
-                        <div class="ranking-info">
-                            <div class="ranking-name">OG</div>
-                            <div class="ranking-detail">208 tournaments</div>
-                        </div>
-                        <div class="ranking-value">$38.8M</div>
-                    </li>
-                    <li class="ranking-item">
-                        <div class="rank bronze">3</div>
-                        <div class="ranking-info">
-                            <div class="ranking-name">Team Spirit</div>
-                            <div class="ranking-detail">308 tournaments</div>
-                        </div>
-                        <div class="ranking-value">$35.6M</div>
-                    </li>
-                    <li class="ranking-item">
-                        <div class="rank">4</div>
-                        <div class="ranking-info">
-                            <div class="ranking-name">Evil Geniuses</div>
-                            <div class="ranking-detail">1,019 tournaments</div>
-                        </div>
-                        <div class="ranking-value">$28.6M</div>
-                    </li>
-                    <li class="ranking-item">
-                        <div class="rank">5</div>
-                        <div class="ranking-info">
-                            <div class="ranking-name">Natus Vincere</div>
-                            <div class="ranking-detail">870 tournaments</div>
-                        </div>
-                        <div class="ranking-value">$24.4M</div>
-                    </li>
-                </ul>
             </div>
             
-            <!-- Top Players -->
-            <div class="ranking-card">
-                <div class="ranking-header">
-                    <h3>⭐ Top Players</h3>
-                    <a href="/players/" class="view-all">View All →</a>
+            <!-- Live Stream Widget -->
+            <div class="hero-stream">
+                <div class="stream-header">
+                    <h3><span style="color:#ff4757;">●</span> Stream en Vivo</h3>
+                    <span class="match-live">LIVE</span>
                 </div>
-                <ul class="ranking-list">
-                    <li class="ranking-item">
-                        <div class="rank gold">1</div>
-                        <div class="ranking-info">
-                            <div class="ranking-name">N0tail</div>
-                            <div class="ranking-detail">🇩🇰 Denmark • Dota 2</div>
-                        </div>
-                        <div class="ranking-value">$7.2M</div>
-                    </li>
-                    <li class="ranking-item">
-                        <div class="rank silver">2</div>
-                        <div class="ranking-info">
-                            <div class="ranking-name">JerAx</div>
-                            <div class="ranking-detail">🇫🇮 Finland • Dota 2</div>
-                        </div>
-                        <div class="ranking-value">$6.5M</div>
-                    </li>
-                    <li class="ranking-item">
-                        <div class="rank bronze">3</div>
-                        <div class="ranking-info">
-                            <div class="ranking-name">Miposhka</div>
-                            <div class="ranking-detail">🇷🇺 Russia • Dota 2</div>
-                        </div>
-                        <div class="ranking-value">$6.2M</div>
-                    </li>
-                    <li class="ranking-item">
-                        <div class="rank">4</div>
-                        <div class="ranking-info">
-                            <div class="ranking-name">ana</div>
-                            <div class="ranking-detail">🇦🇺 Australia • Dota 2</div>
-                        </div>
-                        <div class="ranking-value">$6.0M</div>
-                    </li>
-                    <li class="ranking-item">
-                        <div class="rank">5</div>
-                        <div class="ranking-info">
-                            <div class="ranking-name">Ceb</div>
-                            <div class="ranking-detail">🇫🇷 France • Dota 2</div>
-                        </div>
-                        <div class="ranking-value">$5.9M</div>
-                    </li>
-                </ul>
+                <div class="stream-embed">
+                    <iframe
+                        src="https://player.twitch.tv/?channel=eloking&parent=www.apuestaesports.com&parent=apuestaesports.com&parent=localhost&muted=true"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="stream-info">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>ESL Pro League - CS2</span>
+                        <a href="https://twitch.tv/esl_csgo" target="_blank" style="color: var(--purple);">Ver en Twitch →</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-
-    <!-- Countries Section -->
-    <section id="countries">
-        <div class="section-header">
-            <h2>Esports by Country</h2>
-            <p>Where the world's best players come from</p>
-        </div>
-        <div class="countries-grid">
-            <a href="/countries/china.html" class="country-card">
-                <div class="country-flag">🇨🇳</div>
-                <div class="country-info">
-                    <h4>China</h4>
-                    <p>9,350 players • Dota 2</p>
+    
+    <!-- Live Stats Ticker -->
+    <div class="live-stats">
+        <div class="stats-scroll" id="stats-ticker">
+            <div class="stat-item">
+                <span class="stat-icon"><img src="https://cdn.cloudflare.steamstatic.com/apps/csgo/images/csgo_react/global/logo_cs_sm.svg" alt="CS2"></span>
+                <div class="stat-content">
+                    <span class="stat-value">CS2</span>
+                    <span class="stat-label">ESL Pro League S21</span>
                 </div>
-                <div class="country-earnings">$331M</div>
-            </a>
-            <a href="/countries/usa.html" class="country-card">
-                <div class="country-flag">🇺🇸</div>
-                <div class="country-info">
-                    <h4>United States</h4>
-                    <p>29,331 players • Fortnite</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon"><img src="https://img-cdn.hltv.org/teamlogo/JMeLLbWKCIEJrmfPaqOz4O.svg?ixlib=java-2.1.0&s=3a9a4896a41ec0d56364df8947881f50" alt="Liquid" style="width:24px;height:24px;"></span>
+                <div class="stat-content">
+                    <span class="stat-value">Team Liquid vs G2</span>
+                    <span class="stat-label">Semifinal - 18:00 CET</span>
                 </div>
-                <div class="country-earnings">$300M</div>
-            </a>
-            <a href="/countries/korea.html" class="country-card">
-                <div class="country-flag">🇰🇷</div>
-                <div class="country-info">
-                    <h4>South Korea</h4>
-                    <p>5,964 players • LoL</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon"><img src="https://liquipedia.net/commons/images/thumb/0/0d/ESL_Pro_League.png/50px-ESL_Pro_League.png" alt="ESL" style="width:32px;height:32px;"></span>
+                <div class="stat-content">
+                    <span class="stat-value">$1,000,000</span>
+                    <span class="stat-label">Premio Total</span>
                 </div>
-                <div class="country-earnings">$157M</div>
-            </a>
-            <a href="/countries/russia.html" class="country-card">
-                <div class="country-flag">🇷🇺</div>
-                <div class="country-info">
-                    <h4>Russia</h4>
-                    <p>5,864 players • Dota 2</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon"><img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/global/dota2_logo_symbol.png" alt="Dota 2"></span>
+                <div class="stat-content">
+                    <span class="stat-value">Dota 2</span>
+                    <span class="stat-label">DreamLeague S23</span>
                 </div>
-                <div class="country-earnings">$96M</div>
-            </a>
-            <a href="/countries/brazil.html" class="country-card">
-                <div class="country-flag">🇧🇷</div>
-                <div class="country-info">
-                    <h4>Brazil</h4>
-                    <p>5,966 players • R6 Siege</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon"><img src="https://img-cdn.hltv.org/teamlogo/xCprQJIJG6q1sqt5oiwByw.svg?ixlib=java-2.1.0&s=fe84f91abff78279a14cb77af7ee158e" alt="Spirit" style="width:24px;height:24px;"></span>
+                <div class="stat-content">
+                    <span class="stat-value">Team Spirit</span>
+                    <span class="stat-label">#1 Ranking Mundial</span>
                 </div>
-                <div class="country-earnings">$73M</div>
-            </a>
-            <a href="/countries/denmark.html" class="country-card">
-                <div class="country-flag">🇩🇰</div>
-                <div class="country-info">
-                    <h4>Denmark</h4>
-                    <p>2,202 players • CS:GO</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon"><img src="https://brand.riotgames.com/static/2b03e06a6ea66b9c9062a981603cc707/f9e17/valorant-logo.png" alt="Valorant"></span>
+                <div class="stat-content">
+                    <span class="stat-value">Valorant</span>
+                    <span class="stat-label">VCT Americas</span>
                 </div>
-                <div class="country-earnings">$64M</div>
-            </a>
-            <a href="/countries/" class="country-card">
-                <div class="country-flag">🇫🇷</div>
-                <div class="country-info">
-                    <h4>France</h4>
-                    <p>6,650 players • CS:GO</p>
+            </div>
+            <!-- Duplicate for seamless scroll -->
+            <div class="stat-item">
+                <span class="stat-icon"><img src="https://cdn.cloudflare.steamstatic.com/apps/csgo/images/csgo_react/global/logo_cs_sm.svg" alt="CS2"></span>
+                <div class="stat-content">
+                    <span class="stat-value">CS2</span>
+                    <span class="stat-label">ESL Pro League S21</span>
                 </div>
-                <div class="country-earnings">$62M</div>
-            </a>
-            <a href="/countries/" class="country-card">
-                <div class="country-flag">🇸🇪</div>
-                <div class="country-info">
-                    <h4>Sweden</h4>
-                    <p>3,358 players • Dota 2</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon"><img src="https://img-cdn.hltv.org/teamlogo/JMeLLbWKCIEJrmfPaqOz4O.svg?ixlib=java-2.1.0&s=3a9a4896a41ec0d56364df8947881f50" alt="Liquid" style="width:24px;height:24px;"></span>
+                <div class="stat-content">
+                    <span class="stat-value">Team Liquid vs G2</span>
+                    <span class="stat-label">Semifinal - 18:00 CET</span>
                 </div>
-                <div class="country-earnings">$59M</div>
-            </a>
-        </div>
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="/countries/" class="btn btn-secondary">View All Countries →</a>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <div class="cta-section">
-        <h2>Ready to Bet on Esports?</h2>
-        <p>Check out our comprehensive betting guides and live odds tracker.</p>
-        <div class="cta-buttons">
-            <a href="/betting/" class="btn btn-primary">Betting Guides</a>
-            <a href="/live/" class="btn btn-secondary">Live Odds Map</a>
+            </div>
         </div>
     </div>
-
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-left">
+            <!-- Live Matches -->
+            <section class="live-matches">
+                <div class="section-header">
+                    <h2><span style="color:var(--red);">●</span> Partidos en Vivo</h2>
+                    <a href="/live/">Ver todos →</a>
+                </div>
+                
+                <div class="match-card">
+                    <div class="match-teams">
+                        <div class="team">
+                            <div class="team-logo"><img src="https://img-cdn.hltv.org/teamlogo/JMeLLbWKCIEJrmfPaqOz4O.svg?ixlib=java-2.1.0&s=3a9a4896a41ec0d56364df8947881f50" alt="Team Liquid" onerror="this.outerHTML='🔵'"></div>
+                            <div class="team-name">Liquid</div>
+                        </div>
+                        <div class="match-vs">VS</div>
+                        <div class="team">
+                            <div class="team-logo"><img src="https://img-cdn.hltv.org/teamlogo/zFLwAELOD15BjJSDMMNBWQ.png?ixlib=java-2.1.0&s=08587dd76b679c83756a4554efa5f5b4" alt="G2" onerror="this.outerHTML='⚫'"></div>
+                            <div class="team-name">G2</div>
+                        </div>
+                    </div>
+                    <div class="match-info">
+                        <div class="match-game"><img src="https://img-cdn.hltv.org/gametype/cs2.svg?ixlib=java-2.1.0&s=5f72d71c3f765d35cfdc2a6f57ab9a63" alt="CS2" style="width:16px;height:16px;vertical-align:middle;margin-right:4px;"> CS2 • ESL Pro League</div>
+                        <div class="match-odds">
+                            <span class="odd favorite">1.85</span>
+                            <span class="odd underdog">2.05</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="match-card">
+                    <div class="match-teams">
+                        <div class="team">
+                            <div class="team-logo"><img src="https://img-cdn.hltv.org/teamlogo/xCprQJIJG6q1sqt5oiwByw.svg?ixlib=java-2.1.0&s=fe84f91abff78279a14cb77af7ee158e" alt="Spirit" onerror="this.outerHTML='👻'"></div>
+                            <div class="team-name">Spirit</div>
+                        </div>
+                        <div class="match-vs">VS</div>
+                        <div class="team">
+                            <div class="team-logo"><img src="https://liquipedia.net/commons/images/thumb/7/77/Team_Falcons_allmode.png/60px-Team_Falcons_allmode.png" alt="Falcons" onerror="this.outerHTML='🦅'"></div>
+                            <div class="team-name">Falcons</div>
+                        </div>
+                    </div>
+                    <div class="match-info">
+                        <div class="match-game"><img src="https://liquipedia.net/commons/images/thumb/f/f5/Dota_2_logo.png/35px-Dota_2_logo.png" alt="Dota 2" style="width:16px;height:16px;vertical-align:middle;margin-right:4px;"> Dota 2 • DreamLeague</div>
+                        <div class="match-odds">
+                            <span class="odd favorite">1.45</span>
+                            <span class="odd underdog">2.75</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="match-card">
+                    <div class="match-teams">
+                        <div class="team">
+                            <div class="team-logo"><img src="https://liquipedia.net/commons/images/thumb/4/49/Sentinels_2021_lightmode.png/60px-Sentinels_2021_lightmode.png" alt="Sentinels" onerror="this.outerHTML='🔴'"></div>
+                            <div class="team-name">Sentinels</div>
+                        </div>
+                        <div class="match-vs">VS</div>
+                        <div class="team">
+                            <div class="team-logo"><img src="https://liquipedia.net/commons/images/thumb/9/9e/Cloud9_2022_lightmode.png/60px-Cloud9_2022_lightmode.png" alt="Cloud9" onerror="this.outerHTML='☁️'"></div>
+                            <div class="team-name">Cloud9</div>
+                        </div>
+                    </div>
+                    <div class="match-info">
+                        <div class="match-game"><img src="https://liquipedia.net/commons/images/thumb/e/ed/Valorant_logo.png/35px-Valorant_logo.png" alt="Valorant" style="width:16px;height:16px;vertical-align:middle;margin-right:4px;"> Valorant • VCT Americas</div>
+                        <div class="match-odds">
+                            <span class="odd underdog">2.10</span>
+                            <span class="odd favorite">1.75</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Games -->
+            <section class="games-section">
+                <div class="section-header">
+                    <h2>Juegos Populares</h2>
+                    <a href="/games/">Ver todos →</a>
+                </div>
+                
+                <div class="games-grid">
+                    <a href="/games/cs2.html" class="game-card">
+                        <div class="game-icon"><img src="https://cdn.cloudflare.steamstatic.com/apps/csgo/images/csgo_react/global/logo_cs_sm.svg" alt="CS2" onerror="this.outerHTML='🔫'"></div>
+                        <h3>Counter-Strike 2</h3>
+                        <p>FPS Táctico</p>
+                        <div class="game-prize">$150M+ premios</div>
+                    </a>
+                    <a href="/games/dota2.html" class="game-card">
+                        <div class="game-icon"><img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/global/dota2_logo_symbol.png" alt="Dota 2" onerror="this.outerHTML='🐉'"></div>
+                        <h3>Dota 2</h3>
+                        <p>MOBA</p>
+                        <div class="game-prize">$312M+ premios</div>
+                    </a>
+                    <a href="/games/lol.html" class="game-card">
+                        <div class="game-icon"><img src="https://brand.riotgames.com/static/a91000434ed683571e88eb5235f37389/8a20a/lol-logo.png" alt="LoL" onerror="this.outerHTML='⚔️'"></div>
+                        <h3>League of Legends</h3>
+                        <p>MOBA</p>
+                        <div class="game-prize">$100M+ premios</div>
+                    </a>
+                    <a href="/games/valorant.html" class="game-card">
+                        <div class="game-icon"><img src="https://brand.riotgames.com/static/2b03e06a6ea66b9c9062a981603cc707/f9e17/valorant-logo.png" alt="Valorant" onerror="this.outerHTML='🔥'"></div>
+                        <h3>Valorant</h3>
+                        <p>FPS Táctico</p>
+                        <div class="game-prize">$25M+ premios</div>
+                    </a>
+                </div>
+            </section>
+            
+            <!-- News -->
+            <section class="news-section">
+                <div class="section-header">
+                    <h2>Últimas Noticias</h2>
+                    <a href="/news/">Ver todas →</a>
+                </div>
+                
+                <div class="news-grid">
+                    <a href="#" class="news-card">
+                        <div class="news-image"><img src="https://liquipedia.net/commons/images/thumb/0/0d/ESL_Pro_League.png/70px-ESL_Pro_League.png" alt="ESL" style="max-width:70px;max-height:50px;"></div>
+                        <div class="news-content">
+                            <h4>ESL Pro League Season 21: Todo lo que necesitas saber</h4>
+                            <div class="news-meta">Hace 2 horas • CS2</div>
+                        </div>
+                    </a>
+                    <a href="#" class="news-card">
+                        <div class="news-image"><img src="https://img-cdn.hltv.org/teamlogo/xCprQJIJG6q1sqt5oiwByw.svg?ixlib=java-2.1.0&s=fe84f91abff78279a14cb77af7ee158e" alt="Spirit" style="max-width:50px;max-height:50px;"></div>
+                        <div class="news-content">
+                            <h4>Team Spirit domina con nuevo roster en DreamLeague</h4>
+                            <div class="news-meta">Hace 5 horas • Dota 2</div>
+                        </div>
+                    </a>
+                    <a href="#" class="news-card">
+                        <div class="news-image"><img src="https://brand.riotgames.com/static/2b03e06a6ea66b9c9062a981603cc707/f9e17/valorant-logo.png" alt="Valorant" style="max-width:50px;max-height:50px;"></div>
+                        <div class="news-content">
+                            <h4>Valorant Champions 2026: $3M en premios confirmado</h4>
+                            <div class="news-meta">Hace 1 día • Valorant</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Twitter Feed -->
+            <div class="twitter-feed">
+                <div class="twitter-header">
+                    <span style="font-size: 1.25rem;">𝕏</span>
+                    <h3>Esports Feed</h3>
+                </div>
+                <div class="twitter-content">
+                    <a class="twitter-timeline" 
+                       data-theme="dark"
+                       data-chrome="noheader nofooter noborders transparent"
+                       data-height="500"
+                       href="https://twitter.com/ABORANGA?ref_src=twsrc%5Etfw">
+                       Tweets by @HLTV
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Top Teams -->
+            <div class="top-teams">
+                <div class="section-header" style="margin-bottom: 16px;">
+                    <h2 style="font-size: 1.1rem;">Top Equipos</h2>
+                    <a href="/teams/">Ver más →</a>
+                </div>
+                
+                <div class="team-row">
+                    <div class="team-rank gold">1</div>
+                    <div class="team-logo-sm"><img src="https://img-cdn.hltv.org/teamlogo/JMeLLbWKCIEJrmfPaqOz4O.svg?ixlib=java-2.1.0&s=3a9a4896a41ec0d56364df8947881f50" alt="Liquid"></div>
+                    <div class="team-info">
+                        <h4>Team Liquid</h4>
+                        <p>Países Bajos</p>
+                    </div>
+                    <div class="team-earnings">$47.5M</div>
+                </div>
+                <div class="team-row">
+                    <div class="team-rank silver">2</div>
+                    <div class="team-logo-sm"><img src="https://liquipedia.net/commons/images/thumb/6/65/OG_RB_allance_logo.png/60px-OG_RB_allance_logo.png" alt="OG"></div>
+                    <div class="team-info">
+                        <h4>OG</h4>
+                        <p>Europa</p>
+                    </div>
+                    <div class="team-earnings">$37.8M</div>
+                </div>
+                <div class="team-row">
+                    <div class="team-rank bronze">3</div>
+                    <div class="team-logo-sm"><img src="https://img-cdn.hltv.org/teamlogo/xCprQJIJG6q1sqt5oiwByw.svg?ixlib=java-2.1.0&s=fe84f91abff78279a14cb77af7ee158e" alt="Spirit"></div>
+                    <div class="team-info">
+                        <h4>Team Spirit</h4>
+                        <p>Rusia</p>
+                    </div>
+                    <div class="team-earnings">$31.2M</div>
+                </div>
+                <div class="team-row">
+                    <div class="team-rank">4</div>
+                    <div class="team-logo-sm"><img src="https://img-cdn.hltv.org/teamlogo/kixzGZIb9IYvPTLibSkuQ_.svg?ixlib=java-2.1.0&s=b9bca8eaa9c9b04e9c0a5c73f69c7c68" alt="NAVI"></div>
+                    <div class="team-info">
+                        <h4>Natus Vincere</h4>
+                        <p>Ucrania</p>
+                    </div>
+                    <div class="team-earnings">$28.9M</div>
+                </div>
+                <div class="team-row">
+                    <div class="team-rank">5</div>
+                    <div class="team-logo-sm"><img src="https://img-cdn.hltv.org/teamlogo/SMhzsxzbgjwGTixHkr6Y-u.svg?ixlib=java-2.1.0&s=f82fe8e65b2b8a8d8c10cad12d7b5a4a" alt="FaZe"></div>
+                    <div class="team-info">
+                        <h4>FaZe Clan</h4>
+                        <p>Internacional</p>
+                    </div>
+                    <div class="team-earnings">$25.1M</div>
+                </div>
+            </div>
+            
+            <!-- Cloudbet Promo -->
+            <div style="background: linear-gradient(135deg, var(--orange), var(--purple)); border-radius: 16px; padding: 24px; text-align: center;">
+                <div style="margin-bottom: 12px;"><img src="https://www.cloudbet.com/img/cb-logo-text.svg" alt="Cloudbet" style="height:28px;filter:brightness(10);"></div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 8px;">Bono de Bienvenida</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 16px; opacity: 0.9;">Hasta 5 BTC en tu primer depósito</p>
+                <a href="https://cloudbet.com/es/" target="_blank" style="display: inline-block; background: white; color: var(--orange); padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 0.9rem;">
+                    Reclamar Bono →
+                </a>
+            </div>
+        </aside>
+    </main>
+    
+    <!-- Betting Guides Section -->
+    <section class="betting-section">
+        <div class="betting-container">
+            <div class="betting-header">
+                <h2>Guías de Apuestas</h2>
+                <p>Aprende a apostar en esports con nuestras guías completas en español</p>
+            </div>
+            
+            <div class="betting-grid">
+                <a href="/betting/guia-principiantes.html" class="betting-card">
+                    <h3><span style="color:var(--orange)">▸</span> Guía para Principiantes</h3>
+                    <p>Todo lo básico: tipos de apuestas, cuotas, bankroll y primeros pasos.</p>
+                    <span class="betting-link">Leer guía →</span>
+                </a>
+                <a href="/betting/cs2-apuestas.html" class="betting-card">
+                    <h3><img src="https://cdn.cloudflare.steamstatic.com/apps/csgo/images/csgo_react/global/logo_cs_sm.svg" alt="CS2" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;">Apuestas en CS2</h3>
+                    <p>Mercados específicos, estadísticas clave y estrategias para Counter-Strike.</p>
+                    <span class="betting-link">Leer guía →</span>
+                </a>
+                <a href="/betting/dota2-apuestas.html" class="betting-card">
+                    <h3><img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/global/dota2_logo_symbol.png" alt="Dota2" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;">Apuestas en Dota 2</h3>
+                    <p>Entiende el meta, analiza drafts y encuentra valor en los mercados.</p>
+                    <span class="betting-link">Leer guía →</span>
+                </a>
+                <a href="/betting/valorant-apuestas.html" class="betting-card">
+                    <h3><img src="https://brand.riotgames.com/static/2b03e06a6ea66b9c9062a981603cc707/f9e17/valorant-logo.png" alt="Valorant" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;">Apuestas en Valorant</h3>
+                    <p>La escena competitiva, equipos top y cómo apostar en VCT.</p>
+                    <span class="betting-link">Leer guía →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
+        <div class="footer-container">
             <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="/" class="logo">APUESTA ESPORTS</a>
-                    <p>The world's most comprehensive esports reference. Teams, players, countries, tournaments, and betting guides.</p>
+                <div class="footer-col">
+                    <h4>Apuesta Esports</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">
+                        La referencia más completa de esports en español. Análisis, estadísticas y guías de apuestas.
+                    </p>
                 </div>
-                <div class="footer-links">
-                    <h4>Games</h4>
+                <div class="footer-col">
+                    <h4>Juegos</h4>
                     <ul>
                         <li><a href="/games/cs2.html">Counter-Strike 2</a></li>
                         <li><a href="/games/dota2.html">Dota 2</a></li>
@@ -924,58 +1173,63 @@
                         <li><a href="/games/valorant.html">Valorant</a></li>
                     </ul>
                 </div>
-                <div class="footer-links">
-                    <h4>Resources</h4>
+                <div class="footer-col">
+                    <h4>Recursos</h4>
                     <ul>
-                        <li><a href="/teams/">Team Rankings</a></li>
-                        <li><a href="/players/">Player Profiles</a></li>
-                        <li><a href="/countries/">Country Stats</a></li>
-                        <li><a href="/tournaments/">Tournaments</a></li>
+                        <li><a href="/betting/">Guías de Apuestas</a></li>
+                        <li><a href="/teams/">Rankings de Equipos</a></li>
+                        <li><a href="/players/">Base de Jugadores</a></li>
+                        <li><a href="/tournaments/">Calendario</a></li>
                     </ul>
                 </div>
-                <div class="footer-links">
-                    <h4>Betting</h4>
+                <div class="footer-col">
+                    <h4>Para Desarrolladores</h4>
                     <ul>
-                        <li><a href="/live/">Live Odds</a></li>
-                        <li><a href="/betting/">Betting Guides</a></li>
-                        <li><a href="/betting/beginners-guide.html">Beginner's Guide</a></li>
+                        <li><a href="/agents/">Guía para Agentes IA</a></li>
+                        <li><a href="/llms.txt">llms.txt</a></li>
+                        <li><a href="/sitemap.xml">Sitemap</a></li>
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <div>© 2026 Apuesta Esports. Data from Esports Earnings.</div>
-                <div class="footer-legal">
-                    <a href="/llms.txt">llms.txt</a>
-                    <a href="/sitemap.xml">Sitemap</a>
+                <p>© 2026 Apuesta Esports. Juega responsablemente. 18+</p>
+                <div class="footer-social">
+                    <a href="https://twitter.com/apuestaesports" target="_blank">𝕏</a>
+                    <a href="https://discord.gg/esports" target="_blank">💬</a>
+                    <a href="https://twitch.tv/apuestaesports" target="_blank">📺</a>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Apuesta Esports",
-        "url": "https://www.apuestaesports.com",
-        "description": "The world's most comprehensive esports reference with team rankings, player profiles, country statistics, and betting guides.",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://www.apuestaesports.com/search?q={search_term_string}",
-            "query-input": "required name=search_term_string"
+    
+    <script>
+        // Update live count randomly
+        function updateLiveCount() {
+            const count = 8 + Math.floor(Math.random() * 10);
+            document.getElementById('live-count').textContent = count;
         }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Apuesta Esports",
-        "url": "https://www.apuestaesports.com",
-        "logo": "https://www.apuestaesports.com/logo.png",
-        "sameAs": []
-    }
+        setInterval(updateLiveCount, 30000);
+        
+        // Featured streams rotation
+        const streams = [
+            { channel: 'esl_csgo', title: 'ESL Pro League - CS2' },
+            { channel: 'daboranga', title: 'Dota 2 Español' },
+            { channel: 'valorant_es', title: 'Valorant Español' }
+        ];
+        
+        let currentStream = 0;
+        
+        function rotateStream() {
+            currentStream = (currentStream + 1) % streams.length;
+            const stream = streams[currentStream];
+            const iframe = document.querySelector('.stream-embed iframe');
+            iframe.src = `https://player.twitch.tv/?channel=${stream.channel}&parent=www.apuestaesports.com&parent=apuestaesports.com&parent=localhost&muted=true`;
+            document.querySelector('.stream-info span').textContent = stream.title;
+        }
+        
+        // Rotate stream every 5 minutes
+        // setInterval(rotateStream, 300000);
     </script>
 </body>
 </html>

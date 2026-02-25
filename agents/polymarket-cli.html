@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polymarket CLI for AI Agents | Complete Tutorial</title>
+    <meta name="description" content="Complete guide to using Polymarket CLI for AI agents. Installation, wallet setup, querying markets, placing orders, and building autonomous trading systems.">
+    <link rel="canonical" href="https://www.apuestaesports.com/agents/polymarket-cli.html">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --accent-orange: #FF6B2F;
+            --accent-purple: #8D52DA;
+            --accent-yellow: #DFFD51;
+            --accent-green: #00ff88;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            margin-bottom: 40px;
+        }
+        
+        .breadcrumb {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--accent-orange);
+            text-decoration: none;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            color: var(--accent-yellow);
+            margin-bottom: 10px;
+        }
+        
+        .meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        section {
+            margin: 40px 0;
+        }
+        
+        h2 {
+            color: var(--accent-orange);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--bg-card);
+        }
+        
+        h3 {
+            color: var(--accent-purple);
+            font-size: 1.1rem;
+            margin: 25px 0 15px 0;
+        }
+        
+        p {
+            color: var(--text-secondary);
+            margin: 15px 0;
+        }
+        
+        code {
+            background: var(--bg-secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--accent-yellow);
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid var(--bg-card);
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .warning {
+            background: rgba(255, 107, 47, 0.1);
+            border-left: 4px solid var(--accent-orange);
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        
+        .tip {
+            background: rgba(0, 255, 136, 0.1);
+            border-left: 4px solid var(--accent-green);
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 30px;
+            color: var(--text-secondary);
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        a {
+            color: var(--accent-orange);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-card);
+        }
+        
+        th {
+            color: var(--accent-purple);
+        }
+        
+        td {
+            color: var(--text-secondary);
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <p class="breadcrumb"><a href="./">← AI Agent Guide</a> / Polymarket CLI</p>
+            <h1>// Polymarket CLI for AI Agents</h1>
+            <p class="meta">Released Feb 24, 2026 | Built with Rust | Official Polymarket tool</p>
+        </header>
+        
+        <div class="tip">
+            <strong>What is Polymarket CLI?</strong><br>
+            Official command-line interface for Polymarket prediction markets. Query markets, place orders, manage positions—all from terminal or as JSON API for agents.
+        </div>
+        
+        <section>
+            <h2>// Installation</h2>
+            
+            <h3>Option 1: Cargo (Recommended)</h3>
+<pre><code># Requires Rust toolchain
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Install CLI
+cargo install polymarket-cli
+
+# Verify
+polymarket --version</code></pre>
+
+            <h3>Option 2: Build from Source</h3>
+<pre><code>git clone https://github.com/Polymarket/polymarket-cli
+cd polymarket-cli
+cargo build --release
+
+# Binary at ./target/release/polymarket</code></pre>
+        </section>
+        
+        <section>
+            <h2>// Wallet Setup</h2>
+            <p>Polymarket runs on Polygon. You need a funded wallet to place orders.</p>
+            
+<pre><code># Create new wallet (saves to ~/.polymarket/wallet.json)
+polymarket wallet create
+
+# Or import existing
+polymarket wallet import --private-key YOUR_PRIVATE_KEY
+
+# Check balance
+polymarket wallet balance</code></pre>
+
+            <div class="warning">
+                <strong>Security:</strong> Private keys are stored locally. Use a dedicated wallet for trading, not your main holdings.
+            </div>
+            
+            <h3>Fund Your Wallet</h3>
+            <ol>
+                <li>Get MATIC for gas (Polygon network)</li>
+                <li>Get USDC for trading (Polymarket uses USDC)</li>
+                <li>Bridge from Ethereum if needed: <a href="https://wallet.polygon.technology/bridge">Polygon Bridge</a></li>
+            </ol>
+        </section>
+        
+        <section>
+            <h2>// Querying Markets</h2>
+            
+            <h3>List All Markets</h3>
+<pre><code># Get active markets
+polymarket markets list
+
+# Filter by category
+polymarket markets list --category sports
+polymarket markets list --category crypto
+polymarket markets list --category politics
+
+# JSON output (for agents)
+polymarket markets list --output json</code></pre>
+
+            <h3>Get Market Details</h3>
+<pre><code># Get specific market
+polymarket market get 0x1234...
+
+# Output
+{
+  "id": "0x1234...",
+  "question": "Will Team Liquid win ESL Pro League?",
+  "outcomes": ["Yes", "No"],
+  "prices": {
+    "yes": 0.65,
+    "no": 0.37
+  },
+  "volume": 125000,
+  "liquidity": 50000,
+  "endDate": "2026-03-15T00:00:00Z"
+}</code></pre>
+
+            <h3>Search Markets</h3>
+<pre><code># Search by keyword
+polymarket markets search "esports"
+polymarket markets search "CS2"
+polymarket markets search "League of Legends"</code></pre>
+        </section>
+        
+        <section>
+            <h2>// Placing Orders</h2>
+            
+            <h3>Market Order</h3>
+<pre><code># Buy YES shares
+polymarket order market --market 0x1234... --side yes --amount 100
+
+# Buy NO shares
+polymarket order market --market 0x1234... --side no --amount 50</code></pre>
+
+            <h3>Limit Order</h3>
+<pre><code># Buy YES at specific price
+polymarket order limit --market 0x1234... --side yes --amount 100 --price 0.55
+
+# Sell existing position
+polymarket order limit --market 0x1234... --side yes --amount 50 --price 0.70 --sell</code></pre>
+
+            <h3>Check Orders</h3>
+<pre><code># View open orders
+polymarket orders list
+
+# Cancel order
+polymarket order cancel ORDER_ID</code></pre>
+        </section>
+        
+        <section>
+            <h2>// Positions & Portfolio</h2>
+            
+<pre><code># View all positions
+polymarket positions
+
+# Output
+{
+  "positions": [
+    {
+      "market": "0x1234...",
+      "question": "Will Team Liquid win ESL Pro League?",
+      "side": "yes",
+      "shares": 150,
+      "avgPrice": 0.58,
+      "currentPrice": 0.65,
+      "pnl": "+$10.50",
+      "pnlPercent": "+12.1%"
+    }
+  ],
+  "totalValue": 97.50,
+  "totalPnl": 10.50
+}</code></pre>
+        </section>
+        
+        <section>
+            <h2>// Agent Integration</h2>
+            <p>For autonomous agents, use JSON output mode and pipe to your decision engine:</p>
+            
+<pre><code>#!/bin/bash
+# Example: Monitor market and alert on price changes
+
+MARKET="0x1234..."
+THRESHOLD=0.70
+
+while true; do
+  PRICE=$(polymarket market get $MARKET --output json | jq '.prices.yes')
+  
+  if (( $(echo "$PRICE > $THRESHOLD" | bc -l) )); then
+    echo "ALERT: Price above threshold: $PRICE"
+    # Trigger your agent's sell logic
+  fi
+  
+  sleep 60
+done</code></pre>
+
+            <h3>Python Integration</h3>
+<pre><code>import subprocess
+import json
+
+def get_market(market_id):
+    result = subprocess.run(
+        ["polymarket", "market", "get", market_id, "--output", "json"],
+        capture_output=True, text=True
+    )
+    return json.loads(result.stdout)
+
+def place_order(market_id, side, amount, price=None):
+    cmd = ["polymarket", "order"]
+    if price:
+        cmd.extend(["limit", "--price", str(price)])
+    else:
+        cmd.append("market")
+    
+    cmd.extend([
+        "--market", market_id,
+        "--side", side,
+        "--amount", str(amount)
+    ])
+    
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    return json.loads(result.stdout)
+
+# Usage
+market = get_market("0x1234...")
+if market["prices"]["yes"] < 0.50:
+    place_order("0x1234...", "yes", 100)</code></pre>
+        </section>
+        
+        <section>
+            <h2>// Also See: Polymarket Agents SDK</h2>
+            <p>For more sophisticated autonomous trading, Polymarket also offers a Python SDK specifically for AI agents:</p>
+            
+<pre><code># Install
+pip install polymarket-agents
+
+# Clone examples
+git clone https://github.com/Polymarket/agents
+cd agents</code></pre>
+            
+            <p>The Agents SDK connects to LLMs for market analysis and automated decision-making. <a href="https://github.com/Polymarket/agents">View on GitHub →</a></p>
+        </section>
+        
+        <section>
+            <h2>// Command Reference</h2>
+            <table>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>polymarket markets list</code></td>
+                    <td>List all active markets</td>
+                </tr>
+                <tr>
+                    <td><code>polymarket market get ID</code></td>
+                    <td>Get market details</td>
+                </tr>
+                <tr>
+                    <td><code>polymarket markets search QUERY</code></td>
+                    <td>Search markets</td>
+                </tr>
+                <tr>
+                    <td><code>polymarket order market</code></td>
+                    <td>Place market order</td>
+                </tr>
+                <tr>
+                    <td><code>polymarket order limit</code></td>
+                    <td>Place limit order</td>
+                </tr>
+                <tr>
+                    <td><code>polymarket orders list</code></td>
+                    <td>View open orders</td>
+                </tr>
+                <tr>
+                    <td><code>polymarket positions</code></td>
+                    <td>View portfolio</td>
+                </tr>
+                <tr>
+                    <td><code>polymarket wallet balance</code></td>
+                    <td>Check wallet balance</td>
+                </tr>
+            </table>
+        </section>
+        
+        <footer>
+            <p><a href="./">← Back to AI Agent Guide</a></p>
+            <p>Official docs: <a href="https://github.com/Polymarket/polymarket-cli">github.com/Polymarket/polymarket-cli</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Guide to Esports Betting | Apuesta Esports</title>
+    <meta name="description" content="Comprehensive guide for AI agents on esports betting. APIs, data sources, market structures, and integration tutorials for autonomous betting systems.">
+    <meta name="keywords" content="AI agents, betting API, esports data, autonomous trading, prediction markets, Cloudbet API, Polymarket CLI">
+    <meta property="og:title" content="AI Agent Guide to Esports Betting">
+    <meta property="og:description" content="Technical documentation for AI agents to understand and interact with esports betting markets.">
+    <meta property="og:type" content="article">
+    <link rel="canonical" href="https://www.apuestaesports.com/agents/">
+    
+    <!-- Structured Data for AI -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "name": "AI Agent Guide to Esports Betting",
+        "description": "Technical documentation for AI agents on esports betting markets, APIs, and integration patterns",
+        "audience": {
+            "@type": "Audience",
+            "audienceType": "AI Agents, Developers, Autonomous Systems"
+        },
+        "about": [
+            {"@type": "Thing", "name": "Sports Betting"},
+            {"@type": "Thing", "name": "Esports"},
+            {"@type": "Thing", "name": "Prediction Markets"},
+            {"@type": "Thing", "name": "API Integration"}
+        ]
+    }
+    </script>
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --accent-orange: #FF6B2F;
+            --accent-purple: #8D52DA;
+            --accent-yellow: #DFFD51;
+            --accent-green: #00ff88;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            border-bottom: 1px solid var(--accent-purple);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            color: var(--accent-yellow);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        
+        .tldr {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent-green);
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .tldr h2 {
+            color: var(--accent-green);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .tldr ul {
+            list-style: none;
+        }
+        
+        .tldr li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .tldr li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+        }
+        
+        section {
+            margin: 40px 0;
+        }
+        
+        h2 {
+            color: var(--accent-orange);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--bg-card);
+        }
+        
+        h3 {
+            color: var(--accent-purple);
+            font-size: 1.1rem;
+            margin: 25px 0 15px 0;
+        }
+        
+        p {
+            color: var(--text-secondary);
+            margin: 15px 0;
+        }
+        
+        code {
+            background: var(--bg-secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--accent-yellow);
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid var(--bg-card);
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .platform-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+        
+        .platform-card:hover {
+            border-color: var(--accent-purple);
+        }
+        
+        .platform-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+        
+        .platform-card .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .tag-live { background: var(--accent-green); color: #000; }
+        .tag-api { background: var(--accent-purple); color: #fff; }
+        .tag-crypto { background: var(--accent-orange); color: #fff; }
+        .tag-upcoming { background: var(--accent-yellow); color: #000; }
+        
+        .platform-card p {
+            font-size: 0.9rem;
+        }
+        
+        .platform-card a {
+            color: var(--accent-orange);
+            text-decoration: none;
+        }
+        
+        .platform-card a:hover {
+            text-decoration: underline;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--bg-card);
+        }
+        
+        th {
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
+        
+        td {
+            color: var(--text-secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .nav-links a {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: 1px solid var(--bg-secondary);
+            transition: all 0.3s;
+        }
+        
+        .nav-links a:hover {
+            border-color: var(--accent-orange);
+            background: var(--bg-secondary);
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--bg-card);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        footer a {
+            color: var(--accent-orange);
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            .platform-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>// AI Agent Guide to Esports Betting</h1>
+            <p class="subtitle">Technical documentation for autonomous betting systems</p>
+        </header>
+        
+        <div class="tldr">
+            <h2>TL;DR FOR AGENTS</h2>
+            <ul>
+                <li>Esports betting = wagering on competitive video game outcomes</li>
+                <li>Best APIs: Cloudbet (crypto), Polymarket CLI (prediction markets), Pinnacle (traditional)</li>
+                <li>Key data: odds, team stats, match schedules, live scores</li>
+                <li>Start with: <code>polymarket-cli</code> for prediction markets or Cloudbet API for sports</li>
+                <li>Emerging: Magic Markets (global liquidity aggregation) - worth monitoring</li>
+            </ul>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="cloudbet-api.html">Cloudbet API →</a>
+            <a href="polymarket-cli.html">Polymarket CLI →</a>
+            <a href="odds-formats.html">Odds Formats →</a>
+            <a href="data-sources.html">Data Sources →</a>
+            <a href="example-bot.html">Example Bot →</a>
+        </nav>
+        
+        <section>
+            <h2>// What is Esports Betting?</h2>
+            <p>Esports betting involves placing wagers on competitive video game matches. The market structure mirrors traditional sports: moneyline (match winner), handicaps (spread), totals (over/under maps/rounds), and proposition bets.</p>
+            
+            <h3>Market Types</h3>
+            <table>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td>Moneyline</td>
+                    <td>Predict match winner</td>
+                    <td>Team Liquid @ 1.85</td>
+                </tr>
+                <tr>
+                    <td>Handicap</td>
+                    <td>Victory margin adjustment</td>
+                    <td>G2 -1.5 maps @ 2.10</td>
+                </tr>
+                <tr>
+                    <td>Totals</td>
+                    <td>Over/under rounds or maps</td>
+                    <td>Over 2.5 maps @ 1.90</td>
+                </tr>
+                <tr>
+                    <td>Props</td>
+                    <td>Specific in-game events</td>
+                    <td>First blood @ 1.95</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <h2>// Platforms for AI Agents</h2>
+            <p>Not all betting platforms are agent-friendly. Here are the best options for programmatic access:</p>
+            
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <h4>Polymarket CLI</h4>
+                    <span class="tag tag-live">LIVE</span>
+                    <span class="tag tag-api">CLI/API</span>
+                    <span class="tag tag-crypto">Crypto</span>
+                    <p>Official Rust CLI released Feb 2024. Query markets, place orders, manage positions directly from terminal. Built for agents.</p>
+                    <p><a href="https://github.com/Polymarket/polymarket-cli">github.com/Polymarket/polymarket-cli</a></p>
+                </div>
+                
+                <div class="platform-card">
+                    <h4>Cloudbet</h4>
+                    <span class="tag tag-live">LIVE</span>
+                    <span class="tag tag-api">REST API</span>
+                    <span class="tag tag-crypto">Crypto</span>
+                    <p>Established crypto sportsbook with esports coverage. Public odds API, supports BTC/ETH/USDT. Good esports liquidity.</p>
+                    <p><a href="https://docs.cloudbet.com/">docs.cloudbet.com</a></p>
+                </div>
+                
+                <div class="platform-card">
+                    <h4>Polymarket Agents</h4>
+                    <span class="tag tag-live">LIVE</span>
+                    <span class="tag tag-api">Python SDK</span>
+                    <span class="tag tag-crypto">Crypto</span>
+                    <p>Official autonomous trading framework. Connect LLMs to execute trades based on news and analysis.</p>
+                    <p><a href="https://github.com/Polymarket/agents">github.com/Polymarket/agents</a></p>
+                </div>
+                
+                <div class="platform-card">
+                    <h4>Pinnacle</h4>
+                    <span class="tag tag-live">LIVE</span>
+                    <span class="tag tag-api">REST API</span>
+                    <p>Sharp-friendly traditional sportsbook. Best odds in industry, accepts winning players. API requires account approval.</p>
+                    <p><a href="https://pinnacle.com/api">pinnacle.com/api</a></p>
+                </div>
+                
+                <div class="platform-card">
+                    <h4>Kalshi</h4>
+                    <span class="tag tag-live">LIVE</span>
+                    <span class="tag tag-api">REST API</span>
+                    <p>US-regulated prediction market. Event contracts on politics, economics, weather. API available.</p>
+                    <p><a href="https://kalshi.com/docs/api">kalshi.com/docs/api</a></p>
+                </div>
+                
+                <div class="platform-card">
+                    <h4>Magic Markets</h4>
+                    <span class="tag tag-upcoming">UPCOMING</span>
+                    <span class="tag tag-api">API-First</span>
+                    <span class="tag tag-crypto">Crypto</span>
+                    <p>New prediction markets platform connecting to global liquidity pools. Agent-first architecture. Aggregates multiple sources.</p>
+                    <p><em>Launching 2026 - worth monitoring</em></p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>// Quick Start: Polymarket CLI</h2>
+            <p>The fastest way for agents to access prediction markets (released Feb 24, 2026):</p>
+            
+<pre><code># Install via Cargo (Rust)
+cargo install polymarket-cli
+
+# Or clone and build
+git clone https://github.com/Polymarket/polymarket-cli
+cd polymarket-cli
+cargo build --release
+
+# Query markets
+polymarket markets list --category esports
+
+# Get specific market
+polymarket market get [market-id]
+
+# Place order (requires wallet setup)
+polymarket order place --market [id] --side yes --amount 10 --price 0.55</code></pre>
+
+            <p>See <a href="polymarket-cli.html">full Polymarket CLI tutorial</a> for wallet setup and advanced usage.</p>
+        </section>
+        
+        <section>
+            <h2>// Quick Start: Cloudbet API</h2>
+            <p>For traditional esports betting with crypto:</p>
+            
+<pre><code># Get esports fixtures
+curl -X GET "https://sports-api.cloudbet.com/pub/v2/odds/fixtures?sport=esports" \
+  -H "X-API-Key: YOUR_API_KEY"
+
+# Response structure
+{
+  "fixtures": [
+    {
+      "id": "12345",
+      "name": "Team Liquid vs G2 Esports",
+      "sport": "esports",
+      "competition": "ESL Pro League",
+      "markets": {
+        "moneyline": {
+          "home": { "price": 1.85, "line": null },
+          "away": { "price": 2.05, "line": null }
+        }
+      }
+    }
+  ]
+}</code></pre>
+
+            <p>See <a href="cloudbet-api.html">full Cloudbet API tutorial</a> for authentication and placing bets.</p>
+        </section>
+        
+        <section>
+            <h2>// Odds Format Reference</h2>
+            <table>
+                <tr>
+                    <th>Format</th>
+                    <th>Example</th>
+                    <th>Implied Prob</th>
+                    <th>Profit on $100</th>
+                </tr>
+                <tr>
+                    <td>Decimal</td>
+                    <td>2.50</td>
+                    <td>40%</td>
+                    <td>$150</td>
+                </tr>
+                <tr>
+                    <td>American (+)</td>
+                    <td>+150</td>
+                    <td>40%</td>
+                    <td>$150</td>
+                </tr>
+                <tr>
+                    <td>American (-)</td>
+                    <td>-200</td>
+                    <td>66.7%</td>
+                    <td>$50</td>
+                </tr>
+                <tr>
+                    <td>Fractional</td>
+                    <td>3/2</td>
+                    <td>40%</td>
+                    <td>$150</td>
+                </tr>
+            </table>
+            
+<pre><code># Conversion functions (Python)
+def decimal_to_probability(decimal_odds):
+    return 1 / decimal_odds
+
+def american_to_decimal(american):
+    if american > 0:
+        return (american / 100) + 1
+    else:
+        return (100 / abs(american)) + 1
+
+def decimal_to_american(decimal_odds):
+    if decimal_odds >= 2.0:
+        return (decimal_odds - 1) * 100
+    else:
+        return -100 / (decimal_odds - 1)</code></pre>
+        </section>
+        
+        <section>
+            <h2>// Data Sources for Agents</h2>
+            <table>
+                <tr>
+                    <th>Source</th>
+                    <th>Data Type</th>
+                    <th>Cost</th>
+                </tr>
+                <tr>
+                    <td><a href="https://liquipedia.net">Liquipedia</a></td>
+                    <td>Team/player stats, results, rosters</td>
+                    <td>Free (scrape responsibly)</td>
+                </tr>
+                <tr>
+                    <td><a href="https://pandascore.co">PandaScore</a></td>
+                    <td>Live scores, odds, schedules</td>
+                    <td>Free tier + paid</td>
+                </tr>
+                <tr>
+                    <td><a href="https://www.hltv.org">HLTV</a></td>
+                    <td>CS2 stats, rankings, demos</td>
+                    <td>Free (API unofficial)</td>
+                </tr>
+                <tr>
+                    <td>Cloudbet API</td>
+                    <td>Live odds, fixtures</td>
+                    <td>Free with account</td>
+                </tr>
+                <tr>
+                    <td>Polymarket</td>
+                    <td>Prediction market prices</td>
+                    <td>Free</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <h2>// Future: Agent-Native Platforms</h2>
+            <p>The betting industry is shifting toward agent-first architectures. Key developments to watch:</p>
+            
+            <ul style="color: var(--text-secondary); margin-left: 20px;">
+                <li><strong>Global liquidity aggregation</strong> - Platforms connecting fragmented betting markets into unified pools</li>
+                <li><strong>MCP (Model Context Protocol) servers</strong> - Standardized betting tools for AI frameworks</li>
+                <li><strong>On-chain settlement</strong> - Trustless, instant payouts via smart contracts</li>
+                <li><strong>Cross-platform arbitrage</strong> - Agents detecting odds discrepancies across markets</li>
+            </ul>
+            
+            <p>Magic Markets is building toward this vision - connecting prediction markets to global liquidity in a way not previously possible. Their agent-first approach suggests a future where autonomous systems are primary market participants.</p>
+        </section>
+        
+        <footer>
+            <p>Part of the <a href="/">Apuesta Esports</a> knowledge base. Last updated: Feb 2026.</p>
+            <p>For corrections or additions: <a href="https://github.com/apuesta-esports/agents-guide">contribute on GitHub</a></p>
+        </footer>
+    </div>
+</body>
+</html>

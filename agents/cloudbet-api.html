@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudbet API for AI Agents | Esports Betting Tutorial</title>
+    <meta name="description" content="Complete guide to Cloudbet API for AI agents. Authentication, fetching odds, placing bets, and building automated esports betting systems with crypto.">
+    <link rel="canonical" href="https://www.apuestaesports.com/agents/cloudbet-api.html">
+    
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --accent-orange: #FF6B2F;
+            --accent-purple: #8D52DA;
+            --accent-yellow: #DFFD51;
+            --accent-green: #00ff88;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        header { margin-bottom: 40px; }
+        
+        .breadcrumb { color: var(--text-secondary); margin-bottom: 20px; font-size: 0.9rem; }
+        .breadcrumb a { color: var(--accent-orange); text-decoration: none; }
+        
+        h1 { font-size: 2rem; color: var(--accent-yellow); margin-bottom: 10px; }
+        .meta { color: var(--text-secondary); font-size: 0.9rem; }
+        
+        section { margin: 40px 0; }
+        
+        h2 { color: var(--accent-orange); font-size: 1.3rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--bg-card); }
+        h3 { color: var(--accent-purple); font-size: 1.1rem; margin: 25px 0 15px 0; }
+        
+        p { color: var(--text-secondary); margin: 15px 0; }
+        
+        code { background: var(--bg-secondary); padding: 2px 8px; border-radius: 4px; color: var(--accent-yellow); font-size: 0.9rem; }
+        pre { background: var(--bg-secondary); padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; border: 1px solid var(--bg-card); }
+        pre code { background: none; padding: 0; }
+        
+        .warning { background: rgba(255, 107, 47, 0.1); border-left: 4px solid var(--accent-orange); padding: 15px 20px; margin: 20px 0; }
+        .tip { background: rgba(0, 255, 136, 0.1); border-left: 4px solid var(--accent-green); padding: 15px 20px; margin: 20px 0; }
+        .info { background: rgba(141, 82, 218, 0.1); border-left: 4px solid var(--accent-purple); padding: 15px 20px; margin: 20px 0; }
+        
+        ul, ol { margin: 15px 0 15px 30px; color: var(--text-secondary); }
+        li { margin: 8px 0; }
+        
+        a { color: var(--accent-orange); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--bg-card); }
+        th { color: var(--accent-purple); }
+        td { color: var(--text-secondary); }
+        
+        footer { margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--bg-card); color: var(--text-secondary); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <p class="breadcrumb"><a href="./">← AI Agent Guide</a> / Cloudbet API</p>
+            <h1>// Cloudbet API for AI Agents</h1>
+            <p class="meta">Crypto sportsbook | REST API | Esports + Traditional Sports</p>
+        </header>
+        
+        <div class="tip">
+            <strong>Why Cloudbet for Agents?</strong><br>
+            • Crypto-native (BTC, ETH, USDT) – no bank delays<br>
+            • Public odds API – no account needed for data<br>
+            • Strong esports coverage (CS2, Dota 2, LoL, Valorant)<br>
+            • Accepts API-driven betting
+        </div>
+        
+        <section>
+            <h2>// API Overview</h2>
+            
+            <table>
+                <tr>
+                    <th>Endpoint</th>
+                    <th>Auth Required</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>/pub/v2/odds/fixtures</code></td>
+                    <td>No (API key)</td>
+                    <td>Get fixtures and odds</td>
+                </tr>
+                <tr>
+                    <td><code>/pub/v2/odds/competitions</code></td>
+                    <td>No</td>
+                    <td>List competitions/leagues</td>
+                </tr>
+                <tr>
+                    <td><code>/pub/v2/odds/sports</code></td>
+                    <td>No</td>
+                    <td>List available sports</td>
+                </tr>
+                <tr>
+                    <td><code>/v3/bets</code></td>
+                    <td>Yes (JWT)</td>
+                    <td>Place bets</td>
+                </tr>
+                <tr>
+                    <td><code>/v3/account/balance</code></td>
+                    <td>Yes</td>
+                    <td>Check account balance</td>
+                </tr>
+            </table>
+            
+            <p>Base URL: <code>https://sports-api.cloudbet.com</code></p>
+            <p>Docs: <a href="https://docs.cloudbet.com">docs.cloudbet.com</a></p>
+        </section>
+        
+        <section>
+            <h2>// Authentication</h2>
+            
+            <h3>Public Endpoints (Odds Data)</h3>
+            <p>For reading odds, you need an API key (free with account):</p>
+            
+<pre><code>curl -X GET "https://sports-api.cloudbet.com/pub/v2/odds/fixtures?sport=esports" \
+  -H "X-API-Key: YOUR_API_KEY" \
+  -H "Accept: application/json"</code></pre>
+
+            <h3>Private Endpoints (Betting)</h3>
+            <p>For placing bets, you need JWT authentication:</p>
+            
+<pre><code># 1. Get JWT token (login)
+curl -X POST "https://sports-api.cloudbet.com/pub/v1/account/login" \
+  -H "Content-Type: application/json" \
+  -d '{"email": "your@email.com", "password": "yourpassword"}'
+
+# Response
+{
+  "token": "eyJhbGciOiJIUzI1NiIs...",
+  "expiresAt": "2026-02-25T12:00:00Z"
+}
+
+# 2. Use token in requests
+curl -X POST "https://sports-api.cloudbet.com/v3/bets" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{...}'</code></pre>
+        </section>
+        
+        <section>
+            <h2>// Fetching Esports Odds</h2>
+            
+            <h3>Get All Esports Fixtures</h3>
+<pre><code>curl -X GET "https://sports-api.cloudbet.com/pub/v2/odds/fixtures?sport=esports" \
+  -H "X-API-Key: YOUR_API_KEY"</code></pre>
+
+            <h3>Response Structure</h3>
+<pre><code>{
+  "fixtures": [
+    {
+      "id": "evt-12345",
+      "key": "esports/csgo/esl-pro-league/team-liquid-vs-g2",
+      "sport": {
+        "key": "esports",
+        "name": "Esports"
+      },
+      "competition": {
+        "key": "esl-pro-league",
+        "name": "ESL Pro League Season 21"
+      },
+      "name": "Team Liquid vs G2 Esports",
+      "home": {
+        "key": "team-liquid",
+        "name": "Team Liquid"
+      },
+      "away": {
+        "key": "g2-esports", 
+        "name": "G2 Esports"
+      },
+      "cutoffTime": "2026-03-15T18:00:00Z",
+      "markets": {
+        "winner": {
+          "submarkets": {
+            "period=ft": {
+              "selections": [
+                {
+                  "outcome": "home",
+                  "price": "1.85",
+                  "probability": "0.54"
+                },
+                {
+                  "outcome": "away",
+                  "price": "2.05",
+                  "probability": "0.49"
+                }
+              ]
+            }
+          }
+        },
+        "handicap": {
+          "submarkets": {
+            "period=ft&handicap=-1.5": {
+              "selections": [
+                {
+                  "outcome": "home",
+                  "price": "2.40",
+                  "line": "-1.5"
+                },
+                {
+                  "outcome": "away",
+                  "price": "1.55",
+                  "line": "+1.5"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}</code></pre>
+
+            <h3>Filter by Competition</h3>
+<pre><code># CS2 specific
+curl "https://sports-api.cloudbet.com/pub/v2/odds/fixtures?sport=esports&competition=csgo/esl-pro-league"
+
+# Dota 2
+curl "https://sports-api.cloudbet.com/pub/v2/odds/fixtures?sport=esports&competition=dota2/the-international"
+
+# League of Legends
+curl "https://sports-api.cloudbet.com/pub/v2/odds/fixtures?sport=esports&competition=lol/worlds"</code></pre>
+        </section>
+        
+        <section>
+            <h2>// Placing Bets</h2>
+            
+            <div class="warning">
+                <strong>Requires funded account and JWT authentication.</strong>
+            </div>
+            
+<pre><code>curl -X POST "https://sports-api.cloudbet.com/v3/bets" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "currency": "USDT",
+    "stake": "10.00",
+    "acceptPriceChange": "better",
+    "selections": [
+      {
+        "eventId": "evt-12345",
+        "marketKey": "winner",
+        "submarketKey": "period=ft",
+        "outcome": "home",
+        "price": "1.85"
+      }
+    ]
+  }'</code></pre>
+
+            <h3>Response</h3>
+<pre><code>{
+  "referenceId": "bet-67890",
+  "status": "accepted",
+  "stake": "10.00",
+  "currency": "USDT",
+  "potentialPayout": "18.50",
+  "selections": [...]
+}</code></pre>
+        </section>
+        
+        <section>
+            <h2>// Python Agent Example</h2>
+            
+<pre><code>import requests
+from typing import Optional
+import os
+
+class CloudbetAgent:
+    BASE_URL = "https://sports-api.cloudbet.com"
+    
+    def __init__(self, api_key: str, jwt_token: Optional[str] = None):
+        self.api_key = api_key
+        self.jwt_token = jwt_token
+    
+    def get_esports_fixtures(self, competition: Optional[str] = None):
+        """Fetch esports fixtures and odds"""
+        params = {"sport": "esports"}
+        if competition:
+            params["competition"] = competition
+            
+        response = requests.get(
+            f"{self.BASE_URL}/pub/v2/odds/fixtures",
+            headers={"X-API-Key": self.api_key},
+            params=params
+        )
+        return response.json()
+    
+    def find_value_bets(self, min_edge: float = 0.05):
+        """Find bets where implied probability differs from our estimate"""
+        fixtures = self.get_esports_fixtures()
+        value_bets = []
+        
+        for fixture in fixtures.get("fixtures", []):
+            markets = fixture.get("markets", {})
+            winner = markets.get("winner", {})
+            
+            for submarket_key, submarket in winner.get("submarkets", {}).items():
+                selections = submarket.get("selections", [])
+                
+                for selection in selections:
+                    price = float(selection.get("price", 0))
+                    implied_prob = 1 / price if price > 0 else 0
+                    
+                    # Your model's probability estimate would go here
+                    # This is just a placeholder
+                    estimated_prob = implied_prob * 1.1  # Example
+                    
+                    edge = estimated_prob - implied_prob
+                    if edge > min_edge:
+                        value_bets.append({
+                            "fixture": fixture["name"],
+                            "selection": selection["outcome"],
+                            "price": price,
+                            "edge": edge
+                        })
+        
+        return value_bets
+    
+    def place_bet(self, event_id: str, market_key: str, 
+                  submarket_key: str, outcome: str, 
+                  price: str, stake: float, currency: str = "USDT"):
+        """Place a bet (requires JWT auth)"""
+        if not self.jwt_token:
+            raise ValueError("JWT token required for betting")
+            
+        response = requests.post(
+            f"{self.BASE_URL}/v3/bets",
+            headers={
+                "Authorization": f"Bearer {self.jwt_token}",
+                "Content-Type": "application/json"
+            },
+            json={
+                "currency": currency,
+                "stake": str(stake),
+                "acceptPriceChange": "better",
+                "selections": [{
+                    "eventId": event_id,
+                    "marketKey": market_key,
+                    "submarketKey": submarket_key,
+                    "outcome": outcome,
+                    "price": price
+                }]
+            }
+        )
+        return response.json()
+
+
+# Usage
+agent = CloudbetAgent(
+    api_key=os.environ["CLOUDBET_API_KEY"],
+    jwt_token=os.environ.get("CLOUDBET_JWT")  # Optional for betting
+)
+
+# Get CS2 fixtures
+fixtures = agent.get_esports_fixtures("csgo/esl-pro-league")
+print(f"Found {len(fixtures.get('fixtures', []))} CS2 matches")
+
+# Find value
+value_bets = agent.find_value_bets(min_edge=0.03)
+for bet in value_bets:
+    print(f"Value: {bet['fixture']} - {bet['selection']} @ {bet['price']} (edge: {bet['edge']:.1%})")</code></pre>
+        </section>
+        
+        <section>
+            <h2>// Available Esports</h2>
+            <table>
+                <tr>
+                    <th>Game</th>
+                    <th>Competition Key</th>
+                    <th>Markets</th>
+                </tr>
+                <tr>
+                    <td>Counter-Strike 2</td>
+                    <td><code>csgo/*</code></td>
+                    <td>Winner, Handicap, Totals, Map Winner</td>
+                </tr>
+                <tr>
+                    <td>Dota 2</td>
+                    <td><code>dota2/*</code></td>
+                    <td>Winner, Handicap, First Blood, Totals</td>
+                </tr>
+                <tr>
+                    <td>League of Legends</td>
+                    <td><code>lol/*</code></td>
+                    <td>Winner, Handicap, First Tower, Totals</td>
+                </tr>
+                <tr>
+                    <td>Valorant</td>
+                    <td><code>valorant/*</code></td>
+                    <td>Winner, Handicap, Totals</td>
+                </tr>
+                <tr>
+                    <td>Overwatch 2</td>
+                    <td><code>overwatch/*</code></td>
+                    <td>Winner, Handicap</td>
+                </tr>
+                <tr>
+                    <td>Starcraft 2</td>
+                    <td><code>starcraft2/*</code></td>
+                    <td>Winner, Handicap, Totals</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <h2>// Rate Limits & Best Practices</h2>
+            
+            <ul>
+                <li><strong>Rate limit:</strong> ~100 requests/minute for public endpoints</li>
+                <li><strong>Cache odds:</strong> Prices update every few seconds; don't poll faster than needed</li>
+                <li><strong>Use webhooks:</strong> For live betting, consider their websocket feed</li>
+                <li><strong>Handle errors:</strong> 429 = rate limited, 401 = auth expired</li>
+                <li><strong>Bankroll management:</strong> Never bet more than 1-5% per wager</li>
+            </ul>
+            
+            <div class="info">
+                <strong>Alternative platforms for agents:</strong><br>
+                • <a href="polymarket-cli.html">Polymarket CLI</a> - Prediction markets, Rust CLI<br>
+                • Pinnacle - Sharp-friendly, best odds<br>
+                • Magic Markets (upcoming) - Global liquidity aggregation
+            </div>
+        </section>
+        
+        <footer>
+            <p><a href="./">← Back to AI Agent Guide</a></p>
+            <p>Official docs: <a href="https://docs.cloudbet.com">docs.cloudbet.com</a></p>
+        </footer>
+    </div>
+</body>
+</html>
